@@ -3,3 +3,5 @@ output
 *.pdf
 *.fig
 *.jpg
+*.eps
+figures/tikz*
