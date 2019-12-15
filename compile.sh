@@ -12,4 +12,4 @@ bibtex main7-blx
 cd ..
 pdflatex -output-dir=output '\PassOptionsToPackage{draft}{graphicx}\input{main}'
 pdflatex -output-dir=output '\PassOptionsToPackage{draft}{graphicx}\input{main}'
-# pdflatex -output-directory=output main
+pdflatex -output-directory=output main
