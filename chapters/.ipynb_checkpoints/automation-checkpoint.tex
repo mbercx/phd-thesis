@@ -1,0 +1,255 @@
+\begin{refsection}
+
+\chapter{Automation}
+
+\setlength{\epigraphwidth}{3in}
+\epigraph{\textit{``Give me six hours to chop down a tree and I will spend the first four sharpening the axe.''}}{Abraham Lincoln}
+\vspace{3em}
+
+Once the budding computational scientist has learned the basics on how to use their \textit{ab initio} code of choice, he or she will begin their career by manually setting up the required input files, usually from a set copied from a previous calculation. This approach, however, has several downsides. Manually adjusting the input tags for each calculation is very time consuming, especially when a lot of calculations have to be performed. Certainly, any supervisor can agree this time would be better spent analysing results and writing papers. Moreover, some properties can not be feasibly calculated in such a manner, as the time required to set up all of the calculations would be prohibitively large. Finally, adjusting input settings manually often leads to user-related errors, especially when calculations are set up late at night. 
+
+When a large amount of similar calculations have to be performed, it is much more sensible to design an automated workflow that performs the required steps for whatever series of calculations you have in mind. Although it is certainly possible to write your own scripts, there are already several software packages available that provide a useful framework for this purpose, based on for example \href{http://pymatgen.org/}{pymatgen}~\cite{Ong2013} or the \href{https://wiki.fysik.dtu.dk/ase/}{Atomic Simulation Environment} (ASE)~\cite{Larsen2017}. For my work, I have exclusively relied on \href{https://materialsproject.github.io/fireworks/index.html}{Fireworks}~\cite{Jain2015}, a powerful python package for designing, executing and managing computational workflows.
+
+In this chapter I give an overview of all of the workflows that were used to calculate the various properties required for my research. I also explain some more technical details of performing certain calculations using our chosen implementation of the DFT formalism: the \href{https://www.vasp.at/}{Vienna ab initio simulation package} (\texttt{VASP}). After the short introduction in Section~\ref{automation:sec-intro}, the chapter continues with detailing the building blocks of a workflow in Section~\ref{automation:sec-firetasks}. Next, Section~\ref{automation:sec-workflows} describes the workflows used to obtain the results presented in future chapters. For each workflow, there is a corresponding example jupyter notebook that details and executes the various steps performed to set up the calculation and run the workflow. Finally, Section~\ref{automation:sec-computational} discusses some general computational settings used for the workflows.
+
+\pagebreak
+
+\section{Introduction} \label{automation:sec-intro}
+
+Many \textit{ab initio} methods for calculating properties rely on a fairly fixed algorithm of reoccurring steps. Even when the exact steps depend on the result of a previous calculation, it is usually feasible to come up with some sort of well-defined schematic, or workflow, on how to best calculate the desired property for any structure. Fireworks is a well-established python package for designing such a workflow.
+
+As an example, say you want to calculate the density of states of a certain structure, e.g. the chalcopyrite phase of \ce{CuInSe2}. After obtaining an initial geometry, either by constructing it manually, or - more conveniently - by extracting it from a trustworthy database~\cite{Jain2013}, the first step is to optimize the structure computationally. Once you have obtained the optimized geometry, the next step is calculate the density of states using two consecutive \texttt{VASP} calculations: first one to calculate the charge density of the electrons using a relatively sparse k-point sampling of the Brillouin zone, then a calculation that keeps the charge density fixed and determines the energies of the electronic states with a much denser k-point mesh. Such a fixed process for calculating a specific property is an ideal application of a workflow, especially if you want to obtain this property for a large number of structures. 
+
+Workflows are assembled from connected steps, called \href{https://github.com/materialsproject/fireworks/blob/master/fireworks/core/firework.py#L196}{\code{Firework}}s, which in turn consist of a set of consecutive \href{https://github.com/materialsproject/fireworks/blob/master/fireworks/core/firework.py#L46}{\code{Firetask}}s. How the various tasks that need to be performed are organized in \code{Firework}s and \code{Firetask}s is up to the user, but the developers do provide some \href{https://materialsproject.github.io/fireworks/design_tips.html}{general guidelines} on how to design your workflows. All of my workflows were constructed by bundling all of the tasks required for a single \texttt{VASP} calculation into one \code{Firework}, and then connecting these \code{Firework}s to create a workflow for each of the properties required for my research.
+
+\section{Firetasks} \label{automation:sec-firetasks}
+
+Let's begin with an overview of the smallest building blocks of the workflows: tshe \code{Firetask}. Each \code{Firework} of the workflow consists of one or more \code{Firetask}s, which are executed in the order that they have in the list specified when initializing the \code{Firework}. While the workflow is running, all \code{Firetask}s have access to the \textit{spec} of the \code{Firework} they are a part of (\code{\_fw\_spec}). This allows the user to easily pass information between tasks. The spec also contains the launch directory of the \code{Firework}, so the initial \code{Firetask} is executed in this directory.
+
+\subsection{\texttt{WriteVaspFromIOSet}} \label{automation:sec-WriteVaspFromIOSet}
+
+As the name implies, the \code{WriteVaspFromIOSet} task writes the \texttt{VASP} input files into the current directory. Each calculation is defined by an input set, i.e. a class derived from \code{pymatgen}'s \code{DictSet} class. This class does a few things:
+
+\begin{itemize}
+
+\item Load the basic configuration from a YAML\footnote{YAML Ain't Markup Language; IT people love recursion, also in their acronyms.} file. This file contains the settings for each of the \texttt{VASP} input files (See Appendix~\ref{appendix:sec-VASP}). Here's an (truncated) example:
+\begin{verbatim}
+INCAR:
+  ALGO: Fast
+  EDIFF: 1.0e-06
+  ENCUT: 500
+  ISMEAR: -5
+  ...
+KPOINTS:
+  grid_density: 3000
+POTCAR:
+  Ac: Ac
+  Ag: Ag
+  Al: Al
+  Am: Am
+  Ar: Ar
+  As: As
+  At: At_d
+  ...
+\end{verbatim}
+Besides the \vasp{INCAR} tags, the YAML file also specifies the \link{dft:sec-kpoints}{sampling of the Brillouin zone}. This is done based on a specified density, as the number of k-points should of course depend on the size of the reciprocal unit cell. Finally, the \vasp{POTCAR} file is specified for each element, which mainly determines the number of valence (and core) electrons to consider in the \link{dft:sec-PAW}{PAW formalism}. Each \vasp{POTCAR} file has a specific name, e.g. default file for \ce{At} only considers the 6$p$ electrons as valence electrons, but the \texttt{At\_d} file also includes the 5$d$ electrons.
+
+\item Make adjustments to the configuration based on the structure and what calculation has to be performed. For example, in case the provided structure has magnetic moments specified, the \vasp{ISPIN} tag is set to 2 in order to perform a spin polarized calculation. Or, for a geometry optimization of a \link{automation:sec-surface}{slab}, selective dynamics is applied to fix a certain selection of the atoms based on user-provided settings. Based on the input set, the configuration of the YAML file is also adjusted, e.g. \code{BulkOptimizeSet} is based on the \texttt{optimizeSet.yaml} file, but automatically sets \vasp{ISIF} to 2, fixing the unit cell of the calculation.
+
+\item Write the output files using the \code{write\_input()} method. Every \code{DictSet} subclass requires the structure as an input argument, so based on the structure and configuration, all of the \texttt{VASP} input files can be written. Note that the \vasp{MAGMOM} tag, which specifies the magnetic moments in the structure, is also automatically added to the \vasp{INCAR} file, which can be a real headache to do manually for large complicated structures.
+
+\end{itemize}
+
+The default method for initializing the \code{WriteVaspFromIOSet} class is by providing either an initialized input set or the structure and the name of the input set of the calculation. However, in some cases the structure cannot be provided when the workflow is set up, as it relies on a previous geometry optimization. In this case the structure will be extracted from the directory of the parent \code{Firework}. Note that if the input set is defined by the name, either a structure or parent \code{Firework} must be provided, else the \code{Firetask} has no recourse for obtaining the structure.
+
+\subsection{\texttt{VaspParallelizationTask}} \label{automation:sec-VaspParallelizationTask}
+
+As most DFT calculations require a substantial amount of computational resources, it is important to properly parallelize the workload over the various nodes/cores of a cluster, as failing to do so can severely affect the performance. For \texttt{VASP}, the parallelization can be controlled by several parameters:
+
+\begin{itemize}
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/KPAR}{\texttt{KPAR}}: Determines the parallelization over the k-points. \texttt{VASP} treats \texttt{KPAR} k-points in parallel, i.e. it divides the available cores and k-points in \texttt{KPAR} groups and then assigns each group of cores to work on a group of k-points, one k-point at a time. As \texttt{KPAR} divides the k-points of the calculation in groups, \texttt{KPAR} is optimally chosen to be a divisor of the number of k-points. However, this rule should \textbf{not} be set in stone, as often choosing a higher \texttt{KPAR} that is not a divisor of the number of nodes can result in an improved optimization. 
+
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/NPAR}{\texttt{NPAR}}: A second way in which \texttt{VASP} allows parallelization is over the electronic bands. For each k-point, there are \verb|#CORES|/\verb|KPAR| cores working on it at a single time. Using \verb|NPAR|, we can further divide the cores per k-point into \verb|NPAR| groups, i.e. treat \verb|NPAR| bands in parallel using \verb|#CORES|/\verb|KPAR|/\verb|NPAR| cores. Note that similar to the \verb|KPAR| and the number of k-points,  \verb|NPAR| should optimally be a divisor of the number of bands to avoid inactive cores. \texttt{VASP} actually enforces this by setting the number of bands (\vasp{NBANDS}) to the smallest multiple of \verb|NPAR| higher than the requested (or default) bands.
+
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/NCORE}{\texttt{NCORE}}: The number of cores that are working together on an individual band. For a specified \verb|NPAR|, \verb|NCORE| is automatically set using the following relation:
+\begin{equation*}
+\texttt{NCORE} = \frac{\texttt{\#CORES / \texttt{KPAR}}}{\texttt{NPAR}}
+\end{equation*}
+In other words, the user should specify either \verb|NPAR| or \verb|NCORE|, as they are directly connected. As is said in the \texttt{VASP} manual, \verb|NPAR| is preferred, i.e. if you do set both \verb|NPAR| and \verb|NCORE|, the \verb|NCORE| value is ignored.
+
+% \item \href{https://cms.mpi.univie.ac.at/wiki/index.php/LPLANE}{\texttt{LPLANE}}: \#TODO
+
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/NSIM}{\texttt{NSIM}}: This input tag defines the number of bands that are treated simultaneously in the blocked mode of the \texttt{RMM-DIIS} algorithm. This allows \texttt{VASP} to exploit matrix BLAS operations instead of matrix-vector operations, which could lead to a speed up on some machines. Peter Larsson \href{https://www.nsc.liu.se/~pla/blog/2012/02/22/nparnsim/}{wrote an interesting article} on the topic. Overall, the gains are smaller compared to successfully utilizing \verb|NPAR| and \verb|KPAR|, but it might be worth experimenting with this value in case you rely on the \texttt{RMM-DIIS} algorithm.
+
+\end{itemize}
+
+As an example, consider the following parallelization settings for a calculation that uses 32 cores: \texttt{KPAR = 4}; \texttt{NPAR = 2}, shown schematically in Fig.~\ref{automation:fig-parallel}. First, the total number of cores is divided among \texttt{NPAR = 4} groups, resulting in \texttt{\#CORES/KPAR = 8} cores working on each group of kpoints. Next, the cores are split into \texttt{NPAR = 2} groups, which means that \texttt{NCORE = \#CORES/KPAR/NPAR} = 4 cores will be working simultaneously on each band.
+
+\begin{figure}[hb]
+\centering
+\input{figures/automation/parallelization.tex}
+\caption{Schematic of a parallelization for 32 cores, \texttt{KPAR = 4}  and \texttt{NPAR = 2}.}
+\label{automation:fig-parallel}
+\end{figure}
+
+Most applications for calculation time on a higher Tier system, such as the \href{https://www.vscentrum.be/tier1}{BrEniac} cluster of the VSC, or the \href{http://www.prace-ri.eu/}{PRACE} infrastructure of the European Union, require the user to demonstrate the scaling of their requested calculations is optimal. This involves testing a range of parallelization settings for an increasing number of nodes, and comparing the speed of the calculation at higher node usage in order to analyse the efficiency. An example of such an analysis can be found in Appendix~\ref{appendix:sec-parallel}. However, performing these tests for every structure/calculation in a workflow would defeat the purpose, as you would spend more time on running tests than actually producing results. 
+
+\code{VaspParallelizationTask} is my humble approach to automating this process, based on a \href{https://mybinder.org/v2/gh/mbercx/jupyter/master?filepath=parallel\%2Fparallel_analysis.ipynb}{series of tests} which I have performed on the machines I use most frequently. This is still very much a work in progress, but the algorithm in its current form works as follows:
+
+\begin{itemize}
+
+\item Make a list of reasonable \texttt{KPAR} values. The algorithm enforces that this is a divisor of the number of cores, and then calculates the amount of resources that would be wasted in each run over the k-points. To illustrate this, consider the following example: let's say you want to do a geometry optimization with a k-point sampling that has 7 irreducible points in the \link{dft:sec-kpoints}{IBZ}. You're running your calculation on a cluster that has 20 cores per node, and so there is no shared divisor for these two numbers. That said, choosing \texttt{KPAR = 1} would be a mistake, since the parallelization will more than make up for the time lost due to inactive cores. So, let's say you choose \texttt{KPAR = 2}. In this case, \texttt{VASP} divides the cores over two groups, and hence runs two k-points simultaneously. After finishing 6 of the k-points, there is only one k-point left, so while the final k-point is being calculated there will be 10 inactive cores. \code{VaspParallelizationTask} defines the core waste as the number of inactive cores per run divided by the number of k-point groups, i.e. 4 in the example here, so the core waste is 2.5. As long as the core waste is smaller than both the number of cores per node\footnote{In this case, you might as well run the calculation on fewer nodes. This is also true in a sense for the cores, but using partial nodes is often impractical.} and 2/3rd of the total cores, the value of \texttt{KPAR} is accepted.
+
+\item Attempt to get \texttt{NPAR} or \texttt{NCORE} as close as possible to a specified value, depending on whether the calculation is a hybrid calculation or not, respectively. Based on the tests I have run, this is either \texttt{NPAR = 8} or \texttt{NCORE = 7}. Then look for the largest accepted \texttt{KPAR} that allows for this \texttt{NPAR/NCORE} value.
+
+\end{itemize}
+
+For the \href{https://joshuagoings.com/2013/08/23/davidsons-method/}{Davidson block iteration scheme} and conjugate gradient algorithm, this scheme usually results in a fairly good guess for the optimal parallelization settings. However, I've noticed that for the \texttt{RMM-DIIS} algorithm, it seems that the optimal value of \texttt{NPAR/NCORE} is different. More testing is required\footnote{By the time you are reading this, the algorithm might have already changed, since it's the first thing I plan to do after submitting my thesis.} to optimize this problem further. Moreover, it's probably better to use something a little more rigorous for tuning the automation of these settings, e.g. a machine learning model based on a large set of data. In chessboard plot of \href{https://mybinder.org/v2/gh/mbercx/jupyter/master?filepath=parallel\%2Fparallel_analysis.ipynb}{the parallelization analysis} I have performed, the setting chosen by the \code{VaspParallelizationTask} is indicated by a red square.
+
+\subsection{\texttt{CustodianTask}} \label{automation:sec-CustodianTask}
+
+When running large numbers of calculations using workflows, you're bound to run into issues. Calculations might fail to converge or raise errors, and nodes might crash because they run out of memory or \href{https://www.urbandictionary.com/define.php?term=stercus\%20accidit}{\textcolor{black}{\textit{stercus accidit}}}. In some cases the Fireworks flask-based graphics user interface will show these calculations as \textit{fizzled}, so the user can find these issues easily. However, sometimes the issue might pass silently and only be discovered during the analysis. Moreover, dealing with common errors which have a solution that can be programmed should be part of a robust workflow.
+
+\href{https://materialsproject.github.io/custodian/}{Custodian} is a just-in-time (JIT) python package for automated error recovery and allows the user to make much more robust workflows. In short, the \code{CustodianTask} runs the calculation inside a \code{Custodian} instance, which has \code{ErrorHandler}s specified during its initialization which check for errors and apply pre-configured corrections (using the aptly named methods \code{check()} and \code{correct()}). For the workflows I have used during my research, I have designed the following \code{ErrorHandler}s:
+
+\begin{itemize}
+
+\item \code{ElectronicConvergenceMonitor}: Monitors the calculation and applies a linear fit to the total residual charge (i.e. the integration of the charge density difference for an electronic step) over a range of electronic steps (\code{max\_fit\_range}). Besides the maximum tolerated incline of the fit (\code{max\_allowed\_incline}), the user can also specify the minimum number of electronic steps that a calculation must have run before a correction is triggered (\code{min\_electronic\_steps}). If the \code{ErrorHandler} thinks the calculation is not converging, it will terminate the run and restart the calculation with a more stable algorithm (\vasp{ALGO}=\texttt{VeryFast}$\rightarrow$\texttt{Fast}$\rightarrow$\texttt{Normal}$\rightarrow$\texttt{All}). If the algorithm is already set to \texttt{All}, the \code{ElectronicConvergenceMonitor} will attempt to change the charge mixing settings.
+
+% \item \code{MemoryErrorHandler}: \todo[inline]{I'm still testing this one. Will complete this part when it's finished.}
+
+\item \code{QuotasErrorHandler}: This \code{ErrorHandler} was copied and stripped from Custodian's own \text{VaspErrorHandler} in order to design an \code{ErrorHandler} that deals specifically with the issues we encounter for the quotas workflow~\ref{automation:sec-surface}.
+
+\item \code{ParallelizationTestMonitor}: When running parallelization tests, we usually don't need the calculation to finish, since we are only interested in the average time per electronic step, which is fairly consistent for most electronic optimizations. Using this \code{ErrorHandler} allows the user to specify how many electronic steps are desired before the calculation should be aborted using \texttt{VASP}'s \vasp{STOPCAR} file (\code{max\_elec\_steps}). Moreover, some parallelization settings can lead to very slow calculations, which could result in such a high electronic time step that the whole workflow is slowed down needlessly (as obviously these settings are not optimal). Hence, the user is able to specify a maximum allowed step time (\code{max\_elec\_step\_time}). If \code{ParallelizationTestMonitor} finds that one of the previous steps is above this time, the calculation is also aborted.
+
+\end{itemize}
+
+Note that if any of these \code{ErrorHandler}s are unable to correct the calculation, e.g. because they have exhausted all options, a \code{NonRecoverableError} is thrown, so any failed calculations are easily found via the Fireworks management system. \code{CustodianTask} is the \code{Firetask} that actually performs the \texttt{VASP} calculation, within a \code{Custodian} with specified \code{ErrorHandler}s. These \code{ErrorHandler}s are initialized by the user when designing the workflow, and passed as a \code{list} to the \code{custodian} input argument of any \code{Firework}.
+
+\subsection{\texttt{PulayTask}} \label{automation:sec-PulayTask}
+
+A common issue with DFT calculations is the so-called Pulay stress, an almost isotropic error on the diagonal components of the stress tensor introduced by the incompleteness of the basis set~\cite{Francis1990}. Although Pulay stresses are less of an issue when a \hyperref[dft:sec-planewave]{plane wave basis set} is used compared to basis sets that rely on the ionic positions, one should still take care when performing geometry optimization that allow the lattice vectors to change. Figure~\ref{automation:fig-pulay} demonstrates the influence of a large change in lattice vectors on the effective cutoff of the basis set. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{figures/automation/pulay_stress.png}
+\caption{Demonstration of the influence of a change in lattice vectors on the effective energy cutoff. When the lattice changes from hexagonal (left) to a cubic (right), the corresponding energy cutoff surface changes from a sphere to an ellipsoid, effectively reducing the cutoff energy of the corresponding basis set. Taken from~\cite{Pulay}.}
+\label{automation:fig-pulay}
+\end{figure}
+
+A common way of dealing with this issue is to perform an addition geometry optimization, as the basis set is initialized again at the start of this secondary calculation. However, if the lattice vectors change significantly during this second geometry optimization, the same problem might repeat itself. \code{PulayTask} tries to deal with this problem automatically by checking a user-specified condition versus a certain tolerance, and running the geometry optimization again in case this condition is not met. If the condition is met, the workflow continues as it was initially designed\footnote{In the context of the Fireworks lingo, \code{PulayTask} returns an \code{FWAction} that adds the next geometry optimization as an \code{addition}.}. If not, another geometry optimization is performed based on the final structure.
+
+\subsection{\texttt{ConfigurationTask}/\texttt{EnergyConfTask}} \label{automation:sec-ConfigurationTask} \label{automation:sec-EnergyConfTask}
+
+These two tasks make up the complete configuration workflow~\ref{automation:sec-configurations}, which is used to calculate the energy of a whole range of configurations for e.g. and alloy system. \code{ConfigurationTask} generates the requested configurations based on the algorithm of Hart et al.~\cite{Hart2005} for the provided structure and a number of user-specified settings:
+
+\begin{itemize}
+\item \code{substitution\_sites (list)}: Sites of the structure which should be considered for substitution.
+\item \code{element\_list (list)}: Which elements are substituted into the structure to generate the configurations.
+\item \code{size (list)} : A list of allowed unit cell sizes for generating the configurations. Note that the algorithm is able to generate more than just supercells. Any unit cell that can reconstruct the structure with a number of sites equal to a size in the list times the number of sites in the original structure is considered.
+\item \code{concentration\_restrictions (dict)}: Allows the user to specify restrictions on the \textit{fractional} concentrations of the elements.
+\end{itemize}
+
+Once the configurations have been generated, \code{EnergyConfTask} sets up a two-step workflow for each configuration, consisting of a geometry optimization (\code{OptimizeFW}) and a static calculation to obtain a more precise value for the energy using the tetrahedron method (\code{StaticFW}).
+
+\subsection{Other}
+
+Here I give a brief overview of some smaller \code{Firetask}s which are also part of the workflows described in Section~\ref{automation:sec-workflows}. 
+
+\begin{itemize}
+
+\phantomsection \label{automation:sec-IncreaseNumberOfBands}
+\item \code{IncreaseNumberOfBands}: For some calculations, such as a calculation of the dielectric tensor, it is important to have a sufficient amount of empty bands. Often, this is done by multiplying the number of occupied bands from a previous calculation. This \code{Firetask} automates this step, based on a user-specified multiplier.
+
+\phantomsection \label{automation:sec-VaspTask}
+\item \code{VaspTask}: Similar to \link{automation:sec-CustodianTask}{\code{CustodianTask}}, this \code{Firetask} runs \texttt{VASP} in the directory of the \code{Firework}. However, this is just a bare \texttt{VASP} run without any error recovery based on a \code{Custodian}. In case the user does not specify any \code{ErrorHandlers} when initializing a \code{Firework} that runs \texttt{VASP}, this class is used instead of \code{CustodianTask}.
+
+\phantomsection \label{automation:sec-AddFinalGeometryToSpec}
+\item \code{AddFinalGeometryToSpec}: This small but handy \code{Firework} extracts the final geometry from the current directory and adds it to the \code{\_fw\_spec}, so it can be used by both other \code{Firetask}s in the \code{Firework}, as well as future \code{Firework}s.
+
+\phantomsection \label{automation:sec-ScriptTask}
+\item \code{ScriptTask}: This is a standard task included in Fireworks package which runs a user-defined bash script.
+
+\phantomsection \label{automation:sec-PyTask}
+\item \code{PyTask}: Versatile task included in Fireworks package that can run any python method. Note that the method is defined as the string which would be used to import that method in a python module, e.g. \code{pybat.workflow.workflows.get\_wfs\_noneq\_dimers}. In case a \code{PyTask} is used in my workflows, the flowchart will detail the python method used as well as a short explanation.
+
+\end{itemize}
+
+\section{Workflows} \label{automation:sec-workflows}
+
+In this section I present an overview of the workflows used to calculate the results presented in the rest of my thesis. As mentioned previously, all of these workflows consist of several \code{Firework}s, each of which represent one \texttt{VASP} calculation. As these \code{Firework}s are largely just a collection of \code{Firetask}s, I won't describe them separately. It should be clear from the description of the workflow what each \code{Firework} does.
+
+\subsection{Optical properties} \label{automation:sec-optics}
+
+Section \ref{dft:sec-linear_response} describes the theoretical framework for calculating the electromagnetic response of a material. Here I explain the practical steps you have to take to calculate the frequency dependent dielectric tensor for any given material, which have been employed to calculate the optical properties used in Chapter~\ref{chapter:solar}. As the number of steps required here is rather limited, it's an ideal problem to demonstrate a simple workflow.
+
+\begin{figure}[ht]
+\input{figures/automation/optics_wf.tex}
+\caption{\label{automation:fig-optics} Flowchart for the optics workflow.}
+\end{figure}
+
+Figure~\ref{automation:fig-optics} shows the workflow applied to each structure. As the unit is often constructed by replacing elements in a template of the unit cell with the required spacegroup, the first step is to optimize the geometry of the structure\footnote{Note that in case a \link{dft:sec-hybrid}{hybrid functional} is used, it is efficient to first optimize the geometry using a less computationally demanding functional, especially when we generate structures that might have very different lattice parameters than the final structure.} in the \code{OptimizeFW}. Here we allow for a full optimization of the unit cell (\vasp{ISIF}~=~3), and as such the lattice vectors can change. In case the energy of the initial structure and final structure differs more than 1~\si{\milli\electronvolt} per atom, the \link{automation:sec-PulayTask}{\code{PulayTask}} copies the final structure \vasp{CONTCAR} to the \vasp{POSCAR} and performs another geometry optimization in a \code{PulayStep}.
+
+Once the geometry is obtained, the workflow continues by calculating the dielectric tensor in the \code{OpticsFW}. This requires an increase in the number of bands, as to have enough unoccupied bands to calculate the \link{dft:sec-dielectric}{dielectric tensor} for sufficiently high energy transitions. Besides this, the \code{OpticsFW} also configures some default settings for dielectric function calculations, e.g. \vasp{LOPTICS}=True, a more dense energy grid (\vasp{NEDOS}=2000) and a more strict electronic convergence criterion (\vasp{EDIFF}=$10^{-6}$). Finally, the \code{Firework} also sets the \vasp{CSHIFT} parameter to 0.01, which should be low enough so that \texttt{VASP} does not overwrite the original imaginary part of the dielectric tensor with the one obtained from the Kramers-Kronig relation. This introduces a broadening to the imaginary part of the dielectric tensor, which is passed to the absorption coefficient through Eq.~(\ref{slme:eq-absorption}). In effect, this reduces the band gap of the material, which has a large influence on the calculated efficiency described in Section~\ref{slme:sec-efficiency}.
+
+\subsection{Configurations} \label{automation:sec-configurations}
+
+For various research questions, it is important to be able to investigate a whole range of configurations for a specific property. For example, when investigating the structural stability of a charged battery cathode, it is important to consider the most stable lithium configuration~\ref{batteries:sec-structure}. Figure~\ref{automation:fig-configurations} shows the configuration workflow, which at first only consists a single \code{Firework} that generates all configurations for a specified set of restrictions using the algorithm of Hart et al.~\cite{Hart2005}, as implemented in \link{automation:sec-ConfigurationTask}{\code{ConfigurationTask}}. The resulting list of symmetrically non-equivalent configurations is passed to the \link{automation:sec-EnergyConfTask}{\code{EnergyConfTask}}, which sets up a \code{Workflow} that optimizes the geometry of each configuration and subsequently determines the total energy based on a static calculation.
+
+\begin{figure}[ht]
+\centering
+\input{figures/automation/configurations_wf.tex}
+\caption{\label{automation:fig-configurations} Flowchart for the configurations workflow.}
+\end{figure}
+
+\subsection{Kinetic barriers - dimer workflow}
+
+As explained in Section~\ref{dft:sec-transition}, investigating a transition from one state of a system to another requires the calculation of both reaction energy and the kinetic barrier. After optimizing the geometry of two different states of a material, we can compare their energies in order to get an idea of the thermodynamic driving force for the transition. If such a reaction is favorable, i.e. its reaction energy is found to be negative, we still have to make sure that the transition is kinetically feasible. One method for doing this is calculating the kinetic barrier directly using the \link{dft:sec-neb}{nudged elastic band method}.
+
+\begin{figure}[ht!]
+\centering
+\input{figures/automation/dimer_wf.tex}
+\caption{\label{automation:fig-dimer} Flowchart for the dimer workflow.}
+\end{figure}
+
+The investigation of the stability of the oxygen framework presented in Section~\ref{batteries:sec-dimer} requires the thermodynamics and kinetics of oxygen dimer formation. Figure~\ref{automation:fig-dimer} shows the workflow that executes the necessary steps. First, the geometry of the provided structure is fully optimized (\vasp{ISIF}=3), and the energy is calculated more precisely using a static calculation. The final structure and energy is passed on to a small \code{Firework} that sets up the a transition workflow for each non-equivalent dimer. This transition work flow consists of a geometry optimization of the dimer structure, where only the atomic positions are allowed to optimize (\vasp{ISIF}=2). Once again a static calculation is performed to determine the energy, which is then compared to the energy of the initial, unperturbed structure in order to obtain the reaction energy. If this reaction energy is smaller than a certain tolerance (e.g. zero to only consider thermodynamically favorable dimers), the kinetic barrier is calculated using a \link{dft:sec-neb}{nudged elastic band calculation}.
+
+\subsection{Surface properties}\label{automation:sec-surface}
+
+The calculation of the secondary electron emission in the QUOTAS project (Chapter \ref{chapter:quotas}) requires the DOS of the surface states, as well as the surface work function. However, because of the three dimensional periodic boundary conditions in \texttt{VASP}, simulating an isolated surface is not possible. The usual approach for dealing with this issue is by setting up a so-called \text{slab} geometry, where we introduce a layer of vacuum to the unit cell. In effect, this means that we have \textit{two} opposite surfaces in our unit cell, hence the term slab is used instead of surface. Moreover, the use of periodic boundary conditions means that we have an infinite amount of slabs, but in case the vacuum is chosen to be sufficiently thick, the interaction between the surfaces of the slabs is negligible, and we can reasonably simulate a surface for the calculation or surface energies, work functions and other properties. 
+
+Let's describe the process of constructing such a slab unit cell in more detail. Usually, the surface is defined based on its miller indices in the conventional unit cell of the bulk structure. However, for many structures, there are several possible surfaces corresponding to a set of miller indices, depending on where we apply the cleavage plane in the structure. This leads to several possible terminations for each set of miller indices. It's good practise to consider all terminations for each surface and calculate the surface energy to determine the most stable surface, and continue further calculations with this termination. Note that this approach does not consider the possibility of surface reconstruction. This is a difficult problem to solve, as probing all possible surface reconstructions is an insurmountable task. Surface reconstruction is especially common for polar surfaces, where because of the ionic nature of the bonds in the structure, there is a dipole moment across the surface. Tasker~\cite{Tasker1979} distinguished three types of ionic surfaces:
+\begin{itemize}
+\item Type I: Individual layers are charge neutral, and hence there is no surface dipole.
+\item Type II: Individual layers are charged, but groups of layers can be chosen that are charge neutral and non-polar.
+\item Type III: Groups of layers have a net dipole.
+\end{itemize}
+For the work presented in this thesis, I have only performed calculations on elemental surfaces, which are always of Tasker Type I and hence non-polar.
+
+Once the surface and its termination have been decided, there are still several elements that to consider before finalizing the unit cell for the calculations. The first thing to specify is the thickness of the slab, i.e. the amount of atomic layers, which should be large enough that the center of the slab behaves like the bulk of the material under investigation. Second, the thickness of the vacuum layer, i.e. the distance between two slabs in the periodic boundary conditions, must be set by suitably adjusting the unit cell and atom coordinates. In order to make sure both are sufficiently thick, convergence of the property of interest versus both slab and vacuum tickness should be checked.
+
+The model for secondary electron emission described in Section~\ref{quotas:sec-} requires the density of states and the vacuum level. Starting from the bulk structure, the desired surface miller indices need to be provided, as well as the \code{slab\_settings}, e.g. the number of \code{free\_layers} on each side of the slab. Once the geometry of the bulk structure has been fully optimized, the algorithm continues with calculating the dielectric tensor using a \code{OpticsFW}. Simultaneously, all terminations of the requested surfaces are generated, and a DOS workflow is initialized for each resulting slab. Each of these workflows starts with an optimization that \textit{relaxes} the surface atoms, depending on how many free layers are specified. Finally, the workflow calculates the slab DOS in two steps: one run with a sparse k-point mesh in order to obtain a reasonable charge density, and one with a dense k-point mesh in order to obtain a precise DOS and local potential.
+
+\begin{figure}[ht]
+\input{figures/automation/quotas_wf.tex}
+\caption{\label{automation:fig-quotas} Flowchart for the QUOTAS workflow.}
+\end{figure}
+
+\section{\label{automation:sec-computational}Computational Details}
+
+Although all the workflows have defaults for computational settings such as the density of k-points, energy cutoff for the plane waves etc., most calculations will require the user to adjust these settings based on a set of convergence tests. These can be passed to the \code{Firework}s of the workflow using the \code{vasp\_input\_params} input argument. This is a dictionary whose key value pairs are passed to the \link{automation:sec-WriteVaspFromIOSet}{\code{WriteVaspFromIOSet}}'s input set as keyword arguments. Any input argument of the parent \code{DictSet} class can be adjusted using \code{vasp\_input\_params}, but here is a list of some commonly used ones:
+
+\begin{itemize}
+
+\item \code{user\_incar\_settings}: The most important of the keys, this allows the user to specify any INCAR tag. Any tag specified will override whatever configuration is generated by the input set, even when they are derived from the structure (e.g. \vasp{MAGMOM}).
+
+\item \code{user\_kpoints\_settings}: Change the density of the k-point mesh, or specify the number of k-points in each direction.
+
+\item \code{force\_gamma}: Force a gamma centered mesh for the k-points.
+
+\end{itemize}
+
+For each of the results sections in this thesis, the most important computational details are provided in Appendix~\ref{appendix:sec-results}, organised by chapter and in order of the presentation of the results. Although you are welcome to read them now, there is also a little silicon chip symbol next to each section header that contains computational results, that links to the corresponding section in the appendix. 
+
+\printbibliography
+\end{refsection}

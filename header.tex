@@ -1,0 +1,179 @@
+% Language & Fonts
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{inconsolata}
+\DeclareUnicodeCharacter{2264}{-} % Compilation issue
+\DeclareUnicodeCharacter{0307}{-} % Compilation issue
+\DeclareUnicodeCharacter{2212}{-} % Compilation issue
+
+% Set page margin
+\usepackage[margin=1in]{geometry}
+
+% Reference libraries
+\usepackage[
+backend=bibtex,
+style=ieee,
+style=numeric-comp,
+sorting=none
+]{biblatex}
+\addbibresource{bibliography/dft.bib}
+\addbibresource{bibliography/workflows.bib}
+\addbibresource{bibliography/quotas.bib}
+\addbibresource{bibliography/slme.bib}
+\addbibresource{bibliography/batteries.bib}
+
+% Math stuff
+\usepackage{mathtools}
+\usepackage{textcomp}
+\usepackage{braket}
+\usepackage{paralist}
+\usepackage{enumerate}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage[section]{placeins}
+\usepackage{gensymb}
+\usepackage[pdftex]{graphicx}
+
+% Colors
+\usepackage{xcolor}
+\usepackage{soul}
+
+% Fancy headers for the pages
+\usepackage{fancyhdr}
+\fancypagestyle{style1}{
+\fancyhf{}
+\fancyhead[OL]{Conclusion and Outlook}
+\fancyhead[ER]{Conclusion and Outlook}
+\fancyhead[RO]{\thepage}
+\fancyhead[LE]{\thepage}
+}
+
+% Various
+\usepackage{epigraph} % Cool quotes at the beginning of each chapter
+\usepackage[version=4]{mhchem} % Pretty chemical formulae
+\usepackage{siunitx} % Pretty SI units
+\usepackage[textsize=small]{todonotes} % Add todo's to the text
+
+% New command for less cramped fractions
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\usepackage{amsmath,amssymb}
+\usepackage{dcolumn}
+\usepackage{bm}
+\usepackage[none]{hyphenat}
+\usepackage{flafter}
+
+% Table options
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{booktabs}
+\usepackage[tableposition=top]{caption}
+\usepackage[bottom]{footmisc}
+\usepackage{multirow}
+
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{mdframed}
+
+\usepackage[toc, page]{appendix}
+
+\usepackage{blindtext}
+
+\expandafter\def\expandafter\normalsize\expandafter{%
+    \normalsize
+    \setlength\abovedisplayskip{15pt}
+    \setlength\belowdisplayskip{15pt}
+    \setlength\abovedisplayshortskip{15pt}
+    \setlength\belowdisplayshortskip{15pt}
+}
+
+\setlength{\intextsep}{25pt}
+
+\hyphenpenalty 750
+\widowpenalties 1 6000
+\raggedbottom
+
+%%%%%%%% TikZ Settings %%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{arrows, positioning, fit, backgrounds, calc}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{dateplot}
+
+%% Computationalbox %% #TODO Remove?
+
+\definecolor{computational}{HTML}{63AABC}
+\tikzstyle{computationalbox} = [fill, align=left, rounded corners, text width=\textwidth, fill=computational, fill opacity=0.4, text opacity=1, font=\small]
+
+%% Automation %%
+
+\definecolor{fwcolor}{HTML}{63AABC}
+\definecolor{ftcolor}{HTML}{F9F3EC}
+\definecolor{helpboxbg}{HTML}{ED7833}
+\definecolor{conditionboxbg}{HTML}{FFFFFF}
+
+\tikzset{my lines/.style={
+    black!30!white, line width = 0.2pt
+}}
+
+\tikzstyle{firework_name} = [font=\bf\ttfamily]
+\tikzstyle{firework} = [fill=fwcolor, rounded corners, very thick, fill opacity=1]
+\tikzstyle{firetask} = [draw, rectangle, rounded corners, minimum height=1.5em, minimum width=5em, anchor=west, font=\footnotesize\ttfamily, thick, fill=ftcolor]
+\tikzstyle{firearrow} = [>=latex, very thick, dashed]
+\tikzstyle{helpline} = [color=helpboxbg, very thick]
+\tikzstyle{helpbox} = [fill, rounded corners, text width=12.5em, fill=helpboxbg, fill opacity=0.5, text opacity=1, font=\small]
+\tikzstyle{conditionbox} = [fill=conditionboxbg, rounded corners, fill opacity=0.6, text opacity=1, font=\footnotesize]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{link}{RGB}{137, 5, 47}
+
+% Links
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+%%%%% Commands %%%%%
+
+\usepackage{ifthen}
+
+\newcommand{\tocite}{\todo[inline]{CITE}}
+
+\definecolor{hlcolor}{gray}{.90}
+\sethlcolor{hlcolor}
+
+\newcommand{\code}[1]{\texttt{\hl{#1}}}
+\newcommand{\link}[2] {\hyperref[#1]{\textcolor{link}{#2}}}
+\newcommand{\firetask}[1] {\hyperref[automation:sec-#1]{\textcolor{black}{\texttt{#1}}}}
+\newcommand{\vasp}[1] {\hyperref[appendix:sec-#1]{\textcolor{link}{\texttt{#1}}}}
+ 
+ 
+\newcommand{\resultsection}[3] {
+\begin{minipage}{0.92\textwidth}
+\section{#1}
+\end{minipage}
+\begin{minipage}{0.07\textwidth}
+\textcolor{white}{\rule{1em}{1.2em}}
+\href{#2}{\includegraphics[width=3em]{figures/jupyter.png}}
+\end{minipage}\\\vspace{-1em}\\
+}
+ 
+\newcommand{\resultsubsection}[3] {
+\begin{minipage}{0.855\textwidth}
+\subsection{#1}
+\end{minipage}
+\begin{minipage}{0.07\textwidth}
+\textcolor{white}{\rule{1em}{1.2em}}
+\ifthenelse{\equal{#2}{}}{}{\href{#2}{\includegraphics[width=3em]{figures/jupyter.png}}}
+\end{minipage}
+\begin{minipage}{0.08\textwidth}
+\textcolor{white}{\rule{1em}{1.2em}}
+\ifthenelse{\equal{#3}{}}{}{\hyperref[appendix:sec-#3]{\includegraphics[width=2.5em]{figures/silicon3.png}}}
+\end{minipage}\\
+}
