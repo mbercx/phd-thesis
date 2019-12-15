@@ -1,9 +1,10 @@
 output
+feedback
+figures/tikz*
 *.png
 *.pdf
 *.fig
 *.jpg
 *.eps
 *.gif
-figures/tikz*
 *.aux
