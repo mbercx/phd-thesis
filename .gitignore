@@ -1,6 +1,8 @@
 output
 feedback
 figures/tikz*
+.ipynb_checkpoints
+.DS_Store
 *.png
 *.pdf
 *.fig
