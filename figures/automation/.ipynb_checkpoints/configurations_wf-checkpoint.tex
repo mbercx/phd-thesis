@@ -1,0 +1,72 @@
+\begin{tikzpicture}[scale=1, node distance=0.4em]
+
+% Fireworks
+\node (conf) [font=\bf\ttfamily] {ConfigurationFW};
+\node (conf_1) [firetask, below=of conf] {\firetask{ConfigurationTask}};
+\node (conf_2) [firetask, below=of conf_1] {\firetask{EnergyConfTask}};
+\begin{scope}[on background layer]
+    \node (frame_conf) [firework, fit={(conf) (conf_1) (conf_2)}] {};
+\end{scope}
+
+\node (energy_wf0) [firetask, align=center, thick, rounded corners, below left= 3em and 5 em of frame_conf] {configuration\_0 \\ energy workflow};
+\node (energy_wf1) [firetask, align=center, thick, rounded corners, right= 3em of energy_wf0] {configuration\_1 \\ energy workflow};
+\node (energy_wf_dot) [firetask, align=center, thick, rounded corners, right= 3em of energy_wf1] {...};
+\node (energy_wfn) [firetask, align=center, thick, rounded corners, right= 3em of energy_wf_dot] {configuration\_n \\ energy workflow};
+
+\node (optimize) [font=\bf\ttfamily, below=7em of energy_wf0] {OptimizeFW};
+\node (optimize_1) [firetask, below=of optimize] {\firetask{WriteVaspFromIOSet}};
+\node (optimize_2) [firetask, below=of optimize_1] {\firetask{VaspParallelizationTask}};
+\node (optimize_3) [firetask, below=of optimize_2] {\firetask{CustodianTask}/\firetask{VaspTask}};
+\node (optimize_4) [firetask, below=of optimize_3] {\firetask{AddFinalGeometryToSpec}};
+\node (optimize_5) [firetask, below=of optimize_4] {\firetask{PulayTask}};
+\begin{scope}[on background layer]
+    \node (frame_optimize) [firework, fit={(optimize) (optimize_1) (optimize_2) (optimize_3) (optimize_4) (optimize_5)}] {}; 
+\end{scope}
+
+\node (pulay) [font=\bf\ttfamily, above right=2em and 5em of frame_optimize] {\firetask{PulayStep}};
+\node (pulay_1) [firetask, below=of pulay] {\firetask{ScriptTask}};
+\node (pulay_2) [firetask, below=of pulay_1] {\firetask{CustodianTask}/\firetask{VaspTask}};
+\node (pulay_3) [firetask, below=of pulay_2] {\firetask{AddFinalGeometryToSpec}};
+\node (pulay_4) [firetask, below=of pulay_3] {\firetask{PulayTask}};
+\begin{scope}[on background layer]
+\node (frame_pulay)[firework, fit={(pulay) (pulay_1) (pulay_2) (pulay_3) (pulay_4)}] {};
+\end{scope}
+
+\node (static) [font=\bf\ttfamily, right=19em of optimize_1] {StaticFW};
+\node (static_1) [firetask, below=of static] {\firetask{WriteVaspFromIOSet}};
+\node (static_2) [firetask, below=of static_1] {\firetask{VaspParallelizationTask}};
+\node (static_3) [firetask, below=of static_2] {\firetask{CustodianTask}/\firetask{VaspTask}};
+\node (static_4) [firetask, below=of static_3] {\firetask{AddFinalGeometryToSpec}};
+\begin{scope}[on background layer]
+\node (frame_static)[firework, fit={(static) (static_1) (static_2) (static_3) (static_4)}] {};
+\end{scope}
+
+% Connections
+\coordinate (conf_split) at ($(frame_conf.south) + (0, -1.5em)$);
+\draw [->, firearrow, solid] (conf_2.south) -- (conf_split) -- (conf_split -| energy_wf0.north) -- (energy_wf0.north);
+\draw [->, firearrow, solid] (conf_split) -- (conf_split -| energy_wf1.north) -- (energy_wf1.north);
+\draw [->, firearrow, solid] (conf_split) -- (conf_split -| energy_wf_dot.north) -- (energy_wf_dot.north);
+\draw [->, firearrow, solid] (conf_split) -- (conf_split -| energy_wfn.north) -- (energy_wfn.north);
+
+\coordinate (pulay_merge) at ($(pulay_4.west) - (4em, 3em)$);
+\draw [->, firearrow] (optimize_5.east) -- node [conditionbox, midway, above right=0em and -3em] {\texttt{condition $<$ tolerance}} (optimize_5.east -| frame_static.west);
+\draw [->, firearrow] (optimize_5.east -| pulay_merge) -- (pulay_merge);
+\draw [firearrow] (pulay_merge) -- ($(pulay_4.west) - (4em, 0em)$);
+\draw [->, firearrow] (pulay_4.west) -- ($(pulay_4.west) - (4em, 0em)$);
+\draw [->, firearrow] (pulay_merge) -- ($(pulay_1.west) - (4em, 0)$) -- (pulay_1.west);
+\draw [->, firearrow] (pulay_4.east) -- (pulay_4.east -| frame_static.west);
+
+% Help boxes
+
+\node (help1)[helpbox, right=3 em of conf_1] {Generates configurations based on user specifications.};
+\draw [helpline] (conf_1.east) -- (help1.west);
+\node (help2)[helpbox, left=3 em of conf_2] {Sets up an energy workflow for each configuration.};
+\draw [helpline] (conf_2.west) -- (help2.east);
+\node (help2)[helpbox, text width=13.5em, above right=2 em and -6em of frame_static.north] {The \texttt{StaticFW}  determines the energy with higher precision using the tetrahedron method.};
+\draw [helpline] (frame_static.north) -- (frame_static.north |- help2.south);
+
+% Frame for energy workflow
+\node (frame_wf_energy)[draw, thick, rounded corners, inner sep=1 em, fit={(frame_optimize) (frame_pulay) (frame_static) (help2)}] {};
+\draw [thick] (energy_wf0.south) -- (energy_wf0.south |- frame_wf_energy.north);
+
+\end{tikzpicture}
