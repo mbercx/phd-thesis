@@ -4,4 +4,6 @@ output
 *.fig
 *.jpg
 *.eps
+*.gif
 figures/tikz*
+*.aux
