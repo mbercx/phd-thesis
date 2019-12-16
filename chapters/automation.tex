@@ -146,7 +146,7 @@ perform a spin polarized calculation. Or, for a geometry optimization of a
 \link{automation:sec-surface}{slab}, selective dynamics is applied to fix a 
 certain selection of the atoms based on user-provided settings. Based on the 
 input set, the configuration of the YAML file is also adjusted, e.g. 
-\code{BulkOptimizeSet} is based on the \texttt{optimizeSet.yaml} file, but 
+\code{SlabOptimizeSet} is based on the \texttt{optimizeSet.yaml} file, but 
 automatically sets \vasp{ISIF} to 2, fixing the unit cell of the calculation. 
  
 \item Write the output files using the \code{write\_input()} method. Every 
@@ -178,6 +178,7 @@ performance. For \texttt{VASP}, the parallelization can be controlled by
 several parameters: 
  
 \begin{itemize} 
+
 \item \href{https://cms.mpi.univie.ac.at/wiki/index.php/KPAR}{\texttt{KPAR}}: 
 Determines the parallelization over the k-points. \texttt{VASP} treats 
 \texttt{KPAR} k-points in parallel, i.e. it divides the number of available cores (\texttt{\#CORES}) and 
@@ -212,9 +213,7 @@ they are directly connected. As is said in the \texttt{VASP} manual,
 \verb|NPAR| is preferred, i.e. if you do set both \verb|NPAR| and 
 \verb|NCORE|, the \verb|NCORE| value is ignored. 
  
-% \item 
-\href{https://cms.mpi.univie.ac.at/wiki/index.php/LPLANE}{\texttt{LPLANE}}: 
-\#TODO 
+% \item \href{https://cms.mpi.univie.ac.at/wiki/index.php/LPLANE}{\texttt{LPLANE}}: \#TODO 
  
 \item \href{https://cms.mpi.univie.ac.at/wiki/index.php/NSIM}{\texttt{NSIM}}: 
 This input tag defines the number of bands that are treated simultaneously in 
@@ -271,13 +270,12 @@ that this is a divisor of the number of cores, and then calculates the amount
 of resources that would be wasted in each run over the k-points. To illustrate 
 this, consider the following example: say you want to do a geometry 
 optimization with a k-point sampling that has 7 irreducible points in the 
-
 \link{dft:sec-kpoints}{IBZ}. You're running your calculation on a cluster that 
 has 20 cores per node, and so there is no shared divisor for these two 
 numbers larger than one. That said, choosing \texttt{KPAR = 1} would be a mistake, since a 
 well configured parallelization can more than make up for the time lost due to inactive 
 cores. So, say you choose \texttt{KPAR = 2}. In this case, \texttt{VASP} 
-divides the cores over two groups, and hence solves the \link{dft:sec-kohn_sham}{Kohn-Sham equations} of two k-points simultaneously.
+divides the cores over two groups, and hence solves the \link{dft:sec-kohn_sham}{Kohn-Sham equations} of two k-points simultaneously. 
 
 After finishing 6 of the k-points, there is only one k-point left, so while 
 the final k-point is being calculated there will be 10 inactive cores. 
@@ -302,10 +300,10 @@ block iteration scheme} and conjugate gradient algorithm, this scheme usually
 results in a fairly good guess for the optimal parallelization settings. 
 However, for the \texttt{RMM-DIIS} algorithm, it seems that 
 the optimal value of \texttt{NPAR/NCORE} is different. More testing is 
-required to optimize this problem further. Moreover, it's probably better to 
+required to optimize this problem further. Moreover, it is probably better to 
 use something a little more rigorous for tuning the automation of these 
 settings, e.g. a machine learning model based on a large set of data. In 
-chessboard plot of 
+the chessboard plot of 
 \href{https://mybinder.org/v2/gh/mbercx/jupyter/master?filepath=parallel\%2Fparallel_analysis.ipynb}{the 
 parallelization analysis} I have performed, the setting chosen by the 
 \code{VaspParallelizationTask} is indicated by a red square. 
@@ -593,14 +591,13 @@ oxygen dimer formation. Figure~\ref{automation:fig-dimer} shows the workflow
 that executes the necessary steps. First, the geometry of the provided 
 structure is fully optimized (\vasp{ISIF}=3), and the energy is calculated 
 more precisely using a static calculation. The final structure and energy is 
-passed on to a small \code{Firework} that sets up the transition workflow
+passed on to a small \code{Firework} that sets up a transition workflow
 for each non-equivalent dimer. This transition work flow consists of a 
 geometry optimization of the dimer structure, where only the atomic positions 
-are allowed to optimize (\vasp{ISIF}=2). Once again a static calculation is 
+are allowed to optimize (\vasp{ISIF}=2). \pagebreak Once again a static calculation is 
 performed to determine the energy, which is then compared to the energy of the 
 initial, unperturbed structure in order to obtain the reaction energy. If this 
-reaction energy is smaller than a certain tolerance
-\footnote{Note that the reaction energy is defined as the final energy minus the initial energy. Hence, a transition with a negative reaction energy is thermodynamically favorable, i.e. setting the \code{tolerance} to zero only calculates the kinetic barrier for thermodynamically favorable dimers.}, the kinetic barrier is 
+reaction energy is smaller than a certain tolerance\footnote{Note that the reaction energy is defined as the final energy minus the initial energy. Hence, a transition with a negative reaction energy is thermodynamically favorable, i.e. setting the \code{tolerance} to zero only calculates the kinetic barrier for thermodynamically favorable dimers.}, the kinetic barrier is 
 calculated using a \link{dft:sec-neb}{nudged elastic band calculation}. 
  
 \subsection{Surface properties}\label{automation:sec-surface} 
