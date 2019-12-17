@@ -76,9 +76,9 @@ sorting=none
 \usepackage{mdframed}
 
 \usepackage[toc, page]{appendix}
-
 \usepackage{blindtext}
 
+% Paragraph formatting
 \expandafter\def\expandafter\normalsize\expandafter{%
     \normalsize
     \setlength\abovedisplayskip{15pt}
@@ -90,7 +90,8 @@ sorting=none
 \setlength{\intextsep}{25pt}
 
 \hyphenpenalty 750
-\widowpenalties 1 6000
+\interfootnotelinepenalty=10000 % Never break footnotes
+\widowpenalties 1 9500 % Fairly strict setting for breaking paragraphs
 \raggedbottom
 
 %%%%%%%% TikZ Settings %%%%%%%%%
