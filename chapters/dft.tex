@@ -688,7 +688,7 @@ typical band structures used to study the properties of
 materials~\cite{Kittel2005}. Figure~\ref{dft:fig-reduced} shows an example of the 
 reduced zone scheme. 
  
-\begin{figure}[ht]  
+\begin{figure}[ht] 
 \captionsetup{width=0.8\textwidth} 
 \centering 
 \includegraphics[width=0.6\textwidth]{./Figures/DFT/reduced.png} 
@@ -1041,7 +1041,7 @@ for the calculation of the selection metric described in
 Section~\ref{slme:sec-SLME}, depend on the dielectric response of the material 
 in the lon-wavelength limit. So does the electron energy loss function, used in 
 Section~\ref{quotas:sec-plasmons} to introduce plasmonic excitations to our 
-model of potential electron mechanisms from ion neutralization on a metal 
+model of secondary electron emission from ion neutralization on a metal 
 surface. In this section I present a shortened derivation of the expression 
 used by the VASP code to calculate the dielectric tensor, largely 
 based on the excellent thesis of Judith Harl~\cite{Harl2008}.
@@ -1072,7 +1072,7 @@ Following the derivation of Pines and Nozi\`eres~\cite{Nozieres1994}, it is
 possible to use perturbation theory to write the Kohn-Sham response function 
 in frequency space as 
 \begin{equation}\label{dft:eq-pines} 
-\chi^{KS}(\mathbf{r},\mathbf{r}', \omega) = - \sum_{i,j} 2 f_i \left(1 - f_j\right) \left( 
+\chi^{KS}(\mathbf{r},\mathbf{r}', \omega) = - \sum_{i,j} f_i \left(1 - f_j\right) \left( 
 \frac{\phi_j^*(\mathbf{r'})\phi_i(\mathbf{r'})\phi_i^*(\mathbf{r})\phi_j(\mathbf{r})}{\epsilon_j 
 - \epsilon_i - \check{\omega}} + 
 \frac{\phi_i^*(\mathbf{r'})\phi_j(\mathbf{r'})\phi_j^*(\mathbf{r})\phi_i(\mathbf{r})}{\epsilon_j 
@@ -1083,7 +1083,7 @@ where $\phi_i(\mathbf{r})$ are the KS orbitals of the time-independent
 problem~(Eqs.~(\ref{dft:eq-KS})), and $\check{\omega} = \omega + i \eta$ is a 
 complex deviation from the angular frequency $\omega$, introduced in the 
 perturbation calculation. The occupancies are included in Eq~(\ref{dft:eq-pines}) in 
-such a way that the factor in the sum is equal to 2 only when the 
+such a way that the coefficient in the sum is equal to 1 only when the 
 i$^{th}$ orbital is occupied and the j$^{th}$ orbital is unoccupied. Next, we 
 use the periodicity of the crystal and take the Fourier transform of 
 Eq.~(\ref{dft:eq-pines}). Because the real space response function is invariant 
@@ -1109,7 +1109,7 @@ function in momentum space:
 \begin{equation} 
 \begin{aligned} 
 \chi_{\mathbf{G},\mathbf{G}'}^{KS}(\mathbf{q},\omega) = - \frac{1}{V} 
-\sum_{n\mathbf{k},m\mathbf{k}'} 2 f_{n\mathbf{k}} (1 - f_{m\mathbf{k}'}) 
+\sum_{n\mathbf{k},m\mathbf{k}'} f_{n\mathbf{k}} (1 - f_{m\mathbf{k}'}) 
 \left( \frac{\braket{\phi_{m\mathbf{k}'} | 
 e^{i(\mathbf{q}+\mathbf{G})\cdot\mathbf{r}} 
 |\phi_{n\mathbf{k}}}\braket{\phi_{n\mathbf{k}} | 
@@ -1124,7 +1124,7 @@ e^{-i(\mathbf{q}+\mathbf{G}')\cdot\mathbf{r}'}
 \end{aligned} 
 \end{equation} 
 This can alternatively be written as~\cite{Harl2008} 
-\begin{equation}\label{dft:eq-Fresponse} 
+\begin{equation} \label{dft:eq-Fresponse} 
 \begin{aligned} 
 \chi_{\mathbf{G},\mathbf{G}'}^{KS}(\mathbf{q},\omega) = - \frac{1}{V} 
 \sum_{n,m ; \mathbf{k}} f_{n\mathbf{k}} \braket{u_{m\mathbf{k+q}} | 
@@ -1162,7 +1162,8 @@ fluctuations at the microscopic level. Following the derivation of
 Harl~\cite{Harl2008}, the relation between the microscopic and macroscopic 
 dielectric function is
 \begin{equation}
-\varepsilon_{\text{mac}}(\mathbf{q}, \omega) = (\varepsilon_{0,0}^{-1}(\mathbf{q}, \omega))^{-1}.
+\varepsilon_{\text{mac}}(\mathbf{q}, \omega) = 
+(\varepsilon_{0,0}^{-1}(\mathbf{q}, \omega))^{-1}.
 \end{equation}
 When we ignore local field effects, the off-diagonal elements of the 
 microscopic dielectric tensor are neglected, and the macroscopic dielectric 
@@ -1173,12 +1174,12 @@ function can be approximated as:
 \pi}{q^2} \chi_{0,0}^{KS}(\mathbf{q},\omega). 
 \end{equation} 
 For optical properties, we consider the long-wavelength limit ($\mathbf{q} 
-\rightarrow 0$) of the macroscopic dielectric function, also written as $\varepsilon_\infty (\mathbf{\hat{q}}, \omega)$:
+\rightarrow 0$) of the macroscopic dielectric function, also written as 
+$\varepsilon_\infty (\mathbf{\hat{q}}, \omega)$:
 \begin{equation}
-\varepsilon_\infty (\mathbf{\hat{q}}, \omega) = \lim_{q 
-\rightarrow 0} \varepsilon_{\text{mac}}(\mathbf{q}, \omega) =  1 - \frac{4 
-\pi}{q^2} \lim_{q 
-\rightarrow 0} \chi_{0,0}^{KS}(\mathbf{q},\omega). 
+\varepsilon_\infty (\mathbf{\hat{q}}, \omega) = \lim_{q \rightarrow 0} 
+\varepsilon_{\text{mac}}(\mathbf{q}, \omega) =  1 - \lim_{q \rightarrow 0} 
+\frac{4 \pi}{q^2} \chi_{0,0}^{KS}(\mathbf{q},\omega). 
 \end{equation}
 
 Using these approximations in combination with Eq.~(\ref{dft:eq-Fresponse}) allows 
@@ -1187,8 +1188,8 @@ $\varepsilon_\infty(\mathbf{\hat{q}},\omega) =
 \varepsilon_{\infty}^{(1)}(\mathbf{\hat{q}},\omega) + 
 i\varepsilon_{\infty}^{(2)}(\mathbf{\hat{q}},\omega)$~\cite{Harl2008}: 
  \begin{equation}\label{dft:eq-imdiel} 
-\varepsilon_{\infty}^{(2)}(\mathbf{\hat{q}},\omega) = \frac{4\pi^2}{V} \lim_{q 
-\rightarrow 0} \sum_{n,m,\mathbf{k}} f_{n\mathbf{k}} | 
+\varepsilon_{\infty}^{(2)}(\mathbf{\hat{q}},\omega) = \frac{4\pi}{V} \lim_{q 
+\rightarrow 0} \frac{1}{q^2} \sum_{n,m,\mathbf{k}} f_{n\mathbf{k}} | 
 \braket{u_{m\mathbf{k}+\mathbf{q}}|u_{n\mathbf{k}}} |^2 \cdot 
 [\delta(\epsilon_{m\mathbf{k}}-\epsilon_{n\mathbf{k}}-\omega) - 
 \delta(\epsilon_{m\mathbf{k}}-\epsilon_{n\mathbf{k}}+\omega)]. 
@@ -1200,28 +1201,28 @@ We introduce the macroscopic dielectric tensor by setting:
 \mathbf{\hat{q}}_\beta. 
 \end{equation} 
 The imaginary part of the dielectric tensor is then calculated as: 
-\begin{equation}\label{dft:eq-imdiel} 
-\varepsilon_{\alpha \beta}^{(2)} (\omega) = \frac{4\pi^2}{V} \lim_{q 
-\rightarrow 0} \sum_{n,m;\mathbf{k}} f_{n\mathbf{k}} 
+\begin{equation} \label{dft:eq-imdiel} 
+\varepsilon_{\alpha \beta}^{(2)} (\omega) = \frac{4\pi}{V} \lim_{q 
+\rightarrow 0} \frac{1}{q^2} \sum_{n,m;\mathbf{k}} f_{n\mathbf{k}} 
 \braket{u_{m\mathbf{k}+q\mathbf{e}_\alpha}|u_{n\mathbf{k}}} 
 \braket{u_{n\mathbf{k}}|u_{m\mathbf{k}+q\mathbf{e}_\beta}} \cdot 
 [\delta(\epsilon_{m\mathbf{k}}-\epsilon_{n\mathbf{k}}-\omega) - 
 \delta(\epsilon_{m\mathbf{k}}-\epsilon_{n\mathbf{k}}+\omega)], 
 \end{equation} 
 whereas the real part is found using the Kramers-Kronig transformation: 
-\begin{equation} 
+\begin{equation} \label{dft:eq-kramers}
 \varepsilon_{\alpha \beta}^{(1)} (\omega) = 1 + \frac{2}{\pi} \mathcal{P} 
 \int_0^\infty \frac{\varepsilon_{\alpha \beta}^{(2)} 
 (\omega')\omega'}{(\omega')^2 - \omega^2}d\omega', 
 \end{equation} 
 where $\mathcal{P}$ is the Cauchy Principal value~\cite{Gogolin2014}.  
  
-We finish this section with a couple of notes. First, by introducing the 
-\textbf{k}-mesh in Section~\ref{dft:sec-fkpoints}, we can restrict the 
+I finish this section with a couple of notes. First, by introducing the 
+\textbf{k}-mesh in Section~\ref{dft:sec-kpoints}, we can restrict the 
 summation in Eq.~(\ref{dft:eq-imdiel}) to the irreducible \textbf{k}-points: 
 \begin{align*} 
-\varepsilon_{\alpha \beta}^{(2)} (\omega) = \frac{4\pi^2}{V} \lim_{q 
-\rightarrow 0} \sum_{n,m;\mathbf{k}_i}  f_{n\mathbf{k}_i} w_{\mathbf{k}_i} 
+\varepsilon_{\alpha \beta}^{(2)} (\omega) = \frac{4\pi}{V} \lim_{q 
+\rightarrow 0} \frac{1}{q^2} \sum_{n,m;\mathbf{k}_i}  f_{n\mathbf{k}_i} w_{\mathbf{k}_i} 
 \braket{u_{m\mathbf{k}_i+q\mathbf{e}_\alpha}|u_{n\mathbf{k}_i}} 
 \braket{u_{n\mathbf{k}_i}|u_{m\mathbf{k}_i+q\mathbf{e}_\beta}} \\  
 \cdot [\delta(\epsilon_{m\mathbf{k}_i}-\epsilon_{n\mathbf{k}_i}-\omega) - 
@@ -1229,16 +1230,16 @@ summation in Eq.~(\ref{dft:eq-imdiel}) to the irreducible \textbf{k}-points:
 \end{align*} 
 where $\mathbf{k}_i$ are the irreducible \textbf{k}-points with corresponding 
 weights $w_{\mathbf{k}_i}$. Second, for semiconductors we can only consider 
-interband transitions between the valence and conduction band in the 
+interband transitions ($n \neq m$) between the valence and conduction band in the 
 calculation of the dielectric tensor. Moreover, in this case the valence bands 
 are fully occupied ($f_{n\mathbf{k}} = 2$), simplifying the expression 
 further: 
 \begin{equation} 
-\varepsilon_{\alpha \beta}^{(2)} (\omega) = \frac{4\pi^2}{V} \lim_{q 
-\rightarrow 0} \sum_{c,v,\mathbf{k}_i} 2 w_{\mathbf{k}_i} \ 
+\varepsilon_{\alpha \beta}^{(2)} (\omega) = \frac{4\pi}{V} \lim_{q 
+\rightarrow 0} \frac{1}{q^2} \sum_{c,v,\mathbf{k}_i} 2 w_{\mathbf{k}_i} \ 
 \braket{u_{c\mathbf{k}_i+q\mathbf{e}_\alpha}|u_{v\mathbf{k}_i}} 
 \braket{u_{v\mathbf{k}_i}|u_{c\mathbf{k}_i+q\mathbf{e}_\beta}} \cdot 
-[\delta(\epsilon_{c\mathbf{k}_i}-\epsilon_{v\mathbf{k}_i}-\omega))], 
+\delta(\epsilon_{c\mathbf{k}_i}-\epsilon_{v\mathbf{k}_i}-\omega)), 
 \end{equation} 
 where $c$ and $v$ denote the conduction and valence orbitals. 
  
@@ -1263,7 +1264,35 @@ k_\alpha(\omega) = \sqrt{\frac{| \varepsilon_\alpha (\omega) | -
 \varepsilon_\alpha^{(1)}(\omega)}{2}} 
 \end{aligned}\hspace{0.6in} \alpha = x,y,z. 
 \end{equation} 
- 
+
+\subsection{Drude model} \label{dft:sec-drude}
+
+For metals, bands can be partially occupied, which means that we have to consider 
+intraband transitions, i.e. where $n=m$ in the expressions of the previous section. 
+In the long-wavelength limit, the intraband part of the dielectric tensor is 
+included using the Drude model~\cite{Harl2008}:
+\begin{equation}
+\varepsilon_{\alpha\beta}^{(2), intra} (\omega) = \frac{\gamma\omega^2_{\alpha\beta}}{\omega
+(\omega^2 + \gamma^2)},
+\end{equation}
+where $\gamma$ is the damping parameter. The so-called intraband plasma frequency 
+(squared) $\omega^2_{\alpha\beta}$ is calculated from first-principles using the 
+expression~\cite{Harl2008}:
+\begin{equation}
+\omega^2_{\alpha\beta} = \frac{4 \pi}{V} \sum_{n, \mathbf{k}} \frac{\partial 
+f_{n\mathbf{k}}}{\partial \epsilon_{n\mathbf{k}}} \left(\mathbf{e}_\alpha \frac{\partial 
+\epsilon_{n\mathbf{k}}}{\partial \mathbf{k}}\right) \left(\mathbf{e}_\beta \frac{\partial 
+\epsilon_{n\mathbf{k}}}{\partial \mathbf{k}}\right).
+\end{equation}
+The imaginary part of the total dielectric tensor is the sum of the inter- and 
+intraband contributions:
+\begin{equation}
+\varepsilon_{\alpha\beta}^{(2)} (\omega)  = \varepsilon_{\alpha\beta}^{(2), inter} 
+(\omega) + \varepsilon_{\alpha\beta}^{(2), intra} (\omega),
+\end{equation}
+where the interband part is calculated via Eq.~(\ref{dft:eq-imdiel}). The real part 
+is once again obtained via the Kramers-Kronig relationship (Eq.~(\ref{dft:eq-kramers})).
+
 \section{Transition state theory}\label{dft:sec-transition} 
 
 When considering a transition between two different states of a system, a 
