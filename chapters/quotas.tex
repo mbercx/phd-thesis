@@ -49,7 +49,7 @@ characterizing surfaces and play an important role in applications such as
 plasma sputtering deposition~\cite{Depla2006, Depla2009} and plasma display 
 panels~\cite{Motoyama2006, Cho2007}. For the case of incident ions, 
 measurements of the electron yield $\gamma$ were first performed by 
-Hagstrum~\cite{Hagstrum1953, Hagstrum1960}. Although there is a considerable 
+Hagstrum~\cite{Hagstrum1953,Hagstrum1960}. Although there is a considerable 
 need for data on the electron emission from incident ions, e.g. as input for 
 models of micro-plasmas~\cite{Kothnur2003, Kothnur2005}, measurements of 
 $\gamma$ are limited. This lack of experimental data has led to an increased 
@@ -706,8 +706,8 @@ with the calculated ones for \ce{He+} (left) and \ce{Ne+} (right) incident on
  
 We consider two mechanisms for inducing plasmonic excitations in our model. 
 The first, surface resonance excitation, is introduced as a competing process 
-for the Auger neutralization. The model that we have applied to semiconductors 
-considers the excess energy of the neutralization of every incoming ion to 
+for the Auger neutralization. The model for semiconductors 
+considers the excess energy of the neutralization of every incoming ion to alwayss
 result in the excitation of a single electron. There are, however, other 
 processes that are in direct competition with the Auger mechanism. First, the 
 released energy can produce a photon which is subsequently emitted from the 
@@ -718,27 +718,27 @@ excitation mechanism by Apell~\cite{Apell1988}. Other theoretical
 work also confirms the importance of plasmon mechanisms for the ion 
 neutralization process~\cite{Almulhem1989, Monreal1995, VicenteAlvarez1998}.  
 
-However, if we consider the electronic structure of \ce{Mg} in Fig.~\ref{quotas:fig-plasmons}~(a), a resonant 
+However, considering the electronic structure of \ce{Mg} in Fig.~\ref{quotas:fig-plasmons}~(a), a resonant 
 excitation mechanism alone is not sufficient to explain the experimental 
 electron energy distribution of $\ce{He^+}$ on \ce{Mg} in 
 Fig.~\ref{quotas:fig-he_mg_noplasmon}. The highest energy electrons in the 
 excited spectrum are produced by electrons near the Fermi energy. The plasmon 
 energy of Mg is approximately 10.6~\si{\electronvolt}, and the work function 
-$\phi = 3.64~\si{\electronvolt}$. If we have an incoming singly charged $\ce{He^+}$ 
+$\phi = 3.64~\si{\electronvolt}$. For a singly charged $\ce{He^+}$ 
 ion, the ionization energy is $E_I = 22.58~\si{\electronvolt}$. If the electrons close 
 to the Fermi level in Mg are the ones to neutralize the incoming ion, an 
 energy of up to 18.94 eV is released. Since the width of the density of 
 occupied states is $\Delta \varepsilon_{v} = 6.96~\si{\electronvolt}$, the 
 lowest energy released by the ion neutralization is $E_I - \Delta\varepsilon_{v} - \phi = 11.98~\si{\electronvolt}$. 
-If the plasmon activity is only described by resonant surface or bulk 
-mechanisms, we expect very few plasmon excitations, even if the plasmon 
+If the plasmon activity is only described by a resonant 
+process, we expect very few plasmon excitations, even if the plasmon 
 resonance peak is significantly broadened by the short plasmon lifetime.
 
 There is, however, a second plasmon excitation mechanism which is not 
 resonant in its nature. As the excited electrons travel through the material, 
 they leave behind a wake of electron density fluctuations, leading to the 
 possibility of energy loss through volume plasmon excitations in case the 
-electrons have sufficient energy~\cite[Ritchie1957]. This excitation process does not have a 
+electrons have sufficient energy~\cite{Ritchie1957}. This excitation process does not have a 
 resonance condition, i.e. as long as the excess electron energy is above the 
 plasmon energy, the electron can excite a plasmon, losing energy in the process 
 ~\cite{Baragiola2001}.
@@ -781,11 +781,11 @@ $L$~\cite{Raether1980}:
 \text{Im}\left[-\frac{1}{\epsilon(E_{vp})}\right] \\
 \lambda_{vp}(E_{vp}) &=& c_{vp} \cdot \text{Im}\left[-\frac{1}{\epsilon(E_{vp})}\right],
 \end{eqnarray} 
-where we introduce a proportionality constant $c_{vp}$.
-We consider each of the possible energy losses $E_{vp}$ as competing Poisson 
+where $c_{vp}$ is a proportionality constant.
+Each of the possible energy losses $E_{vp}$ are considered as competing Poisson 
 point processes. However, as the excited electron cannot wind up in an 
 occupied state, it cannot lose more energy than its energy relative to the 
-Fermi level $\varepsilon - \varepsilon_F$. If we write the average travel 
+Fermi level $\varepsilon - \varepsilon_F$. Writing the average travel 
 distance of the excited electrons as $t_e$, the probability for an electron at 
 energy $\varepsilon$ of exciting a plasmon with energy $E_{vp} < \varepsilon - 
 \varepsilon_F$ is (see Appendix~\ref{sec:appendix-poisson}): 
@@ -803,30 +803,31 @@ rate $\lambda_{vp}$ and the average travel distance of the excited electrons, is
 measure of the likelihood of plasmon excitations during the SEE process. We 
 treat it as a parameter of the model. 
  
-For the surface plasmons, when the energy released in the neutralization of 
-the incoming ion is close to that of the surface plasmon, a plasmon excitation 
-can occur instead of a single-electron excitation. In order to determine the 
-possibility of a surface plasmon excitation, we once again model both 
-processes as Poisson point processes, i.e. by considering the exponential 
-distributions: 
+For the surface plasmons, a plasmon excitation can occur instead of a 
+single-electron excitation when the energy released in the neutralization of 
+the incoming ion is close to that of the surface plasmon. In order to determine the 
+possibility of a surface plasmon excitation, both processes are once again 
+modelled as Poisson point processes, i.e. by considering the exponential 
+distributions
 \begin{eqnarray} 
 f_{sp}(E_{sp}, t) = \lambda_{sp} (E_{sp}) e^{-\lambda_{sp}(E_{sp}) t}\\ 
-f_{aug}(t) = \lambda_{aug} e^{-\lambda_{aug} t} 
+f_{aug}(t) = \lambda_{aug} e^{-\lambda_{aug} t}.
 \end{eqnarray} 
-We then calculate the probability that the plasmon excitation will occur 
-before the Auger Neutralization: 
+The probability that the plasmon excitation will occur 
+before the Auger Neutralization is then: 
 \begin{equation} 
 P_{sp}(E_{sp}) = Prob\{t_{sp} < t_{aug}\} = 
 \frac{\lambda_{sp}(E_{sp})}{\lambda_{sp}(E_{sp}) + \lambda_{aug}} 
 \end{equation} 
-We relate the surface plasmon excitation rate to the dielectric response of 
+The surface plasmon excitation rate is calculated from the dielectric response of 
 the surface using the surface energy loss function~\cite{Raether1980}: 
 \begin{equation} 
 \lambda_{sp}(E_{sp}) = c_{sp} \cdot \text{Im}\left[-\frac{1}{\epsilon(E_{sp}) 
-+ 1}\right] 
++ 1}\right],
 \end{equation} 
-So, we find the following expression for the probability of a plasmon 
-excitation when an energy $E_{sp}$ is transfered to the incoming ion: 
+where $c_{sp}$ is once again a proportionality constant.
+The expression for the probability of a plasmon 
+excitation when an energy $E_{sp}$ is transfered to the incoming ion becomes: 
 \begin{equation} \label{quotas:eq-sp_prob}
 P_{sp}(E_{sp}) = \frac{c_{sp} \cdot \text{Im}\left[-\frac{1}{\epsilon(E_{sp}) + 
 1}\right]}{c_{sp}  \cdot \text{Im}\left[-\frac{1}{\epsilon(E_{sp}) + 1}\right] + 
@@ -839,7 +840,7 @@ of the plasmon model\footnote{We take this ratio to be the parameter - instead
 of its inverse - so that the amount of plasmonic activity is directly 
 proportional to the parameter, which is more intuitive. This also allows us to 
 turn off surface plasmons by setting the parameter to zero.}. In this 
-description, we have assumed that the Auger neutralization rates are similar 
+description, it is assumed that the Auger neutralization rates are similar 
 for the various ion material combinations and independent of the energy 
 transferred to the secondary electron. 
  
@@ -923,12 +924,12 @@ calculated values for each experimental data point and sum over their absolute v
 normalizing each to the number of experimental data points in order to give 
 each spectrum the same weight. Based on this analysis, the optimal values for 
 the plasmon parameters are $\kappa_v = 0.105$ and $\kappa_s = 1.55$. 
+
+\resultsubsection{Comparison with experiment\label{quotas:sec-results_metals}}{}{metals} 
  
-\subsection{Comparison with experiment} \label{quotas:sec-results_metals} 
- 
-Now that we have set the model plasmon parameters $\kappa_v$ and $\kappa_s$, 
+Now that the model plasmon parameters $\kappa_v$ and $\kappa_s$ are fixed, 
 we first calculate the secondary electron emission spectra for the surfaces of 
-the metals for which we have experimental spectra available. The results for 
+the metals for which experimental spectra are available. The results for 
 the work function and calculated yields are compared with the experimental 
 values~\cite{DeWaele2016, Baragiola2001, Hagstrum1966} in 
 Table~\ref{quotas:tab-metal_results}. The calculated work functions are fairly 
@@ -938,10 +939,10 @@ surfaces. As was noted by Michaelson~\cite{Michaelson1977} and Green and
 Bauer~\cite{Green1978}, there has been some debate on the work function of 
 \ce{Be}, for which both values around 4~\si{\electronvolt} and 5~\si{\electronvolt} have been 
 reported. This may be related to the observed large spread in calculated work 
-function values between the surfaces.  
+function values between the surfaces. 
 
 There is also a good agreement between the calculated and experimental yield 
-of both \ce{He+} an \ce{Ne+} ions on \ce{Al}, \ce{Mg} and \ce{Ni}, both for 
+of \ce{He+} an \ce{Ne+} ions on \ce{Al}, \ce{Mg} and \ce{Ni}, both for 
 the total yield as well as the yield spectra 
 (Fig.~\ref{quotas:fig-metals_results1}). For \ce{Al}, our model tends to 
 underestimate the total secondary electron emission. Comparing the full 
@@ -1098,10 +1099,9 @@ experimental one from Hagstrum. At first glance, this seems to be related to
 the work function, as the position of the high energy tail is lower for the 
 computational result. However, according to the results in 
 Table~\ref{quotas:tab-metal_results}, the computational work functions are 
-lower for each surface compared to experiment. Possible explanations are that 
+lower for each surface compared to experiment. A possible explanation is that 
 the \ce{W} surface was contaminated during Hagstrum's measurement, lowering 
-the work function, or that the image charge correction of the ionization 
-energy fails for tungsten. Because of this discrepancy, we did not consider 
+the effective work function. Because of this discrepancy, we did not consider 
 \ce{W} when fitting the plasmon parameters. 
 
 I end this section with a couple of notes. So far the discussion has been limited 
@@ -1115,7 +1115,7 @@ To understand this, consider what happens when an electron first neutralizes
 the incoming ion via a resonant tunneling process, and subsequently is excited
 to an energy above the vacuum level via Auger De-excitation (AD). Compared 
 to an electron that is excited inside the surface via AN, this electron is excited in 
-the (approximately) spherical potential of the ion. If the energy of the 
+the (approximately) spherical potential well of the ion. If the energy of the 
 electron is higher than the vacuum level, the escape probability of this 
 electron is much higher than that of an electron excited inside the surface. 
 This difference in escape probabilitiess is especially large when the excited 
@@ -1133,14 +1133,14 @@ another fitting parameter, it would be better to try and determine the
 likelihood of either process by calculating their rates for a model system as 
 done by Goebl et al.~\cite{Goebl2011}. This is beyond the scope of this work.
 
-\subsection{High-throughput results} \label{quotas:sec-high_throughput}
+\resultsubsection{High-throughput results\label{quotas:sec-high_throughput}}{}{metals} 
 
 Although it gratifying to see that our model is able to reproduce both the 
 experimental SEE yield values and spectra of many elemental surfaces, the 
 purpose of developing the model is to apply it to predict the yield of 
 surfaces for which no experimental results are available. This section
 presents a high throughput screening of a list of elemental surfaces 
-spanning the periodic table based on the workflow discussed in 
+spanning the periodic table, based on the workflow discussed in 
 Section~\ref{automation:sec-surface}. As is described in that section, the 
 calculation of the surface properties for our model input requires a choice of 
 sufficient atomic layers and vacuum thickness. Fortunately, here we can rely
@@ -1152,9 +1152,9 @@ from the output files of De Waele et al., as our model needs the density of
 states for a large number of unoccupied bands.} for our version of Hagstrum's 
 model for all of the tabulated surfaces.
 Using the model plasmon parameters from our fitting 
-procedure, we have then calculated the total yield for \ce{He+}, \ce{Ne+} and 
-\ce{Ar+} for each surface. Figure~\ref{quotas:fig-He_yield_table} shows a map of the 
-total yield for \ce{He+} on the periodic table.  
+procedure, we have then calculated the total yield for \ce{He+} and \ce{Ne+}
+for each surface. Figure~\ref{quotas:fig-He_yield_table} shows a map of the 
+averaged total yield for \ce{He+} on the periodic table.  
  
 The average yield of the group IA elements is excessively high. This is a 
 result of the combination of the low work functions of the surfaces of these 
@@ -1190,8 +1190,7 @@ studied elements.}
 On the other side of the periodic table, elements with full $d$ orbitals and 
 only a couple of electrons in the $s$ and/or $p$ orbitals (group 11-13, 
 excluding \ce{Al}) have a noticeably lower yield. This is connected to the 
-electronic structure of these elements near the Fermi level. 
-Fig.~\ref{quotas:fig-Zn_pdos} 
+electronic structure of these elements near the Fermi level. Fig.~\ref{quotas:fig-pdos} 
 shows the projected DOS of \ce{Ni (100)}, \ce{Cu (100)} and \ce{Zn (100)}. 
 For all of these surfaces, most of the occupied states near the Fermi level 
 correspond to $d$ states. However, for \ce{Zn (100)} these 
@@ -1321,13 +1320,16 @@ as well as their sensitivity to the vacuum level. The model in its current state
 offers a pragmatic and effective approach for calculating yield spectra, but 
 can still benefit from several improvements. First, using an approach similar to 
 Goebl et al.~\cite{Goebl2011} to calculate transition rates for atomic orbitals 
-can be used to weigh the participation of $s$, $p$ and $d$ electrons. Second, both 
+can be used to weigh the participation of $s$, $p$ and $d$ electrons. Moreover, if 
+it is possible to extend such calculations to the comparison of the Auger- and resonant
+neutralization process, it can allow us to include the resonant mechanism in our 
+calculation without introducing more parameters. Second, both 
 the implementation of the electron cascades and the plasmonic excitations can be 
 improved by including the wave vector of the electron in the 
 calculation. Finally, the ionization energy can be better described by considering 
 a range of energies that depend on the distance of the ion to the surface when it 
-is neutralized. However, this requires both an accurate function of both the ionization 
-energy as well as the probability of neutralization versus the distance.
+is neutralized. However, this requires an accurate function for both the ionization 
+energy as well as the probability of neutralization versus the distance. 
  
 \printbibliography 
 \end{refsection} 
