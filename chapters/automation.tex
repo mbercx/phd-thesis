@@ -28,7 +28,7 @@ for example \href{http://pymatgen.org/}{pymatgen}~\cite{Ong2013} or the
 \href{https://wiki.fysik.dtu.dk/ase/}{Atomic Simulation Environment} 
 (ASE)~\cite{Larsen2017}. For my work, I have exclusively relied on 
 \href{https://materialsproject.github.io/fireworks/index.html}{Fireworks}~\cite{Jain2015}, 
-a powerful python package for designing, executing and managing computational 
+a powerful Python package for designing, executing and managing computational 
 workflows. 
  
 In this chapter I give an overview of all of the workflows that were used to 
@@ -40,7 +40,7 @@ Section~\ref{automation:sec-intro}, the chapter continues with detailing the
 building blocks of a workflow in Section~\ref{automation:sec-firetasks}. Next, 
 Section~\ref{automation:sec-workflows} describes the workflows used to obtain 
 the results presented in future chapters. For each workflow, there is a 
-corresponding example jupyter notebook that details and executes the various 
+corresponding example Jupyter notebook that details and executes the various 
 steps performed to set up the calculation and run the workflow. Finally, 
 Section~\ref{automation:sec-computational} discusses some general 
 computational settings used for the workflows. 
@@ -376,12 +376,12 @@ found via the Fireworks management system. \code{CustodianTask} is the
 \code{Firetask} that actually performs the \texttt{VASP} calculation, within a 
 \code{Custodian} with specified \code{ErrorHandler}s. These 
 \code{ErrorHandler}s are initialized by the user when designing the workflow, 
-and passed as a \code{list} to the \code{custodian} input argument of any 
+and passed as a \code{list} to the \code{Custodian} input argument of any 
 \code{Firework}. 
  
 \subsection{\texttt{PulayTask}} \label{automation:sec-PulayTask} 
  
-A common issue with DFT calculations is the so-called Pulay stress, an almost 
+A known issue with DFT calculations is the so-called Pulay stress, an almost 
 isotropic error on the diagonal components of the stress tensor introduced by 
 the incompleteness of the basis set~\cite{Francis1990}. Although Pulay 
 stresses are less of an issue when a \hyperref[dft:sec-planewave]{plane wave 
@@ -402,7 +402,7 @@ basis set. Taken from~\cite{Pulay}.}
 \label{automation:fig-pulay} 
 \end{figure} 
  
-A common way of dealing with this issue is to perform an addition geometry 
+A common way of dealing with this issue is to perform an additional geometry 
 optimization, as the basis set is initialized again at the start of this 
 secondary calculation. However, if the lattice vectors change significantly 
 during this second geometry optimization, the same problem might repeat 
@@ -419,8 +419,8 @@ the final structure.
 \label{automation:sec-ConfigurationTask} \label{automation:sec-EnergyConfTask} 
  
 These two tasks make up the complete configuration 
-workflow~\ref{automation:sec-configurations}, which is used to calculate the 
-energy of a whole range of configurations for e.g. an alloy system. 
+workflow~\ref{automation:sec-configurations}, which can be used to calculate the 
+energy of a large set of configurations for any system with degrees of configurational freedom.
 \code{ConfigurationTask} generates the requested configurations based on the 
 algorithm of Hart et al.~\cite{Hart2005} for the provided structure and a 
 number of user-specified settings: 
@@ -474,7 +474,7 @@ extracts the final geometry from the current directory and adds it to the
 \code{Firework}, as well as future \code{Firework}s. 
  
 \phantomsection \label{automation:sec-ScriptTask} 
-\item \code{ScriptTask}: This is a standard task included in Fireworks package 
+\item \code{ScriptTask}: This is a standard task included in the Fireworks package 
 which runs a user-defined bash script. 
  
 \phantomsection \label{automation:sec-PyTask} 
@@ -498,7 +498,7 @@ clear from the description of the workflow what each \code{Firework} does.
  
 \subsection{Optical properties} \label{automation:sec-optics} 
  
-Section \ref{dft:sec-linear_response} describes the theoretical framework for 
+Section \ref{dft:sec-linear} describes the theoretical framework for 
 calculating the electromagnetic response of a material. Here I explain the 
 practical steps you have to take to calculate the frequency dependent 
 dielectric tensor for any given material, which have been employed to 
@@ -617,7 +617,7 @@ can reasonably simulate a surface for the calculation or surface energies,
 work functions and other properties.  
  
 Let's describe the process of constructing such a slab unit cell in more 
-detail. Usually, the surface is defined based on its miller indices in the 
+detail. Usually, the surface is defined based on its Miller indices in the 
 conventional unit cell of the bulk structure. However, for many structures, 
 there are several possible surfaces corresponding to a set of miller indices, 
 depending on where we apply the cleavage plane in the structure. This leads to 
@@ -649,7 +649,7 @@ the slab behaves like the bulk of the material under investigation. Second,
 the thickness of the vacuum layer, i.e. the distance between two slabs in the 
 periodic boundary conditions, must be set by suitably adjusting the unit cell 
 and atom coordinates. In order to make sure both are sufficiently thick, 
-convergence of the property of interest versus both slab and vacuum tickness 
+convergence of the property of interest versus both slab and vacuum thickness 
 should be checked. 
  
 The model for secondary electron emission described in 
