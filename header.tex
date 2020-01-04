@@ -9,13 +9,17 @@
 % Set page margin
 \usepackage[margin=1in]{geometry}
 
-% Reference libraries
+% Bibliography libraries
 \usepackage[
 backend=bibtex,
-style=ieee,
+style=plainurl,
 style=numeric-comp,
-sorting=none
+sorting=none,
+% doi=false,
+url=false,
+isbn=false,
 ]{biblatex}
+
 \addbibresource{bibliography/dft.bib}
 \addbibresource{bibliography/workflows.bib}
 \addbibresource{bibliography/quotas.bib}
@@ -53,9 +57,7 @@ sorting=none
 \usepackage[version=4]{mhchem} % Pretty chemical formulae
 \usepackage{siunitx} % Pretty SI units
 \usepackage[textsize=small]{todonotes} % Add todo's to the text
-
-% New command for less cramped fractions
-\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\usepackage{changepage} % Make local changes to page layout, e.g. wider margins
 
 \usepackage{amsmath,amssymb}
 \usepackage{dcolumn}
@@ -91,7 +93,7 @@ sorting=none
 
 \hyphenpenalty 750
 \interfootnotelinepenalty=10000 % Never break footnotes
-\widowpenalties 1 9500 % Fairly strict setting for breaking paragraphs
+\widowpenalties 1 10000 % Fairly strict setting for breaking paragraphs
 \raggedbottom
 
 %%%%%%%% TikZ Settings %%%%%%%%%
@@ -102,11 +104,6 @@ sorting=none
 \pgfplotsset{compat=newest}
 \usepgfplotslibrary{groupplots}
 \usepgfplotslibrary{dateplot}
-
-%% Computationalbox %% #TODO Remove?
-
-\definecolor{computational}{HTML}{63AABC}
-\tikzstyle{computationalbox} = [fill, align=left, rounded corners, text width=\textwidth, fill=computational, fill opacity=0.4, text opacity=1, font=\small]
 
 %% Automation %%
 
@@ -144,8 +141,14 @@ sorting=none
 
 \usepackage{ifthen}
 
-\newcommand{\tocite}{\todo[inline]{CITE}}
 
+% New command for less cramped fractions.
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+% Quick command for a very visible TODO that shows that a citation is needed.
+\newcommand{\tocite}{\todo{Citation\\Needed}}
+
+% Commands for code, links
 \definecolor{hlcolor}{gray}{.90}
 \sethlcolor{hlcolor}
 
@@ -154,7 +157,7 @@ sorting=none
 \newcommand{\firetask}[1] {\hyperref[automation:sec-#1]{\textcolor{black}{\texttt{#1}}}}
 \newcommand{\vasp}[1] {\hyperref[appendix:sec-#1]{\textcolor{link}{\texttt{#1}}}}
  
- 
+% Commands for fancy section headers with symbols that links to Jupyter notebooks/the appendix with the corresponding computational details.
 \newcommand{\resultsection}[3] {
 \begin{minipage}{0.92\textwidth}
 \section{#1}
@@ -176,5 +179,6 @@ sorting=none
 \begin{minipage}{0.08\textwidth}
 \textcolor{white}{\rule{1em}{1.2em}}
 \ifthenelse{\equal{#3}{}}{}{\hyperref[appendix:sec-#3]{\includegraphics[width=2.5em]{figures/silicon3.png}}}
-\end{minipage}\\
+\end{minipage}
+\nopagebreak[4]
 }
