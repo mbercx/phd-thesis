@@ -137,7 +137,7 @@ represent one possible way via which the de-excitation can occur.}
 
 \subsection{Hagstrum's model} \label{quotas:sec-hagstrum} 
  
-We begin by presenting Hagstrum's quantitative description of ion-based SEE 
+I begin by presenting Hagstrum's quantitative description of ion-based SEE 
 for semiconductor surfaces, before discussing our adjustments in the sections 
 that follow. During the Auger neutralization, an electron tunnels through the 
 surface barrier to the lowest unoccupied ionic state, transferring the excess 
@@ -499,13 +499,13 @@ experimental results of Hagstrum~\cite{Hagstrum1960} in
 Fig.~\ref{quotas:fig-results_semiconductors}. In his work, Hagstrum measured 
 the total yield and kinetic energy distribution of the emitted electrons for 
 several energies of the incoming ion on atomically clean, annealed (111) 
-surfaces of \ce{Ge} and \ce{Si}. For the experimental results, we have 
-compared our calculated spectra with the results for low energy 
+surfaces of \ce{Ge} and \ce{Si}. For the experimental results, we 
+compare our calculated spectra with the results for low energy 
 (10~\si{\electronvolt}) ions, for which the contribution of kinetic electron 
 emission is negligible, as it is not considered in our model. 
 Overall, the shape of the calculated yield spectra matches reasonably well 
 with the experimental one\footnote{Note that we have applied a small gaussian 
-broadening to the final calculated yield spectra. This is largely to facilitate 
+broadening to the final calculated yield spectra. This is largely for visual purposes, i.e. to facilitate 
 the comparison between different spectra.}. 
 The total SEE yield coefficients $\gamma$, obtained 
 by integrating the yield spectra (Eq.~(\ref{quotas:eq-yield})), are given in 
@@ -707,7 +707,7 @@ with the calculated ones for \ce{He+} (left) and \ce{Ne+} (right) incident on
 We consider two mechanisms for inducing plasmonic excitations in our model. 
 The first, surface resonance excitation, is introduced as a competing process 
 for the Auger neutralization. The model for semiconductors 
-considers the excess energy of the neutralization of every incoming ion to alwayss
+considers the excess energy of the neutralization of every incoming ion to always
 result in the excitation of a single electron. There are, however, other 
 processes that are in direct competition with the Auger mechanism. First, the 
 released energy can produce a photon which is subsequently emitted from the 
@@ -769,9 +769,9 @@ In order to include the plasmonic excitations in our model, we describe
 them as Poisson point processes~\cite{Egerton2009}, i.e. the intervals between events follow an 
 exponential distribution~\cite{MITopencourseware}: 
 \begin{equation} 
-f_X (t) = \lambda_X e^{-\lambda_X t}, 
+f_{T_p} (t) = \lambda_p e^{-\lambda_p t}, 
 \end{equation} 
-for a process $X$, i.e. volume plasmon excitation ($vp$), surface plasmon 
+for a process $p$, i.e. volume plasmon excitation ($vp$), surface plasmon 
 excitation ($sp$) or Auger neutralization ($aug$). The 
 excitation of volume plasmons with energy $E_{vp}$ can be related to the 
 dielectric function $\epsilon (\omega)$ through the volume loss function 
@@ -786,20 +786,20 @@ Each of the possible energy losses $E_{vp}$ are considered as competing Poisson
 point processes. However, as the excited electron cannot wind up in an 
 occupied state, it cannot lose more energy than its energy relative to the 
 Fermi level $\varepsilon - \varepsilon_F$. Writing the average travel 
-distance of the excited electrons as $t_e$, the probability for an electron at 
+interval of the excited electrons as $t_e$, the probability for an electron at 
 energy $\varepsilon$ of exciting a plasmon with energy $E_{vp} < \varepsilon - 
 \varepsilon_F$ is (see Appendix~\ref{sec:appendix-poisson}): 
 \begin{eqnarray} \label{quotas:eq-vp_prob}
 P_{vp}(\varepsilon, E_{vp}) dE_{vp} &=& \frac{c_{vp} 
-L(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} c_{vp} L(E) dE 
+L(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} c_{vp} L(E) dE
 }\left[1-e^{-\left(\int_0^{\varepsilon - \varepsilon_F} c_{vp} L(E) dE\right) t_e 
 }\right] \\ 
-&=& \frac{L(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} L(E) dE 
+&=& \frac{L(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} L(E) dE
 }\left[1-e^{-\left(\int_0^{\varepsilon - \varepsilon_F} L(E) dE\right) c_{vp} t_e 
 }\right] 
 \end{eqnarray} 
 The product $\kappa_v = c_{vp} \cdot t_e$, the combination of the prefactor of the 
-rate $\lambda_{vp}$ and the average travel distance of the excited electrons, is a 
+rate $\lambda_{vp}$ and the average travel interval of the excited electrons, is a 
 measure of the likelihood of plasmon excitations during the SEE process. We 
 treat it as a parameter of the model. 
  
@@ -810,13 +810,13 @@ possibility of a surface plasmon excitation, both processes are once again
 modelled as Poisson point processes, i.e. by considering the exponential 
 distributions
 \begin{eqnarray} 
-f_{sp}(E_{sp}, t) = \lambda_{sp} (E_{sp}) e^{-\lambda_{sp}(E_{sp}) t}\\ 
-f_{aug}(t) = \lambda_{aug} e^{-\lambda_{aug} t}.
+f_{T_{sp}}(E_{sp}, t) = \lambda_{sp} (E_{sp}) e^{-\lambda_{sp}(E_{sp}) t}\\ 
+f_{T_{aug}}(t) = \lambda_{aug} e^{-\lambda_{aug} t}.
 \end{eqnarray} 
 The probability that the plasmon excitation will occur 
-before the Auger Neutralization is then: 
-\begin{equation} 
-P_{sp}(E_{sp}) = Prob\{t_{sp} < t_{aug}\} = 
+before the Auger Neutralization is then (see Appendix~\ref{sec:appendix-poisson}): 
+\begin{equation} \label{quotas:eq-sp_poisson}
+P_{sp}(E_{sp}) = \text{Pr}\{T_{sp} < T_{aug}\} = 
 \frac{\lambda_{sp}(E_{sp})}{\lambda_{sp}(E_{sp}) + \lambda_{aug}} 
 \end{equation} 
 The surface plasmon excitation rate is calculated from the dielectric response of 
@@ -853,7 +853,7 @@ distribution passed to the valence electrons in the Auger neutralization. The
 implementation of the volume plasmon is more complicated, as an electron 
 travelling to the surface can excite volume plasmons with a range of energies 
 $E_{vp}$. Moreover, volume plasmons decay into single particle 
-excitations~\cite{Baragiola1996}, and hence the spectrum of excited 
+excitations~\cite{Maier2007}, and hence the spectrum of excited 
 plasmons has to be considered for calculating a new distribution of excited 
 electrons resulting from plasmon decay. 
  
@@ -928,7 +928,7 @@ the plasmon parameters are $\kappa_v = 0.105$ and $\kappa_s = 1.55$.
 \resultsubsection{Comparison with experiment\label{quotas:sec-results_metals}}{}{metals} 
  
 Now that the model plasmon parameters $\kappa_v$ and $\kappa_s$ are fixed, 
-we first calculate the secondary electron emission spectra for the surfaces of 
+we first compare the calculated secondary electron emission spectra for the surfaces of 
 the metals for which experimental spectra are available. The results for 
 the work function and calculated yields are compared with the experimental 
 values~\cite{DeWaele2016, Baragiola2001, Hagstrum1966} in 
@@ -1118,7 +1118,7 @@ to an electron that is excited inside the surface via AN, this electron is excit
 the (approximately) spherical potential well of the ion. If the energy of the 
 electron is higher than the vacuum level, the escape probability of this 
 electron is much higher than that of an electron excited inside the surface. 
-This difference in escape probabilitiess is especially large when the excited 
+This difference in escape probabilities is especially large when the excited 
 energy level is only slightly above the vacuum level, as in this case the 
 excited electron in the surface can only escape in case its wave vector is 
 directed almost straight at the surface.
@@ -1135,7 +1135,7 @@ done by Goebl et al.~\cite{Goebl2011}. This is beyond the scope of this work.
 
 \resultsubsection{High-throughput results\label{quotas:sec-high_throughput}}{}{metals} 
 
-Although it gratifying to see that our model is able to reproduce both the 
+Although it is gratifying to see that our model is able to reproduce both the 
 experimental SEE yield values and spectra of many elemental surfaces, the 
 purpose of developing the model is to apply it to predict the yield of 
 surfaces for which no experimental results are available. This section
