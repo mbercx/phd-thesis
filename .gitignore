@@ -13,3 +13,5 @@ figures/tikz*
 *.eps
 *.gif
 *.aux
+*.sav
+*.bak
