@@ -2,6 +2,7 @@ output
 jupyter
 feedback
 figures/tikz*
+figures/tikz_loader.tex
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
 .DS_Store
