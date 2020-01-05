@@ -1,6 +1,21 @@
 \begin{refsection} 
+
+\chapter{Computational Details} \label{appendix:sec-computational} 
  
-\chapter{Vienna Ab initio Simulation Package} \label{appendix:sec-VASP} 
+All calculations in this thesis were performed in the density functional 
+theory (DFT) framework, as implemented in the Vienna Ab initio Simulation Package 
+(\texttt{VASP})~\cite{Kresse1993, Kresse1994, Kresse1996}. This appendix starts with 
+a brief description of this software package, as well as its input and 
+output files (Sec.~\ref{appendix:sec-files}) and most important input 
+parameters (Sec.~\ref{sec:input}). Next, the chapter details the 
+settings used to obtain all of the results presented in this thesis, organised 
+per chapter and section in the order they are presented. Finally, there are 
+still two brief sections, one on parallelization tests 
+(Sec.~\ref{appendix:sec-parallel}) and one on an issue with the way 
+\texttt{VASP} calculates the real part of the dielectric tensor using 
+the Kramers-Kronig relation.
+
+\section{Vienna Ab initio Simulation Package} \label{appendix:sec-VASP} 
  
 In order to solve the many-body problem using DFT, we need a software package 
 that is able to implement the theory numerically on a computer cluster. 
@@ -8,304 +23,286 @@ Currently, there is a wide selection of such packages available to
 computational scientists, each with their respective advantages and 
 disadvantages. 
  
-The software we have used to obtain the results presented in this thesis is 
-the Vienna Ab initio Simulation Package (VASP)\cite{vasp}. This software 
-package is particularly suited for materials science, using a plane wave basis 
-set and offering PAW datasets for each atomic species. It can calculate an 
-approximate solution to the many-body Schr\"odinger equation within the DFT 
-formalism or the HF approximation, including the possibility of mixing to 
-utilize hybrid functionals. VASP also employs a set of efficient iterative 
-procedures to find the ground state of a system, and allows parallelization of 
-the calculations on multi-core machines. 
+The \texttt{VASP} package is particularly suited for materials science, 
+using a plane wave basis set and offering PAW datasets for each atomic species. 
+It can calculate an approximate solution to the many-body Schr\"odinger equation 
+within the DFT formalism or the HF approximation, including the possibility of 
+mixing to utilize hybrid functionals. VASP also employs a set of efficient 
+iterative procedures to find the ground state of a system, and allows 
+parallelization of the calculations on multi-core machines. 
  
-In this section we present a concise overview of the different files used by 
-VASP, discussing their purpose, and take a closer look at the input parameters 
-and their relation to the theory. We also present some of the choices for the 
-parameters which were used to produce the results presented in the following 
-chapters. 
+This section presents a concise overview of the different files used by 
+\texttt{VASP}, discussing their purpose, and take a closer look at the 
+input parameters and their relation to the theory. 
  
-\section{Files} 
+\subsection{Files} \label{appendix:sec-files}
  
-We begin by taking a brief look at the input files. In order to start a 
-calculation using VASP, we must have at least the following files: 
+\texttt{VASP} uses four basic input files for its calculations, which 
+must always be in the directory where \texttt{VASP} is executed:
  
 \begin{itemize} 
  
 \phantomsection \label{appendix:sec-INCAR} 
-\item \texttt{INCAR}: Contains the input parameters for the calculation. 
-Various settings can be adjusted according to the needs of the user through a 
-large amount of \textit{tags}, see Section~\ref{sec:input}. This can be 
-considered the most important input file, in the sense that it has the most 
-content and therefore significantly affects the results of the simulation. 
-Because of this, it is also more prone to be the cause of errors.  
+\item \href{https://www.vasp.at/wiki/index.php/INCAR}{\texttt{INCAR}}: 
+Contains the input parameters for the calculation. Various settings can be 
+adjusted according to the needs of the user through a large number of 
+\textit{tags}, which are described in Section~\ref{appendix:sec-input}. This 
+can be considered the most important input file, in the sense that it has 
+the most diverse content and therefore has a lot of control over the 
+simulation. Because of this, it is also more prone to be the cause of errors. 
  
 \phantomsection \label{appendix:sec-POSCAR} 
-\item \texttt{POSCAR}: Specifies the lattice vectors as well as the atomic 
-positions of the system. The user is free to specify the atomic positions in 
-cartesian or direct coordinates. In order to make sure there are no mistakes 
-in the POSCAR file, it is important to first visualize the structure.  
+\item \href{https://www.vasp.at/wiki/index.php/POSCAR}{\texttt{POSCAR}}: 
+Contains the lattice vectors of the unit cell,as well as the atomic positions 
+of the structure. The user is free to specify the atomic positions in cartesian 
+or direct coordinates. In case selectivedynamics is used to fix certain atom 
+coordinates in the unit cell, this is also indicated in this file. In order to 
+make sure there are no mistakes in the POSCAR file, it is important to first 
+visualize the structure.  
  
 \phantomsection \label{appendix:sec-KPOINTS} 
-\item \texttt{KPOINTS}: Defines the $\mathbf{k}$ point mesh 
-(Sec.~\ref{dft:sec-kpoints}), either by explicitly entering all the points or 
-using an automated Monkhorst-Pack grid. In the case of band structure 
-calculations, it is also possible for the user to enter certain symmetry lines 
-along which to calculate the band structure of the crystal. 
+\item \href{https://www.vasp.at/wiki/index.php/KPOINTS}{\texttt{KPOINTS}}: 
+Defines the $\mathbf{k}$ point mesh (Sec.~\ref{dft:sec-kpoints}), either by 
+explicitly entering all the points or using an automatically generated 
+Monkhorst-Pack grid. For band structure calculations, there is the useful 
+\textit{line mode}. Here the user canspecify certain (symmetry) lines along 
+which to calculate the band structure of the crystal. These lines are described 
+pairwise via the coordinates of their end points.
  
 \phantomsection \label{appendix:sec-POTCAR} 
-\item \texttt{POTCAR}: Concatenation of the PAW datasets for the different 
-atoms present in the crystal structure. VASP supplies various types of POTCAR 
-files, corresponding to different methods of PAW construction. It is important 
-to make sure the ordering of the atoms is the same for the POTCAR and POSCAR 
-file. 
- 
+\item \href{https://www.vasp.at/wiki/index.php/POTCAR}{\texttt{POTCAR}}: 
+Concatenation of the \link{dft:sec-PAW}{projector augmented wave} (PAW) 
+datasets for the different elements present in the crystal structure. VASP 
+supplies a set of POTCAR files for each element and supported functional, 
+corresponding to different choices for the number of valence electrons and 
+radii of the PAW sphere. It is important to make sure the order of the atoms 
+is the same for the POTCAR and POSCAR file. 
+
+\end{itemize}
+
+Besides these four essential files, a few other files can serve as input files 
+for the \texttt{VASP} calculation:
+
+\begin{itemize}
+
 \phantomsection \label{appendix:sec-STOPCAR} 
-\item \texttt{STOPCAR}: 
- 
+\item \href{https://www.vasp.at/wiki/index.php/STOPCAR}{\texttt{STOPCAR}}:
+This file can be used to stop the calculation without killing the \texttt{VASP} 
+process. By writing either \texttt{LABORT = True} or \texttt{LSTOP = True} to 
+the \texttt{STOPCAR} file, the user can stop the calculation after the next 
+electronic or ionic step, respectively.
+
+\phantomsection \label{appendix:sec-CHGCAR} 
+\item \href{https://www.vasp.at/wiki/index.php/CHGCAR}{\texttt{CHGCAR}}: 
+The electronic charge density of the unit cell is written to this file. 
+Although the file is an output file, it can be used as an input file to 
+start a calculation with a desired charge density.
+
+\phantomsection \label{appendix:sec-WAVECAR} 
+\item \href{https://www.vasp.at/wiki/index.php/WAVECAR}{\texttt{WAVECAR}}: 
+The plane wave coefficients of the wave functions are written to this file. 
+Although the file is an output file, it can be used as an input file to 
+start a calculation with a desired set of wave functions. Note that this 
+is only possible if neither the number of bands nor the set of plane waves 
+has changed.
+
 \end{itemize} 
- 
- 
+
 During the calculation, VASP produces a set of output files from which the 
-user can extract the data necessary for his or her research. Here's a 
-(non-exhaustive) list of the VASP output files: 
+user can extract the data necessary for his or her research. Here I present a  
+(non-exhaustive) list of the most important VASP output files, besides the 
+\vasp{CHGCAR} and \vasp{WAVECAR} already presented previously.
  
 \begin{itemize} 
  
 \phantomsection \label{appendix:sec-OUTCAR} 
-\item \texttt{OUTCAR}: The general output of the calculation is printed in the 
-this file, whose verbosity is determined by a tag in the \vasp{INCAR} file. 
- 
+\item \href{https://www.vasp.at/wiki/index.php/OUTCAR}{\texttt{OUTCAR}}: 
+The general output file of VASP, a lot of information is printed in the this 
+file during the calculation. The verbosity of the output is determined by the 
+\href{https://www.vasp.at/wiki/index.php/NWRITE}{\texttt{NWRITE}} tag in the 
+\vasp{INCAR} file. 
+
+\phantomsection \label{appendix:sec-OSZICAR} 
+\item \href{https://www.vasp.at/wiki/index.php/OSZICAR}{\texttt{OSZICAR}}: 
+Presents an overview of the total energy at each SCF iteration, as well 
+as some other properties interesting to the convergence of the calculation, 
+for each ionic step in the case a geometry optimization is performed.
+
 \phantomsection \label{appendix:sec-CONTCAR} 
-\item \texttt{CONTCAR}: For relaxation calculations, the final lattice vectors 
-and atom positions can be found in this file. 
- 
+\item \href{https://www.vasp.at/wiki/index.php/CONTCAR}{\texttt{CONTCAR}}: 
+The final lattice vectors and atom positions of the unit cells are witten to 
+this file. Obviously this is mostly important when performing a geometric 
+optimization.
+
+\phantomsection \label{appendix:sec-vasprun} 
+\item \texttt{vasprun.xml}: 
+XML formatted output file, written at the end of the calculation. A lot of 
+output from other files is gathered into this one file, which makes it the 
+most useful for post processing.
+
+\phantomsection \label{appendix:sec-DOSCAR} 
+\item \href{https://www.vasp.at/wiki/index.php/DOSCAR}{\texttt{DOSCAR}}:
+Contains the density of states of the system, as well as the integrated DOS 
+and the projected DOS, in case \href{https://www.vasp.at/wiki/index.php/LORBIT}{\texttt{LORBIT}} is set correctly.
+
+\phantomsection \label{appendix:sec-IBZKPT} 
+\item \href{https://www.vasp.at/wiki/index.php/IBZKPT}{\texttt{IBZKPT}}: 
+The set of irreducible $\mathbf{k}$-points, along with their respective 
+weights, can be found in this file.
+
+\phantomsection \label{appendix:sec-EIGENVAL} 
+\item \href{https://www.vasp.at/wiki/index.php/EIGENVAL}{\texttt{EIGENVAL}}: 
+Details the Kohn-Sham eigenvalues for all $\mathbf{k}$-points, which can 
+for example be used to plot the band structure. 
+
+Note that some output is present in several files, but unfortunately 
+\texttt{VASP} is not always entirely sensible in which output is printed where. 
+An example here is the fact that although the \texttt{vasprun.xml} file 
+contains \link{dft:sec-dielectric}{the dielectric tensor}, it does not 
+contain \link{dft:sec-drude}{the plasma frequencies}. 
+
 \end{itemize} 
  
-The CHGCAR and WAVECAR file contain the charge density and wave functions of 
-the electrons, and are both rather large compared to the other VASP files. 
-These files can also be used as input files for continuation jobs. The OSZICAR 
-file presents an overview of the total energy at each SCF iteration, as well 
-as some other properties, for each ionic step in the case of a relaxation 
-calculation. The set of irreducible $\mathbf{k}$-points, along with their 
-respective weights, can be found in the IBZKPT file. The Density Of States 
-(DOS) and integrated DOS can be plotted from the DOSCAR file, whereas the 
-EIGENVAL file contains the Kohn-Sham eigenvalues for all $\mathbf{k}$-points, 
-which can be used to plot the band structure. 
+\subsection{Input Parameters} \label{appendix:sec-input} 
  
-\section{Input Parameters} \label{sec:input} 
- 
-To end the chapter, we take a look at some of the input tags which are set by 
-the user to determine the attributes of the calculation. This is by no means 
+This section presents some of the input tags which are set by 
+the user to determine the specifics of the calculation. This is by no means 
 an exhaustive list; we simply focus on a selection of tags that were 
 especially relevant for the results presented in this thesis. For the complete 
-list, we refer the reader to the VASP manual~\cite{vasp}. 
+list, we refer the reader to the 
+\href{https://www.vasp.at/wiki/index.php/The_VASP_Manual}{VASP manual}. 
  
 \begin{itemize} 
  
 \phantomsection \label{appendix:sec-ENCUT} 
-\item \texttt{ENCUT}:  
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/ENCUT}{\texttt{ENCUT}}: 
+Energy cutoff (in \si{\electronvolt}) used for determining the size of the 
+\link{dft:sec-planewave}{plane wave basis set}, as per 
+Eq.~(\ref{dft:eq-energy_cutoff}).
  
 \phantomsection \label{appendix:sec-PREC} 
-\item \texttt{PREC}:  
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/PREC}{\texttt{PREC}}: 
+Determines several settings that influence the precision of the calculations. 
+First, the default value of the energy cutoff is increased for higher precision 
+settings. Second, \texttt{PREC} sets the density of the grid used for the 
+Fourier transformation. Finally, the precision of the representation of the 
+\link{dft:sec-PAW}{PAW} projectors is set by PREC.
  
 \phantomsection \label{appendix:sec-ALGO} 
-\item \texttt{ALGO}:  
- 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/ALGO}{\texttt{ALGO}}: 
+Sets the algorithm used for the diagonalization of the Hamiltonian matrix 
+when solving the \link{dft:sec-kohn_sham}{Kohn-Sham equations}.
+
 \phantomsection \label{appendix:sec-EDIFF} 
-\item \texttt{EDIFF}:  
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/EDIFF}{\texttt{EDIFF}}: 
+Convergence criterion on the \link{dft:fig-SCF}{self-consistency cycle} 
+during the electronic optimization, i.e. when determining the electron charge 
+density.
  
 \phantomsection \label{appendix:sec-ISMEAR} 
-\item \texttt{ISMEAR}:  
- 
-\phantomsection \label{appendix:sec-SIGMA} 
-\item \texttt{SIGMA}:  
- 
-\phantomsection \label{appendix:sec-ISIF} 
-\item \texttt{ISIF}:  
- 
-\phantomsection \label{appendix:sec-LOPTICS} 
-\item \texttt{LOPTICS}:  
- 
-\phantomsection \label{appendix:sec-NEDOS} 
-\item \texttt{NEDOS}:  
- 
-\phantomsection \label{appendix:sec-ISPIN} 
-\item \texttt{ISPIN}:  
- 
-\phantomsection \label{appendix:sec-MAGMOM} 
-\item \texttt{MAGMOM}:  
- 
-\phantomsection \label{appendix:sec-NBANDS} 
-\item \texttt{NBANDS}:  
- 
-\phantomsection \label{appendix:sec-ISIF} 
-\item \texttt{ISIF}:  
- 
-\phantomsection \label{appendix:sec-CSHIFT} 
-\item \texttt{CSHIFT}:  
- 
-\item \textbf{ENCUT} and \textbf{PREC} influence the accuracy of the 
-calculation. ENCUT is equal to the $E_{cut}$ value described in 
-Section~\ref{sec:planewave}, and specifies the size of the plane wave basis 
-set.  PREC mainly defines the spacing of several grids that govern the 
-precision of the simulation, such as the fast Fourier transform~\cite{numrec} 
-grid. 
- 
-\item \textbf{ISMEAR} specifies the \textit{smearing} method and 
-\textbf{SIGMA} the smearing width. Smearing is a technique that replaces the 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/ISMEAR}{\texttt{ISMEAR}}: 
+Specifies the \textit{smearing} method. Smearing is a technique that replaces the 
 step function in the integral of the filled bands: 
-\begin{equation}\label{eq:intsmear} 
+\begin{equation}\label{appendix:eq-intsmear} 
 \sum_n \frac{1}{\Omega_{BZ}}\int_{BZ} \epsilon_{n\mathbf{k}} 
 \Theta(\epsilon_{n\mathbf{k}} - E_F) d\mathbf{k}, 
 \end{equation} 
 by a smooth function $f(\{\epsilon_{n\mathbf{k}}\})$. The main advantage of 
-using smearing methods is that the integral in Eq.~(\ref{eq:intsmear}) can be 
+using smearing methods is that the integral in Eq.~(\ref{appendix:eq-intsmear}) can be 
 calculated accurately using a relatively sparse $\mathbf{k}$-mesh 
-(Sec.~\ref{sec:kpoints}). The main smearing method used for the results 
-presented in this thesis is \textit{Gaussian} smearing~\cite{gaussian} (ISMEAR 
-= 0). Another method used to solve the integral in Eq.~(\ref{eq:intsmear}) is 
-the \textit{tetrahedron} method~\cite{tetrahedron} (ISMEAR = -5), which 
+(Sec.~\ref{dft:sec-kpoints}). The main smearing method used for the results 
+presented in this thesis is \textit{Gaussian} smearing~\tocite (ISMEAR 
+= 0). Another method used to solve the integral in Eq.~(\ref{appendix:eq-intsmear}) is 
+the \textit{tetrahedron} method~\tocite (ISMEAR = -5), which 
 linearly interpolates $\epsilon_{n\mathbf{k}}$ between two \textbf{k}-points. 
  
+\phantomsection \label{appendix:sec-SIGMA} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/SIGMA}{\texttt{SIGMA}}: 
+Smearing width used for the smearing of the occupies, as per the method 
+specified with \texttt{ISMEAR}. Note that specifying \texttt{SIGMA} for 
+the tetrahedron method makes little sense, as this method does not apply any 
+smearing.
+
+\phantomsection \label{appendix:sec-IBRION} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/ISIF}{\texttt{IBRION}}: 
+Determines the algorithm for the geometry optimization. A common and stable 
+choice here is the conjugate gradient algorithm~\tocite (\texttt{IBRION} = 2). 
+
+\phantomsection \label{appendix:sec-ISIF} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/ISIF}{\texttt{ISIF}}: 
+Specifies the degrees of freedom for the geometry optimization, e.g. whether to 
+optimize only the atomic positions, or perform a full optimization of the 
+structure.
+
+\phantomsection \label{appendix:sec-EDIFFG} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/EDIFFG}{\texttt{EDIFFG}}: 
+Sets the value for the convergence condition of the geometry optimization. The 
+condition can be either applied to the total energy by setting a positive value, 
+or the forces, when a negative value is provided.
  
-\item We can choose the relaxation algorithm using the \textbf{IBRION} tag, 
-with the degrees of freedom specified by \textbf{ISIF}. The latter also 
-determines whether the stress tensor is calculated or not. To determine the 
-lattice structure of the compounds presented in this work, we used the 
-conjugate gradient algorithm~\cite{conjgrad}~\cite{iteratieve}(IBRION = 2). 
-Another important tag for the relaxation calculation is \textbf{EDIFFG}, which 
-sets the value for the convergence condition of the relaxation procedure. 
+\phantomsection \label{appendix:sec-LOPTICS} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/LOPTICS}{\texttt{LOPTICS}}: 
+Boolean setting that indicates that the 
+\link{dft:sec-dielectric}{frequency dependent dielectric tensor} should be 
+calculated.
+
+\phantomsection \label{appendix:sec-CSHIFT} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/CSHIFT}{\texttt{CSHIFT}}: 
+Complex shift used in the \link{dft:eq-kramers}{Kramers-Kronig relation} used 
+to calculate the real part of the dielectric tensor.
+
+\phantomsection \label{appendix:sec-NBANDS} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/NBANDS}{\texttt{NBANDS}}: 
+Number of bands to include in the calculation. \texttt{VASP} includes a limited 
+number of empty bands by default, but in order to calculate the optical properties 
+or density of states over a larger energy range, this number should be increased 
+to at least 2-3 times the default value.
+s
+\phantomsection \label{appendix:sec-NEDOS} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/NEDOS}{\texttt{NEDOS}}: 
+Number of points in the energy mesh for the calculation of the density of states 
+and dielectric tensor.
  
-\item When we want to use hybrid functionals, \textbf{LHFCALC} must be set to 
-'TRUE'. In this case, \textbf{AEXX} determines the mixing parameter, whereas 
-\textbf{HFSCREEN} specifies the separation $\omega$ (Sec.~\ref{sec:funct}).  
+\phantomsection \label{appendix:sec-ISPIN} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/ISPIN}{\texttt{ISPIN}}: 
+Specifies the spin-polarization setting, i.e. 1 or 2. The default is to perform 
+a non-spin-polarized calculation (\texttt{ISPIN} = 1). Using \texttt{ISPIN} = 2 
+starts a spin-polarized calculation, i.e. for a system with collinear spins.
  
+\phantomsection \label{appendix:sec-MAGMOM} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/MAGMOM}{\texttt{MAGMOM}}: 
+Allows the user to set the magnetic moments of all the atoms in the unit cell, 
+when performing a spin-polarized calculation with collinear spins (\texttt{ISPIN} = 1).
+For non-collinear calculations, the magnetization density is a vectorial quantity, 
+and the components of the magnetiziation density should be provided for each atom, 
+with respect to the spin quantization axis (see 
+\href{https://cms.mpi.univie.ac.at/wiki/index.php/SAXIS}{SAXIS}).
+
+\phantomsection \label{appendix:sec-LHFCALC} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/LHFCALC}{\texttt{LHFCALC}}: 
+Boolean tag that indicates that the \link{dft:sec-hybrid}{Hartree-Fock/DFT hybrid 
+calculations} should be performed. 
+
+\phantomsection \label{appendix:sec-AEXX} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/AEXX}{\texttt{AEXX}}: 
+Determines the mixing parameter for the \link{dft:sec-hybrid}{hybrid calculations}, 
+i.e. the fraction $a$ of Hartree-Fock exact exchange energy that should be 
+included for the short range interaction.
+
+\phantomsection \label{appendix:sec-HFSCREEN} 
+\item \href{https://cms.mpi.univie.ac.at/wiki/index.php/HFSCREEN}{\texttt{HFSCREEN}}: 
+Specifies the separation parameter $\omega$ for 
+\link{dft:sec-hybrid}{hybrid calculations}, i.e. beyond what distance the 
+interaction energy is considered to be long range instead of short range.
+
 \end{itemize} 
- 
-\chapter{Plasmons} \label{sec:appendix-plasmon} 
- 
-\section{Surface Plasmons} 
- 
-Hagstrum's Auger transform can be written as a convolution: 
-\begin{equation} 
-\begin{aligned} 
-T\left[\frac{\varepsilon + \varepsilon_0 - E_i}{2}\right] &= 
-\int_{\Delta\varepsilon_v}\int_{\Delta\varepsilon_v} D_v (\varepsilon_1) D_v 
-(\varepsilon_2) \delta(\varepsilon - \varepsilon_1 - \varepsilon_2 + 
-\varepsilon_0 - E_i) d\varepsilon_1 d\varepsilon_2. \\ 
-&= \int_{\Delta\varepsilon_v} D_v (\varepsilon_1) D_v (\varepsilon + 
-\varepsilon_0 - E_i - \varepsilon_1) d\varepsilon_1 \\  
-&= (D_v * D_v) (\varepsilon + \varepsilon_0 - E_i) 
-\end{aligned} 
-\end{equation} 
-which can also be written as: 
-\begin{equation} 
-T\left[\frac{\varepsilon + \varepsilon_0 - E_i}{2}\right] = D_v(\varepsilon) * 
-D_v(\varepsilon + \varepsilon_0 - E_i) 
-\end{equation} 
- 
-Here, $E_{n}(\varepsilon) = D_v(\varepsilon + \varepsilon_0 - E_i)$ 
-corresponds to the distribution of energies released by the neutralization of 
-the incoming ion\footnote{This should be more clear when we substitute e.g. 
-$\varepsilon = 0$ in $E_{n}(\varepsilon)$. We then obtain $D_v(\varepsilon_0 - 
-E_i)$, i.e. the number of electrons in the valence band that are at an equal 
-depth (in relation to the vacuum level) as the lowest unoccupied state of the 
-incoming ion. Clearly, electrons at this level do not pass energy through any 
-Auger process, as this is a resonant neutralization. Another way of 
-understanding this is that an electron at energy level $\varepsilon_0 - E_i + 
-\varepsilon$ releases an energy of $\varepsilon$ when it neutralizes the 
-incoming ion.}.  In order to include surface plasmon excitations, we consider 
-the probability that a plasmon with energy $E_{sp}$ is excited instead of an 
-Auger process: 
-\begin{equation} 
-P_{sp}(E_{sp}) = \frac{ \frac{A}{\lambda_{aug}} 
-\text{Im}\left[-\frac{1}{\epsilon(E_{sp}) + 1}\right]}{\frac{A}{\lambda_{aug}} 
-\text{Im}\left[-\frac{1}{\epsilon(E_{sp}) + 1}\right] + 1} 
-\end{equation} 
-As the surface plasmon excitation process is considered to be resonant, 
-$E_{sp}$ must correspond to the energy released in the neutralization of the 
-incoming ion, i.e. $\varepsilon$ in $E_{n}(\varepsilon)$. The leftover 
-distribution of energies passed to other valence electrons through an Auger 
-process is: 
-\begin{equation} 
-    E_{aug}(\varepsilon) = E_{n}(\varepsilon) (1 - P_{sp}(\varepsilon)) 
-\end{equation} 
-We substitute this distribution in the expression for the Auger transform: 
-\begin{equation} 
-\begin{aligned} 
-T`\left[\frac{\varepsilon + \varepsilon_0 - E_i}{2}\right] &= D_v(\varepsilon) 
-* E_{aug}(\varepsilon) \\ &= D_v(\varepsilon) * (D_v(\varepsilon + 
-\varepsilon_0 - E_i) (1 - P_{sp}(\varepsilon))) 
-\end{aligned} 
-\end{equation} 
-And use this Auger transform instead of the original one in the nominator of 
-Eq.~(5.4). Note that the normalization in the denominator should be the same 
-as before, else the number of Auger electron due to the neutralization will 
-still be normalized to one per incoming ion. 
- 
-\section{Volume Plasmons} 
- 
-Consider the distribution of excited electrons $N_i(\varepsilon)$. The 
-probability that an excited electron at energy $\varepsilon$ induces a volume 
-plasmon of energy $E_{vp} < \varepsilon - \varepsilon_F$ is given by: 
-\begin{equation} 
-P_{vp}(\varepsilon, E_{vp}) dE_{vp} = 
-\frac{L(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} L(E) dE 
-}\left[1-e^{\left(\int_0^{\varepsilon - \varepsilon_F} L(E) dE\right) A t_e 
-}\right] 
-\end{equation} 
-The fraction of electrons which excite a volume plasmon is then equal to: 
-\begin{equation} 
-    N_{vp}^{-}(\varepsilon) = \int_0^\infty N_i(\varepsilon) 
-P_{vp}(\varepsilon, E_{vp}) dE_{vp}. 
-\end{equation} 
-These are substracted from the excited electron density. However, these 
-electrons are not lost, they have simply lost an energy equal to the volume 
-plasmon energy $E_{vp}$. Hence, we have to add the following density to the 
-excited density again: 
-\begin{equation} 
-    N_{vp}^{+}(\varepsilon) = \int_0^\infty N_i(\varepsilon + E_{vp}) 
-P_{vp}(\varepsilon, E_{vp}) dE_{vp}. 
-\end{equation} 
-The story doesn't end there, however. Volume plasmons do not couple with 
-transversal waves [CITE], and hence cannot decay radiatively. Most likely, the 
-plasmon will decay as a single electron excitation. In order to model this, we 
-first calculate the distribution of plasmons with an energy $E_{vp}$: 
-\begin{equation} 
-    D_{vp} (E_{vp})= \int_0^\infty N_i(\varepsilon) P_{vp}(\varepsilon, 
-E_{vp}) d\varepsilon 
-\end{equation} 
-When these plasmons decay, they release an energy equal to $E_vp$. In other 
-words, this distribution should be convoluted with the density of the occupied 
-states $D_v(\varepsilon)$ in order to obtain the density of excited electrons 
-due to volume plasmon decay: 
-\begin{eqnarray} 
-    N_{vp}^{d}(\varepsilon) &=& \frac{1}{n_{vp}}(D_v * D_{vp}) (\varepsilon) 
-\\ 
-    &=& \frac{1}{n_{vp}} \int_{\Delta\varepsilon_v} D_v(\varepsilon_1) 
-D_{vp}(\varepsilon - \varepsilon_1) d\varepsilon_1 \\ 
-    &=& \frac{1}{n_{vp}} \int_{\Delta\varepsilon_v} D_v(\varepsilon_1)  
-    \int_0^\infty N_i(\varepsilon_2) P_{vp}(\varepsilon_2, \varepsilon - 
-\varepsilon_1) d\varepsilon_2 d\varepsilon_1  
-\end{eqnarray} 
-where $n_{vp}$ is a normalization factor. Of course, this distribution should 
-be normalized to the number of excited plasmons, i.e.: 
-\begin{equation} 
-    n_{vp} = \int_0^\infty N_{vp}^{-}(\varepsilon) d\varepsilon 
-\end{equation} 
- 
-\section{Poisson Process} \label{sec:appendix-poisson} 
- 
-\chapter{Computational Details} \label{appendix:sec-computational} 
- 
-All calculations are performed in the density functional theory (DFT) 
-framework, as implemented in the Vienna Ab initio Simulation Package (VASP) 
-[13,14]. The projector augmented wave (PAW) method [15] was used to make a 
+
+\section{Results} \label{appendix:sec-results} 
+
+The projector augmented wave (PAW) method [15] was used to make a 
 distinction between the core and valence electrons, with the standard VASP 
 recommended choice for the number of valence electrons.  
- 
-\section{Results} \label{appendix:sec-results} 
- 
+
 \subsection{Solar Cells} \label{appendix:sec-solar} 
  
 We make a selection of ten compounds for which we can compare the calculated 
@@ -313,7 +310,7 @@ efficiency of the CA phase with the CH results of Yu and Zunger~\cite{Yu2012}.
 The CA and CH structure are studied using a first-principles approach within 
 the Density Functional Theory (DFT) formalism, as implemented in the Vienna Ab 
 initio Simulation Package~\cite{Kresse1993, Kresse1996, Kresse1996b} (VASP). 
-The Projector Augmented Wave (PAW) method~\cite{Blchl1994} is applied, and the 
+The Projector Augmented Wave (PAW) method~\cite{Blochl1994} is applied, and the 
 electrons that are treated as valence electrons are underlined in 
 Table~\ref{tab:valElec}. The exchange-correlation functional is calculated 
 using the Generalized Gradient Approximation (GGA) of Perdew-Burke-Ernzerhof 
@@ -426,7 +423,7 @@ $|\vec{c}|$ (\si{\angstrom}) & $\Delta E$ dimer (meV) \\
  
 \subsubsection{Structure and Li-configurations} \label{appendix:sec-structure} 
 All calculations are performed using the \textbf{PBE+U functional  
-functional}, where a U-correction of 3.9 eV is applied to the $3d$ orbitals of 
+functional}, where an effective U-correction of 3.9 eV is applied to the $3d$ orbitals of 
 Mn. The wave functions of the valence electrons are expanded in a plane wave 
 basis set, using a high \textbf{energy cutoff equal to 500 eV}, which is 
 advisable for structures containing oxygen. A suitably converged 
@@ -485,7 +482,7 @@ constants of the HSE06 calculation for the bulk structures, and we settled on
 3.9 eV for Mn and 4.0 eV for Ir. Activation energies were calculated using the 
 nudged elastic band (NEB) method [22].  
  
-\subsection{Quotas} \label{appendix:sec-quotas} 
+\subsection{Ion-Induced Secondary Electron Emission} \label{appendix:sec-quotas} 
  
 \subsubsection{Semiconductors} \label{appendix:sec-semiconductors} 
  
@@ -501,12 +498,12 @@ included for both \ce{Ge} and \ce{Si}. The energy cutoff is set at
 set, and the exchange correlation energy is calculated using the 
 Perdew-Burke-Ernzerhof~\cite{Perdew1996} (PBE) functional. A well converged 
 Monkhorst-Pack~\cite{Monkhorst1976} k-point mesh is used for sampling the 
-Brillouin zone. We refer the reader to the supplementary information for more 
-computational details.\\ 
+Brillouin zone.
  
 To simulate a surface within the periodic boundary framework of VASP, it is 
 conventional to take a slab approach, where a certain number of atomic layers 
-are separated by a suitably large vacuum layer. For \ce{Si} and \ce{Ge}, it is 
+are separated by a suitably large vacuum layer (See~\ref{automation:sec-surface}). 
+For \ce{Si} and \ce{Ge}, it is 
 well known that the (111) surfaces reconstruct, forming dimers at the surface 
 with a 2x1 periodicity. We take the reconstructed structures from the 
 supplementary material of De Waele et al.~\cite{DeWaele2016} and subsequently 
@@ -519,18 +516,277 @@ in case the vacuum layer is sufficiently thick. The work function $\phi$ of
 the surface is then calculated by comparing the vacuum level with the top of 
 the valence band $\phi = \varepsilon_0 - \varepsilon_v$. 
 
-\resultsection{Parallelization}{https://mybinder.org/v2/gh/mbercx/jupyter/master?filepath=parallel\%2Fparallel_analysis.ipynb} 
+\subsubsection{Metals} \label{appendix:sec-metals} 
 
-\label{appendix:sec-parallel}\\ 
+Hagstrum's model requires the density of states of the occupied and unoccupied  
+($D_v(\varepsilon)$ and $D_c(\varepsilon)$) states as input, as well as 
+the vacuum level. We calculate the density of states and vacuum level of 
+all metal surfaces using a DFT approach, as implemented in the 
+Vienna Ab initio Simulation Package~\cite{Kresse1993, Kresse1994, Kresse1996, 
+Kresse1996} (VASP). Within the Projector Augmented Wave~\cite{Blochl1994, 
+Kresse1999} (PAW) formalism, the recommended number of valence electrons is 
+included for all metals. The energy cutoff is set at 
+500~\si{\electronvolt} in order to obtain a well converged plane wave basis 
+set, and the exchange correlation energy is calculated using the 
+Perdew-Burke-Ernzerhof~\cite{Perdew1996} (PBE) functional. A well converged 
+Monkhorst-Pack~\cite{Monkhorst1976} k-point mesh is used for sampling the 
+Brillouin zone.
+
+To simulate a surface within the periodic boundary framework of VASP, it is 
+conventional to take a slab approach, where a certain number of atomic layers 
+are separated by a suitably large vacuum layer (See~\ref{automation:sec-surface}).
+We take the structures of all surfaces from the 
+supplementary material of De Waele et al.~\cite{DeWaele2016} and subsequently 
+optimize the geometry using the computational parameters described in the 
+previous paragraph. The slab consists of 14 atomic layers and at least 20 
+\si{\angstrom} of vacuum spacing is present. The vacuum level is obtained by 
+averaging the one-electron electrostatic potential over planes parallel to the 
+surface and determining the potential in the vacuum, which should be constant 
+in case the vacuum layer is sufficiently thick. The work function $\phi$ of 
+the surface is then calculated by comparing the vacuum level with the top of 
+the valence band $\phi = \varepsilon_0 - \varepsilon_v$. 
+
+The optical properties of the bulk are calculated within the Random Phase 
+Approximation (RPA), using the long wavelength expression for the imaginary 
+part of the dielectric tensor~\cite{Gajdos2006, Harl2007} 
+(see Sec.~\ref{dft:sec-dielectric}). The real part of the dielectric tensor is 
+determined using the Kramers-Kronig  relation. For the damping parameter in 
+the Drude expression of the \link{dft:sec-drude}{intraband part of the 
+dielectric tensor} a value of 50~\si{\milli\electronvolt} is used.
+
+\resultsection{Parallelization \label{appendix:sec-parallel}}{https://mybinder.org/v2/gh/mbercx/jupyter/master?filepath=parallel\%2Fparallel_analysis.ipynb} 
+
 In order to speed up the calculations of the workflows, it is important to set 
 reasonably good parallelization parameters for VASP (NPAR, KPAR). In order to 
 do this, we have performed a whole series of tests, whose results are all 
 available via the jupyter notebook corresponding to this section. 
  
-\resultsection{\texttt{CSHIFT}}{} 
- 
-\label{appendix:sec-cshift}\\ 
+\resultsection{\texttt{CSHIFT} \label{appendix:sec-cshift}}{} 
+
 Kramers-Kronig and stuff 
+
+\chapter{Plasmonic Excitations} \label{appendix:sec-plasmons} 
+
+\section{Poisson Processes} \label{sec:appendix-poisson} 
+
+A Poisson process is defined as (taken from~\cite{MITopencourseware}):
+
+\begin{adjustwidth}{1em}{0em} 
+\textit{A Poisson process is a renewal process in which the interarrival 
+intervals $T_p$ follow an exponential distribution function; i.e., for some 
+real $\lambda_p > 0$, $T_p$ has the probability density function}
+\begin{equation}
+f_{T_p} (t) = 
+\begin{cases} 
+\lambda_p e^{-\lambda_p t} &\text{  for } t \geq 0 \\ 
+0 &\text{  for } t < 0
+\end{cases}
+\end{equation}
+\end{adjustwidth} 
+Let's start with some basic expressions that facilitate the derivations of the 
+plasmon probabilities. First, note that the probability density function is 
+properly normalized to 1:
+\begin{eqnarray*}
+\int_{-\infty}^\infty \lambda_p e^{-\lambda_p t} dt &=& \int_0^\infty \lambda_p e^{-\lambda_p t} dt \\
+                     &=& \lambda_p \left[ \frac{1}{-\lambda_p} e^{-\lambda_p t} \right]_0^\infty \\
+                     &=& -(0 - 1) = 1.
+\end{eqnarray*}
+The probability of the interval of process $p$ being smaller than some 
+specified interval $T$ is:
+\begin{eqnarray}
+\text{Pr}\{T_p \leq T\} &=& \int_0^T \lambda_p e^{-\lambda_p t} dt \nonumber \\
+                     &=& \lambda_p \left[ \frac{1}{-\lambda_p} e^{-\lambda_p t} \right]_0^T \nonumber \\
+                     &=& -(e^{-\lambda_p T} - 1) = 1 - e^{-\lambda_p T},
+\end{eqnarray}
+which is simply the cumulative distribution function of the Poisson process. 
+Similarly, the probability of the interval being larger than some 
+specified interval $T$ is:
+\begin{eqnarray}
+\text{Pr}\{T_p > T\} &=& 1 - \text{Pr}\{T_p \leq T\} \nonumber \\
+                     &=& 1 - (1 - e^{-\lambda_p T}) = e^{-\lambda_p T}
+\end{eqnarray}
+For two competing Poisson processes with rates $\lambda_1$ and 
+$\lambda_2$, the probability of the interval $T_1$ being smaller than $T_2$ is:
+\begin{eqnarray} 
+\text{Pr}\{T_1 < T_2\} &=& \int_0^\infty \text{Pr}\{T_1 < T_2 | T_1 = t \} \lambda_1 e^{-\lambda_1 t} dt \nonumber \\
+                       &=& \int_0^\infty \text{Pr}\{T_2 > t\} \lambda_1 e^{-\lambda_1 t} dt \nonumber \\
+                       &=& \int_0^\infty e^{-\lambda_2 t} \lambda_1 e^{-\lambda_1 t} dt \nonumber \\
+                       &=& \lambda_1 \int_0^\infty e^{- (\lambda_1 + \lambda_2) t} dt \nonumber \\
+                       &=& \frac{\lambda_1}{-(\lambda_1 + \lambda_2)} (0 - 1) \nonumber \\
+                       &=& \frac{\lambda_1}{\lambda_1 + \lambda_2} \label{appendix:eq-competing}
+\end{eqnarray} 
+
+Equation~(\ref{quotas:eq-sp_poisson}) is now fairly easy to derive. Consider two 
+Poisson processes, one for the surface plasmon excitation ($sp$) and one for
+the Auger neutralization ($aug$):
+\begin{eqnarray*} 
+f_{T_{sp}}(E_{sp}, t) &=& \lambda_{sp} (E_{sp}) e^{-\lambda_{sp}(E_{sp}) t}\\ 
+f_{T_{aug}}(t) &=& \lambda_{aug} e^{-\lambda_{aug} t}.
+\end{eqnarray*}
+The probability of a surface plasmon excitation is equal to that of the 
+interval $T_{sp}$ being smaller than $T_{aug}$:
+\begin{eqnarray} 
+P_{sp}(E_{sp}) &=& \text{Pr}\{T_{sp} < T_{aug}\} \nonumber \\
+               &\stackrel{(\ref{appendix:eq-competing})}{=}& \frac{\lambda_{sp} (E_{sp}) }{\lambda_{sp} (E_{sp})  + \lambda_{aug}} \\
+\end{eqnarray} 
+
+For the volume plasmons, we have to consider multiple competing Poisson processes. 
+First, note that two independent Poisson processes with rates $\lambda_1$ and 
+$\lambda_2$ can be merged into a new Poisson process with rate $\lambda' = \lambda_1 
++ \lambda_2$. So, if we consider a third process with rate $\lambda_3$, the probability 
+of the interval of this process being smaller than that of process $1$ and $2$ is:
+\begin{eqnarray} 
+\text{Pr}\{T_3 < T'\} &=& \frac{\lambda_3 }{\lambda' + \lambda_3} \nonumber \\
+                      &=& \frac{\lambda_3 }{\lambda_1  + \lambda_2 + \lambda_3}.
+\end{eqnarray} 
+By extension, the probability of a Poisson process with rate $\lambda_n$ having 
+the shortest interval among a set of independent processes $\{\lambda_i\}$, with 
+$i = 1, ..., N$, becomes:
+\begin{equation}
+\text{Pr}\{T_n < \text{min}(T_1, T_2, ..., T_{n-1}, T_{n+1}, ..., T_N)\} = \frac{\lambda_n}{\lambda_1  + ... + \lambda_N}.
+\end{equation}
+Within our model, an electron with energy $\varepsilon$ can excite plasmons up to 
+energy $\varepsilon - \varepsilon_F$, and the rate of exciting a volume plasmon with 
+energy $E_{vp}$ is proportional to the energy loss function $L(E)$:
+\begin{equation} 
+\lambda_{vp}(E_{vp}) = 
+\begin{cases} 
+c_{vp} \cdot L(E_{vp}) &\text{  for } 0 < E_{vp} \leq \varepsilon - \varepsilon_F \\
+0 &\text{  for } E_{vp} \leq 0 \text{ or } E_{vp} > \varepsilon - \varepsilon_F.
+\end{cases}
+\end{equation} 
+In this case, we have a continuous set of independent Poisson processes, each with 
+rate equal to $\lambda_{vp}(E_{vp})$, so the probability distribution of first
+exciting a volume plasmon with energy $E_{vp}$ becomes:
+\begin{equation}
+P_{vp}(\varepsilon, E_{vp}) = \text{Pr}\{T_{vp}(E_{vp}) = \text{min}(T_{vp}(E)\} = \frac{\lambda_{vp}(E_{vp})}{\int_0^{\varepsilon - \varepsilon_F} \lambda_{vp}(E) dE}.
+\end{equation}
+Note that this distribution is properly normalized to 1:
+\begin{eqnarray*}
+\int_0^\infty P_{vp}(\varepsilon, E_{vp}) dE_{vp} &=& \int_0^\infty P_{vp}(\varepsilon, E_{vp}) dE_{vp}  \\
+&=& \frac{\int_0^\infty \lambda_{vp}(E_{vp}) dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} \lambda_{vp}(E) dE} \\
+&=& \frac{c_{vp} \int_0^{\varepsilon - \varepsilon_F} L(E_{vp}) dE_{vp}}{c_{vp} \int_0^{\varepsilon - \varepsilon_F} L(E) dE} = 1 \\
+\end{eqnarray*}
+However, we also have to consider the average travel interval of the electrons 
+$t_e$. As the total rate of the volume plasmon excitation process is 
+$\int_0^{\varepsilon - \varepsilon_F} \lambda_{vp}(E) dE$, the probability of 
+any volume plasmon being excited in the interval $t_e$ is:
+\begin{equation}
+\text{Pr}\{\text{min}(T_{vp}(E)) < t_e \} = 1 - e^{-(\int_0^{\varepsilon - \varepsilon_F} \lambda_{vp}(E) dE) t_e}.
+\end{equation}
+Combining both leads to the probability distribution of a volume plasmon 
+excitation for an electron with average travel interval $t_e$:
+\begin{eqnarray}
+P_{vp}(\varepsilon, E_{vp}) dE_{vp} &=& \frac{\lambda_{vp}(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} \lambda_{vp}(E) dE }\left[1-e^{-\left(\int_0^{\varepsilon - \varepsilon_F} \lambda_{vp}(E_{vp}) dE\right) t_e }\right] \nonumber \\
+&=& \frac{c_{vp} L(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} c_{vp} L(E) dE }\left[1-e^{-\left(\int_0^{\varepsilon - \varepsilon_F} c_{vp} L(E) dE\right) t_e }\right] \nonumber \\
+&=& \frac{L(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} L(E) dE 
+}\left[1-e^{-\left(\int_0^{\varepsilon - \varepsilon_F} L(E) dE\right) c_{vp} t_e 
+}\right] \label{appendix:eq-vp_prob}
+\end{eqnarray}
  
+\section{Volume Plasmons} 
+ 
+Consider the distribution of excited electrons $N_i(\varepsilon)$. The 
+probability that an excited electron at energy $\varepsilon$ induces a volume 
+plasmon of energy $E_{vp} < \varepsilon - \varepsilon_F$ is given by Eq.~(\ref{appendix:eq-vp_prob}). The fraction of electrons which excite a volume plasmon is then equal to: 
+\begin{equation} 
+    N_{vp}^{-}(\varepsilon) = \int_0^\infty N_i(\varepsilon) 
+P_{vp}(\varepsilon, E_{vp}) dE_{vp}. 
+\end{equation} 
+These are substracted from the excited electron density. However, these 
+electrons are not lost, they have simply lost an energy equal to the volume 
+plasmon energy $E_{vp}$. Hence, we have to add the following density to the 
+excited density again: 
+\begin{equation} 
+    N_{vp}^{+}(\varepsilon) = \int_0^\infty N_i(\varepsilon + E_{vp}) 
+P_{vp}(\varepsilon, E_{vp}) dE_{vp}. 
+\end{equation} 
+The story doesn't end there, however. Volume plasmons do not couple with 
+transversal waves~\cite{Maier2007}, and hence cannot decay radiatively. Most likely, the 
+plasmon will decay as a single electron excitation. In order to model this, we 
+first calculate the distribution of plasmons with an energy $E_{vp}$: 
+\begin{equation} 
+    D_{vp} (E_{vp})= \int_0^\infty N_i(\varepsilon) P_{vp}(\varepsilon, 
+E_{vp}) d\varepsilon 
+\end{equation} 
+When these plasmons decay, they release an energy equal to $E_vp$. In other 
+words, this distribution should be convoluted with the density of the occupied 
+states $D_v(\varepsilon)$ in order to obtain the density of excited electrons 
+due to volume plasmon decay: 
+\begin{eqnarray} 
+    N_{vp}^{d}(\varepsilon) &=& \frac{1}{n_{vp}}(D_v * D_{vp}) (\varepsilon) 
+\\ 
+    &=& \frac{1}{n_{vp}} \int_{\Delta\varepsilon_v} D_v(\varepsilon_1) 
+D_{vp}(\varepsilon - \varepsilon_1) d\varepsilon_1 \\ 
+    &=& \frac{1}{n_{vp}} \int_{\Delta\varepsilon_v} D_v(\varepsilon_1)  
+    \int_0^\infty N_i(\varepsilon_2) P_{vp}(\varepsilon_2, \varepsilon - 
+\varepsilon_1) d\varepsilon_2 d\varepsilon_1  
+\end{eqnarray} 
+where $n_{vp}$ is a normalization factor. Of course, this distribution should 
+be normalized to the number of excited plasmons, i.e.: 
+\begin{equation} 
+    n_{vp} = \int_0^\infty N_{vp}^{-}(\varepsilon) d\varepsilon 
+\end{equation} 
+
+\section{Surface Plasmons} 
+ 
+Hagstrum's Auger transform can be written as a convolution: 
+\begin{equation} 
+\begin{aligned} 
+T\left[\frac{\varepsilon + \varepsilon_0 - E_i}{2}\right] &= 
+\int_{\Delta\varepsilon_v}\int_{\Delta\varepsilon_v} D_v (\varepsilon_1) D_v 
+(\varepsilon_2) \delta(\varepsilon - \varepsilon_1 - \varepsilon_2 + 
+\varepsilon_0 - E_i) d\varepsilon_1 d\varepsilon_2. \\ 
+&= \int_{\Delta\varepsilon_v} D_v (\varepsilon_1) D_v (\varepsilon + 
+\varepsilon_0 - E_i - \varepsilon_1) d\varepsilon_1 \\  
+&= (D_v * D_v) (\varepsilon + \varepsilon_0 - E_i) 
+\end{aligned} 
+\end{equation} 
+which can also be written as: 
+\begin{equation} 
+T\left[\frac{\varepsilon + \varepsilon_0 - E_i}{2}\right] = D_v(\varepsilon) * 
+D_v(\varepsilon + \varepsilon_0 - E_i) 
+\end{equation} 
+ 
+Here, $D_E(\varepsilon) = D_v(\varepsilon + \varepsilon_0 - E_i)$ 
+corresponds to the distribution of energies released by the neutralization of 
+the incoming ion\footnote{This should be more clear when we substitute e.g. 
+$\varepsilon = 0$ in $D_E(\varepsilon)$. We then obtain $D_v(\varepsilon_0 - 
+E_i)$, i.e. the number of electrons in the valence band that are at an equal 
+depth (in relation to the vacuum level) as the lowest unoccupied state of the 
+incoming ion. Clearly, electrons at this level do not pass energy through any 
+Auger process, as this is a resonant neutralization. Another way of 
+understanding this is that an electron at energy level $\varepsilon_0 - E_i + 
+\varepsilon$ releases an energy of $\varepsilon$ when it neutralizes the 
+incoming ion.}.  In order to include surface plasmon excitations, we consider 
+the probability that a plasmon with energy $E_{sp}$ is excited instead of an 
+Auger process: 
+\begin{equation}
+P_{sp}(E_{sp}) = \frac{ \frac{c_{sp}}{\lambda_{aug}} 
+\text{Im}\left[-\frac{1}{\epsilon(E_{sp}) + 1}\right]}{\frac{c_{sp}}{\lambda_{aug}} 
+\text{Im}\left[-\frac{1}{\epsilon(E_{sp}) + 1}\right] + 1} 
+\end{equation} 
+As the surface plasmon excitation process is considered to be resonant, 
+$E_{sp}$ must correspond to the energy released in the neutralization of the 
+incoming ion, i.e. $\varepsilon$ in $D_E(\varepsilon)$. The leftover 
+distribution of energies passed to other valence electrons through an Auger 
+process is: 
+\begin{equation} 
+    D_{aug}(\varepsilon) = D_E(\varepsilon) (1 - P_{sp}(\varepsilon)) 
+\end{equation} 
+We substitute this distribution in the expression for the Auger transform: 
+\begin{equation} 
+\begin{aligned} 
+T'\left[\frac{\varepsilon + \varepsilon_0 - E_i}{2}\right] &= D_v(\varepsilon) 
+* D_{aug}(\varepsilon) \\ &= D_v(\varepsilon) * (D_v(\varepsilon + 
+\varepsilon_0 - E_i) (1 - P_{sp}(\varepsilon))) 
+\end{aligned} 
+\end{equation} 
+And use this Auger transform instead of the original one in the nominator of 
+Eq.~(\ref{quotas:eq-excite}). Note that the normalization in the denominator 
+of Eq.~(\ref{quotas:eq-excite}) should still use the original Auger transform,
+else the number of excited electrons due to the neutralization are 
+still normalized to one per incoming ion. 
+
 \printbibliography 
 \end{refsection} 
