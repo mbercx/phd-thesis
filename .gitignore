@@ -1,5 +1,8 @@
 output
-jupyter
+jupyter/batteries
+jupyter/quotas
+jupyter/automation
+jupyter/appendix
 feedback
 figures/tikz*
 figures/tikz_loader.tex
@@ -16,3 +19,9 @@ figures/tikz_loader.tex
 *.aux
 *.sav
 *.bak
+
+# Jupyter notebook (and support) files
+*.ipynb
+*.json
+*.cif
+*_POSCAR
