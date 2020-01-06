@@ -21,7 +21,6 @@ figures/tikz_loader.tex
 *.bak
 
 # Jupyter notebook (and support) files
-*.ipynb
 *.json
 *.cif
 *_POSCAR
