@@ -58,6 +58,7 @@ isbn=false,
 \usepackage{siunitx} % Pretty SI units
 \usepackage[textsize=small]{todonotes} % Add todo's to the text
 \usepackage{changepage} % Make local changes to page layout, e.g. wider margins
+\usepackage{afterpage} % Make empty pages
 
 \usepackage{amsmath,amssymb}
 \usepackage{dcolumn}
@@ -93,7 +94,8 @@ isbn=false,
 
 \hyphenpenalty 750
 \interfootnotelinepenalty=10000 % Never break footnotes
-\widowpenalties 1 10000 % Fairly strict setting for breaking paragraphs
+\clubpenalties 6 10000 8000 5000 4000 3000 0 % Very strict setting for breaking paragraphs from the top
+\widowpenalties 6 10000 8000 5000 4000 3000 0 % Very strict setting for breaking paragraphs from the bottom
 \raggedbottom
 
 %%%%%%%% TikZ Settings %%%%%%%%%
@@ -104,6 +106,21 @@ isbn=false,
 \pgfplotsset{compat=newest}
 \usepgfplotslibrary{groupplots}
 \usepgfplotslibrary{dateplot}
+
+%% DFT %%
+ 
+\definecolor{helpcolor}{HTML}{63AABC} 
+ 
+\tikzset{my lines/.style={ 
+    black!30!white, line width = 0.2pt 
+}} 
+ 
+\tikzstyle{box} = [draw, rounded corners, very thick, align=center, inner 
+sep=1em, execute at begin node=\setlength{\baselineskip}{2em}] 
+\tikzstyle{arrow} = [>=latex, very thick] 
+\tikzstyle{helpline} = [color=helpcolor, very thick] 
+\tikzstyle{helpbox} = [fill, rounded corners, text width=12.5em, 
+fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small] 
 
 %% Automation %%
 
@@ -141,7 +158,6 @@ isbn=false,
 
 \usepackage{ifthen}
 
-
 % New command for less cramped fractions.
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 
@@ -159,16 +175,19 @@ isbn=false,
  
 % Commands for fancy section headers with symbols that links to Jupyter notebooks/the appendix with the corresponding computational details.
 \newcommand{\resultsection}[3] {
+\pagebreak[3]
 \begin{minipage}{0.92\textwidth}
 \section{#1}
 \end{minipage}
 \begin{minipage}{0.07\textwidth}
 \textcolor{white}{\rule{1em}{1.2em}}
 \href{#2}{\includegraphics[width=3em]{figures/jupyter.png}}
-\end{minipage}\\\vspace{-1em}\\
+\end{minipage}\vspace*{0.5em}
+\nopagebreak[4]
 }
  
 \newcommand{\resultsubsection}[3] {
+\pagebreak[3]
 \begin{minipage}{0.855\textwidth}
 \subsection{#1}
 \end{minipage}
@@ -176,7 +195,7 @@ isbn=false,
 \textcolor{white}{\rule{1em}{1.2em}}
 \ifthenelse{\equal{#2}{}}{}{\href{#2}{\includegraphics[width=3em]{figures/jupyter.png}}}
 \end{minipage}
-\begin{minipage}{0.08\textwidth}
+\begin{minipage}{0.07\textwidth}
 \textcolor{white}{\rule{1em}{1.2em}}
 \ifthenelse{\equal{#3}{}}{}{\hyperref[appendix:sec-#3]{\includegraphics[width=2.5em]{figures/silicon3.png}}}
 \end{minipage}
