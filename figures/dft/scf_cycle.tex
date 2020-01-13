@@ -1,0 +1,40 @@
+\begin{tikzpicture}[node distance=2em] 
+ 
+    % Nodes 
+    \node (1) [box] {Start with trial electron density \\ 
+$\rho_0(\mathbf{r})$}; 
+    \node (2) [box, below=of 1] {Calculate effective potential \\[4pt] 
+                                 $V_{eff}(\mathbf{r}) = V_{ext}(\mathbf{r}) + 
+V_{H}(\mathbf{r}) + V_{xc}(\mathbf{r})$}; 
+    \node (3) [box, below=of 2] {Solve Kohn-Sham equations \\ 
+                                 $\left[- \frac{1}{2} \Delta_{\mathbf{r}_i} + 
+V_{eff}(\mathbf{r}) \right] \phi_i (\mathbf{r}) = \epsilon_i\phi_i 
+(\mathbf{r}).$}; 
+    \node (4) [box, below=of 3] {Calculate new electron density \\ 
+                                 $\rho_n(\mathbf{r}) = \sum_{i=1}^N \left| 
+\phi_i (\mathbf{r}) \right|^2$}; 
+    \node (5) [box, right=of 4] {Solution is converged?}; 
+    \node (6) [box, below=3 em of 5] {SCF solution is found \\ 
+                                 $\rho(\mathbf{r}) = \rho_n(\mathbf{r})$}; 
+ 
+    % Arrows 
+    \draw [->, arrow] (1.south) -- (2.north); 
+    \draw [->, arrow] (2.south) -- (3.north); 
+    \draw [->, arrow] (3.south) -- (4.north); 
+    \draw [->, arrow] (4.east) -- (5.west); 
+    \draw [->, arrow] (5.south) -- node [fill=white] {Yes} (6.north); 
+    \coordinate (no) at ($(5.north) - (3em, 0)$); 
+    \draw [->, arrow] (no) -- node [fill=white] {No} (2 -| no) -- (2.east); 
+     
+    % Help Boxes 
+    \node (help1)[helpbox, above right=-3em and 3 em of 1] {The trial electron 
+density is usually constructed from a superposition of the atomic electron 
+densities.}; 
+    \draw [helpline] (1.east |- help1.west) -- (help1.west); 
+    \node (help2)[helpbox, above right=3em and -5em of 5] {A natural choice 
+for the convergence condition is the self-consistency of the electron density. 
+However, several codes use the difference in energy between SCF steps.}; 
+    \coordinate (h2_anchor) at ($(5.north) + (3em, 0)$); 
+    \draw [helpline] (h2_anchor) -- (h2_anchor |- help2.south); 
+ 
+\end{tikzpicture} 
