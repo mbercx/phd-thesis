@@ -76,13 +76,13 @@
 
 % Help boxes
 
-\node (help1)[helpbox, right=3 em of slab_dos_2] {First electronic optimization with sparse k-mesh to obtain quick good guess for the charge density.};
+\node (help1)[wf-helpbox, right=3 em of slab_dos_2] {First electronic optimization with sparse k-mesh to obtain quick good guess for the charge density.};
 \coordinate (help1_split) at ($(slab_dos_2.east) + (1em, 0)$);
-\draw [helpline] (help1.west) -- (help1_split);
-\draw [helpline] (slab_dos_1.east) -- (slab_dos_1.east -| help1_split) -- (slab_dos_3.east -| help1_split) -- (slab_dos_3.east);
+\draw [wf-helpline] (help1.west) -- (help1_split);
+\draw [wf-helpline] (slab_dos_1.east) -- (slab_dos_1.east -| help1_split) -- (slab_dos_3.east -| help1_split) -- (slab_dos_3.east);
 
-\node (help2)[helpbox, right=3 em of slab_dos_6] {Increase number of bands to have enough unoccupied bands for QUOTAS model.};
-\draw [helpline] (help2.west) -- (slab_dos_6.east);
+\node (help2)[wf-helpbox, right=3 em of slab_dos_6] {Increase number of bands to have enough unoccupied bands for QUOTAS model.};
+\draw [wf-helpline] (help2.west) -- (slab_dos_6.east);
 
 % Frame for energy workflow
 \node (wf_dos_frame)[draw, thick, rounded corners, inner sep=1 em, fit={(slab_opt_frame) (slab_dos_frame)}] {};

@@ -94,7 +94,7 @@
 
 % % Help boxes
 
-\node (help1)[helpbox, text width=22em, above left=10 em and -8em of frame_dimer] {
+\node (help1)[wf-helpbox, text width=22em, above left=10 em and -8em of frame_dimer] {
 \texttt{get\_wfs\_noneq\_dimers(structure, distance, ...):} \\ 
 \textit{\begin{tabular}{l l}
 & Set up a transition workflow for each of the \\
@@ -104,9 +104,9 @@
 \end{tabular}}
 };
 \coordinate (help1_line) at ($(dimer_1.east) + (1em, 0em)$);
-\draw [helpline] (dimer_1.east) -- (help1_line) -- (help1_line |- help1.south);
+\draw [wf-helpline] (dimer_1.east) -- (help1_line) -- (help1_line |- help1.south);
 
-\node (help2)[helpbox, text width=19em, below left=2 em and -14em of frame_postprocess] {
+\node (help2)[wf-helpbox, text width=19em, below left=2 em and -14em of frame_postprocess] {
 \texttt{post\_process\_dimer\_neb(directory, ...):} \\ 
 \textit{\begin{tabular}{l l}
 & Check the output in \texttt{directory} and either \\
@@ -116,7 +116,7 @@
 \end{tabular}}
 };
 \coordinate (help1_line) at ($(dimer_1.east) + (1em, 0em)$);
-\draw [helpline] (postprocess_1.south) -- (postprocess_1.south |- help2.north);
+\draw [wf-helpline] (postprocess_1.south) -- (postprocess_1.south |- help2.north);
 
 % Frame for energy workflow
 \node (frame_wf_energy)[draw, thick, rounded corners, inner sep=1 em, fit={(frame_trans_opt) (frame_neb) (frame_trans_static) (help2)}] {};

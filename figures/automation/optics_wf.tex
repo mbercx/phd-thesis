@@ -42,17 +42,17 @@
     \draw [->, firearrow] (frame_2.south) -- (frame_2.south |- frame_3.east) -- (frame_3.east);
     
     % Help boxes
-    \node (help1)[helpbox, right=3 em of fw1_1] {Write the input files for VASP, based on the Set that defines the calculation.};
-    \draw [helpline] (fw1_1.east) -- (help1.west);
-    \node (help2)[helpbox, left=3 em of fw1_1] {Trial run of VASP to determine number of irreducible k-points, then configure the parallelization settings.};
-    \draw [helpline] (fw1_2.west) -- (fw1_2.west -| help2.east);
-    \node (help3)[helpbox, right=5 em of fw1_4, text width=10 em] {Store the full geometry for future fireworks.};
-    \draw [helpline] (fw1_4.east) -- (help3.west);
-    \node (help4)[helpbox, left=5em of fw1_5, text width=12 em] {Check the change in lattice vectors, perform another \\ geometry optimization in case the change is significant.};
-    \draw [helpline] (help4.east) -- (fw1_5.west); 
-    \node (help5)[helpbox, left=4em of fw3_3, text width=12 em] {Increase the number of bands to a multiple of the VASP default.};
-    \draw [helpline] (help5.east) -- (fw3_3.west); 
-    \node (help6)[helpbox, below right=2em and -3em of frame_2, text width=10 em] {Simple bash script that copies the \vasp{CONTCAR} to the \vasp{POSCAR}.};
-    \draw [helpline] (help6.north) -- (help6.north |- fw2_1.east) -- (fw2_1.east); 
+    \node (help1)[wf-helpbox, right=3 em of fw1_1] {Write the input files for VASP, based on the Set that defines the calculation.};
+    \draw [wf-helpline] (fw1_1.east) -- (help1.west);
+    \node (help2)[wf-helpbox, left=3 em of fw1_1] {Trial run of VASP to determine number of irreducible k-points, then configure the parallelization settings.};
+    \draw [wf-helpline] (fw1_2.west) -- (fw1_2.west -| help2.east);
+    \node (help3)[wf-helpbox, right=5 em of fw1_4, text width=10 em] {Store the full geometry for future fireworks.};
+    \draw [wf-helpline] (fw1_4.east) -- (help3.west);
+    \node (help4)[wf-helpbox, left=5em of fw1_5, text width=12 em] {Check the change in lattice vectors, perform another \\ geometry optimization in case the change is significant.};
+    \draw [wf-helpline] (help4.east) -- (fw1_5.west); 
+    \node (help5)[wf-helpbox, left=4em of fw3_3, text width=12 em] {Increase the number of bands to a multiple of the VASP default.};
+    \draw [wf-helpline] (help5.east) -- (fw3_3.west); 
+    \node (help6)[wf-helpbox, below right=2em and -3em of frame_2, text width=10 em] {Simple bash script that copies the \vasp{CONTCAR} to the \vasp{POSCAR}.};
+    \draw [wf-helpline] (help6.north) -- (help6.north |- fw2_1.east) -- (fw2_1.east); 
    
 \end{tikzpicture}

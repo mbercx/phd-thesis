@@ -58,12 +58,12 @@
 
 % Help boxes
 
-\node (help1)[helpbox, right=3 em of conf_1] {Generates configurations based on user specifications.};
-\draw [helpline] (conf_1.east) -- (help1.west);
-\node (help2)[helpbox, left=3 em of conf_2] {Sets up an energy workflow for each configuration.};
-\draw [helpline] (conf_2.west) -- (help2.east);
-\node (help2)[helpbox, text width=13.5em, above right=2 em and -6em of frame_static.north] {The \texttt{StaticFW}  determines the energy with higher precision using the tetrahedron method.};
-\draw [helpline] (frame_static.north) -- (frame_static.north |- help2.south);
+\node (help1)[wf-helpbox, right=3 em of conf_1] {Generates configurations based on user specifications.};
+\draw [wf-helpline] (conf_1.east) -- (help1.west);
+\node (help2)[wf-helpbox, left=3 em of conf_2] {Sets up an energy workflow for each configuration.};
+\draw [wf-helpline] (conf_2.west) -- (help2.east);
+\node (help2)[wf-helpbox, text width=13.5em, above right=2 em and -6em of frame_static.north] {The \texttt{StaticFW}  determines the energy with higher precision using the tetrahedron method.};
+\draw [wf-helpline] (frame_static.north) -- (frame_static.north |- help2.south);
 
 % Frame for energy workflow
 \node (frame_wf_energy)[draw, thick, rounded corners, inner sep=1 em, fit={(frame_optimize) (frame_pulay) (frame_static) (help2)}] {};
