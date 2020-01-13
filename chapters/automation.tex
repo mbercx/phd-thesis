@@ -1,6 +1,6 @@
 \begin{refsection} 
  
-\chapter{Automation} 
+\chapter{Automation} \label{chapter:automation}
  
 \setlength{\epigraphwidth}{3in} 
 \epigraph{\textit{``Give me six hours to chop down a tree and I will spend the 
@@ -35,7 +35,7 @@ In this chapter I give an overview of all of the workflows that were used to
 calculate the various properties required for my research. I also explain some 
 more technical details of performing certain calculations using our chosen 
 implementation of the DFT formalism: the \href{https://www.vasp.at/}{Vienna ab 
-initio simulation package} (\texttt{VASP}). After the short introduction in 
+initio simulation package} (VASP). After the short introduction in 
 Section~\ref{automation:sec-intro}, the chapter continues with detailing the 
 building blocks of a workflow in Section~\ref{automation:sec-firetasks}. Next, 
 Section~\ref{automation:sec-workflows} describes the workflows used to obtain 
@@ -62,7 +62,7 @@ initial geometry, either by constructing it manually, or - more conveniently -
 by extracting it from a trustworthy database~\cite{Jain2013}, the first step 
 is to optimize the structure computationally. Once you have obtained the 
 optimized geometry, the next step is calculate the density of states using two 
-consecutive \texttt{VASP} calculations: first one to calculate the charge 
+consecutive VASP calculations: first one to calculate the charge 
 density of the electrons using a relatively sparse k-point sampling of the 
 Brillouin zone, then a calculation that keeps the charge density fixed and 
 determines the energies of the electronic states with a much denser k-point 
@@ -79,7 +79,7 @@ How the various tasks that need to be performed are organized in
 provide some 
 \href{https://materialsproject.github.io/fireworks/design_tips.html}{general 
 guidelines} on how to design your workflows. All of my workflows were 
-constructed by bundling all of the tasks required for a single \texttt{VASP} 
+constructed by bundling all of the tasks required for a single VASP 
 calculation into one \code{Firework}, and then connecting these 
 \code{Firework}s to create a workflow for each of the properties required for 
 my research. 
@@ -100,7 +100,7 @@ in this directory.
 \label{automation:sec-WriteVaspFromIOSet} 
  
 As the name implies, the \code{WriteVaspFromIOSet} task writes the 
-\texttt{VASP} input files into the current directory. Each calculation is 
+VASP input files into the current directory. Each calculation is 
 defined by an input set, i.e. a class derived from \code{pymatgen}'s 
 \code{DictSet} class. This class does a few things: 
  
@@ -108,7 +108,7 @@ defined by an input set, i.e. a class derived from \code{pymatgen}'s
  
 \item Load the basic configuration from a YAML\footnote{YAML Ain't Markup 
 Language; IT people love recursion, also in their acronyms.} file. This file 
-contains the settings for each of the \texttt{VASP} input files (See 
+contains the settings for each of the VASP input files (See 
 Appendix~\ref{appendix:sec-VASP}). Here's an (truncated) example: 
 \begin{verbatim} 
 INCAR: 
@@ -151,7 +151,7 @@ automatically sets \vasp{ISIF} to 2, fixing the unit cell of the calculation.
  
 \item Write the output files using the \code{write\_input()} method. Every 
 \code{DictSet} subclass requires the structure as an input argument, so based 
-on the structure and configuration, all of the \texttt{VASP} input files can 
+on the structure and configuration, all of the VASP input files can 
 be written. Note that the \vasp{MAGMOM} tag, which specifies the magnetic 
 moments in the structure, is also automatically added to the \vasp{INCAR} 
 file, which can be a real headache to do manually for large complicated 
@@ -174,13 +174,13 @@ name, either a structure or parent \code{Firework} must be provided, else the
 As most DFT calculations require a substantial amount of computational 
 resources, it is important to properly parallelize the workload over the 
 various nodes/cores of a cluster, as failing to do so can severely affect the 
-performance. For \texttt{VASP}, the parallelization can be controlled by 
+performance. For VASP, the parallelization can be controlled by 
 several parameters: 
  
 \begin{itemize} 
 
 \item \href{https://cms.mpi.univie.ac.at/wiki/index.php/KPAR}{\texttt{KPAR}}: 
-Determines the parallelization over the k-points. \texttt{VASP} treats 
+Determines the parallelization over the k-points. VASP treats 
 \texttt{KPAR} k-points in parallel, i.e. it divides the number of available cores (\texttt{\#CORES}) and 
 k-points in \texttt{KPAR} groups and then assigns each group of cores to work 
 on a group of k-points, one k-point at a time. As \texttt{KPAR} divides the 
@@ -190,13 +190,13 @@ set in stone, as often choosing a higher \texttt{KPAR} that is not a divisor
 of the number of nodes can result in an improved optimization. 
  
 \item \href{https://cms.mpi.univie.ac.at/wiki/index.php/NPAR}{\texttt{NPAR}}: 
-A second way in which \texttt{VASP} allows parallelization is over the 
+A second way in which VASP allows parallelization is over the 
 electronic bands. For each k-point, there are \verb|#CORES|/\verb|KPAR| cores 
 working on it at a single time. Using \verb|NPAR|, we can further divide the 
 cores per k-point into \verb|NPAR| groups, i.e. treat \verb|NPAR| bands in 
 parallel using \verb|#CORES|/\verb|KPAR|/\verb|NPAR| cores. Note that similar 
 to the \verb|KPAR| and the number of k-points,  \verb|NPAR| should optimally 
-be a divisor of the number of bands to avoid inactive cores. \texttt{VASP} 
+be a divisor of the number of bands to avoid inactive cores. VASP 
 actually enforces this by setting the number of bands (\vasp{NBANDS}) to the 
 smallest multiple of \verb|NPAR| higher than the requested (or default) bands. 
  
@@ -209,7 +209,7 @@ relation:
 \texttt{NCORE} = \frac{\texttt{\#CORES / \texttt{KPAR}}}{\texttt{NPAR}} 
 \end{equation*} 
 In other words, the user should specify either \verb|NPAR| or \verb|NCORE|, as 
-they are directly connected. As is said in the \texttt{VASP} manual, 
+they are directly connected. As is said in the VASP manual, 
 \verb|NPAR| is preferred, i.e. if you do set both \verb|NPAR| and 
 \verb|NCORE|, the \verb|NCORE| value is ignored. 
  
@@ -217,7 +217,7 @@ they are directly connected. As is said in the \texttt{VASP} manual,
  
 \item \href{https://cms.mpi.univie.ac.at/wiki/index.php/NSIM}{\texttt{NSIM}}: 
 This input tag defines the number of bands that are treated simultaneously in 
-the blocked mode of the \texttt{RMM-DIIS} algorithm. This allows \texttt{VASP} 
+the blocked mode of the \texttt{RMM-DIIS} algorithm. This allows VASP 
 to exploit matrix BLAS operations instead of matrix-vector operations, which 
 could lead to a speed up on some machines. Peter Larsson 
 \href{https://www.nsc.liu.se/~pla/blog/2012/02/22/nparnsim/}{wrote an 
@@ -274,7 +274,7 @@ optimization with a k-point sampling that has 7 irreducible points in the
 has 20 cores per node, and so there is no shared divisor for these two 
 numbers larger than one. That said, choosing \texttt{KPAR = 1} would be a mistake, since a 
 well configured parallelization can more than make up for the time lost due to inactive 
-cores. So, say you choose \texttt{KPAR = 2}. In this case, \texttt{VASP} 
+cores. So, say you choose \texttt{KPAR = 2}. In this case, VASP 
 divides the cores over two groups, and hence solves the \link{dft:sec-kohn_sham}{Kohn-Sham equations} of two k-points simultaneously. 
 
 After finishing 6 of the k-points, there is only one k-point left, so while 
@@ -358,7 +358,7 @@ we usually don't need the calculation to finish, since we are only interested
 in the average time per electronic step, which is fairly consistent for most 
 electronic optimizations. Using this \code{ErrorHandler} allows the user to 
 specify how many electronic steps are desired before the calculation should be 
-aborted using \texttt{VASP}'s \vasp{STOPCAR} file (\code{max\_elec\_steps}). 
+aborted using VASP's \vasp{STOPCAR} file (\code{max\_elec\_steps}). 
 Moreover, some parallelization settings can lead to very slow calculations, 
 which could result in such a high electronic time step that the whole workflow 
 is slowed down needlessly (as obviously these settings are not optimal). 
@@ -373,7 +373,7 @@ Note that if any of these \code{ErrorHandler}s are unable to correct the
 calculation, e.g. because they have exhausted all options, a 
 \code{NonRecoverableError} is thrown, so any failed calculations are easily 
 found via the Fireworks management system. \code{CustodianTask} is the 
-\code{Firetask} that actually performs the \texttt{VASP} calculation, within a 
+\code{Firetask} that actually performs the VASP calculation, within a 
 \code{Custodian} with specified \code{ErrorHandler}s. These 
 \code{ErrorHandler}s are initialized by the user when designing the workflow, 
 and passed as a \code{list} to the \code{Custodian} input argument of any 
@@ -461,11 +461,11 @@ this step, based on a user-specified multiplier.
 \phantomsection \label{automation:sec-VaspTask} 
 \item \code{VaspTask}: Similar to 
 \link{automation:sec-CustodianTask}{\code{CustodianTask}}, this 
-\code{Firetask} runs \texttt{VASP} in the directory of the \code{Firework}. 
-However, this is just a bare \texttt{VASP} run without any error recovery 
+\code{Firetask} runs VASP in the directory of the \code{Firework}. 
+However, this is just a bare VASP run without any error recovery 
 based on a \code{Custodian}. In case the user does not specify any 
 \code{ErrorHandlers} when initializing a \code{Firework} that runs 
-\texttt{VASP}, this class is used instead of \code{CustodianTask}. 
+VASP, this class is used instead of \code{CustodianTask}. 
  
 \phantomsection \label{automation:sec-AddFinalGeometryToSpec} 
 \item \code{AddFinalGeometryToSpec}: This small but handy \code{Firework} 
@@ -492,7 +492,7 @@ method used as well as a short explanation.
 In this section I present an overview of the workflows used to calculate the 
 results presented in the rest of my thesis. As mentioned previously, all of 
 these workflows consist of several \code{Firework}s, each of which represent 
-one \texttt{VASP} calculation. As these \code{Firework}s are largely just a 
+one VASP calculation. As these \code{Firework}s are largely just a 
 collection of \code{Firetask}s, I won't describe them separately. It should be 
 clear from the description of the workflow what each \code{Firework} does. 
  
@@ -502,7 +502,7 @@ Section \ref{dft:sec-linear} describes the theoretical framework for
 calculating the electromagnetic response of a material. Here I explain the 
 practical steps you have to take to calculate the frequency dependent 
 dielectric tensor for any given material, which have been employed to 
-calculate the optical properties used in Chapter~\ref{chapter:solar}. As the 
+calculate the optical properties used in Chapter~\ref{chapter:slme}. As the 
 number of steps required here is rather limited, it is an ideal problem to 
 demonstrate a simple workflow. 
  
@@ -535,7 +535,7 @@ settings for dielectric function calculations, e.g. \vasp{LOPTICS}=True, a
 more dense energy grid (\vasp{NEDOS}=2000) and a more strict electronic 
 convergence criterion (\vasp{EDIFF}=$10^{-6}$). Finally, the \code{Firework} 
 also sets the \vasp{CSHIFT} parameter to 0.01, which should be sufficiently low to make sure 
-that \texttt{VASP} does not overwrite the original imaginary part of the 
+that VASP does not overwrite the original imaginary part of the 
 dielectric tensor with the one obtained from the Kramers-Kronig relation (See Appendix~\ref{appendix:sec-cshift}). This 
 introduces a broadening to the imaginary part of the dielectric tensor, which 
 is passed to the absorption coefficient through 
@@ -567,7 +567,7 @@ subsequently determines the total energy based on a static calculation.
 configurations workflow.} 
 \end{figure} 
  
-\subsection{Kinetic barriers - dimer workflow} 
+\subsection{Kinetic barriers - dimer workflow} \label{automation:sec-dimer} 
  
 As explained in Section~\ref{dft:sec-transition}, investigating a transition 
 from one state of a system to another requires the calculation of both 
@@ -594,7 +594,7 @@ more precisely using a static calculation. The final structure and energy is
 passed on to a small \code{Firework} that sets up a transition workflow
 for each non-equivalent dimer. This transition work flow consists of a 
 geometry optimization of the dimer structure, where only the atomic positions 
-are allowed to optimize (\vasp{ISIF}=2). \pagebreak Once again a static calculation is 
+are allowed to optimize (\vasp{ISIF}=2. Once again a static calculation is 
 performed to determine the energy, which is then compared to the energy of the 
 initial, unperturbed structure in order to obtain the reaction energy. If this 
 reaction energy is smaller than a certain tolerance\footnote{Note that the reaction energy is defined as the final energy minus the initial energy. Hence, a transition with a negative reaction energy is thermodynamically favorable, i.e. setting the \code{tolerance} to zero only calculates the kinetic barrier for thermodynamically favorable dimers.}, the kinetic barrier is 
@@ -605,7 +605,7 @@ calculated using a \link{dft:sec-neb}{nudged elastic band calculation}.
 The calculation of the secondary electron emission in the QUOTAS project 
 (Chapter \ref{chapter:quotas}) requires the DOS of the surface states, as well 
 as the surface work function. However, because of the three dimensional 
-periodic boundary conditions in \texttt{VASP}, simulating an isolated surface 
+periodic boundary conditions in VASP, simulating an isolated surface 
 is not possible. The usual approach for dealing with this issue is by setting 
 up a so-called \text{slab} geometry, where we introduce a layer of vacuum to 
 the unit cell. In effect, this means that we have \textit{two} opposite 
