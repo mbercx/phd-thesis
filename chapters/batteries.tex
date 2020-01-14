@@ -84,10 +84,10 @@ structure is remarkably stable, leading to  a high reversibility and
 cyclability. For the cathode, a more diverse set of materials is being 
 considered. The conventional layered oxides \ce{LiMO2}, where \ce{M} is a 
 (combination of) transition metals, is still on of the most popular 
-chemistries due to their high energy density and rate capacity. Spinel-type 
-oxygen-based cathodes (e.g. \ce{LiMn2O4}) have a lower capacity compared to 
+chemistries due to their high energy density and rate capacity~\cite{Bresser2015}. Spinel-type 
+oxygen-based cathodes~\cite{Thackeray2004} (e.g. \ce{LiMn2O4}) have a lower capacity compared to 
 the layered oxides, but are also receiving a fair bit of attention because of 
-their excellent safety. Similarly, polyanionic compounds are lauded for their 
+their excellent safety. Similarly, ordered olivine compounds~\cite{Padhi1997} (e.g. \ce{LiFePO4}) are lauded for their 
 high safety and structural stability, but suffer from a reduced specific 
 capacity due to their high weight. The electrolyte separating the electrodes 
 can be either a liquid or a solid, 
@@ -206,15 +206,15 @@ layer is the same.} at higher charge state of the battery
 the O3 to the O1 stacking, we once again use the configuration workflow to 
 calculate the energy of all \ce{Li} configurations in unit cells up to two 
 times the size of the conventional unit cell of the O1 stacking, which results 
-in 220 non-equivalent configurations. For the O1 stacking, we find that 
+in 220 non-equivalent configurations. 
+
+For the O1 stacking, we find that 
 several configurations at lower states of charge switch to the O3 stacking, 
 i.e. the opposite transformation occurs compared to that at higher states of 
-charge. 
-
-To be able to compare the energies of the O1 and O3 stackings fairly, we 
+charge. To be able to compare the energies of the O1 and O3 stackings fairly, we 
 remove the configurations which change stacking. As the stacking 
 of the oxygen octahedra is closely connected to the angles between the 
-lattice vectors, we remove all configurations for that any lattice angle has 
+lattice vectors, we remove all configurations for which any lattice angle has 
 changed more than 12\si{\degree}. This leaves 84 and 181 configurations for 
 the O3 and O1 stacking, respectively. Finally, we calculate the formation 
 energy for all configurations versus the fully charged and discharged state of 
@@ -249,13 +249,13 @@ the 75\% charged structures for several reasons. First, the optimal lithium
 configuration for \ce{Li_{0.5}MnO3} is on the convex hull of the O1 stacking, 
 indicating that this structure is quite stable and hence easier to work with 
 once we start introducing O-O dimers (Sec.~\ref{batteries:sec-dimer}). Second, 
-oxygen only starts to evolve from \ce{Li2IrO3} cathode once it is charged 
-beyond 75\%, whereas \ce{Li2MnO3} has already lost oxygen at this state of 
-charge. Hence, studying the stability for this lithium content is most 
+oxygen gas is only released from the \ce{Li2IrO3} cathode once it is charged 
+beyond 75\%~\cite{McCalla2015}, whereas \ce{Li2MnO3} has already lost oxygen at this state of 
+charge~\cite{Castel2014}. Hence, studying the stability for this lithium content is most 
 interesting, as it may show discrepancies between the stability of the oxygen 
 frameworks. Finally, the oxygen framework of \ce{Li_{0.5}IrO3} was studied by 
-McCalla et al., which allows for a direct comparison of our calculated O-O 
-distances with experiment. 
+McCalla et al.~\cite{McCalla2015}, which allows for a direct comparison of our 
+calculated O-O distances with experiment. 
 
 \begin{table}[ht] 
 \centering 
@@ -294,7 +294,7 @@ metals, resulting in short O-O bonds which McCalla et al. refer to as dimers.
 In Section~\ref{batteries:sec-dimer}, we will return to this topic, focussing 
 our attention on the formation of a peroxo species with a bond length closer 
 to that of the oxygen molecule, as this formation has been derived 
-theoretically for \ce{Li2MnO3}, and believed to be related the migration of Mn 
+theoretically for \ce{Li2MnO3}, and believed to be related to the migration of Mn 
 and the resulting voltage fade~\cite{Chen2016}. 
  
 % Atomic orbital diagrams are also drawn in order to elucidate the connection 
@@ -345,7 +345,7 @@ oxygen, the increase in magnetic moment corresponds to an oxidation from its
 to an increased local density of unpaired electrons. The results for \ce{Mn} 
 indicate that it does not participate much in the redox processes that occur 
 when the battery is charged. Instead, its magnetic moment remains close to 3 
-$\mu_B$), which corresponds to the initial oxidation state \ce{Mn^{4+}} in the 
+$\mu_B$, which corresponds to the initial oxidation state \ce{Mn^{4+}} in the 
 discharged cathode structure. For \ce{Li2IrO3}, removing lithium from the 
 discharged structure results in a significant change of the local magnetic 
 moment for both Ir and O, implying a more mixed redox process during the 
@@ -404,14 +404,14 @@ dimerization of oxygen can trigger the migration of Mn in fully charged
 \ce{Li2MnO3}, which is considered to be the mechanism by which the structure 
 transforms into a spinel-type phase. This structural change results in a 
 reduced average voltage, which is detrimental for the energy density of the 
-battery~\tocite. Moreover, Chen and Islam contend that the O-O dimer is eventually 
+battery~\cite{Rozier2015}. Moreover, Chen and Islam contend that the O-O dimer is eventually 
 released from the structure as \ce{O2}. Such oxygen evolution has been 
-observed for several Li-rich materials \cite{Armstrong2006, Luo2016}.  
+observed for several Li-rich materials \cite{Armstrong2006, Luo2016}.
  
 So far the study of dimer formation in \ce{Li2MnO3} has been limited to the O3 
 stacking and the fully charged structure. However, as we have seen in 
 Section~\ref{batteries:sec-structure}, both \ce{Li2MnO3} \ce{Li2IrO3} are 
-believed to transform into into an O1 stacking, which changes the possible 
+believed to transform into an O1 stacking, which changes the possible 
 migration pathways for the transition metal. Here, we compare the stability of 
 the oxygen framework of Li-rich \ce{Li2MnO3} and \ce{Li2IrO3} by calculating 
 the thermodynamic driving force of the dimer formation, as well as the kinetic 
@@ -429,19 +429,17 @@ charged structures, we apply our methodology to 75\% delithiated
 \end{figure} 
  
 To calculate the chemical reaction energy of the dimer formation, we construct 
-a 2x2x2 supercell of the primitive unit cell, for the O1 stacking of 75\% 
+a 2$\times$2$\times$2 supercell of the primitive unit cell, for the O1 stacking of 75\% 
 charged \ce{Li_{0.5}MnO3} and \ce{Li_{0.5}IrO3} 
 (Fig.~\ref{batteries:fig-oxygen_dimers}). In order to consistently study the 
 dimer formation, we need to consider all non-equivalent oxygen pairs that have 
 the potential to form a dimer for each material. We use the workflow described 
 in Section~\ref{automation:sec-dimer} to calculate the reaction energy of all
-non-equivalent potential dimers in the structure. In short, all oxygen dimers 
+non-equivalent potential dimers in the structure. In short, all potential oxygen dimers 
 in the structure are found using a voronoi decomposition to find the neighbors 
 of the various atoms in the unit cell. Once all oxygen dimers have been found, 
-we set up a list for each non-equivalent potential dimer, which contains all 
-the equivalent dimers to this non-equivalent dimer. From each non-equivalent 
-dimer list, we choose one dimer of the unit cell, with the goal of producing a 
-list of inequivalent dimers that is easy to visualize. In the charged 
+we set up a list of all non-equivalent potential dimers based on the
+symmetry operations of the structure. In the charged 
 \ce{O1-Li_{0.5}MnO3} and O1-\ce{Li_{0.5}IrO3} structures, we find a total of 6 
 non-equivalent dimers, shown in Figure~\ref{batteries:fig-oxygen_dimers}. For 
 each structure and each potential dimer, we reduce the distance between the 
@@ -449,7 +447,7 @@ oxygen atoms in the dimer pair to 1.4~\si{\angstrom} and once again optimize
 all atomic positions as described in the methods section. To make sure the 
 interaction between the dimers in the periodic boundary conditions approach of 
 VASP is sufficiently small, we have also performed similar calculations in a 
-3x3x3 supercell, and found the differences between the reaction energies to be 
+3$\times$3$\times$3 supercell, and found the differences between the reaction energies to be 
 smaller than 50~\si{\milli\electronvolt} for all potential 
 dimers~\cite{Levi2020}. 
  
@@ -513,20 +511,18 @@ enhance the structural stability~\cite{Qiao2015}. Second, \ce{Sn^{4+}} does
 not tend to adopt a tetrahedral coordination~\cite{Sathiya2013} and has a much 
 larger ionic radius compared to \ce{Mn^{4+}}, implying that the migration of 
 \ce{Sn^{4+}} to the \ce{Li} layers is less likely to occur as the battery is 
-charged~\footnote{Note that the migration path for \ce{Sn^{4+}} does not have 
+charged\footnote{Note that the migration path for \ce{Sn^{4+}} does not have 
 to pass a tetrahedral site in case the stacking is changed from O3 to O1.}. 
 For these reasons, \ce{Sn^{4+}} was chosen as the first element by our 
 experimental collaborators at the university of Hasselt\footnote{Andreas Paulus, 
-Marlies van Bael and An Hardy, Hasselt University, Inorganic and Physical 
-Chemistry, Agoralaan Gebouw D, 3590 Diepenbeek, Belgium.} to substitute in 
+Marlies van Bael and An Hardy, \href{https://www.uhasselt.be/UH/IMO/Visit-the-groups/Inorganic-and-physical-chemistry-(IPC).html}{Inorganic and Physical Chemistry}, Hasselt University.} to substitute in 
 Li-rich NMC samples in an attempt to improve the cycling properties of the 
 cathode. 
 
 In this section, I start by briefly discussing their XRD results, as well as 
 the EDX results of our collaborators within EMAT\footnote{Myl\`ene Hendrickx, Olesia 
-Karakulina, Artem Abakumov and Joke Hadermann, Electron Microscopy for Materials 
-Science (EMAT), University of Antwerp, Groenenborgerlaan 171, 2020 Antwerpen, 
-Belgium.}, as a motivation for the 
+Karakulina, Artem Abakumov and Joke Hadermann, \href{https://www.uantwerpen.be/en/research-groups/emat/}{Electron Microscopy for Materials 
+Science}, Antwerp University.}, as a motivation for the 
 calculations we have performed on the solubility of \ce{Sn} in a 
 Li-rich/Mn-rich material. Next, I perform a similar analysis as in the 
 previous section for investigating the influence of Sn-substitution on the 
@@ -612,7 +608,7 @@ space group $C2/m$.
 \item Replace the \ce{Li} in the \ce{Li}/\ce{Mn} layer by a placeholder 
 element, e.g. \ce{Lr}. This is just to keep track of which sites correspond to 
 the \ce{Li} sites in the honeycomb layer. 
-\item Make a 2x2x2 supercell. This size is chosen to get as close as possible 
+\item Make a 2$\times$2$\times$2 supercell. This size is chosen to get as close as possible 
 to the experimental composition of \ce{Li}, without having to consider a unit 
 cell size that is prohibitively large. 
 \item Use the \texttt{Cathode.get\_cation\_configurations()} method to 
@@ -712,7 +708,7 @@ The next question is whether the stability of the oxygen framework of
 \ce{Li2MnO3} can be improved by a local substitution of \ce{Mn^{4+}} by \ce{Sn^{4+}}. In order 
 to make a fair comparison with the results presented in 
 Sections~\ref{batteries:sec-oxidation} and \ref{batteries:sec-dimer}, we start 
-from the 2x2x2 supercell of the charged O1-\ce{Li_{0.5}MnO3} structure. Based 
+from the 2$\times$2$\times$2 supercell of the charged O1-\ce{Li_{0.5}MnO3} structure. Based 
 on the results of the previous section, only a limited amount of \ce{Sn} can 
 be substituted in~\ce{Li2MnO3} before we expect the cathode to separate in several 
 phases, and hence we simply substitute a single \ce{Mn} atom by \ce{Sn}. In 
@@ -722,8 +718,11 @@ framework, as it is unable to oxidize beyond +4. Hence, we expand our search
 of suitable substitutions to \ce{V} and \ce{Mo}, two elements that permit 
 higher states of oxidation and have shown promise in \ce{Li}-rich 
 materials~\cite{Ma2014, Xiao2012}. Moreover, in order to study the influence of 
-the exchange-correlation functional, we expand our investigation to the 
-recently introduced \link{dft:sec-metaGGA}{SCAN functional}~\cite{Sun2015}. 
+the exchange-correlation functional, we make a comparison between the \dft{PBEU}{} results and the 
+recently introduced \dft{SCAN}{}. 
+In contrast to PBE+U, SCAN does not rely on an element-dependent parameter, 
+so it would be interesting to see if it produces a similar trend for the 
+barrier of the various substituted elements.
 This discussion, however, is left for the end of this section.
  
 \begin{table}[ht] 
@@ -794,7 +793,7 @@ moments.
 \captionsetup{width=0.9\linewidth}
 \includegraphics[width=\textwidth]{figures/batteries/substitution_pdos_pbeu.png} 
 \caption{Projected density of states for the discharged (left) and charged 
-(right) structures, for the 2x2x2 supercell of \ce{Li2MnO3} with a single 
+(right) structures, for the 2$\times$2$\times$2 supercell of \ce{Li2MnO3} with a single 
 substitution of \ce{Sn}, \ce{V} and \ce{Mo}.} 
 \label{batteries:fig-substitution_pdos_pbeu} 
 \end{figure} 
@@ -814,14 +813,13 @@ the fact that they are more likely to oxidize before the oxygen.
 \captionsetup{width=0.9\linewidth}
 \includegraphics[width=0.85\textwidth]{figures/batteries/substitution_dimers.png} 
 \caption{Kinetic barriers for the dimerization of oxygen neighbouring \ce{Sn}, 
-\ce{V} and \ce{Mo}, both for the PBE+U and SCAN functional. \todo[inline]{Add 
-barrier heights to images.}} 
+\ce{V} and \ce{Mo}, both for the PBE+U and SCAN functional.} 
 \label{batteries:fig-substitution_dimers} 
 \end{figure} 
  
 Finally, we have also performed all of the calculations in this section with 
-the recently published \link{dft:sec-metaGGA}{SCAN functional}, in order to compare the results with 
-those of \link{dft:sec-dudarev}{PBE+U}. As SCAN does not rely on specifying a parameter for each 
+the recently published \dft{SCAN}{}, in order to compare the results with 
+those of \dft{PBEU}{}. As SCAN does not rely on specifying a parameter for each 
 transition metal that can influence the oxidation state of the element, this 
 provides an unbiased set of data to compare with. Looking at the magnetic 
 moments in Table~\ref{batteries:tab-substitution_magmoms}, the discussion from 
@@ -834,14 +832,14 @@ similar reduction in magnetic moments is found for the oxygen neighbouring
 chosen U value for \ce{Mn} has been carefully benchmarked versus our previous 
 results for HSE06, which has demonstrated a good ability\footnote{Note that by 
 tuning the fraction of exact exchange, it is possible to improve the accuracy 
-of the HSE functional further, but HSE06 (a = 0.25) does a fairly good job of 
-reproducing experimental results.} for correcting self-interaction error for 
+of the HSE functional further, but \dft{HSE06}{} (a = 0.25) does a fairly good job of 
+reproducing experimental results.} for correcting the self-interaction error for 
 battery cathodes~\cite{Seo2015}. Looking at the kinetic barriers in 
 Fig.~\ref{batteries:fig-substitution_dimers}, SCAN predicts a slightly 
 increased barrier for each of the substituted elements, which could be linked 
 to the reduced magnetic moment on \textit{all} oxygen atoms. Even this 
 increased barrier is still relatively low, however, and hence not much of our 
-analysis would change when basing it on the SCAN results. 
+analysis would if we would base it on the SCAN results. 
 
 \section{Conclusions and Outlook} 
 
