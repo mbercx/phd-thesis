@@ -7,7 +7,7 @@
 first four sharpening the axe.''}}{Abraham Lincoln} 
 \vspace{3em} 
  
-Once the budding computational scientist has learned the basics on how to use 
+Once the budding computational scientist has learned git the basics on how to use 
 their \textit{ab initio} code of choice, he or she will begin their career by 
 manually setting up the required input files, usually from a set copied from a 
 previous calculation. This approach, however, has several downsides. Manually 
@@ -90,8 +90,8 @@ Let's begin with an overview of the smallest building blocks of the workflows:
 the \code{Firetask}. Each \code{Firework} of the workflow consists of a list 
 of \code{Firetask}s, which are executed sequentially in the order specified by 
 the user when initializing the \code{Firework}. While the workflow is 
-running, all \code{Firetask}s have access to the \textit{spec} of the 
-\code{Firework} they are a part of (\code{\_fw\_spec}). This allows the user 
+running, all \code{Firetask}s have access to the \textit{spec} of their parent 
+\code{Firework} (\code{\_fw\_spec}). This allows the user 
 to easily pass information between tasks. The spec also contains the launch 
 directory of the \code{Firework}, so the initial \code{Firetask} is executed 
 in this directory. 
