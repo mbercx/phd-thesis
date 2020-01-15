@@ -19,22 +19,18 @@ may still be added in the future._
 
 ### Absorber layer efficiency
 
-> Work in Progress </br>
-![_Work in Progress_](../../figures/moss_fire.gif)
+> [_Work in Progress_](../../figures/moss_fire.gif)
 
 ## SLME Analysis
 
 ### The curious case of CA-CuInSe$_2$
 
-> Work in Progress </br>
-![_Work in Progress_](../../figures/moss_fire.gif)
+> [_Work in Progress_](../../figures/moss_fire.gif)
 
 ### Logistic function model
 
-> Work in Progress </br>
-![_Work in Progress_](../../figures/moss_fire.gif)
+> [_Work in Progress_](../../figures/moss_fire.gif)
 
 ### Indirect band gap absorbers
 
-> Work in Progress </br>
-![_Work in Progress_](../../figures/moss_fire.gif)
+> [_Work in Progress_](../../figures/moss_fire.gif)
