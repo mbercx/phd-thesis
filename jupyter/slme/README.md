@@ -15,8 +15,7 @@ may still be added in the future._
 
 ### Structure and formation energy
 
-> Work in Progress </br>
-![_Work in Progress_](../../figures/moss_fire.gif)
+> [_Work in Progress_](../../figures/moss_fire.gif)
 
 ### Absorber layer efficiency
 
