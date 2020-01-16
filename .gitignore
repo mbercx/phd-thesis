@@ -1,8 +1,4 @@
 output
-jupyter/batteries
-jupyter/quotas
-jupyter/automation
-jupyter/appendix
 feedback
 figures/tikz*
 figures/tikz_loader.tex
