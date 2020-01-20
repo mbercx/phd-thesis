@@ -320,7 +320,7 @@ extent, stabilizing the oxygen framework.
 \captionsetup{width=0.9\linewidth}
 \renewcommand{\arraystretch}{1.3} 
 \caption{Calculated absolute values of the magnetic moments for the discharged 
-and charged \ce{Li2[Mn, Ir]O3} structures, all expressed in $\mu_B$. Note that 
+and charged \ce{Li2[Mn, Ir]O3} structures, all expressed in Bohr magnetons $\mu_B$. Note that 
 for \ce{Ir}, the norm of its magnetization vector was calculated in order to 
 express the local magnetic moment as a scalar.} 
 \label{batteries:tab-magmoms} 
@@ -514,13 +514,13 @@ larger ionic radius compared to \ce{Mn^{4+}}, implying that the migration of
 charged\footnote{Note that the migration path for \ce{Sn^{4+}} does not have 
 to pass a tetrahedral site in case the stacking is changed from O3 to O1.}. 
 For these reasons, \ce{Sn^{4+}} was chosen as the first element by our 
-experimental collaborators at the university of Hasselt\footnote{Andreas Paulus, 
+experimental collaborators from Hasselt University\footnote{Andreas Paulus, 
 Marlies van Bael and An Hardy, \href{https://www.uhasselt.be/UH/IMO/Visit-the-groups/Inorganic-and-physical-chemistry-(IPC).html}{Inorganic and Physical Chemistry}, Hasselt University.} to substitute in 
 Li-rich NMC samples in an attempt to improve the cycling properties of the 
 cathode. 
 
-In this section, I start by briefly discussing their XRD results, as well as 
-the EDX results of our collaborators within EMAT\footnote{Myl\`ene Hendrickx, Olesia 
+In this section, I start by briefly discussing their power X-ray diffraction (PXRD) results, as well as 
+the energy-dispersive X-ray analysis (EDX) results of our collaborators within EMAT\footnote{Myl\`ene Hendrickx, Olesia 
 Karakulina, Artem Abakumov and Joke Hadermann, \href{https://www.uantwerpen.be/en/research-groups/emat/}{Electron Microscopy for Materials 
 Science}, Antwerp University.}, as a motivation for the 
 calculations we have performed on the solubility of \ce{Sn} in a 
@@ -542,8 +542,8 @@ leading to stoichiometries \ce{Li_{1.2}Ni_{0.13}Co_{0.13}Mn_{0.54-x}Sn_xO2}
 for $x  \approx 0, 0.027, 0.054, 0.108 \textrm{ and } 0.54$. Looking at the 
 change in the powder XRD pattern of Sn-substituted NMC samples in 
 Fig.~\ref{batteries:fig-Sn_experiment}~(a), a second phase appears as the 
-amount of Sn is increased. This phase becomes dominant for $x=0.54$ and was 
-identified as \ce{Li2SnO3} based on an indexation of the XRD results. \todo[inline]{Check with Mylene!}
+amount of Sn is increased, starting from $x = 0.054$. This phase becomes dominant for $x=0.54$ and was 
+identified as \ce{Li2SnO3} based on an indexation of the PXRD results. 
 The EDX results for a particle with $x=0.108$ 
 (Fig.~\ref{batteries:fig-Sn_experiment}) indicate that the exsolution of this 
 Sn-rich phase already occurs at lower levels of Sn-substitution. 
@@ -562,7 +562,7 @@ Sn-rich phase already occurs at lower levels of Sn-substitution.
         \includegraphics[width=0.9\textwidth]{./figures/batteries/edx_Sn_substitution.png} 
         \caption{} 
     \end{subfigure} 
-    \caption{(a) XRD patterns of 
+    \caption{(a) PXRD patterns of 
 \ce{Li_{1.2}Ni_{0.13}Co_{0.13}Mn_{0.54-x}Sn_xO2} for increasing values of 
 Sn-substitution $x$. (b) Mixed (Mn, Sn) elemental EDX map of representative 
 LNMCS20 (x=0.108) particles. Courtesy of Andreas Paulus (a) and Myl\`ene 
@@ -585,7 +585,7 @@ following exsolution reaction:
  \ce{Li_{1.2}Mn_{0.8-x}Sn_xO2} \rightarrow  \left( 1 - \frac{x}{0.8} \right) 
 \ce{Li_{1.2}Mn_{0.8}O2} +  \frac{x}{0.8} \ce{Li_{1.2}Sn_{0.8}O2}  
 \end{equation} 
-The XRD results indicate, however, that the final Sn-rich phase most likely 
+The PXRD results indicate, however, that the final Sn-rich phase most likely 
 corresponds to \ce{Li2SnO3} and, to a lesser extent, \ce{SnO}. This means that 
 the following exsolution reaction is more probable: 
 \begin{equation} \label{batteries:eq-exsolution} 
@@ -695,7 +695,7 @@ formation of a single phase is feasible at low Sn concentrations. However, as
 the Sn-concentration $x$ is increased, the \ce{Li_{1.2}Mn_{0.8-x}Sn_xO2} 
 configurations become more unstable, increasing the likelihood of a 
 decomposition in \ce{Li_{1.2}Mn_{0.8}O2}, \ce{Li2SnO3} and \ce{SnO} phases, as 
-observed in the XRD results for the high Sn concentration samples. Note that 
+observed in the PXRD results for the high Sn concentration samples. Note that 
 if the Sn substituted orderings are generated randomly, i.e. without 
 respecting the honeycomb pattern, the energies are significantly higher 
 compared to the honeycomb structures at each Sn concentration. This matches 
@@ -841,6 +841,49 @@ to the reduced magnetic moment on \textit{all} oxygen atoms. Even this
 increased barrier is still relatively low, however, and hence not much of our 
 analysis would if we would base it on the SCAN results. 
 
+\pagebreak[4]
+\section{Polyborane solid electrolytes}
+
+Many of the current safety issues that plague Li-ion batteries, such as thermal runaway~\cite{Wang2012} and electrolyte decomposition~\cite{Lisbona2011}, are related to the use of a flammable liquid electrolyte~\cite{Liu2018, Ouyang2019}. To prevent hazardous incidents, complex packaging design is required at the cell, module and pack level~\cite{Dougthy2012} which increases the dead weight of the battery, reducing the energy density. A promising strategy for dealing with these issues is replacing the liquid electrolyte by a solid state ionic conductor. Besides improving the safety, solid state electrolytes also offer improved stability, which significantly increases the lifetime of the battery~\cite{Mauger2019}. Moreover, the electrochemical window of the solid electrolyte is typically larger, which allows for larger operating voltages~\cite{Li2014} and hence significant increases in the energy density. Finally, a solid electrolyte could also enable the development of Li-metal and Li-air batteries, as well as the miniaturization~\cite{Bates2000, Um2017} and three dimensional battery architectures~\cite{Long2004, Pearse2018}. 
+
+A good solid electrolyte must demonstrate a high ionic conductivity and negligible electronic conductivitity at the range of lithium activity and operating temperature of the battery~\cite{Knauth2009}. Other important properties include the chemical stability versus reactions at the electrode interfaces, and good mechanical properties in order to accomodate for the change in volume of the electrodes during the cycling of the battery~\cite{Koerver2018}. Different classes being considered as solid electrolytes include perovskite (e.g. LLTO~\cite{Inaguma1993}), NASICON (e.g. \ce{Na_{1+x}Zr_2Si_xP_{3-x}O_{12}} ($0 \leq x \leq 3$)~\cite{Hagman1968}) and garnet types (e.g. \ce{Li7La3Zr2O12} \cite{Murugan2007}). For a recent overview, we refer the reader to the review papar of Zheng et al.~\cite{Zheng2018}.
+
+Here I present my contribution to the investigation of the theoretical principles behind the superionic conductivity of polyborane salts, a class of materials that has recently demonstrated significant potential as a solid electrolyte. This work was performed during a three month research stay at Lawrence Livermore National Laboratory, under the supervision of Dr. Brandon Wood and his group at the materials science division. My work focused on setting up a toolbox for calculating such landscapes quickly, as described in the sections that follow and Section~\ref{automation:sec-landscape}. As such, the analysis presented in the following sections has been heavily inspired by the work of my collaborators, and largely corresponds to that of Dimitrievska et al.~\cite{Dimitrievska2018}. 
+
+\subsection{Polyborane salts}
+
+Polyborane salts have a rich chemistry which has been investigated for 60 years since dodecahydro\hyp\textit{closo}\hyp dodecaborate \ce{[B12H12]^{2-}} was synthesized by Pitochelli and Hawthorne~\cite{Pitochelli1960}. The first proposition of using polyborane salts as a solid electrolyte was made by Johnson and Whittingham~\cite{Johnson1980}, an idea that has been revived recently due to the increased interest in solid-state batteries by Udovic et al.~\cite{Udovic2014}. They found that above 529~\si{\kelvin}, \ce{Na2B12H12} undergoes a order-disorder phase transition which increases its ionic conductivity to $> 0.1~\si{\siemens\per\centi\meter}$, orders of magnitude larger than at room temperature. A similar phase transition was found to occur for \ce{Li2B12H12} at 600~\si{\kelvin}~\cite{Verdal2014}. Subsequently, Tang et al.~\cite{Tang2015} found that by substituting one of the \ce{B} atoms by \ce{C}, the temperature of the superionic transition is reduced drastically to 400~\si{\kelvin} and 380~\si{\kelvin} for \ce{LiCB11H12} and \ce{NaCB11H12}, respectively. Figure~\ref{batteries:fig-polyborane_structure} shows the structure of \ce{Li2B12H12} at room temperature, alongside the \ce{[B12H12]^{2-}} and \ce{[CB11H12]^{-}} anions. 
+
+\begin{figure}
+\centering
+\captionsetup{width=0.9\textwidth}
+\includegraphics[width=0.7\textwidth]{\figurepath/batteries/polyborane_structure.png}
+\caption{Crystalline \textit{fcc} structure of \ce{Li2B12H12} at room temperature.}
+\label{batteries:fig-polyborane_structure}
+\end{figure}
+
+The high ionic conductivity of polyborane salts is believed to be connected to rapid reorientations of the anions~\cite{Skripov2015, Varley2016}, as well as the frustration between crystal symmetry and the local anion geometry as a result of long-range coulombic and short-range covalent-like interactions~\cite{Kweon2017}. Moreover, the lattice stacking of the large anions introduces spacious interstitial channels which facilitate cation conduction~\cite{Tang2015}, and because there are many more cation sites than cations, the structure can be interpreted as intrinsically high-vacancy, reducing the chance of migration channels being blocked. The interplay between the anion dynamics and cation mobility is complex, and I do not aim to provide a detailed explanation here. Instead, I will simply focus on my contribution to this line of research and its relation to other computational and experimental results. For more details, I refer the reader to the excellent analysis presented in the work of my collaborators~\cite{Varley2016, Kweon2017, Dimitrievska2018}.
+
+\resultsubsection{Energy landscape of \ce{[CB11H12]^{-}}}{}{landscape}
+
+In order to understand the local interaction between the anion and cation, I have calculated the energy landscape of the cation along a chain of ``wedges", i.e. curved 2D landscapes that connect the inequivalent facets of the anion (see Fig.~\ref{batteries:fig-cb11h12}(a), as well as Fig.~\ref{automation:fig-landscape}). This involves calculating the energy of the anion-cation system with a static calculation for many different cation positions around the anion. Moreover, in order to be able to reasonably compare the energy landscapes of \ce{Li^+} versus \ce{Na^+}, I have calculated a reference energy based on the average of a spherical landscape with a radius of 8~\si{\angstrom}. Besides giving a better idea of the binding energy of the cation-anion pair, this also provides a measure for how easily the cation is able to hop back to an interstitial site, as the \textit{fcc} lattices of \ce{LiCB11H12} and \ce{NaCB11H12} have similar lattice constants (9.936~\si{\angstrom} and 10.066~\si{\angstrom}, respectively~\cite{Tang2015}). All of the landscapes presented in this section are compared with respect to this reference energy. The workflow used to calculate the landscapes is described in Section~\ref{automation:sec-landscape}, the computational details can be found in \link{appendix:sec-landscape}{corresponding section} in Appendix~\ref{appendix:sec-results}.
+
+{
+\begin{figure}[ht]
+\centering
+\input{\figurepath/batteries/landscapes}
+\caption{(a) \ce{[CB11H12]^{-}} anion, with the symmetrically inequivalent facets colored red. Each of the facets corresponds to a binding site labeled as $\Omega_i$. (b) Angular distributions of the \ce{Li^+} (top) and \ce{Na^+} (bottom) cations derived from AIMD simulations (Taken from~\cite{Dimitrievska2018}), where the angle $\theta$ is defined versus the C$_5$ axis connecting the C atom with the opposite B atom. (c) Calculated energy landscapes for \ce{Li^+} (top) and \ce{Na^+} (bottom) along wedges connecting the binding sites $\Omega_i$, relative to the spherical average at $8~\si{\angstrom}$.}
+\end{figure}
+\label{batteries:fig-cb11h12}
+}
+
+The resulting energy landscapes are compared with the ab initio molecular dynamics (AIMD) results from Dimitrievska et al.~\cite{Dimitrievska2018} in Fig.~\ref{batteries:fig-cb11h12}. The landscapes of \ce{Li^+} and \ce{Na^+} are qualitatively similar, and show a preference for the cations to bind at all-boron facets, where the depth of the energy wells is progressively larger for sites farther removed from the \ce{C} atom. This result is in good agreement with the angle distributions obtained from the AIMD, where we can see that the probability density is larger for angles corresponding to the all-boron docking sites ($\Omega_2$, $\Omega_3$ and $\Omega_4$), especially at smaller distances. At these distances, the likelihood of finding the cation near the $\Omega_4$ site is largest, which matches nicely with the increasing depth of the energy wells for sites further removed from \ce{C}. 
+
+Moreover, the difference in the energy landscape between the \ce{C} facet ($\Omega_1$) and the lowest energy binding site ($\Omega_4$) is significant ($>0.6~\si{\electronvolt}$). As the anions undergo rapid reorientation in the superionic phase of both \ce{LiCB11H12} and \ce{NaCB11H12}~\cite{Dimitrievska2018}, this leads to a strongly fluctuating cation energy landscape close to the anions, which can push the cation back into interstitial sites. Hence, the substitution of \ce{B} by \ce{C} introduces a dipole in the anion, which in combination with its high rotational mobility can improve the ionic conductivitiy. This ``paddle wheel" effect was already described by Lunder et al. in the context of lithium sulphate materials~\cite{Lunden1995}, and is further supported by the by the AIMD and quasielastic neutron scattering results of my collaborators~\cite{Dimitrievska2018}. 
+
+Comparing the results for \ce{Li^+} and \ce{Na+}, it is clear that the cation is bound less strongly for \ce{Na^+}, as the wells corresponding to the binding sites are much higher in energy compared to the reference at 8~\si{\angstrom}. Moreover, the wells are also broader and located at a larger distance from the anion, which further indicates that cation can more easily be detached from the anion. This, in combination with the fact that the energy difference upon reorientation of the anion is similar to that for \ce{Li^+}, can explain the lower transition temperature to the superionic phase for \ce{NaCB11H12} (380~\si{\kelvin}) compared to \ce{LiCB11H12} (400~\si{\kelvin}).
+
+\pagebreak[4]
 \section{Conclusions and Outlook} 
 
 In this chapter, I have made a comparison of the stability of the oxygen 
@@ -885,7 +928,7 @@ electrolyte. So far, no substitution seems to be succesful at stabilizing
 the structure. However, other approaches have been suggested for 
 increasing the cycling properties of Li-rich materials, such as \ce{Ni} 
 substitution in the \ce{Li} layer~\cite{Yang2017}, or thes substitution of 
-oxygen by fluor~\cite{Richards2017, Kapylou2017}. Both make sense in the context of 
+oxygen by fluor~\cite{Richards2017, Kapylou2017}. Both make sense in tthe context of 
 our results. The most likely dimer according to our analysis is formed 
 across the \ce{Li} layer, which would be inhibited by the presence of \ce{Ni}. 
 Fluor, on the other hand, does not oxidize \ce{Mn} as much, leaving more 
@@ -894,5 +937,6 @@ cathode. Further research is necessary to see if these ideas can properly
 stabilize the Li-rich cathode, opening it up to further development and 
 integration in commercial applications.
  
-\printbibliography 
+\printbibliography
+
 \end{refsection} 
