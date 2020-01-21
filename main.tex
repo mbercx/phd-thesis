@@ -3,17 +3,19 @@
 \newcommand*{\figurepath}{figures}
 \input{header.tex}
 
-% \includeonly{title,chapters/automation}
+% \includeonly{}
 
 \begin{document}
 
 \frontmatter
 
-\include{title}
+\include{title} 
+
+\include{abstract}
+% \include{dedication}
+% \include{acknowledgements} 
 
 \tableofcontents
-
-\newpage
 
 \mainmatter
 
@@ -27,5 +29,9 @@
 \appendix
 
 \include{chapters/appendix}
+\include{publications}
+\include{conferences}
 
-\end{document}
+\end{document} 
+
+add: section labels; NWChem calculation details
