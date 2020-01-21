@@ -1,36 +1,78 @@
-\chapter*{Abstract}
+\chapter*{Abstract} \label{chapter:abstract}
+\addcontentsline{toc}{chapter}{\nameref{chapter:abstract}}
 
-Materials and their properties play a vital role in most applications we use on a daily basis. Many of the revolutions in industry are instigated by the discovery, by accident or design, of a new material that makes an application commercially viable. Historically, the study of materials has largely relied on an intuition-driven trial and error approach. However, considering the enormous design space of possible materials, as well as the fact that many of the straightforward materials have already been discovered, this process has become too expensive and time-consuming. 
+Materials and their properties play a vital role in most applications we use on 
+a daily basis. Many of the revolutions in industry are instigated by the 
+discovery, by accident or design, of a new material that makes an application 
+commercially viable. Historically, the study of materials has largely relied on 
+an intuition-driven trial and error approach. However, considering the enormous 
+design space of possible materials, as well as the fact that many of the 
+straightforward materials have already been discovered, this process has become 
+too expensive and time-consuming. 
 
-Since the middle of the 20\textsuperscript{th} century, a new paradigm in materials science has been developing, where computer simulations are used to calculate the properties of materials from first principles. This new approach has steadily become more and more successful, pushed forward by the ever-increasing performance of modern computers and rapid progress in theoretical methods. During the past few decades, computational materials science has started evolving more and more into a predictive tool instead of simply offering theoretical insight into the physical processes of materials of interest. In combination with increasingly available tools for automating the required calculations, this has lead to the concept of \textit{in silico} materials design, where large numbers of compounds are investigated using computer simulations in order to gauge their potential for a specific application.
+Since the middle of the 20\textsuperscript{th} century, a new paradigm in 
+materials science has been developing, where computer simulations are used to 
+calculate the properties of materials from first principles. This new approach 
+has steadily become more and more successful, pushed forward by the 
+ever-increasing performance of modern computers and rapid progress in 
+theoretical methods. During the past few decades, computational materials 
+science has started evolving more and more into a predictive tool instead of 
+simply offering theoretical insight into the physical processes of materials 
+of interest. In combination with increasingly available tools for automating 
+the required calculations, this has lead to the concept of \textit{in silico} 
+materials design, where large numbers of compounds are investigated using 
+computer simulations in order to gauge their potential for a specific application.
 
-Among the most successful theoretical frameworks for computational materials science is density functional theory, which can determine the electronic structure of many compounds with ever increasing accuracy, and requiring a reasonable amount of computational resources. However, the connection between the electronic structure of a material and the property of interest for a specific application is rarely trivial. The main goal of this thesis is to provide or improve this connection, by analyzing existing metrics for flaws or anomalies, and developing new descriptors of material properties as well as the tools for calculating them using automated workflows. These methods are then applied to a set of topics, including solar cells, Li-ion batteries and ion-induced secondary electron emission. The structure of the thesis is as follows:
+Among the most successful theoretical frameworks for computational materials 
+science is density functional theory, which can determine the electronic 
+structure of many compounds with ever increasing accuracy using a reasonable 
+amount of computational resources. However, the connection between the 
+electronic structure of a material and the property of interest for a specific 
+application is rarely trivial. The main goal of this thesis is to provide or 
+improve this connection, by analyzing existing metrics for flaws or anomalies, 
+and developing new descriptors of material properties as well as the tools for 
+calculating them using automated workflows. These methods are then applied to 
+a set of topics, including solar cells, Li-ion batteries and ion-induced 
+secondary electron emission. The structure of the thesis is as follows:
 
 \begin{enumerate}[]
 
 \vfill
-\item \textbf{Chapter~\ref{chapter:intro}} briefly introduces the concept of \textit{in silico} materials design, and provides a guide to the reader of this thesis for navigating and consulting the available resources.
+\item \textbf{Chapter~\ref{chapter:intro}} briefly introduces the concept of 
+\textit{in silico} materials design, and provides a guide to the reader of 
+this thesis for navigating and consulting the available resources.
 
 \vfill
-\item \textbf{Chapter~\ref{chapter:dft}} explains the density functional theory framework, as well as some practical computational techniques for calculating the electronic structure using this framework.
+\item \textbf{Chapter~\ref{chapter:dft}} explains the density functional theory 
+framework, as well as some practical computational techniques for calculating 
+the electronic structure using this framework.
 
 \vfill
-\item \textbf{Chapter~\ref{chapter:automation}} outlines the workflows used for the automation of the required density functional theory calculations of each descriptor or metric.
+\item \textbf{Chapter~\ref{chapter:automation}} outlines the workflows used for 
+the automation of the required density functional theory calculations of each 
+descriptor or metric.
 
 \vfill
-\item \textbf{Chapter~\ref{chapter:slme}} discusses the Shockley-Queisser limit and spectroscopic limited maximum efficiency, two metrics used to determine the potential of a material as the absorber layer of a single-junction solar cell. Next, it makes a comparison of the CuAu-like and chalcopyrite phase in the context of thin-film photovoltaics.
+\item \textbf{Chapter~\ref{chapter:slme}} discusses the Shockley-Queisser limit 
+and spectroscopic limited maximum efficiency, two metrics used to determine the 
+potential of a material as the absorber layer of a single-junction solar cell. 
+Next, it makes a comparison of the CuAu-like and chalcopyrite phase in the 
+context of thin-film photovoltaics.
 
 \vfill
-\item \textbf{Chapter~\ref{chapter:batteries}} presents an investigation of the stability of the oxygen framework of Li-rich \ce{Li2MnO3} and \ce{Li2IrO3} battery cathodes, as well as a limited substitution of \ce{Mn} as a potential recipe for improving the structural stability of these materials.
+\item \textbf{Chapter~\ref{chapter:batteries}} presents an investigation of the 
+stability of the oxygen framework of Li-rich \ce{Li2MnO3} and \ce{Li2IrO3} 
+battery cathodes, as well as a limited substitution of \ce{Mn} as a potential 
+recipe for improving the structural stability of these materials. Moreover, it 
+discusses the energy landscapes of \ce{LiCB11H12} and \ce{NaCB11H12} polyborane 
+salts in the context of solid electrolytes.
 
 \vfill
-\item \textbf{Chapter~\ref{chapter:quotas}} discloses a new model for calculating the secondary electron emission yield from ions neutralized at a semiconductor and metal surface, and applies this descriptor to a set of elemental surfaces spanning the periodic table in a high-throughput approach.
-
+\item \textbf{Chapter~\ref{chapter:quotas}} discloses a new model for 
+calculating the secondary electron emission yield from ions neutralized at a 
+semiconductor and metal surface, and applies this descriptor to a set of 
+elemental surfaces spanning the periodic table in a high-throughput approach.
 
 \end{enumerate}
-
-
-
-
 
 \afterpage{\null\newpage}
