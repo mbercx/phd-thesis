@@ -15,10 +15,31 @@ backend=bibtex,
 style=plainurl,
 style=numeric-comp,
 sorting=none,
-% doi=false,
+eprint=false,
 url=false,
-isbn=false,
+% isbn=false,
+firstinits=true,
 ]{biblatex}
+
+% Supress In for articles
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
+  
+% Remove number and arxivid for articles
+\AtEveryBibitem{
+\ifentrytype{article}{
+    \clearfield{number}
+    \clearfield{arxivid}
+    \clearfield{isbn}
+    \clearfield{issn}
+}{}
+\ifentrytype{book}{
+    \clearfield{pages}
+}{}
+}
+
+% Give the bibliography a "raggedright"
+\renewcommand*{\bibfont}{\raggedright}
 
 \addbibresource{bibliography/dft.bib}
 \addbibresource{bibliography/workflows.bib}
@@ -30,6 +51,7 @@ isbn=false,
 \usepackage{mathtools}
 \usepackage{textcomp}
 \usepackage{braket}
+
 \usepackage{paralist}
 \usepackage{enumerate}
 \usepackage{parskip}
@@ -42,15 +64,6 @@ isbn=false,
 \usepackage{xcolor}
 \usepackage{soul}
 
-% Fancy headers for the pages
-\usepackage{fancyhdr}
-\fancypagestyle{style1}{
-\fancyhf{}
-\fancyhead[OL]{Conclusion and Outlook}
-\fancyhead[ER]{Conclusion and Outlook}
-\fancyhead[RO]{\thepage}
-\fancyhead[LE]{\thepage}
-}
 
 % Various
 \usepackage{epigraph} % Cool quotes at the beginning of each chapter
@@ -59,6 +72,7 @@ isbn=false,
 \usepackage[textsize=small]{todonotes} % Add todo's to the text
 \usepackage{changepage} % Make local changes to page layout, e.g. wider margins
 \usepackage{afterpage} % Make empty pages
+\usepackage{pdfcomment}
 
 \usepackage{amsmath,amssymb}
 \usepackage{dcolumn}
@@ -80,6 +94,23 @@ isbn=false,
 
 \usepackage[toc, page]{appendix}
 \usepackage{blindtext}
+
+% Fancy headers for the pages
+\usepackage{fancyhdr}
+\fancypagestyle{style1}{
+\fancyhf{}
+\fancyhead[OL]{Conclusion and Outlook}
+\fancyhead[ER]{Conclusion and Outlook}
+\fancyhead[RO]{\thepage}
+\fancyhead[LE]{\thepage}
+}
+
+% Chapter header formatting
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{\chaptertitlename~\thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+\titlespacing*{name=\chapter,numberless}{0pt}{-30pt}{10pt}
 
 % Paragraph formatting
 \expandafter\def\expandafter\normalsize\expandafter{%
@@ -107,14 +138,16 @@ isbn=false,
 \usepgfplotslibrary{groupplots}
 \usepgfplotslibrary{dateplot}
 
-%% DFT %%
- 
-\definecolor{helpcolor}{HTML}{63AABC} 
- 
+%% General %%
+
 \tikzset{my lines/.style={ 
     black!30!white, line width = 0.2pt 
 }} 
+
+%% DFT %%
  
+\definecolor{helpcolor}{HTML}{63AABC} 
+
 \tikzstyle{box} = [draw, rounded corners, very thick, align=center, inner 
 sep=1em, execute at begin node=\setlength{\baselineskip}{2em}] 
 \tikzstyle{arrow} = [>=latex, very thick] 
@@ -126,19 +159,15 @@ fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small]
 
 \definecolor{fwcolor}{HTML}{63AABC}
 \definecolor{ftcolor}{HTML}{F9F3EC}
-\definecolor{helpboxbg}{HTML}{ED7833}
+\definecolor{wf_helpcolor}{HTML}{ED7833}
 \definecolor{conditionboxbg}{HTML}{FFFFFF}
-
-\tikzset{my lines/.style={
-    black!30!white, line width = 0.2pt
-}}
 
 \tikzstyle{firework_name} = [font=\bf\ttfamily]
 \tikzstyle{firework} = [fill=fwcolor, rounded corners, very thick, fill opacity=1]
 \tikzstyle{firetask} = [draw, rectangle, rounded corners, minimum height=1.5em, minimum width=5em, anchor=west, font=\footnotesize\ttfamily, thick, fill=ftcolor]
 \tikzstyle{firearrow} = [>=latex, very thick, dashed]
-\tikzstyle{helpline} = [color=helpboxbg, very thick]
-\tikzstyle{helpbox} = [fill, rounded corners, text width=12.5em, fill=helpboxbg, fill opacity=0.5, text opacity=1, font=\small]
+\tikzstyle{wf-helpline} = [color=wf_helpcolor, very thick]
+\tikzstyle{wf-helpbox} = [fill, rounded corners, text width=12.5em, fill=wf_helpcolor, fill opacity=0.5, text opacity=1, font=\small]
 \tikzstyle{conditionbox} = [fill=conditionboxbg, rounded corners, fill opacity=0.6, text opacity=1, font=\footnotesize]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -149,6 +178,7 @@ fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small]
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
+    citecolor=black,
     linkcolor=black,
     filecolor=magenta,      
     urlcolor=blue,
@@ -157,18 +187,19 @@ fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small]
 %%%%% Commands %%%%%
 
 \usepackage{ifthen}
+\usepackage{xstring}
 
 % New command for less cramped fractions.
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 
 % Quick command for a very visible TODO that shows that a citation is needed.
-\newcommand{\tocite}{\todo{Citation\\Needed}}
+\newcommand{\tocite}{\todo[inline]{Citation Needed}}
 
 % Commands for code, links
 \definecolor{hlcolor}{gray}{.90}
 \sethlcolor{hlcolor}
 
-\newcommand{\code}[1]{\texttt{\hl{#1}}}
+\newcommand{\code}[1] {\texttt{\hl{#1}}}
 \newcommand{\link}[2] {\hyperref[#1]{\textcolor{link}{#2}}}
 \newcommand{\firetask}[1] {\hyperref[automation:sec-#1]{\textcolor{black}{\texttt{#1}}}}
 \newcommand{\vasp}[1] {\hyperref[appendix:sec-#1]{\textcolor{link}{\texttt{#1}}}}
@@ -180,7 +211,7 @@ fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small]
 \section{#1}
 \end{minipage}
 \begin{minipage}{0.07\textwidth}
-\textcolor{white}{\rule{1em}{1.2em}}
+\textcolor{white}{\rule{1em}{0.1em}}
 \href{#2}{\includegraphics[width=3em]{figures/jupyter.png}}
 \end{minipage}\vspace*{0.5em}
 \nopagebreak[4]
@@ -192,12 +223,31 @@ fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small]
 \subsection{#1}
 \end{minipage}
 \begin{minipage}{0.07\textwidth}
-\textcolor{white}{\rule{1em}{1.2em}}
+\textcolor{white}{\rule{1em}{0.3em}}
 \ifthenelse{\equal{#2}{}}{}{\href{#2}{\includegraphics[width=3em]{figures/jupyter.png}}}
 \end{minipage}
 \begin{minipage}{0.07\textwidth}
-\textcolor{white}{\rule{1em}{1.2em}}
+\textcolor{white}{\rule{1em}{0.3em}}
 \ifthenelse{\equal{#3}{}}{}{\hyperref[appendix:sec-#3]{\includegraphics[width=2.5em]{figures/silicon3.png}}}
-\end{minipage}
+\end{minipage}\vspace*{-0.5em}
 \nopagebreak[4]
 }
+
+% DFT shortcuts for consistent references and links
+\newcommand{\dft}[1]{%
+\IfEqCase{#1}{%
+{DFT}{Density Functional Theory~\cite{Hohenberg1964, Kohn1965} (DFT)}
+{VASP}{\link{appendix:sec-VASP}{Vienna Ab initio Simulation Package}~\cite{Kresse1993, Kresse1996, Kresse1996a} (VASP)}
+{PAW}{\link{dft:sec-PAW}{projector augmented wave}~\cite{Blochl1994, Kresse1999} (PAW)}
+{GGA}{\link{dft:sec-GGA}{generalized gradient approximation} (GGA)}
+{PBE}{Perdew-Burke-Ernzerhof~\cite{Perdew1996} (PBE)}
+{PBEU}{\link{dft:sec-dudarev}{PBE+U}~\cite{Dudarev1998, Bengone2000}}
+{HSE06}{\link{dft:sec-hybrid}{HSE06}~\cite{Heyd2003}}
+{SCAN}{\link{dft:sec-metaGGA}{SCAN}~\cite{Sun2015}}
+{MP}{\link{dft:sec-monkhorst}{Monkhorst-Pack}~\cite{Monkhorst1976}}
+{plane wave basis}{\link{dft:sec-basis_set}{plane wave basis}}
+{NEB}{\link{dft:sec-neb}{nudged elastic band}~\cite{Jonsson1998, Henkelman2000} (NEB)}
+{dielectric tensor}{\link{dft:sec-dielectric}{dielectric tensor}~\cite{Gajdos2006, Harl2007}}
+{Kramers-Kronig}{\link{dft:eq-kramers}{Kramers-Kronig}}
+}}
+
