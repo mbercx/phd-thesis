@@ -32,8 +32,8 @@ In this chapter, I discuss the theoretical underpinnings of DFT.
 Section~\ref{dft:sec-theory} describes the many-body problem and explains the 
 theoretical framework that allows us to tackle electronic structure 
 calculations using DFT. Section~\ref{dft:sec-computational} continues by 
-explaining the important concepts of practical computations, such as the plane 
-wave basis set and the pseudopotential method. 
+explaining the important concepts of practical computations, such as the basis
+set for the expansion of the one-electron orbitals and the pseudopotential method. 
 Section~\ref{dft:sec-linear} discusses 
 linear response theory and the calculation of the dielectric tensor. Finally, 
 The chapter finishes with a brief summary of transition state theory in 
@@ -579,7 +579,7 @@ how to solve the electronic structure problems on a computational
 level.  
  
 The section begins by presenting the Bloch theorem for periodic systems and applying it 
-to the Kohn-Sham orbitals. Next up is a discussion of the plane wave 
+to the Kohn-Sham orbitals. Next up is a discussion of the  
 basis set, which is used for solving the Kohn-Sham equations.  I continue by 
 explaining the use of pseudopotentials to limit the size of the basis set, 
 also presenting a more general method called projector augmented waves. 
@@ -590,7 +590,7 @@ sampling the first Brioullin zone.
  
 A first piece of information used in the solution of the Kohn-Sham equations 
 is the periodicity of the crystal. A well known result of solid state physics 
-is the Bloch theorem, which states that~\cite{Kittel2005}: ``\textit{the 
+is the Bloch theorem, which states that~\cite{Kittel2004}: ``\textit{the 
 eigenfunctions of the wave equation for a periodic potential are the product 
 of a plane wave $e^{i\mathbf{g}\cdot \mathbf{r}}$ times a function 
 $u_{\mathbf{g}}(\mathbf{r})$ with the periodicity of the lattice}". This means 
@@ -628,7 +628,7 @@ periodic function $u_{n\mathbf{k}}(\mathbf{r})$, with $\mathbf{k}$ a wave
 vector that lies in the first Brillouin zone. This procedure is known as 
 mapping the band in the reduced zone scheme, and is used for constructing the 
 typical band structures used to study the properties of 
-materials~\cite{Kittel2005}. Figure~\ref{dft:fig-reduced} shows an example of the 
+materials~\cite{Kittel2004}. Figure~\ref{dft:fig-reduced} shows an example of the 
 reduced zone scheme. 
  
 \begin{figure}[ht] 
@@ -638,10 +638,10 @@ reduced zone scheme.
 \caption{\label{dft:fig-reduced}The reduced zone scheme, derived from the extended 
 zone scheme by mapping all bands to the first Brillouin zone. If we repeat the 
 reduced zone scheme for the whole reciprocal space, we obtain the so-called 
-periodic zone scheme. Taken from~\cite{Kittel2005}.} 
+periodic zone scheme. Taken from~\cite{Kittel2004}.} 
 \end{figure} 
  
-\subsection{Plane Wave Basis Set} \label{dft:sec-planewave} 
+\subsection{Basis Set} \label{dft:sec-basis_set} 
  
 In order to find the Kohn-Sham orbitals, the one electron wave functions are 
 expanded in a certain basis set. Although in principle any basis set can be 
@@ -676,6 +676,13 @@ calculations that determines how many plane waves are included in the basis
 set. In other words, increasing $E_{cut}$ improves the precision of the 
 calculation, but results in a more difficult diagonalization procedure for the 
 Hamiltonian.  
+
+\phantomsection \label{dft:sec-gaussian}
+For non-periodic problems, such as the anion-cation system described in Section~\ref{batteries:sec-landscape}, it is often more efficient to rely on a localized basis set. A popular example of such a basis set is the Gaussian basis set, often used in molecular calculations. Here, the basis set consists of functions with the following form~\cite{Hill2013}: 
+\begin{equation}
+\chi(\zeta, n, m, l; r, \theta, \phi) = N Y_{l,m}(\theta, \phi) r^{2n-2-l} e^{-\zeta r^2},
+\end{equation}
+where $\zeta$ is known as the exponent, $n$, $m$ and $l$ are the orbital quantum numbers, $N$ is a normalization constant and $Y_{l,m}(\theta, \phi)$ are the spherical harmonic functions. 
  
 \subsection{Pseudopotentials} 
  
