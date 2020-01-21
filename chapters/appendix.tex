@@ -1,27 +1,11 @@
 \begin{refsection} 
 
-% DFT shortcuts for consistent references and links
-\newcommand{\dft}[1]{%
-\IfEqCase{#1}{%
-{DFT}{Density Functional Theory~\cite{Hohenberg1964, Kohn1965} (DFT)}
-{VASP}{\link{appendix:sec-VASP}{Vienna Ab initio Simulation Package}~\cite{Kresse1993, Kresse1996, Kresse1996a} (VASP)}
-{PAW}{\link{dft:sec-PAW}{projector augmented wave}~\cite{Blochl1994, Kresse1999} (PAW)}
-{GGA}{\link{dft:sec-GGA}{generalized gradient approximation} (GGA)}
-{PBE}{Perdew-Burke-Ernzerhof~\cite{Perdew1996} (PBE)}
-{PBEU}{\link{dft:sec-dudarev}{PBE+U}~\cite{Dudarev1998, Bengone2000}}
-{HSE06}{\link{dft:sec-hybrid}{HSE06}~\cite{Heyd2003}}
-{MP}{\link{dft:sec-monkhorst}{Monkhorst-Pack}~\cite{Monkhorst1976}}
-{plane wave basis}{\link{dft:sec-planewave}{plane wave basis}}
-{NEB}{\link{dft:sec-neb}{nudged elastic band}~\cite{Jonsson1998, Henkelman2000} (NEB)}
-{dielectric tensor}{\link{dft:sec-dielectric}{dielectric tensor}~\cite{Gajdos2006, Harl2007}}
-{Kramers-Kronig}{\link{dft:eq-kramers}{Kramers-Kronig}}
-}}
-
 \chapter{Computational Details} \label{appendix:sec-computational} 
  
 All calculations in this thesis were performed in the \dft{DFT}{} framework, 
-as implemented in the \dft{VASP}{}. This appendix starts with 
-a brief description of this software package, as well as its input and 
+as implemented in the \dft{VASP}{}, save for the calculation of the energy 
+landscapes presented in Section~\ref{batteries:sec-landscape}. This appendix starts with 
+a brief description of the VASP software package, as well as its input and 
 output files (Sec.~\ref{appendix:sec-files}) and most important input 
 parameters (Sec.~\ref{appendix:sec-input}). Next, the chapter details the 
 settings used to obtain all of the results presented in this thesis, organised 
@@ -194,7 +178,7 @@ list, we refer the reader to the
 \phantomsection \label{appendix:sec-ENCUT} 
 \item \href{https://cms.mpi.univie.ac.at/wiki/index.php/ENCUT}{\texttt{ENCUT}}: 
 Energy cutoff (in \si{\electronvolt}) used for determining the size of the 
-\link{dft:sec-planewave}{plane wave basis set}, as per 
+\link{dft:sec-basis_set}{plane wave basis set}, as per 
 Eq.~(\ref{dft:eq-energy_cutoff}).
  
 \phantomsection \label{appendix:sec-PREC} 
@@ -423,7 +407,7 @@ distinction between the core and valence electrons, with the standard
 number of valence electrons. The wave functions of the valence electrons are 
 expanded in a \dft{plane wave basis}{} set, using a high energy cutoff equal to 
 500~\si{\electronvolt}, which is advisable for structures containing oxygen. 
- 
+
 \subsubsection{Structure and Li-configurations} \label{appendix:sec-structure} 
 
 The configurations are optimized with \dft{PBEU}, where a range of choices 
@@ -444,8 +428,9 @@ electronic energy convergence criterion is tightened slightly to
 $10^{-6}$~\si{\electronvolt}. All lowest energy bulk structures are 
 further optimized with the \dft{HSE06}{} functional to obtain the final 
 geometries discussed in the text. 
- 
-\subsubsection{Oxidation} \label{appendix:sec-oxidation} 
+
+\phantomsection \label{appendix:sec-oxidation} 
+\subsubsection{Oxidation}
 
 All calculations of the magnetic moments and density of states were performed 
 with the hybrid \dft{HSE06}{} functional, based on the geometries obtained from 
@@ -458,7 +443,8 @@ calculating the magnetic moment and density of states of \ce{Li_xIrO3}. The
 charge density is considered converged when the difference in energy between 
 electronic steps is smaller than $10^{-5}$~\si{\electronvolt}.
  
-\subsubsection{Dimer} \label{appendix:sec-dimer} 
+\phantomsection \label{appendix:sec-dimer} 
+\subsubsection{Dimer} 
 
 The dimer reaction energy and kinetics of both compounds were calculated in a 
 2$\times$2$\times$2 supercell, where we once again switched to the \dft{PBEU}{} 
@@ -468,13 +454,20 @@ We applied a U correction of 3.9~\si{\electronvolt} to the 3$d$ orbitals of
 (4.0~\si{\electronvolt}). Activation energies were calculated using the 
 \dft{NEB}{} method. 
 
-\subsubsection{Thermodynamic Stability of Sn substitution} \label{appendix:sec-sn_stability} 
+\phantomsection \label{appendix:sec-sn_stability}
+\subsubsection{Thermodynamic Stability of Sn substitution}  
 
 The formation energies of Sn-substituted structures for a range of x-values have been calculated within the \dft{DFT}{} framework, as implemented in the \dft{VASP}{}. The \dft{PAW}{} method was used to make a distinction between the core and valence electrons, with the \href{https://cms.mpi.univie.ac.at/vasp/vasp/Recommended_PAW_potentials_DFT_calculations_using_vasp_5_2.html}{standard VASP recommended choice} for the number of valence electrons. The exchange-correlation energy was calculated using the SCAN+rVV10~\cite{Sun2015, Peng2016} functional to include the van der Waals interaction, which is especially important for a layered structure such as \ce{SnO}~\cite{Govaerts2013}. The wave functions of the valence electrons are expanded in a \dft{plane wave basis}{} set, using a high energy cutoff equal to 500~\si{\electronvolt}, which is advisable for structures containing oxygen. For all 2$\times$2$\times$2 supercell calculations, a 3$\times$3$\times$3 \dft{MP}{} mesh was used for sampling the Brillouin zone, whereas a 6$\times$6$\times$3 and 9$\times$9$\times$7 mesh were used for \ce{Li2SnO3} and \ce{SnO}, respectively. Geometry optimizations were performed with a Gaussian smearing of 0.05~\si{\electronvolt}, followed by a static calculation using the tetrahedron method~\cite{Blochl1994a}, for a precise calculation of the total energies. The convergence criterion on the electronic optimization is set at $10^{-4}$~\si{\electronvolt}, and $10^{-3}$~\si{\electronvolt} for the geometric optimization. 
 
-\subsubsection{Influence of \ce{Mn^{4+}} substitution on oxygen stability} \label{appendix:sec-substitutions} 
+\phantomsection \label{appendix:sec-substitutions} 
+\subsubsection{Influence of \ce{Mn^{4+}} substitution on oxygen stability} 
 
 For the calculation of the density of states and kinetic barrier of the dimer formation, both the \dft{PBEU}{} and SCAN~\cite{Sun2015} functionals have been used. Similar to our previous calculations, we have applied a U correction of 3.9~\si{\electronvolt} to the 3$d$ orbitals of \ce{Mn}. For \ce{V} and \ce{Mo}, we have applied a U correction of 3.1~\si{\electronvolt}~\cite{Richards2017} and 4.38~\si{\electronvolt}~\cite{MP_Li2MoO3}, respectively. A 3$\times$3$\times$3 \dft{MP}{} mesh was used for sampling the Brillouin zone for all geometry optimizations, including those of the \dft{NEB}{} calculations with the climbing image modification~\cite{Henkelman2000a} used to calculate the kinetic barrier. A more dense 7$\times$7$\times$9 mesh was used for the calculation of the density of states. For the calculation of the kinetic barrier, the FIRE~\cite{Bitzek2006} force-based optimizer was used, and the convergence condition on the forces was set at 10$^{-2}$~\si{\electronvolt\per\angstrom}.
+
+\phantomsection \label{appendix:sec-landscape}
+\subsubsection{Energy landscape of \ce{[CB11H12]^{-}}}
+
+All calculations for the landscapes were performed within the \dft{DFT}{} framework, as implemented in the \href{http://www.nwchem-sw.org/index.php/Main_Page}{NWChem software package}~\cite{Valiev2010}. All atoms adopted polarization consistent \link{dft:sec-gaussian}{local basis sets} at the double zeta level with diffuse augmentation (aug-cc-pVDZ)~\cite{Dunning1989, Kendall1992, Prascher2010}, as provided by the EMSL basis set exchange~\cite{Feller1996, Schuchardt2007}. The exchange-correlation energy was calculated using the \dft{GGA}{} of \dft{PBE}{}. Each point in the energy landscapes \ce{LiCB11H12} and \ce{NaCB11H12} molecules were computed using a static calculation of the energy of the isolated cation-anion system.
 
 \subsection{Ion-Induced Secondary Electron Emission} \label{appendix:sec-quotas} 
  
