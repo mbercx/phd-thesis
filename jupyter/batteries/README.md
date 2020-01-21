@@ -27,3 +27,10 @@ Here I will describe the calculations for the substitution analysis and provide 
 ### Influence of Mn$^{4+}$ substitution on oxygen stability
 
 > [_Work in Progress_](../../figures/moss_fire.gif)
+
+## Polyborane solid electrolytes
+
+### Energy landscape of [CB$_{11}$H$_{12}$]^-
+
+> [_Work in Progress_](../../figures/moss_fire.gif)
+
