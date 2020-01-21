@@ -42,8 +42,8 @@ Section~\ref{automation:sec-workflows} describes the workflows used to obtain
 the results presented in future chapters. For each workflow, there is a 
 corresponding example Jupyter notebook that details and executes the various 
 steps performed to set up the calculation and run the workflow. Finally, 
-Section~\ref{automation:sec-computational} discusses some general 
-computational settings used for the workflows. 
+Section~\ref{automation:sec-computational} discusses some details on how to  
+adjust the computational settings used for the workflows. 
  
 \pagebreak 
  
@@ -384,7 +384,7 @@ and passed as a \code{list} to the \code{Custodian} input argument of any
 A known issue with DFT calculations is the so-called Pulay stress, an almost 
 isotropic error on the diagonal components of the stress tensor introduced by 
 the incompleteness of the basis set~\cite{Francis1990}. Although Pulay 
-stresses are less of an issue when a \hyperref[dft:sec-planewave]{plane wave 
+stresses are less of an issue when a \hyperref[dft:sec-basis_set]{plane wave 
 basis set} is used compared to basis sets that rely on the ionic positions, 
 one should still take care when performing geometry optimization that allow 
 the lattice vectors to change. Figure~\ref{automation:fig-pulay} demonstrates 
@@ -467,6 +467,12 @@ based on a \code{Custodian}. In case the user does not specify any
 \code{ErrorHandlers} when initializing a \code{Firework} that runs 
 VASP, this class is used instead of \code{CustodianTask}. 
  
+\phantomsection \label{automation:sec-NWChemTask} 
+\item \code{NWChemTask}: \code{Firetask} that runs an 
+\href{http://www.nwchem-sw.org/index.php/Main_Page}{NWChem} calculation in 
+the specified directory. This is exclusively used for the calculation of the 
+cation energy landscapes around polyborate anions, see Sections~\ref{automation:sec-landscape} and~\ref{batteries:sec-landscape}.
+ 
 \phantomsection \label{automation:sec-AddFinalGeometryToSpec} 
 \item \code{AddFinalGeometryToSpec}: This small but handy \code{Firework} 
 extracts the final geometry from the current directory and adds it to the 
@@ -484,7 +490,7 @@ be used to import that method in a python module, e.g.
 \code{pybat.workflow.workflows.get\_wfs\_noneq\_dimers}. In case a 
 \code{PyTask} is used in my workflows, the flowchart will detail the python 
 method used as well as a short explanation. 
- 
+
 \end{itemize} 
  
 \section{Workflows} \label{automation:sec-workflows} 
@@ -599,7 +605,37 @@ performed to determine the energy, which is then compared to the energy of the
 initial, unperturbed structure in order to obtain the reaction energy. If this 
 reaction energy is smaller than a certain tolerance\footnote{Note that the reaction energy is defined as the final energy minus the initial energy. Hence, a transition with a negative reaction energy is thermodynamically favorable, i.e. setting the \code{tolerance} to zero only calculates the kinetic barrier for thermodynamically favorable dimers.}, the kinetic barrier is 
 calculated using a \link{dft:sec-neb}{nudged elastic band calculation}. 
- 
+
+\subsection{Landscapes} \label{automation:sec-landscape}
+
+The energy landscapes presented in Section~\ref{batteries:sec-landscape} require 
+knowledge about the energy of the anion-cation system for a range of cation 
+positions on a two dimensional surface. We represent the landscape as a grid of 
+points or coordinates, for which we determine the energy of the system with a 
+static DFT calculation. Although it is possible to simulate molecules in VASP 
+-- despite its use of three dimensional periodic boundary conditions -- by 
+considering a large unit cell, we choose to use 
+\href{http://www.nwchem-sw.org/index.php/Main_Page}{NWChem}~\cite{Valiev2010}. 
+This software package is more suitable for the study of molecules as it does 
+not enforce the use of periodic boundary conditions. 
+
+\begin{figure}[ht] 
+\input{\figurepath/automation/landscape_wf.tex} 
+\caption{Flowchart for the landscape workflow.} 
+\label{automation:fig-landscape} 
+\end{figure} 
+
+The landscape workflows, shown schematically in Fig.~\ref{automation:fig-landscape}, 
+rely on two setup scripts, \code{setup\_chain} and \code{setup\_sphere}, which 
+initialize the \code{Landscape} according to the parameters specified by the 
+user. For each coordinate in the landscape grid, a static calculation is added 
+to the workflow, followed by a small \code{ScriptTask} that processes the output 
+from the NWchem output file into a more succinct \code{.json} file. The data for
+each segment of the landscape is then mapped back onto the landscape using the 
+\code{LandscapeAnalyzer} class, and subsequently tied together. Note that a single 
+landscape can consist of hundreds or even thousands of grid points, which makes 
+its calculation impractical without the use of a workflow.
+
 \subsection{Surface properties}\label{automation:sec-surface} 
  
 The calculation of the secondary electron emission in the QUOTAS project 
