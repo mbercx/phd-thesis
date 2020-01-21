@@ -23,12 +23,16 @@ Section~\ref{batteries:sec-lirich} introduces \ce{Li}-rich materials and
 presents an analysis of the structure and \ce{Li}-configuration 
 (Sec.~\ref{batteries:sec-structure}), the redox processes 
 (Sec.~\ref{batteries:sec-oxidation}) and dimer formation 
-(Sec.~\ref{batteries:sec-dimer}). Finally, 
-Section~\ref{batteries:sec-substitutions} concerns the solubility of \ce{Sn} 
+(Sec.~\ref{batteries:sec-dimer}). Section~\ref{batteries:sec-substitutions} concerns the solubility of \ce{Sn} 
 in \ce{Li2MnO3} (Sec.~\ref{batteries:sec-Sn_stability}) as well as the 
 influence of a local substitution of \ce{Sn}, \ce{V} and \ce{Mo} on the 
 stability of the oxygen framework 
-(Sec.~\ref{batteries:sec-dimer_substitution}). 
+(Sec.~\ref{batteries:sec-dimer_substitution}). Finally, 
+Section~\ref{batteries:sec-solid_electrolyte} briefly introduces solid 
+electrolytes, as well as a promising class of materials called 
+polyborane salts (Sec.~\ref{batteries:sec-polyborane_salts}) and the 
+calculation of their local cation energy landscape 
+(Sec.~\ref{batteries:sec-landscape}).
  
 \clearpage 
  
@@ -841,8 +845,7 @@ to the reduced magnetic moment on \textit{all} oxygen atoms. Even this
 increased barrier is still relatively low, however, and hence not much of our 
 analysis would if we would base it on the SCAN results. 
 
-\pagebreak[4]
-\section{Polyborane solid electrolytes}
+\section{Polyborane solid electrolytes} \label{batteries:sec-solid_electrolyte}
 
 Many of the current safety issues that plague Li-ion batteries, such as thermal runaway~\cite{Wang2012} and electrolyte decomposition~\cite{Lisbona2011}, are related to the use of a flammable liquid electrolyte~\cite{Liu2018, Ouyang2019}. To prevent hazardous incidents, complex packaging design is required at the cell, module and pack level~\cite{Dougthy2012} which increases the dead weight of the battery, reducing the energy density. A promising strategy for dealing with these issues is replacing the liquid electrolyte by a solid state ionic conductor. Besides improving the safety, solid state electrolytes also offer improved stability, which significantly increases the lifetime of the battery~\cite{Mauger2019}. Moreover, the electrochemical window of the solid electrolyte is typically larger, which allows for larger operating voltages~\cite{Li2014} and hence significant increases in the energy density. Finally, a solid electrolyte could also enable the development of Li-metal and Li-air batteries, as well as the miniaturization~\cite{Bates2000, Um2017} and three dimensional battery architectures~\cite{Long2004, Pearse2018}. 
 
@@ -850,7 +853,7 @@ A good solid electrolyte must demonstrate a high ionic conductivity and negligib
 
 Here I present my contribution to the investigation of the theoretical principles behind the superionic conductivity of polyborane salts, a class of materials that has recently demonstrated significant potential as a solid electrolyte. This work was performed during a three month research stay at Lawrence Livermore National Laboratory, under the supervision of Dr. Brandon Wood and his group at the Materials Science Division. My work focused on setting up a toolbox for calculating such landscapes quickly, as described in the sections that follow and Section~\ref{automation:sec-landscape}. As such, the analysis presented in the following sections has been heavily inspired by the work of my collaborators, and largely corresponds to that of Dimitrievska et al.~\cite{Dimitrievska2018}. 
 
-\subsection{Polyborane salts}
+\subsection{Polyborane salts} \label{batteries:sec-polyborane_salts}
 
 Polyborane salts have a rich chemistry which has been investigated for 60 years since dodecahydro\hyp\textit{closo}\hyp dodecaborate \ce{[B12H12]^{2-}} was synthesized by Pitochelli and Hawthorne~\cite{Pitochelli1960}. The first proposition of using polyborane salts as a solid electrolyte was made by Johnson and Whittingham~\cite{Johnson1980}, an idea that has been revived recently due to the increased interest in solid-state batteries by Udovic et al.~\cite{Udovic2014}. They found that above 529~\si{\kelvin}, \ce{Na2B12H12} undergoes a order-disorder phase transition which increases its ionic conductivity to $> 0.1~\si{\siemens\per\centi\meter}$, orders of magnitude larger than at room temperature. A similar phase transition was found to occur for \ce{Li2B12H12} at 600~\si{\kelvin}~\cite{Verdal2014}. Subsequently, Tang et al.~\cite{Tang2015} found that by substituting one of the \ce{B} atoms by \ce{C}, the temperature of the superionic transition is reduced drastically to 400~\si{\kelvin} and 380~\si{\kelvin} for \ce{LiCB11H12} and \ce{NaCB11H12}, respectively. Figure~\ref{batteries:fig-polyborane_structure} shows the structure of \ce{Li2B12H12} at room temperature, alongside the \ce{[B12H12]^{2-}} and \ce{[CB11H12]^{-}} anions. 
 
