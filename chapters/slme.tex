@@ -18,7 +18,7 @@ the traditional Shockley-Queisser (SQ) limit by including the first-principles
 calculated absorption spectrum of the material in the determination of the 
 efficiency. It also allows researchers to determine the thickness dependency 
 of the efficiency, which is particularly interesting for thin-film solar cell 
-research. \\ 
+research.
  
 In this chapter I give an overview of my work on solar cell absorber materials, 
 which was largely performed during the first year of my PhD. After a brief 
@@ -33,7 +33,7 @@ aspects of our chosen selection metric are investigated in
 Section~\ref{slme:sec-analysis}. 
  
 \pagebreak 
- 
+
 \section{Introduction} 
  
 Nearly all sources of energy found on earth are in some way derived from the 
@@ -311,7 +311,7 @@ joining a n-type and p-type semiconductor, we form what is known as a
 \centering 
 \captionsetup{width=0.8\textwidth}
 \includegraphics[width=0.9\textwidth]{\figurepath/slme/PN-Junction.png} 
-\caption{\label{slme:fig-PNjunction} The P-N Junction. \cite{wikigraph}} 
+\caption{\label{slme:fig-PNjunction} The P-N Junction. \cite{PNjunction}} 
 \end{figure} 
  
 An important effect caused by putting these two types of materials together is 
@@ -768,7 +768,7 @@ absorbers by studying silicon, and find that the SLME quickly overestimates
 the reverse saturation current of indirect band gap materials, drastically 
 lowering their calculated efficiency. 
  
-\resultsubsection{Structure and formation energy}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/slme}{solar_structure} 
+\resultsubsection{Structure and formation energy}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/slme\#cuau-likes}{solar_structure} 
  
 I-III-VI$_2$ compounds are stable at room temperature in the chalcopyrite (CH) 
 structure (space group I$\bar{4}$2d). However, Su and Wei~\cite{Su1999} have 
@@ -917,8 +917,18 @@ experimental values for some compounds, there are clear discrepancies for
 others. This could be a result of the sensitivity of chalcogenide band gaps to 
 the anion displacement $u$. As an example of the dielectric function, we show 
 the result for \mbox{CA-CuInS$_2$} in Fig.~\ref{slme:fig-diel_CuInS2}. The 
-results for the other compounds can be found in the \href{https://github.com/mbercx/phd-thesis/tree/master/jupyter/slme}{Jupyter notebooks corresponding to this section}. 
+results for the other compounds can be found in the 
+\href{https://github.com/mbercx/phd-thesis/tree/master/jupyter/slme}{Jupyter notebooks corresponding to this section}. 
  
+\begin{figure}[!ht] 
+\centering 
+\captionsetup{width=0.8\textwidth}
+\includegraphics[width=0.5\textwidth]{\figurepath/slme/diel_CuInS2.png} 
+\caption{Real (upper figure) and imaginary (lower figure) parts of the 
+calculated dielectric function of \mbox{CA-CuInS$_2$}.} 
+\label{slme:fig-diel_CuInS2} 
+\end{figure} 
+
 \begin{table}[ht] 
 \renewcommand{\arraystretch}{1.3} 
 \centering 
@@ -947,21 +957,13 @@ CuInTe$_2$ & 0.76 & 0.94 & - & 1.03^a & 0.96$^b$\\ \hline
 Ref.~\cite{Alonso2001}} 
 \end{tabular} 
 \end{table} 
- 
-\begin{figure}[ht] 
-\centering 
-\includegraphics[width=0.6\textwidth]{\figurepath/slme/diel_CuInS2.png} 
-\caption{Real (upper figure) and imaginary (lower figure) parts of the 
-calculated dielectric function of \mbox{CA-CuInS$_2$}.} 
-\label{slme:fig-diel_CuInS2} 
-\end{figure} 
 
 \begin{wraptable}{r}{0.5\textwidth}
 \centering 
 \captionsetup{width=0.45\textwidth}
-\renewcommand{\arraystretch}{1.3} 
+\renewcommand{\arraystretch}{1.2} 
 \caption{Calculated SLME for both the \mbox{CuAu-like} and 
-chalcopyrite~\cite{Yu2012} structures. The SQ limit of the corresponding band 
+chalcopyrite~\c ite{Yu2012} structures. The SQ limit of the corresponding band 
 gap of the CA compounds is also given as a reference.} 
 \label{slme:tab-SLME} 
 \begin{tabular}{l@{\hskip 1.5em}c@{\hskip 0.8em}c@{\hskip0.8em}c} 
@@ -1070,7 +1072,7 @@ in the SLME model, the fraction of non-radiative recombination is so high that
 many indirect band gap absorber layers have a very high reverse saturation 
 current, resulting in an unreasonably low calculated efficiency.  
  
-\subsection{The curious case of CA-CuInSe2} \label{slme:sec-CuInSe2} 
+\subsection{The curious case of CA-CuInSe$_2$} \label{slme:sec-CuInSe2} 
  
 During the discussion of the SLME results of the CA phase, we noted that 
 \mbox{CA-\ce{CuInSe2}} has an SLME value above the SQ limit. This result is 
@@ -1192,7 +1194,7 @@ assumptions made in the Shockley-Queisser approach and introduce an absorption
 spectrum of an absorption layer with a finite thickness, it is possible to 
 obtain efficiencies above the SQ limit. 
  
-\subsection{Logistic Function Model} \label{slme:sec-logistic} 
+\subsection{Logistic function model} \label{slme:sec-logistic} 
  
 The efficiency for CA-\ce{CuInSe2} is not the only one to exceed the SQ limit. 
 Figure~\ref{slme:fig-logistic} shows a selection of calculated efficiencies of 
