@@ -502,7 +502,7 @@ one VASP calculation. As these \code{Firework}s are largely just a
 collection of \code{Firetask}s, I won't describe them separately. It should be 
 clear from the description of the workflow what each \code{Firework} does. 
  
-\subsection{Optical properties} \label{automation:sec-optics} 
+\resultsubsection{Optical properties \label{automation:sec-optics}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation\#optical-properties}{} 
  
 Section \ref{dft:sec-linear} describes the theoretical framework for 
 calculating the electromagnetic response of a material. Here I explain the 
@@ -549,7 +549,7 @@ Eq.~(\ref{slme:eq-absorption}). In effect, this reduces the band gap of the
 material, which has a large influence on the calculated efficiency described 
 in Section~\ref{slme:sec-efficiency}. 
  
-\subsection{Configurations} \label{automation:sec-configurations} 
+\resultsubsection{Configurations \label{automation:sec-configurations}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation\#configurations}{} 
  
 For various research questions, it is important to be able to investigate a 
 whole range of configurations for a specific property. For example, when 
@@ -573,7 +573,7 @@ subsequently determines the total energy based on a static calculation.
 configurations workflow.} 
 \end{figure} 
  
-\subsection{Kinetic barriers - dimer workflow} \label{automation:sec-dimer} 
+\resultsubsection{Kinetic barriers - dimer workflow \label{automation:sec-dimer}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation\#kinetic-barriers---dimer-workflow}{}  
  
 As explained in Section~\ref{dft:sec-transition}, investigating a transition 
 from one state of a system to another requires the calculation of both 
@@ -606,7 +606,7 @@ initial, unperturbed structure in order to obtain the reaction energy. If this
 reaction energy is smaller than a certain tolerance\footnote{Note that the reaction energy is defined as the final energy minus the initial energy. Hence, a transition with a negative reaction energy is thermodynamically favorable, i.e. setting the \code{tolerance} to zero only calculates the kinetic barrier for thermodynamically favorable dimers.}, the kinetic barrier is 
 calculated using a \link{dft:sec-neb}{nudged elastic band calculation}. 
 
-\subsection{Landscapes} \label{automation:sec-landscape}
+\resultsubsection{Landscapes \label{automation:sec-landscape}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation\#landscapes}{} 
 
 The energy landscapes presented in Section~\ref{batteries:sec-landscape} require 
 knowledge about the energy of the anion-cation system for a range of cation 
@@ -636,7 +636,7 @@ each segment of the landscape is then mapped back onto the landscape using the
 landscape can consist of hundreds or even thousands of grid points, which makes 
 its calculation impractical without the use of a workflow.
 
-\subsection{Surface properties}\label{automation:sec-surface} 
+\resultsubsection{Surface properties \label{automation:sec-surface}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation\#surface-properties}{}  
  
 The calculation of the secondary electron emission in the QUOTAS project 
 (Chapter \ref{chapter:quotas}) requires the DOS of the surface states, as well 
@@ -708,7 +708,7 @@ DOS and local potential.
 \caption{\label{automation:fig-quotas} Flowchart for the QUOTAS workflow.} 
 \end{figure} 
  
-\section{\label{automation:sec-computational}Computational Details} 
+\section{Computational Details} \label{automation:sec-computational}
  
 Although all the workflows have defaults for computational settings such as 
 the density of k-points, energy cutoff for the plane waves etc., most 

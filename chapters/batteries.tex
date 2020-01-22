@@ -163,7 +163,7 @@ amount of voltage fade as the battery is cycled~\cite{Croy2014}, whereas
 oxidation and structural stability between these two compounds can offer 
 insight as to why their cycling properties are so different.  
  
-\resultsubsection{Structure and Li configuration \label{batteries:sec-structure}}{}{structure} 
+\resultsubsection{Structure and Li configuration \label{batteries:sec-structure}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/batteries\#structure-and-li-configuration}{structure} 
 
 In order to compare the structural stability of the oxygen framework for the 
 \ce{Li2MnO3} and \ce{Li2IrO3} compounds, we have to calculate the chemical 
@@ -304,7 +304,7 @@ and the resulting voltage fade~\cite{Chen2016}.
 % Atomic orbital diagrams are also drawn in order to elucidate the connection 
 % between the magnetic moment and the oxidation state for Mn and O.  
  
-\resultsubsection{Oxidation \label{batteries:sec-oxidation}}{https://mybinder.org/v2/gh/mbercx/jupyter/master?filepath=parallel\%2Fparallel_analysis.ipynb}{oxidation} 
+\resultsubsection{Oxidation \label{batteries:sec-oxidation}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/batteries\#oxidation}{oxidation} 
  
 Sathiya et al.~\cite{Sathiya2013} have discussed that removing lithium from 
 \ce{Li}-rich cathodes leads to the formation of holes on the oxygen, i.e. the 
@@ -390,7 +390,7 @@ the number of O-2$p$ states near the Fermi level has decreased. The difference
 is much more substantial for \ce{Li2MnO3} than for \ce{Li2IrO3}, once again 
 implying a larger oxidation of oxygen for \ce{Li2MnO3}. 
  
-\resultsubsection{Dimer Analysis}{}{dimer} \label{batteries:sec-dimer} 
+\resultsubsection{Dimer Analysis \label{batteries:sec-dimer}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/batteries\#dimer-analysis}{dimer} 
  
 Once the oxygen atoms develop holes on their $p$-orbitals, they can be 
 subsequently stabilized by a reorganisation of the oxygen framework, forming a 
@@ -535,7 +535,7 @@ substitution of several other elements that have the potential to oxidize
 further (\ce{Co}, \ce{V} and \ce{Mo}), in order to investigate if they have a 
 stabilizing effect similar to that of \ce{Ir}.  
 
-\resultsubsection{Thermodynamic Stability of Sn substitution \label{batteries:sec-Sn_stability}}{}{sn_stability}
+\resultsubsection{Thermodynamic Stability of Sn substitution \label{batteries:sec-Sn_stability}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/batteries\#thermodynamic-stability-of-sn-substitution}{sn_stability}
  
 Although the increased ionic radius of \ce{Sn^{4+}} compared to \ce{Mn^{4+}} 
 is believed to inhibit its migration into the Li-layer, it can potentially 
@@ -706,7 +706,7 @@ compared to the honeycomb structures at each Sn concentration. This matches
 the preservation of the honeycomb ordering for the Sn substituted structure 
 found for the HAADF-STEM results. 
  
-\resultsubsection{Influence of \ce{Mn^{4+}} substitution on oxygen stability \label{batteries:sec-dimer_substitution} }{}{substitutions} 
+\resultsubsection{Influence of \ce{Mn^{4+}} substitution on oxygen stability \label{batteries:sec-dimer_substitution}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/batteries\#influence-of-mn4-substitution-on-oxygen-stability}{substitutions} 
 
 The next question is whether the stability of the oxygen framework of 
 \ce{Li2MnO3} can be improved by a local substitution of \ce{Mn^{4+}} by \ce{Sn^{4+}}. In order 
@@ -867,7 +867,7 @@ Polyborane salts have a rich chemistry which has been investigated for 60 years 
 
 The high ionic conductivity of polyborane salts is believed to be connected to rapid reorientations of the anions~\cite{Skripov2015, Varley2016}, as well as the frustration between crystal symmetry and the local anion geometry as a result of long-range coulombic and short-range covalent-like interactions~\cite{Kweon2017}. Moreover, the lattice stacking of the large anions introduces spacious interstitial channels which facilitate cation conduction~\cite{Tang2015}, and because there are many more cation sites than cations, the structure can be interpreted as intrinsically high-vacancy, reducing the chance of migration channels being blocked. The interplay between the anion dynamics and cation mobility is complex, and I do not aim to provide a detailed explanation here. Instead, I will simply focus on my contribution to this line of research and its relation to other computational and experimental results. For more details, I refer the reader to the excellent analysis presented in the work of my collaborators~\cite{Varley2016, Kweon2017, Dimitrievska2018}.
 
-\resultsubsection{Energy landscape of \ce{[CB11H12]^{-}} \label{batteries:sec-landscape}}{}{landscape}
+\resultsubsection{Energy landscape of \ce{[CB11H12]^{-}} \label{batteries:sec-landscape}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/batteries\#energy-landscape-of-cb11h12-}{landscape}
 
 In order to understand the local interaction between the anion and cation, I have calculated the energy landscape of the cation along a chain of ``wedges", i.e. curved 2D landscapes that connect the inequivalent facets of the anion (see Fig.~\ref{batteries:fig-cb11h12}(a), as well as Fig.~\ref{automation:fig-landscape}). This involves calculating the energy of the anion-cation system with a static calculation for many different cation positions around the anion. Moreover, in order to be able to reasonably compare the energy landscapes of \ce{Li^+} versus \ce{Na^+}, I have calculated a reference energy based on the average of a spherical landscape with a radius of 8~\si{\angstrom}. Besides giving a better idea of the binding energy of the cation-anion pair, this also provides a measure for how easily the cation is able to hop back to an interstitial site, as the \textit{fcc} lattices of \ce{LiCB11H12} and \ce{NaCB11H12} have similar lattice constants (9.936~\si{\angstrom} and 10.066~\si{\angstrom}, respectively~\cite{Tang2015}). All of the landscapes presented in this section are compared with respect to this reference energy. The workflow used to calculate the landscapes is described in Section~\ref{automation:sec-landscape}, the computational details can be found in \link{appendix:sec-landscape}{corresponding section} in Appendix~\ref{appendix:sec-results}.
 
@@ -939,6 +939,14 @@ room for the transition metal to oxidize as \ce{Li} is removed from the
 cathode. Further research is necessary to see if these ideas can properly 
 stabilize the Li-rich cathode, opening it up to further development and 
 integration in commercial applications.
+
+Finally, we have calculated the energy landscapes of \ce{Li^+} and \ce{Na^+} 
+cations around the carbonated polyborane salt anion \ce{[CB11H12]^{-}}. From 
+the landscapes, it is clear than substituting a single boron by carbon introduces 
+a dipole in the anion molecule, which in combination with the rapid reorientations 
+of the anions results in a paddle-wheel mechanism that improves the ionic 
+conductivity of the material. This suggests a novel strategy for improving 
+the properties of these materials for solid-state battery applications.
  
 \printbibliography
 
