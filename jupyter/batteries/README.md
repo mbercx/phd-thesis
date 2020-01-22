@@ -35,5 +35,5 @@ The workflows for the Sn-substituted configurations are set up in the correspond
 
 ### Energy landscape of [CB$_{11}$H$_{12}$]^-
 
-> [_Work in Progress_](../../figures/moss_fire.gif)
+The workflows were started using the command line interface of the `cage` package (which was the method I used before switching entirely to notebooks). The data was similarly gather using the `cage util gather` command. Finally, the analysis was performed using the corresponding [analysis notebook](landscapes/analysis.ipynb).
 
