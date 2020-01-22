@@ -4,6 +4,8 @@ figures/tikz*
 figures/tikz_loader.tex
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
+*/__pycache__/*
+*/__pycache__/
 .DS_Store
 *.backup
 *.png
