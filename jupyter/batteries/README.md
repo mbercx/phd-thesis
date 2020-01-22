@@ -25,7 +25,7 @@ Here I will describe the calculations for the substitution analysis and provide 
 
 ### Thermodynamic stability of Sn substitution
 
-> [_Work in Progress_](../../figures/moss_fire.gif)
+The workflows for the Sn-substituted configurations are set up in the corresponding [workflows notebook](Sn_substitution/workflows.ipynb), whereas those of the Sn-phase structures are set up in a [different workflow notebook](Sn_substitution/Sn_workflows.ipynb). The subsequent analysis is performed in the [analysis notebook](Sn_substitution/analysis.ipynb).
 
 ### Influence of Mn$^{4+}$ substitution on oxygen stability
 
