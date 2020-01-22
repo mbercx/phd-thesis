@@ -1,12 +1,15 @@
 # Batteries
 
+> Note that as the workflows do not currently support non-collinear calculations, the results for Li$_2$IrO$_3$ were obtained the old-fashioned way.
+
 ## Li-rich battery cathodes
 
 Here I will describe the calculations for the oxygen framework stability analysis and provide links to the corresponding notebooks.
 
 ### Structure and Li configuration
 
-> [_Work in Progress_](../../figures/moss_fire.gif)
+The workflows for the calculation of the Li configuration are set up and sent to the mongoDB server in the [workflows notebook](li_configuration/workflows.ipynb). Once complete, the output of the calculations was processed into the `.json` files in the `data` directory using the [process data notebook](li_configuration/process_data.ipynb).
+The final analysis is performed in the [analysis notebook](li_configuration/analysis.ipynb).
 
 ### Oxidation
 
