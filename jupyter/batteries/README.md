@@ -29,7 +29,9 @@ The workflows for the Sn-substituted configurations are set up in the correspond
 
 ### Influence of Mn$^{4+}$ substitution on oxygen stability
 
-> [_Work in Progress_](../../figures/moss_fire.gif)
+A brief explanation of our initial choices for the dimers we wanted to investigate is provided in [the dimer choices notebook](substitutions/dimer_choices.ipynb). However, due to issues with the NEB convergence and time constraints, we decided to focus on the `49-80` dimer, i.e. the dimer across the Li-layer that has one oxygen which is a part of the octahedral environment of the substitution site. The VASP output was processed in the [process data notebook](substitutions/process_data.ipynb).
+
+Interactive tools for exploring the oxidation and dimerization results were set up in the [oxidation analysis](substitutions/oxidation_analysis.ipynb) and [barrier analysis](substitutions/barrier_analysis.ipynb) notebooks. The figures for both the projected density of states and the nudged elastic band barrier were set up in the [figures notebook](substitutions/figures.ipynb).
 
 ## Polyborane solid electrolytes
 
