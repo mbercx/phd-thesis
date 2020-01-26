@@ -6,7 +6,7 @@ Here I will provide some brief descriptions of the workflows along with links to
 
 ### Optical properties
 
-> [_Work in Progress_](../../figures/moss_fire.gif)
+For a basic example of how to set up a workflow to calculate the optical properties, take a look at the [optics example notebook](optics_example.ipynb).
 
 ### Configurations
 
