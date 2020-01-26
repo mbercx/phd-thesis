@@ -13,7 +13,7 @@ The final analysis is performed in the [analysis notebook](li_configuration/anal
 
 ### Oxidation
 
-> [_Work in Progress_](../../figures/moss_fire.gif)
+The post processing and plotting of the projected dos was performed in the [pdos analysis notebook](li_rich/pdos_analysis.ipynb).
 
 ### Dimer Analysis
 
