@@ -35,16 +35,18 @@ def load_slab_from_file(filename):
                  oriented_unit_cell=Structure.from_file(filename),
                  shift=0, scale_factor=np.diag([1, 1, 1]))
 
-def get_dewaele_slab_list(element, structure_dict):
+def get_dewaele_slab_list(element, structure_dict, directory):
     
     return [{"slab": load_slab_from_file(os.path.join(
-                     "cifs", element, element + "_" + k + ".cif")), 
+                     directory, element, element + "_" + k + ".cif")), 
              "user_slab_settings": {"free_layers": v["free_layers"]}}
             for k, v in structure_dict[element]["slabs"].items()]
 
-def get_generated_slab_list(element, structure_dict):
+def get_generated_slab_list(element, structure_dict, directory):
     
-    bulk_file = os.path.join("cifs", element, structure_dict[element]["bulk"])
+    bulk_file = os.path.join(
+        directory, element, structure_dict[element]["bulk"]
+    )
     bulk = Structure.from_file(bulk_file)
     
     slab_list = list()
