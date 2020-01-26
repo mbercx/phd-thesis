@@ -1,11 +1,11 @@
 output
 feedback
 figures/tikz*
+figures/temp
 figures/tikz_loader.tex
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
-*/__pycache__/*
-*/__pycache__/
+*pycache*
 .DS_Store
 *.backup
 *.png
@@ -17,8 +17,10 @@ figures/tikz_loader.tex
 *.aux
 *.sav
 *.bak
+*.vesta
 
 # Jupyter notebook (and support) files
 *.json
 *.cif
 *_POSCAR
+jupyter/*/data
