@@ -18,7 +18,7 @@ Both the geometry optimization and the calculation of the dielectric function ar
 
 ### The curious case of CA-CuInSe$_2$
 
-> [_Work in Progress_](../../figures/moss_fire.gif)
+Based on the results from the HSE06 workflow for CuAu-like CuInSe2 and CuGaS2, we have performed an extensive analysis in the text, based on the figures generated in the [thickness analysis notebook](thickness_analysis.ipynb). 
 
 ### Logistic function model
 

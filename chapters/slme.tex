@@ -1067,84 +1067,109 @@ on the same detailed balance approach as the SQ limit. Due to the definition
 of the SLME, the calculated efficiency returns to the SQ limit for \mbox{$L 
 \rightarrow \infty$}, since for an infinitely thick absorption layer the 
 absorptivity becomes a step function. However, looking at the thickness 
-dependence of the SLME for \mbox{CA-\ce{CuInSe2}} and \mbox{CA-\ce{CuInS2}} 
-(Fig.~\ref{slme:fig-SLME_L}), it is apparent that the way they approach the SQ value 
-is different. More specifically, the SLME of the compound \ce{CuInSe2} crosses 
-the SQ limit, whereas that of \ce{CuInS2} does not. 
+dependence of the SLME for \mbox{CA-\ce{CuInSe2}} and \mbox{CA-\ce{CuGaS2}} 
+(Fig.~\ref{slme:fig-thickness_analysis}(a)), it is apparent that the way they approach the SQ value 
+is different. Most importantly, the SLME of the compound \ce{CuInSe2} crosses 
+the SQ limit, whereas that of \ce{CuGaS2} does not. 
  
-\begin{figure}[ht] 
-\centering 
-\captionsetup{width=0.9\textwidth}
-\includegraphics[width=0.6\textwidth]{\figurepath/slme/CA_thickness.png} 
-\caption{Thickness dependence of the SLME of CA-CuInSe$_2$ and CA-CuInS$_2$ 
-at 300~\si{\kelvin} versus their SQ limit.} 
-\label{slme:fig-SLME_L} 
-\end{figure} 
+% \begin{figure}[ht] 
+% \centering 
+% \captionsetup{width=0.9\textwidth}
+% \includegraphics[width=0.6\textwidth]{\figurepath/slme/CA_thickness.png} 
+% \caption{Thickness dependence of the SLME of CA-CuInSe$_2$ and CA-CuInS$_2$ 
+% at 300~\si{\kelvin} versus their SQ limit.} 
+% \label{slme:fig-SLME_L} 
+% \end{figure} 
  
-\begin{figure}[ht] 
-\centering 
-\captionsetup{width=0.9\textwidth}
-\includegraphics[width=0.56\textwidth]{\figurepath/slme/JV_CuInS2.png} 
-\caption{Calculated $J$-$V$ characteristic of CA-CuInS$_2$ at 
-$T=300~\si{\kelvin}$ and $L = 500~\si{\nano\meter}$ (full line), as well as 
-the corresponding power density (dashed line).} 
-\label{slme:fig-CuInS2_JV} 
-\end{figure}
+% \begin{figure}[ht] 
+% \centering 
+% \captionsetup{width=0.9\textwidth}
+% \includegraphics[width=0.56\textwidth]{\figurepath/slme/JV_CuInS2.png} 
+% \caption{Calculated $J$-$V$ characteristic of CA-CuInS$_2$ at 
+% $T=300~\si{\kelvin}$ and $L = 500~\si{\nano\meter}$ (full line), as well as 
+% the corresponding power density (dashed line).} 
+% \label{slme:fig-CuInS2_JV} 
+% \end{figure}
 
-\begin{figure}[!ht] 
-\centering 
-\captionsetup{width=0.9\textwidth}
-\includegraphics[width=0.56\linewidth]{\figurepath/slme/JV_thickness_1.png} \\\vspace{-0.5em}
-\includegraphics[width=0.56\linewidth]{\figurepath/slme/JV_thickness_2.png}	 
-\caption{Thickness dependence of the current densities of CuInS$_2$ (upper 
-figure) and CuInSe$_2$ (lower figure) versus their respective SQ values.} 
-\label{slme:fig-J_L} 
-\end{figure} 
+% \begin{figure}[!ht] 
+% \centering 
+% \captionsetup{width=0.9\textwidth}
+% \includegraphics[width=0.56\linewidth]{\figurepath/slme/JV_thickness_1.png} \\\vspace{-0.5em}
+% \includegraphics[width=0.56\linewidth]{\figurepath/slme/JV_thickness_2.png}	 
+% \caption{Thickness dependence of the current densities of CuInS$_2$ (upper 
+% figure) and CuInSe$_2$ (lower figure) versus their respective SQ values.} 
+% \label{slme:fig-J_L} 
+% \end{figure} 
+
+{
+\pgfplotsset{compat=1.3, 
+small_thickness_axis/.style={
+width=\textwidth,
+height=4cm,
+xtick={1e-08,1e-07,1e-06,1e-05,0.0001,0.001,0.01},
+xticklabels={\textsf{10\textsuperscript{1}}, 10\textsuperscript{2}, 10\textsuperscript{3}, 10\textsuperscript{4}, 10\textsuperscript{5}, 10\textsuperscript{6}, 10\textsuperscript{7}},
+xmin=1e-8, xmax=1e-2,
+font=\sffamily,
+every axis label/.append style={font=\sffamily}
+}}
+\begin{figure}[ht]
+\centering
+\begin{subfigure}[t]{0.46\textwidth}
+\input{\figurepath/slme/thickness_analysis1}
+\end{subfigure}
+~
+\begin{subfigure}[t]{0.46\textwidth}
+\input{\figurepath/slme/thickness_analysis2}
+\end{subfigure}
+\caption{(\textsf{\textbf{a}}) Thickness dependence of the SLME of CA-CuInSe$_2$ and CA-CuGaS$_2$ at 300~\si{\kelvin} versus their SQ limit. (\textsf{\textbf{b}}) Calculated $J$-$V$ characteristic of CA-CuInSe$_2$ at $T=300~\si{\kelvin}$ and $L = 500~\si{\nano\meter}$ (full line), as well as the corresponding power density (dashed line). (\textsf{\textbf{c}}-\textsf{\textbf{d}}) Thickness dependence of the current densities of CuInSe$_2$ and CuGaS$_2$, as well as the open circuit voltage $V_{oc})$ (\textsf{\textbf{e}}) versus their respective SQ values.}
+\label{slme:fig-thickness_analysis}
+\end{figure}
+}
 
 The origin of this behavior can be understood by considering how the 
 short-circuit current density $J_{sc}$ and recombination current density 
 $J_0$ are used to calculate the power density of the absorber layer $P = JV$. 
-Fig.~\ref{slme:fig-CuInS2_JV} shows the calculated \mbox{$J$-$V$} 
-characteristic of \mbox{CA-\ce{CuInS2}}. The total current 
+Figure~\ref{slme:fig-thickness_analysis}(b) shows the calculated \mbox{$J$-$V$} 
+characteristic of \ce{CuInSe2}. The total current 
 density $J$ remains close to $J_{sc}$ up to a certain voltage. The value of 
 this voltage, and hence the value of the open circuit voltage $V_{oc}$ as well as the 
 voltage that maximizes the power density $V_{m}$, depends strongly on $J_0$. 
 Looking at both current densities as a function of the thickness, presented in 
-Fig.~\ref{slme:fig-J_L}, it is clear that for both compounds $J_{sc}$ 
+Figs.~\ref{slme:fig-thickness_analysis}(c-d), it is clear that for both compounds $J_{sc}$ 
 converges to the corresponding SQ value at far lower thicknesses than $J_0$. The 
 relatively low value for $J_0$ at certain thicknesses allows for a higher open 
-circuit voltage $V_{oc}$. This is the case for both \mbox{CA-\ce{CuInS2}} and 
-\mbox{CA-\ce{CuInSe2}}. However, the order of magnitude of $J_0$ is much 
-larger for CA-\ce{CuInSe2} than for \mbox{CA-\ce{CuInS2}}. 
+circuit voltage $V_{oc}$. This is the case for both \ce{CuInSe2} and 
+\ce{CuGaS2}. However, because the order of magnitude of $J_0$ is much 
+larger for \ce{CuInSe2} than for \ce{CuGaS2}, the open circuit voltage $V_{oc}$ at low thicknesses is significantly larger than the corresponding Shockley-Queisser value for \ce{CuInSe2} than for \ce{CuGaS2}.
 
-The SLME crosses the SQ limit when its maximum power density is higher than 
-the one calculated using the SQ values for $J_{sc}$ and $J_0$: 
-\begin{equation} \label{slme:eq-aboveSQ} 
-\begin{aligned} 
-J_m V_m = P_m &> P_m^{SQ} = J_m^{SQ} V_m^{SQ} \\ 
-\Leftrightarrow \hspace{0.4in}\frac{V_m}{V_m^{SQ}} &> \frac{J_m^{SQ}}{J_m}. 
-\end{aligned} 
-\end{equation} 
-Because the order of magnitude of $J_0$ is much larger for 
-\mbox{CA-CuInSe$_2$}, the value of the fraction $V_m/V_m^{SQ}$ at low 
-thicknesses is higher for \mbox{CA-CuInSe$_2$} when compared to that for 
-\mbox{CA-CuInS$_2$} (Fig.~\ref{slme:fig-VJcomp}). In comparison, the 
-convergence of the fraction $J_m^{SQ}/J_m$ is similar for both compounds. From 
-Eq.~(\ref{slme:eq-aboveSQ}), it is clear that when $V_m/V_m^{SQ}$ is larger 
-than $J_m^{SQ}/J_m$, the maximized power density is higher than its SQ value, 
-which means that the SLME will be higher than the Shockley-Queisser limit for 
-that thickness. Looking at Fig.~\ref{slme:fig-VJcomp}, we can see that at 
-$T=300$~\si{\kelvin}, this happens for CuInSe$_2$. 
+% Let's quantify this a little more: the SLME crosses the SQ limit when its maximum power density is higher than 
+% the one calculated using the SQ values for $J_{sc}$ and $J_0$: 
+% \begin{equation} \label{slme:eq-aboveSQ} 
+% \begin{aligned} 
+% J_m V_m = P_m &> P_m^{SQ} = J_m^{SQ} V_m^{SQ} \\ 
+% \Leftrightarrow \hspace{0.4in}\frac{V_m}{V_m^{SQ}} &> \frac{J_m^{SQ}}{J_m}. 
+% \end{aligned} 
+% \end{equation} 
+% Because the order of magnitude of $J_0$ is much larger for 
+% \ce{CuInSe2}, the value of the fraction $V_m/V_m^{SQ}$ at low 
+% thicknesses is higher for \ce{CuInSe2} when compared to that for 
+% \ce{CuGaS2} (Fig.~\ref{slme:fig-VJcomp}). In comparison, the 
+% convergence of the fraction $J_m^{SQ}/J_m$ is similar for both compounds. From 
+% Eq.~(\ref{slme:eq-aboveSQ}), it is clear that when $V_m/V_m^{SQ}$ is larger 
+% than $J_m^{SQ}/J_m$, the maximized power density is higher than its SQ value, 
+% which means that the SLME will be higher than the Shockley-Queisser limit for 
+% that thickness. Looking at Fig.~\ref{slme:fig-VJcomp}, we can see that at 
+% $T=300$~\si{\kelvin}, this happens for CuInSe$_2$. 
  
-\begin{figure}[ht] 
-\centering 
-\includegraphics[width = 0.28\linewidth]{\figurepath/slme/J_V_ratios_1.png} 
-\includegraphics[width = 0.28\linewidth]{\figurepath/slme/J_V_ratios_2.png} 
-\caption{Comparison of the relative increase of the voltage that maximizes 
-the power density ($V_{max}/V_{max}^{SQ}$) with the relative decrease of the 
-corresponding current density ($J_{max}^{SQ}/J_{max}$).} 
-\label{slme:fig-VJcomp} 
-\end{figure} 
+% \begin{figure}[ht] 
+% \centering 
+% \includegraphics[width = 0.28\linewidth]{\figurepath/slme/J_V_ratios_1.png} 
+% \includegraphics[width = 0.28\linewidth]{\figurepath/slme/J_V_ratios_2.png} 
+% \caption{Comparison of the relative increase of the voltage that maximizes 
+% the power density ($V_{max}/V_{max}^{SQ}$) with the relative decrease of the 
+% corresponding current density ($J_{max}^{SQ}/J_{max}$).} 
+% \label{slme:fig-VJcomp} 
+% \end{figure} 
  
 For direct band gap absorbers, $f_r = 1$, and $J_0$ is calculated from the 
 overlap of the black-body spectrum $I_{bb}(E,T)$ and the absorptivity $a(E)$ 
@@ -1157,7 +1182,7 @@ thicknesses, potentially producing calculated efficiencies above the SQ limit.
 For example, looking at the thickness dependence of the SLME of CA-CuInS$_2$ 
 at $T=450\si{\kelvin}$ (Fig.~\ref{slme:fig-SLME_highT}), we see that at this 
 temperature the calculated efficiency also crosses the Shockley-Queisser 
-limit.  
+limit.
  
 \begin{figure}[ht] 
 \centering 
