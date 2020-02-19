@@ -1,0 +1,109 @@
+\pgfplotsset{compat=1.3, 
+small_thickness_axis/.style={
+width=\textwidth,
+height=4cm,
+xtick={1e-08,1e-07,1e-06,1e-05,0.0001,0.001,0.01},
+xticklabels={\textsf{10\textsuperscript{1}}, 10\textsuperscript{2}, 10\textsuperscript{3}, 10\textsuperscript{4}, 10\textsuperscript{5}, 10\textsuperscript{6}, 10\textsuperscript{7}},
+xmin=1e-8, xmax=1e-2,
+font=\sffamily,
+every axis label/.append style={font=\sffamily}
+}}
+
+\begin{subfigure}[t]{0.46\textwidth}
+
+\begin{tikzpicture}[]
+
+\node[anchor=north west, font=\sffamily] at (-0.5, 3.8) {\textbf{a}};
+\node[anchor=north west, font=\sffamily] at (-0.5, -0.35) {\textbf{b}};
+
+\begin{groupplot}[
+group style={group size=1 by 2, vertical sep=1em},
+small_thickness_axis,
+]
+
+\nextgroupplot[
+height=5.4cm,
+xticklabel pos=right,
+xlabel={Thickness (nm)},
+ylabel={SLME / SQ},
+ymin=0, ymax=1.3,
+xmode=log,
+legend style={
+at={(0.95, 0.1)}, anchor=south east, draw=none, font=\footnotesize\sffamily
+},
+]
+\input{\figurepath/slme/SLME_thickness}
+
+\nextgroupplot[
+height=5.4cm,
+xmin=0, xmax=0.55,
+xtick={0, 0.1, 0.2, 0.3, 0.4, 0.495},
+xticklabels={0, 0.1, 0.2, 0.3, 0.4, $V_{oc}$},
+xlabel={Voltage (V)},
+ymin=0, ymax=650,
+ytick={0, 150, 300, 520},
+yticklabels={0, 150, 300, $J_{sc}$},
+ylabel={$J$ (A/m$^2$), $P$ (W/m$^2$)},
+font=\sffamily,
+legend style={
+at={(0.1, 0.5)}, anchor=west, draw=none, font=\footnotesize\sffamily
+}
+]
+\input{\figurepath/slme/IV_curve}
+\node[anchor=south east] at (axis cs: 0.42, 210) {$P_m$};
+
+\end{groupplot}
+\end{tikzpicture}
+
+\end{subfigure}
+~
+\begin{subfigure}[t]{0.46\textwidth}
+
+\begin{tikzpicture}[]
+
+\definecolor{color0}{rgb}{0.72156862745098,0.12156862745098,0.12156862745098}
+\definecolor{color1}{rgb}{0.137254901960784,0.407843137254902,0.635294117647059}
+
+\node[anchor=north west, font=\sffamily] at (-0.5, 2.4) {\textbf{c}};
+\node[anchor=north west, font=\sffamily] at (-0.5, -0.4) {\textbf{d}};
+\node[anchor=north west, font=\sffamily] at (-0.5, -3.2) {\textbf{e}};
+
+\node[font=\sffamily\scriptsize, text width=3cm] at (1.6, -1.1) {
+\begin{align*}
+&\textcolor{color0}{J_0^{SQ} \approx 2.4 \cdot 10^{-4} \si{\ampere \per \meter\squared}} \\
+&\textcolor{color1}{J_0^{SQ} \approx 4.53 \cdot 10^{-14} \si{\ampere \per \meter\squared}}
+\end{align*}
+};
+
+\begin{groupplot}[
+group style={group size=1 by 3, vertical sep=1em},
+small_thickness_axis,
+xmode=log,
+]
+\nextgroupplot[
+xticklabel pos=right,
+xlabel={Thickness (nm)},
+ymax=1.2,
+yticklabel pos=right,
+ylabel={$J_{sc} / J_{sc}^{SQ}$}
+]
+\input{\figurepath/slme/Jsc_thickness}
+
+\nextgroupplot[
+xticklabels={},
+ymin=0, ymax=1.2, 
+yticklabel pos=right,
+ylabel={$J_{0} / J_{0}^{SQ}$}
+]
+\input{\figurepath/slme/J0_thickness}
+
+\nextgroupplot[
+xlabel={Thickness (nm)},
+yticklabel pos=right, 
+ylabel={$V_{oc} / V_{oc}^{SQ}$}, ymax=1.5,
+]
+\input{\figurepath/slme/Voc_thickness}
+\end{groupplot}
+\end{tikzpicture}
+
+\end{subfigure}

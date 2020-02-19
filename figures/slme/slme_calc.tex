@@ -1,0 +1,65 @@
+\definecolor{grey900}{HTML}{1F2832}
+
+\tikzstyle{calcbox} = [
+draw, color=grey900, thick,
+rounded corners, 
+inner sep=5,
+font=\sffamily
+]
+\tikzstyle{calcarrow} = [
+color=grey900, thick,
+->, >=latex
+]
+
+\begin{tikzpicture}
+
+%% NODES
+
+\node (ab_initio) [calcbox] at (0, 0) {\textit{ab initio}};
+
+% Left branch
+
+\node (alpha) [calcbox, left=3em of ab_initio] {$\alpha(E)$};
+\node (abs) [calcbox, below=1em of alpha] {%
+$\displaystyle a(E) = 1 - e^{-2\alpha(E)L}$
+};
+
+\node (Jsc) [calcbox, below=1em of abs, text width=14em, align=center] {%
+$\displaystyle J_{sc} = e \int_0^{\infty} a(E) \Phi_{sun}(E) dE $
+};
+\node (J0r) [calcbox, below=-0.04em of Jsc, text width=14em, align=center] {%
+$\displaystyle J_0^r = e \pi \int_0^{\infty} a(E) \Phi_{bb}(E) dE $
+};
+
+% Right branch
+\node (bandgaps) [calcbox, right=3em of ab_initio] {$E_g$, $E_g^{da}$};
+\node (fr) [calcbox, below=4em of bandgaps] {$f_r = e^{-\frac{E_g^{da} - E_g}{kT}}$};
+
+% Merge
+\node (J0) [calcbox, below right=2em and 1em of J0r] {%
+$\displaystyle J_0 = \frac{J_0^r}{f_r}$
+};
+\node (J) [calcbox, anchor=west] at (J0r.west |- J0) {%
+$\displaystyle J = J_{sc} - J_0 \left(e^{\frac{eV}{k_B T}} - 1\right)$
+};
+\node (efficiency) [calcbox, below=2em of J0] {
+$\displaystyle \eta = \frac{P_m}{P_{in}}$
+};
+
+%% PATHS
+
+\draw [calcarrow] (ab_initio) -- (alpha);
+\draw [calcarrow] (alpha) -- (abs);
+\draw [calcarrow] (abs) -- (Jsc);
+\coordinate (coord0) at ($(Jsc.west) - (1em, 0)$);
+\draw [calcarrow] (Jsc.west) -- (coord0) -- (coord0 |- J) -- (J.west);
+\draw [calcarrow] (J0r.east) -- (J0r -| J0) -- (J0.north);
+
+\draw [calcarrow] (ab_initio) -- (bandgaps);
+\draw [calcarrow] (bandgaps) -- (fr);
+\draw [calcarrow] (fr) -- (fr |- J0) -- (J0.east);
+
+\coordinate (coord9) at ($(J.south) - (2em, 0)$);
+\draw [calcarrow] (coord9) -- (coord9 |- efficiency.west) -- node[above, midway] {$\displaystyle P_m = \max_V (J\cdot V)$} (efficiency.west);
+
+\end{tikzpicture}
