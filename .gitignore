@@ -26,3 +26,4 @@ figures/tikz_loader.tex
 *.cif
 *_POSCAR
 data
+jupyter/quotas/semiconductors
