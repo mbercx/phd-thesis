@@ -1,5 +1,7 @@
 output
 feedback
+defence
+dedication.tex
 figures/tikz*
 figures/temp
 figures/tikz_loader.tex
@@ -23,4 +25,4 @@ figures/tikz_loader.tex
 *.json
 *.cif
 *_POSCAR
-jupyter/*/data
+data
