@@ -409,13 +409,12 @@ E_{xc}^{GGA}[\rho] = \int \rho(\mathbf{r}) f(\rho(\mathbf{r}),\left| \nabla
 \end{equation} 
 where $f(\rho(\mathbf{r}),\left| \nabla \rho\right|)$ is a function of the 
 electron density $\rho(\mathbf{r})$ and its gradient $\left| \nabla 
-\rho\right|$. The GGA generally produces better results than the LDA, but 
+\rho\right|$. GGA's generally produce better results than the LDA, but 
 there is some freedom in determining how exactly the gradient is included in 
 the approximation through the definition of $f(\rho(\mathbf{r}),\left| \nabla 
 \rho\right|)$. Some variants of the GGA use empirical data to fit the 
-functional to a wide range of experimental results~\cite{Becke1988, Keal2004}. These methods can however 
-no longer be considered \textit{ab initio}. An example of a first-principles 
-numerical GGA functional that is very popular in solid state physics is the 
+functional parameters to a wide range of experimental results~\cite{Becke1988, Keal2004}. Alternatively, the functional form and parameters can be constructed based on theoretical constraints. An example of such a 
+non-empirical GGA functional that is very popular in solid state physics is the 
 \textit{Perdew-Burke-Ernzerhof} (PBE)~\cite{Perdew1996} functional: 
 \begin{equation} 
 E_{xc}^{PBE}[\rho] = \int \rho(\mathbf{r}) \left[ 
@@ -953,10 +952,10 @@ Figure~\ref{dft:fig-k_mesh}.
 \section{Linear Response Theory} \label{dft:sec-linear} 
 
 Many important properties of materials are based on its response to external 
-electic fields. Optical properties, such as the absorption coefficient used 
+electric fields. Optical properties, such as the absorption coefficient used 
 for the calculation of the selection metric described in 
 Section~\ref{slme:sec-SLME}, depend on the dielectric response of the material 
-in the lon-wavelength limit. So does the electron energy loss function, used in 
+in the long-wavelength limit. So does the electron energy loss function, used in 
 Section~\ref{quotas:sec-plasmons} to introduce plasmonic excitations to our 
 model of secondary electron emission. In this section I present a shortened 
 derivation of the expression used to calculate the dielectric tensor, largely 
@@ -1234,7 +1233,7 @@ performing Ab Initio Molecular Dynamics (AIMD) calculations. Unfortunately,
 for many reactions performing AIMD simulations over a sufficiently long time 
 scale to obtain relevant statistics is far too computationally demanding. A 
 popular alternative for studying the kinetics is by obtaining the kinetic barrier, 
-also know as the activation energy $E_a$, directly  
+also known as the activation energy $E_a$, directly  
 by determining the minimum energy path for the 
 transition. Figure~\ref{dft:fig-transition} shows a schematic of the energy 
 barrier of a transition. 
