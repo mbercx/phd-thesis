@@ -494,15 +494,14 @@ by Dudarev et al.~\cite{Dudarev1998}:
 E_{DFT+U} = E_{DFT} + \frac{U_{eff}}{2} \sum_\sigma \left[ \sum_m 
 \rho_{mm}^\sigma - \sum_{m, m'} \rho_{mm'}^\sigma\rho_{m'm}^\sigma\right], 
 \end{equation} 
-where $\rho^\sigma_{mm'}$ is the spin orbital density matrix of the orbitals to which we 
+where $E_{DFT}$ is the energy obtained from the uncorrected DFT result, and $\rho^\sigma_{mm'}$ is the spin orbital density matrix of the orbitals to which we 
 want to apply the $U_{eff}$ correction:
 \begin{equation}
-\rho^\sigma_{mm'} = \sum_{i=1}^N f_i \bra{\phi_i} \hat{P}_{mm'}^\sigma \ket{\phi_i},
+\rho^\sigma_{mm'} = \sum_{i, \sigma} f_i^\sigma \bra{\phi_i^\sigma} \hat{P}_{mm'}^I \ket{\phi_i^\sigma},
 \end{equation}
-with $\hat{P}_{mm'}^\sigma$ the projector operator of the orbital with spin 
-$\sigma$ and $m, m'$ the magnetic quantum numbers of the orbitals 
+with $f_i^\sigma$ the occupancy number of the $\phi_i^\sigma$ quasiparticle orbital and $\hat{P}_{mm'}^I$ the projector operator of the atom at site $I$ and $m, m'$ the magnetic quantum numbers of the orbitals 
 to which we apply the $U$ correction (e.g. $m=-2, -1, 0, 1, 2$ for $d$ 
-orbitals.). An intuitive way to describe the effect of 
+orbitals.). For more details on how to implement the U correction in the \dft{PAW}{} method (Sec.~\ref{dft:sec-PAW}), we refer the reader to the paper of Bengone et al.~\cite{Bengone2000}. An intuitive way to describe the effect of 
 Eq.~(\ref{dft:eq-dudarev}) is as applying a penalty to the energy for partially 
 occupied states, pushing the system towards either fully occupied or 
 unoccupied orbitals. 
@@ -690,9 +689,9 @@ how large $E_{cut}$ must be in order for Eq.~(\ref{dft:eq-planewaves}) to correc
 This, in turn, is connected with how much $\phi (\mathbf{r})$ varies in the 
 region around $\mathbf{r}$~\cite{Kohanoff2006}. When looking at 
 Fig.~\ref{dft:fig-pseudo}, we can see that the radial part of the electron 
-orbitals varies the most near the core of an atom, where the interaction is 
+orbitals varies the most near the nucleus of an atom, where the interaction is 
 stronger. However, the region which is important for the chemical bonds lies 
-further from the core, and here the wave function is relatively smooth. In the 
+further from the nucleus, and here the wave function is relatively smooth. In the 
 interest of keeping the calculations manageable, it is desirable to replace 
 the quickly oscillating wave function with a smoother version, which still has 
 the same value as the actual wave function in the region of the chemical bond. 
@@ -767,17 +766,17 @@ the full electron wave function near the the nuclei is
 lost. A more general approach is the projector augmented 
 wave (PAW) method, which was first introduced by Bl\"ochl in 
 1994~\cite{Blochl1994}. This method has similarities with the PP approach, in 
-the sense that it tries to replace the true all electron (AE) wave function 
+the sense that it tries to replace the true all-electron (AE) wave function 
 with a smoother pseudo (PS) wave function, that agrees with the true wave 
 function in the bonding region. Here I present a brief discussion of the concept,
 largely based on the excellent paper of Rostgaard~\cite{Rostgaard2009}.
  
-We consider each atom to be enclosed by a spherical volume of radius $R_a$, 
+We consider each nucleus to be enclosed by a spherical volume of radius $R_a$, 
 called the \textit{augmentation} region $\Omega_{R_a}$, and define the 
 remaining part of space as the \textit{interstitial} region. We are looking 
 for a linear operator that transforms the computationally convenient PS one 
 electron wave functions $\ket{\tilde{\phi}}$ into the physically relevant AE 
-one electron wave functions $\ket{\phi}$: 
+one-electron wave functions $\ket{\phi}$: 
 \begin{equation}\label{dft:eq-PAW} 
 \ket{\phi} = \hat{\mathcal{T}} \ket{\tilde{\phi}}. 
 \end{equation} 
@@ -966,7 +965,7 @@ based on the excellent thesis of Judith Harl~\cite{Harl2008}.
 The dielectric tensor expresses the optical properties of the material, which 
 depend on the response of the material to external electric fields. In linear 
 response theory, the response of the material to an external electric field is 
-described by the response function $\chi(\mathbf{r},\mathbf{r}, t - t')$, 
+described by the response function $\chi(\mathbf{r},\mathbf{r}', t - t')$, 
 which determines the change in density $\delta \rho$ at ($\mathbf{r},t$) if the 
 external potential undergoes a small change $\delta v_{exp}$ at 
 ($\mathbf{r}',t'$)~\cite{Harl2008}: 
@@ -997,7 +996,7 @@ in frequency space as
 where $\phi_i(\mathbf{r})$ are the KS orbitals of the time-independent 
 problem~(Eqs.~(\ref{dft:eq-KS})), and $\check{\omega} = \omega + i \eta$ is a 
 complex deviation from the angular frequency $\omega$, introduced in the 
-perturbation calculation. The occupancies are included in Eq~(\ref{dft:eq-pines}) in 
+perturbation calculation. The occupancies $f_i$ are included in Eq~(\ref{dft:eq-pines}) in 
 such a way that the coefficient in the sum is equal to 1 only when the 
 i$^{th}$ orbital is occupied and the j$^{th}$ orbital is unoccupied. Next, we 
 use the periodicity of the crystal and take the Fourier transform of 

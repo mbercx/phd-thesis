@@ -53,7 +53,7 @@ Many \textit{ab initio} methods for calculating properties rely on a fairly
 fixed algorithm of reoccurring steps. Even when the exact steps depend on the 
 result of a previous calculation, it is usually feasible to come up with some 
 sort of well-defined schematic, or workflow, on how to best calculate the 
-desired property for any structure. Fireworks is a well-established python 
+desired property for any structure. Fireworks is a well-established Python 
 package for designing such a workflow. 
  
 As an example, say you want to calculate the density of states of a certain 
@@ -217,8 +217,8 @@ they are directly connected. As is said in the VASP manual,
  
 \item \href{https://cms.mpi.univie.ac.at/wiki/index.php/NSIM}{\texttt{NSIM}}: 
 This input tag defines the number of bands that are treated simultaneously in 
-the blocked mode of the \texttt{RMM-DIIS} algorithm. This allows VASP 
-to exploit matrix BLAS operations instead of matrix-vector operations, which 
+the blocked mode of the \texttt{RMM-DIIS}\footnote{Residual minimisation/direct inversion in the iterative subspace~\cite{Wood1985}.} algorithm. This allows VASP 
+to exploit matrix BLAS\footnote{Basic linear algebra subprograms.} operations instead of matrix-vector operations, which 
 could lead to a speed up on some machines. Peter Larsson 
 \href{https://www.nsc.liu.se/~pla/blog/2012/02/22/nparnsim/}{wrote an 
 interesting blog post} on the topic. Overall, the gains are smaller compared to 
@@ -245,7 +245,7 @@ cores are split into \texttt{NPAR = 2} groups, which means that \texttt{NCORE
 \end{figure} 
  
 Most applications for calculation time on a higher Tier system, such as the 
-\href{https://www.vscentrum.be/tier1}{BrEniac} cluster of the VSC, or the 
+\href{https://www.vscentrum.be/tier1}{BrEniac} cluster of the Flemish supercomputer center (VSC), or the 
 \href{http://www.prace-ri.eu/}{PRACE} infrastructure of the European Union, 
 require the user to demonstrate the scaling of their requested calculations is 
 optimal. This involves testing a range of parallelization settings for an 
@@ -306,7 +306,7 @@ settings, e.g. a machine learning model based on a large set of data. In
 the chessboard plot of 
 \href{https://mybinder.org/v2/gh/mbercx/jupyter/master?filepath=parallel\%2Fparallel_analysis.ipynb}{the 
 parallelization analysis} I have performed, the setting chosen by the 
-\code{VaspParallelizationTask} is indicated by a red square. 
+\code{VaspParallelizationTask} is indicated by marking the edge of the corresponding square in red. 
  
 \subsection{\texttt{CustodianTask}} \label{automation:sec-CustodianTask} 
  
@@ -321,7 +321,7 @@ discovered during the analysis. Moreover, dealing with common errors which
 have a solution that can be programmed should be part of a robust workflow. 
  
 \href{https://materialsproject.github.io/custodian/}{Custodian} is a 
-just-in-time (JIT) python package for automated error recovery and allows the 
+just-in-time (JIT) Python package for automated error recovery and allows the 
 user to make much more robust workflows. In short, the \code{CustodianTask} 
 runs the calculation inside a \code{Custodian} instance, which has 
 \code{ErrorHandler}s specified during its initialization which check for 
@@ -420,7 +420,9 @@ the final structure.
  
 These two tasks make up the complete configuration 
 workflow~\ref{automation:sec-configurations}, which can be used to calculate the 
-energy of a large set of configurations for any system with degrees of configurational freedom.
+energy of a large set of configurations for any system with degrees of configurational 
+freedom in the placement of atoms on specified sites (e.g. 
+\link{batteries:sec-structure}{lithium configurations of a charged cathode}).
 \code{ConfigurationTask} generates the requested configurations based on the 
 algorithm of Hart et al.~\cite{Hart2005} for the provided structure and a 
 number of user-specified settings: 
@@ -442,7 +444,7 @@ restrictions on the \textit{fractional} concentrations of the elements.
 Once the configurations have been generated, \code{EnergyConfTask} sets up a 
 two-step workflow for each configuration, consisting of a geometry 
 optimization (\code{OptimizeFW}) and a static calculation to obtain a more 
-precise value for the energy using the tetrahedron method (\code{StaticFW}). 
+precise value for the energy using the \link{appendix:sec-ISMEAR}{tetrahedron method} (\code{StaticFW}). 
  
 \subsection{Other} 
  
@@ -454,7 +456,7 @@ part of the workflows described in Section~\ref{automation:sec-workflows}.
 \phantomsection \label{automation:sec-IncreaseNumberOfBands} 
 \item \code{IncreaseNumberOfBands}: For some calculations, such as a 
 calculation of the dielectric tensor, it is important to have a sufficient 
-amount of empty bands. Often, this is done by multiplying the number of 
+amount of empty bands. Often, this is done by setting the total number of bands to the number of 
 occupied bands from a previous calculation. This \code{Firetask} automates 
 this step, based on a user-specified multiplier. 
  
@@ -481,14 +483,14 @@ extracts the final geometry from the current directory and adds it to the
  
 \phantomsection \label{automation:sec-ScriptTask} 
 \item \code{ScriptTask}: This is a standard task included in the Fireworks package 
-which runs a user-defined bash script. 
+which runs a user-defined command line script. 
  
 \phantomsection \label{automation:sec-PyTask} 
 \item \code{PyTask}: Versatile task included in Fireworks package that can run 
-any python method. Note that the method is defined as the string which would 
-be used to import that method in a python module, e.g. 
+any Python method. Note that the method is defined as the string which would 
+be used to import that method in a Python module, e.g. 
 \code{pybat.workflow.workflows.get\_wfs\_noneq\_dimers}. In case a 
-\code{PyTask} is used in my workflows, the flowchart will detail the python 
+\code{PyTask} is used in my workflows, the flowchart will detail the Python 
 method used as well as a short explanation. 
 
 \end{itemize} 
@@ -714,7 +716,7 @@ Although all the workflows have defaults for computational settings such as
 the density of k-points, energy cutoff for the plane waves etc., most 
 calculations will require the user to adjust these settings based on a set of 
 convergence tests. These can be passed to the \code{Firework}s of the workflow 
-using the \code{vasp\_input\_params} input argument. This is a dictionary 
+using the \code{vasp\_input\_params} input argument. This is a Python \code{dictionary} 
 whose key value pairs are passed to the 
 \link{automation:sec-WriteVaspFromIOSet}{\code{WriteVaspFromIOSet}}'s input 
 set as keyword arguments. Any input argument of the parent \code{DictSet} 

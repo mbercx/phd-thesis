@@ -62,7 +62,7 @@ Moreover, governments around the world have started initiatives to increase the
 percentage of the world's renewable energy supply. 
 Figure~\ref{slme:fig-pv_evo} shows the results of these efforts. We can see 
 that the PV market has increased significantly over the past decade, now 
-contributing 5.9\% of the total global (grid-connected) energy production. 
+contributing 5.9\% of the total global (grid-connected) electrical energy production. 
  
 Although the growth of the PV market is promising, continued efforts must be 
 made to increase the share of renewable energy in the global energy 
@@ -166,7 +166,7 @@ valence band electrons, the movement of the empty space is usually represented
 by a positively charged particle, referred to as a \textit{hole}. In this 
 framework, the absorption of light is considered as the creation of an 
 electron-hole pair, called an \textit{exciton}, through the annihilation of an 
-incoming photon. Once the electron-hole pair is no longer bound, they become 
+incoming photon. If the electron-hole pair can be separated, they become 
 free charge carriers that can move through the semiconductor. 
  
 \begin{wrapfigure}{l}{0.4\textwidth}
@@ -367,7 +367,7 @@ Sections~\ref{slme:sec-absorption} and~\ref{slme:sec-recombination}.
  
 These equations can be readily solved using numerical approaches. However, by 
 applying a few approximations, it is possible to derive a general relation for 
-the I-V characteristic of a P-N~junction, known as the \textit{Ideal Diode 
+the I-V characteristic of a P-N~junction under dark conditions, known as the \textit{Ideal Diode 
 Law}~\cite{Shockley1949}: 
 \begin{equation}\label{slme:eq-idealdiode} 
 I = I_0 (e^\frac{e V}{k_B T} - 1), 
@@ -523,7 +523,7 @@ solar spectrum $P_{in}$~\cite{Fonash2010}:
 When determining the efficiency, it is important to use agreed upon conditions 
 for the measurement and calculation of both power densities. For the solar spectrum, 
 researchers normalize the AM1.5G spectrum to produce a total incident power 
-density of 1 \si{\watt \per \meter\square}, and generate it in a lab to find 
+density of 1 \si{\kilo\watt \per \meter\squared}, and generate it in a lab to find 
 experimental values for the output power density of the solar cell. The 
 reference temperature of the device is usually 25 \si{\celsius}. 
 Figure~\ref{slme:fig-effchart} shows the evolution of the maximum efficiency 
@@ -697,11 +697,11 @@ The absorptivity is then used to determine the short
 circuit and radiative recombination current densities: 
 \begin{equation} \label{slme:eq-currents} 
 \begin{aligned} 
-J_{sc} &= e \int_0^\infty a(E)  \Phi_{sun} (E) dE, 
+J_{sc} &= e \int_0^\infty a(E)  \Phi_{s} (E) dE, 
 \\ J_0^r &= e\pi \int_0^\infty a(E)  \Phi_{bb} (E,T) dE, 
 \end{aligned} 
 \end{equation} 
-where $I_{sun}(E)$ and $I_{bb}(E,T)$ are once again the solar spectrum AM1.5G  
+where $\Phi_{s}(E)$ and $\Phi_{bb}(E,T)$ are once again the solar spectrum AM1.5G  
 and the black-body spectrum at device temperature $T$. The optical 
 and fundamental band gaps, also retrieved from first-principles calculations, 
 are then used to derive the radiative fraction $f_r$ (Eq.~(\ref{slme:eq-fraction})). From 
@@ -793,11 +793,11 @@ structure of ternary \mbox{I-III-VI$_2$} compounds.}
 \begin{table}[ht] 
 \centering 
 \renewcommand{\arraystretch}{1.3} 
-\caption{Lattice parameters of the \mbox{CuAu-like} (CA) and chalcopyrite (CH) 
-phase of the considered compounds} 
+\caption{Calculated lattice parameters of the \mbox{CuAu-like} (CA) and chalcopyrite (CH) 
+phase of the considered compounds, compared with the experimental results from Hahn et al.~\cite{Hahn1953}.} 
 \label{slme:tab-lattice} 
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccccccc}\hline 
-\multirow{2}{*}{Material}    & & CA & & & CH & & & CH(Ref~\cite{Hahn1953}) & 
+\multirow{2}{*}{Material}    & & CA & & & CH & & & CH (Ref~\cite{Hahn1953}) & 
 \\ \cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10} 
  			&  $a$ (\si{\angstrom}) & $c$ (\si{\angstrom}) & $c/a$ & $a$ 
 (\si{\angstrom}) & $c$ (\si{\angstrom}) & $c/a$ & $a$ (\si{\angstrom}) & $c$ 
@@ -840,7 +840,7 @@ Table~\ref{slme:tab-lattice} presents the calculated lattice parameters and
 $c/a$ ratio, as well as the corresponding experimental values 
 for the CH phase of the compounds\footnote[3]{No experimental values were 
 found for the CA phase in the literature.}. We can see that the calculated 
-$c/a$ ratios match well with those obtained from experiment. For the CA phase, 
+$c/a$ ratios match well with those obtained from experiment, with a slight overestimation of the calculated results compared to experiment. For the CA phase, 
 replacing the cations Ag by Cu or Ga by In decreases the $c/a$ ratio of the 
 unit cell. This trend is reversed for the CH phase. Comparing the $c/a$ 
 ratio of the CA and CH phase, we find a large difference in the $c/a$ ratio 
@@ -904,7 +904,7 @@ results for the other compounds can be found in the
 \captionsetup{width=0.8\textwidth}
 \includegraphics[width=0.5\textwidth]{\figurepath/slme/diel_CuInS2.png} 
 \caption{Real (upper figure) and imaginary (lower figure) parts of the 
-calculated dielectric function of \mbox{CA-CuInS$_2$}.} 
+HSE06 calculated dielectric function of \mbox{CA-CuInS$_2$}.} 
 \label{slme:fig-diel_CuInS2} 
 \end{figure} 
 
@@ -966,7 +966,7 @@ the material.
 \captionsetup{width=0.45\textwidth}
 \renewcommand{\arraystretch}{1.2} 
 \caption{Calculated SLME for both the \mbox{CuAu-like} and 
-chalcopyrite~\c ite{Yu2012} structures. The SQ limit of the corresponding band 
+chalcopyrite~\cite{Yu2012} structures. The SQ limit of the corresponding band 
 gap of the CA compounds is also given as a reference.} 
 \label{slme:tab-SLME} 
 \begin{tabular}{l@{\hskip 1.5em}c@{\hskip 0.8em}c@{\hskip0.8em}c} 
@@ -1154,10 +1154,10 @@ obtain efficiencies above the SQ limit.
 \resultsubsection{Logistic function model \label{slme:sec-logistic}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/slme\#logistic-function-model}{} 
  
 The efficiency for CA-\ce{CuInSe2} is not the only one to exceed the SQ limit at 500~\si{\nano\meter}. 
-Figure~\ref{slme:fig-logistic} shows a selection of calculated efficiencies of 
+Figure~\ref{slme:fig-logistic} shows a selection of calculated SLME values of 
 direct band gap materials from previous work~\cite{Yu2012, Bercx2016, 
 Sarmadian2016}, compared with the Shockley-Queisser limit. Among the presented 
-materials, a significant amount have a calculated efficiency 
+materials, a significant amount have a calculated SLME 
 above the Shockley-Queisser limit. Since the calculation of the SLME does not 
 introduce any of the concepts that would typically allow its value to exceed 
 the Shockley-Queisser limit, these results further indicate that for thin-film 
@@ -1170,7 +1170,7 @@ necessarily represent an upper limit for the efficiency.
 \includegraphics[width=0.9\textwidth]{Figures/slme/sq_Fig1.png} 
 \caption{Collection of calculated SLME values from Yu and 
 Zunger~\cite{Yu2012}, as well as our results for CuAu-like~\cite{Bercx2016} 
-and Stannite~\cite{Sarmadian2016} structures. The space group of 
+and Stannite~\cite{Sarmadian2016} structures. The space group number of 
 the material structure is added as a superscript. The efficiency values were calculated 
 for a thickness of 500~\si{\nano\meter}. The orange curve represents the 
 maximum efficiencies obtained using the logistic model explained in the text.} 
@@ -1353,7 +1353,7 @@ every photon with an energy above the band gap is absorbed, the obtained
 efficiency must be maximal. Although this assumption may seem entirely 
 sensible at first glance, it does not consider the fact that it also maximizes 
 the recombination current, which is calculated using the detailed balance 
-principle. Because an increased recombination results in a lower efficiency, 
+principle. Because an increased recombination current results in a lower efficiency, 
 this means that lowering the absorptivity can produce higher efficiencies than 
 the Shockley-Queisser limit under the right conditions. By using a model 
 absorptivity function, which closely resembles absorptivity spectra calculated 
