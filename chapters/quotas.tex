@@ -1,6 +1,6 @@
 \begin{refsection} 
  
-\chapter{Ion-Induced Secondary Electron Emission} \label{chapter:quotas} 
+\chapter{Ion Induced Secondary Electron Emission} \label{chapter:quotas} 
  
 \setlength{\epigraphwidth}{4in} 
 \epigraph{\textit{``I have not failed. I've just found thousands of ways that don't 
@@ -509,7 +509,7 @@ Overall, the shape of the calculated yield spectra matches reasonably well
 with the experimental one\footnote{Note that we have applied a small gaussian 
 broadening to the final calculated yield spectra. This is largely for visual purposes, i.e. to facilitate 
 the comparison between different spectra.}. 
-The total SEE yield coefficients $\gamma$, obtained 
+The total SEE yield coefficients $\gamma$, obtained s
 by integrating the yield spectra (Eq.~(\ref{quotas:eq-yield})), are given in 
 Table~\ref{quotas:tab-yield_semiconductors}. For both \ce{Si} and \ce{Ge}, the 
 yield coefficients are larger for \ce{He^+} than for \ce{Ne^+}, due to the 
@@ -517,7 +517,7 @@ larger ionization energy of helium. The yield is also found to
 be lower for \ce{Si(111)} than \ce{Ge(111)}. The calculated yield coefficients 
 are in fair agreement with the experimental values, with a slight 
 overestimation for \ce{He^+} on \ce{Ge(111)} and underestimation for 
-\ce{Si(111)}. 
+all other ion/surface pairs. 
 
 \begin{figure*}[ht] 
     \centering 
@@ -894,7 +894,7 @@ discussed, surface plasmons are unlikely to be excited during the neutralization
 of \ce{He+} on \ce{Mg}, so this allows us to isolate the influence of volume plasmons. 
 Similarly, the large plasmon frequency of \ce{Be} 
 (See Fig.~\ref{quotas:fig-energy_loss}) means that surface plasmons, 
-having a lower frequency than volume plasmons, play a much larger rol in the 
+having a lower frequency than volume plasmons, play a much larger role in the 
 spectrum of \ce{Be}. For \ce{Mg}, volume 
 plasmon excitations result in a large reduction of the yield spectrum at 
 higher energies. By increasing the participation of volume plasmons through 
@@ -1244,11 +1244,12 @@ fill opacity=0.8, text opacity=1}}}
  
 The yield for \ce{Ne+} results in a reduction for the yield for most elements 
 compared to \ce{He+}, which is to be expected considering the lower ionization 
-energy of \ce{Ne+}. There are some notable exceptions, however, such as \ce{Sr}, \ce{Sn} 
-and \ce{Pb}. All of these can be explained by the fact that due to the lower 
+energy of \ce{Ne+}. There are some notable exceptions, however, such as \ce{Sr}, \ce{Sn}, \ce{Pb} and \ce{Cs}. The first three can be explained by the fact that due to the lower 
 ionization energy of \ce{Ne+}, the deep $d$ orbitals can no longer neutralize 
 the incoming ion, which means that only the higher energy $s$ and $p$ electrons take 
-part, resulting in a higher average energy of the excited Auger electrons. 
+part, resulting in a higher average energy of the excited Auger electrons. For \ce{He^+} 
+on \ce{Cs}, there is an increased resonance between the energy released during the 
+neutralization and the surface plasmon excitation.
 Interesting here is also the low average yield value for \ce{Ne+} on \ce{K}. 
 This is due to the fact that the $3p$ orbitals of \ce{K} are just barely able 
 to neutralize the incoming ion, resulting in a large fraction of electrons in 
@@ -1272,17 +1273,17 @@ elements, so we can weigh the contribution of each orbital accordingly.
 \tikzset{every axis/.append style={font=\sffamily}} 
 \begin{figure}[ht] 
 \centering 
-\captionsetup{width=0.9\textwidth}
-\input{figures/quotas/versus_workfun.tex} 
-\caption{Calculated yields of all surfaces versus their work function. The 
+\captionsetup{width=\textwidth}
+\input{\figurepath/quotas/wf_baragiola.tex}
+\caption{(\textbf{a}) Calculated yields of all surfaces versus their work function. The 
 regular data, including our model for the plasmonic excitations, is shown in 
-blue. For comparison, we have also added the results without plasmonic effects 
-($\kappa_v = \kappa_s = 0$) in orange.} 
+red. For comparison, we have also added the results without plasmonic effects 
+($\kappa_v = \kappa_s = 0$) in blue. Calculated (\textbf{b}) and experimental (\textbf{c}) secondary electron yields compared to the fit of Baragiola et al.~\cite{Baragiola1979}. The experimental values are tabulated in Table~\ref{quotas:tab-metal_results}. For materials where we do not know the surface of the corresponding yield result, we have plotted one datapoint for each experimental work function value.} 
 \label{quotas:fig-versus_workfun} 
 \end{figure}
 }
  
-Finally, Fig.~\ref{quotas:fig-versus_workfun} plots the calculated yield for 
+Figure~\ref{quotas:fig-versus_workfun}(a) plots the calculated yield for 
 each surface versus its work function, for both the model with and without 
 plasmons. It is clear that the plasmons have a significant influence on the 
 yield for most materials. The work function also has an important influence on 
@@ -1292,7 +1293,15 @@ this is true for both the results with and without plasmons indicates that
 this is not simply a consequence of the electronic response of the material, 
 but most likely due to differences in the density of states of the various 
 surfaces. 
+
+Finally, we compare both our calculated yield spectra and workfunctions, as 
+well as the experimental results tabulated in 
+Table~\ref{quotas:tab-metal_results}, with an empirical fit from Baragiola 
+et al.~\cite{Baragiola1979} in Fig.~\ref{quotas:fig-versus_workfun}(b) and (c). It 
+is clear that for surfaces with higher work functions (left side of the figure), 
+our calculated yields lie consistently below Baragiola's fit. This is also the case for most experimental data, however, with the sole exception of tungsten, for which we observed a significant discrepancy between our calculated spectra and the experimental ones in Section~\ref{quotas:sec-results_metals}. For surfaces with lower work functions (right side of Figs.~\ref{quotas:fig-versus_workfun}(b-c)), the calculated yield can be significantly higher than the value corresponding to Baragiola's fit. This is another indication that our model overestimates the yield of these surfaces. Besides the results of Hagstrum, Baragiola et al. relied on the results of Oechsner~\cite{Oechsner1978} and Arifov~\cite{Arifov1969}. The former, however, used \ce{Ar^+} ions with a kinetic energy of 1~\si{\kilo\electronvolt}, which can significantly increase the electron yield compared to relatively slow ions (4-100~\si{\electronvolt}). As our model does not consider kinetic mechanisms in the calculation of the yield, this could be one explanation as to why our results lie below Baragiola's fit. Moreover, considering the importance of plasmon excitations, and the highly material dependent energy loss spectra in Fig.~\ref{quotas:fig-energy_loss}. It seems unlikely that an accurate electron yield can be obtained from a linear fit relying solely on the ionization energy $E_I$ and work function $\phi$.
  
+\clearpage
 \section{Conclusions and outlook} 
 
 Starting from Hagstrum's model, I have presented a method for calculating the 

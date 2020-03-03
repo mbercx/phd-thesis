@@ -1,0 +1,81 @@
+\pgfplotsset{compat=1.3, 
+wf_axis/.style={
+width=9cm,
+% xtick={1e-08,1e-07,1e-06,1e-05,0.0001,0.001,0.01},
+% xticklabels={\textsf{10\textsuperscript{1}}, 10\textsuperscript{2}, 10\textsuperscript{3}, 10\textsuperscript{4}, 10\textsuperscript{5}, 10\textsuperscript{6}, 10\textsuperscript{7}},
+% xmin=1e-8, xmax=1e-2,
+font=\sffamily,
+ylabel={Yield $\gamma$},
+every axis label/.append style={font=\sffamily}
+}}
+
+\begin{subfigure}[t]{0.48\textwidth}
+
+\begin{tikzpicture}[]
+
+\node[anchor=north west, font=\sffamily] at (-0.5, 5.1) {\textbf{a}};
+
+\begin{axis}[
+wf_axis,
+% height=7cm,
+xlabel={Work Function $\phi$},
+legend style={
+at={(0.95, 0.95)}, anchor=north east, draw=none, font=\footnotesize\sffamily
+},
+]
+
+\input{\figurepath/quotas/versus_workfun}
+
+\end{axis}
+\end{tikzpicture}
+
+\end{subfigure}
+~
+\begin{subfigure}[t]{0.48\textwidth}
+
+\begin{tikzpicture}[]
+
+% \definecolor{color0}{rgb}{0.72156862745098,0.12156862745098,0.12156862745098}
+% \definecolor{color1}{rgb}{0.137254901960784,0.407843137254902,0.635294117647059}
+
+\node[anchor=north west, font=\sffamily] at (-1.5, 2.6) {\textbf{b}};
+\node[anchor=north west, font=\sffamily] at (-1.5, 0) {\textbf{c}};
+
+\begin{groupplot}[
+wf_axis,
+height=4.5cm,
+group style={group size=1 by 2, vertical sep=1em},
+ymin=0.0, ymax=0.6,
+xmin=4, xmax=13,
+]
+\nextgroupplot[
+xticklabels={},
+% xticklabel pos=right,
+% yticklabel pos=right,
+% ylabel={$J_{sc} / J_{sc}^{SQ}$}
+legend style={
+at={(0, 0.95)}, anchor=north west, draw=none, fill=none, font=\footnotesize\sffamily
+},
+]
+\input{\figurepath/quotas/baragiola_calc}
+
+\nextgroupplot[
+xlabel={0.78 $E_I$ - 2 $\phi$},
+% ymin=0, ymax=1.2, 
+% yticklabel pos=right,
+legend style={
+at={(0, 0.95)}, anchor=north west, draw=none, fill=none, 
+font=\footnotesize\sffamily, legend columns=5, 
+/tikz/column 2/.style={
+column sep=5pt},
+},
+% /tikz/column 3/.style={
+% column sep=5pt},
+% },
+]
+\input{\figurepath/quotas/baragiola_exp}
+
+\end{groupplot}
+\end{tikzpicture}
+
+\end{subfigure}

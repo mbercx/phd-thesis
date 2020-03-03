@@ -6,3 +6,4 @@ The Journal of Chemical Physics = J. Chem. Phys.
 Energy {\&} Environmental Science = Energy Environ. Sci
 Applied Sciences = Appl. Sci.
 Nature Reviews Chemistry = Nat. Rev. Chem.
+Energy Strategy Reviews = Energy Strategy Rev.

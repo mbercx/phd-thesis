@@ -63,7 +63,22 @@ percentage of the world's renewable energy supply.
 Figure~\ref{slme:fig-pv_evo} shows the results of these efforts. We can see 
 that the PV market has increased significantly over the past decade, now 
 contributing 5.9\% of the total global (grid-connected) electrical energy production. 
+An important caveat here is that the production and recycling of solar modules 
+also requires energy, and has an environmental impact. With regards to the 
+production, Bhandari et al.~\cite{Bhandari2015} report an energy payback 
+time (EPBT) of 1 to 4.1 years depending on the type of module. Considering 
+a lifetime of 25 years for the average solar cell, efficient end-of-life (EOL) 
+strategies will have to developed to ensure the sustainability of photovoltaic 
+devices~\cite{Chowdhury2020}.
  
+\begin{figure}[hb]  
+\centering 
+\includegraphics[width=0.9\textwidth]{\figurepath/slme/pv-evo.png} 
+\caption{Renewable electricity as a percentage of the total installed global 
+electricity capacity. Note that the PV numbers here are for grid-connected production only, represented by the index~1. CSP stands for concentrated solar power. Taken from~\cite{NREL2017}.}
+\label{slme:fig-pv_evo}  
+\end{figure}  
+
 Although the growth of the PV market is promising, continued efforts must be 
 made to increase the share of renewable energy in the global energy 
 production. In order to make solar cells more economically competitive with 
@@ -71,14 +86,6 @@ conventional sources of electricity, new materials have to be found that
 either increase the efficiency or lower the cost of PV devices. In this 
 chapter, we investigate a selection metric that determines the potential of a 
 material for solar cell applications. 
- 
-\begin{figure}[hb]  
-\centering 
-\includegraphics[width=\textwidth]{\figurepath/slme/pv-evo.png} 
-\caption{Renewable electricity as a percentage of the total installed global 
-electricity capacity. Note that the PV numbers here are for grid-connected production only, represented by the index~1. CSP stands for concentrated solar power. Taken from~\cite{NREL2017}.} 
-\label{slme:fig-pv_evo}  
-\end{figure} 
 
 %The Shockley-Queisser limit~\cite{Shockley1961} is one of the most well-known 
 % metrics to determine the maximum efficiency an absorber material can produce 
@@ -97,7 +104,6 @@ electricity capacity. Note that the PV numbers here are for grid-connected produ
 % materials with an SLME above the Shockley-Queisser limit, and identified that 
 % this is due to the lower recombination current obtained for the material at 
 % lower thicknesses. 
- 
  
 \section{Solar Cell Basics} \label{slme:sec-basics} 
  
@@ -141,7 +147,7 @@ where $\theta_z$ is the zenith angle of the incoming
 light~(Fig.~\ref{slme:fig-Airmass}). The use of these standard spectra allows 
 the performance of devices to be judged fairly, by exposing them to the same 
 agreed-upon spectrum. In this work, we use the AM 1.5G irradiance spectrum for 
-all of our calculations, where `G' stands for global tilt. The global tilt 
+all of our calculations, which is a good representation of the illumination conditions on a tilted flat PV array. The `G' stands for global tilt and
 refers to the angle between the normal of the surface and the direction of the 
 incoming sunlight. 
  
@@ -792,7 +798,7 @@ structure of ternary \mbox{I-III-VI$_2$} compounds.}
  
 \begin{table}[ht] 
 \centering 
-\renewcommand{\arraystretch}{1.3} 
+\renewcommand{\arraystretch}{1.2} 
 \caption{Calculated lattice parameters of the \mbox{CuAu-like} (CA) and chalcopyrite (CH) 
 phase of the considered compounds, compared with the experimental results from Hahn et al.~\cite{Hahn1953}.} 
 \label{slme:tab-lattice} 
@@ -847,9 +853,9 @@ ratio of the CA and CH phase, we find a large difference in the $c/a$ ratio
 for the \mbox{\ce{AgGa-VI2}} compounds. Next, Table~\ref{slme:tab-formation} 
 presents the difference in formation energy for the selected list of 
 compounds. Our first-principles results for \ce{CuInS2}, \ce{CuInSe2} and 
-\ce{CuGaSe2} correspond well with those of Su et al.~\cite{Su2000}. Similar to 
+\ce{CuGaSe2} correspond within 1~\si{\milli\electronvolt} with those of Su et al.~\cite{Su1999}. Similar to 
 the results for the $c/a$ ratio, the choice of cations has a large influence 
-on the difference in formation energy. From Table~\ref{slme:tab-formation}, it is
+on the difference in formation energy. From Table~\ref{slme:tab-formation}, it is 
 clear that substituting either In by Ga or Cu by Ag increases the difference 
 in formation energy of the two phases. This means that if we consider the 
 existence of the CA phase to be controlled by bulk thermodynamics, we expect 
@@ -857,24 +863,25 @@ CA domains to be common in the \mbox{\ce{CuIn-VI2}} compounds, and less likely
 in the \mbox{\ce{AgGa-VI2}} ones.  
 
 \begin{table}[ht] 
-\centering 
+\centering
+\sffamily
 \captionsetup{width=0.8\textwidth}
-\renewcommand{\arraystretch}{1.2} 
+\renewcommand{\arraystretch}{1.1} 
 \caption{\label{slme:tab-formation} Difference in formation energy between the 
 chalcopyrite and CuAu-like structure of the considered ternary I-III-VI$_2$ 
-compounds.} 
-\begin{tabular}{l@{\hskip 2 em}S[table-format=1.1]} 
-Material & {$\Delta E_f(\si{\milli\electronvolt}$/atom)} \\\hline 
-AgGaSe$_2$ & 31.3 \\ 
-AgGaTe$_2$ & 27.8 \\ 
-AgInS$_2$ & 8.9 \\ 
-AgInTe$_2$ & 8.5 \\ 
-CuGaS$_2$ & 8.8 \\ 
-CuGaSe$_2$ & 9.9 \\ 
-CuGaTe$_2$ & 7.0 \\ 
-CuInS$_2$ & 1.6 \\ 
-CuInSe$_2$ & 2.2 \\ 
-CuInTe$_2$ & 2.9 \\ \hline 
+compounds. All energy differences are expressed in \si{\milli\electronvolt}/atom. The results of Su et al.~\cite{Su1999} for \ce{CuInS2}, \ce{CuInSe2} and \ce{CuGaSe2} are also tabulated for comparison.}
+\begin{tabular}{ l @{\hskip 2 em} S[table-format=1.1] @{\hskip 2 em} c}
+Material & {$\Delta E_f$} & {$\Delta E_f$}~\cite{Su1999} \\\hline 
+AgGaSe$_2$ & 31.3 & - \\
+AgGaTe$_2$ & 27.8 & - \\
+AgInS$_2$ & 8.9 & - \\
+AgInTe$_2$ & 8.5 & - \\
+CuGaS$_2$ & 8.8 & - \\
+CuGaSe$_2$ & 9.9 & 9 \\
+CuGaTe$_2$ & 7.0 & - \\
+CuInS$_2$ & 1.6 & 2 \\
+CuInSe$_2$ & 2.2 & 2 \\
+CuInTe$_2$ & 2.9 & - \\\hline 
 \end{tabular} 
 \end{table} 
 
@@ -894,18 +901,18 @@ experimental band gaps of the CH phase of the compounds.
 Although the G$_0$W$_0$@HSE06 band gaps correspond quite well to the 
 experimental values for some compounds, there are clear discrepancies for 
 others. This could be a result of the sensitivity of chalcogenide band gaps to 
-the anion displacement $u$. As an example of the dielectric function, we show 
-the result for \mbox{CA-CuInS$_2$} in Fig.~\ref{slme:fig-diel_CuInS2}. The 
+the anion displacement $u$~\cite{Jaffe1983}. As an example of the dielectric function, we show 
+the result for \mbox{CA-CuInSe$_2$} in Fig.~\ref{slme:fig-diel_CuInSe2}. The 
 results for the other compounds can be found in the 
 \href{https://github.com/mbercx/phd-thesis/tree/master/jupyter/slme\#absorber-layer-efficiency}{Jupyter notebooks corresponding to this section}. 
- 
+
 \begin{figure}[ht] 
 \centering 
 \captionsetup{width=0.8\textwidth}
-\includegraphics[width=0.5\textwidth]{\figurepath/slme/diel_CuInS2.png} 
+\input{\figurepath/slme/diel_CuInSe2.tex} 
 \caption{Real (upper figure) and imaginary (lower figure) parts of the 
-HSE06 calculated dielectric function of \mbox{CA-CuInS$_2$}.} 
-\label{slme:fig-diel_CuInS2} 
+HSE06 calculated dielectric function of \mbox{CA-CuInSe$_2$}.} 
+\label{slme:fig-diel_CuInSe2} 
 \end{figure} 
 
 \begin{table}[ht] 
@@ -962,8 +969,8 @@ from the presence of the CA phase directly through the optical properties of
 the material. 
 
 \begin{wraptable}{r}{0.5\textwidth}
-\centering \vspace*{-1em}
-\captionsetup{width=0.45\textwidth}
+\centering
+\captionsetup{width=0.9\textwidth}
 \renewcommand{\arraystretch}{1.2} 
 \caption{Calculated SLME for both the \mbox{CuAu-like} and 
 chalcopyrite~\cite{Yu2012} structures at $L=500$~\si{\nano\meter}. The SQ limit of the corresponding band 
@@ -986,16 +993,14 @@ CuInTe$_2$ & 27.9 & 30.9 & 28.0 \\ \hline
 \end{tabular} 
 \end{wraptable}
 
-  
-Fig.~\ref{slme:fig-SLME} shows the SLME of the CA phase of the various 
-compounds versus their band gap, as well as the SQ limit. First, note 
+Figure~\ref{slme:fig-SLME_CuAu_L} shows the SLME as a function of the film thickness for the CA phase of the I-III-VI$_2$ compounds. It is clear that for most 
+compounds, the efficiency of the CA phase rises quickly for an increasing 
+thickness. In fact, for $L=500~\si{\nano\meter}$, the SLME is already within 5-6\% for all compounds save \ce{CuGaS_2}, which demonstrates the potential of the CA phase materials as 
+absorber layers in thin-film solar cells. Fig.~\ref{slme:fig-SLME} plots the SLME for $L=500~\si{\nano\meter}$ of the CA phase of the various 
+compounds versus their band gap, as well as the SQ limit. Observe 
 that the SLME value for \mbox{CA-CuInSe$_2$} is higher than the 
 corresponding SQ limit. In Section~\ref{slme:sec-analysis} I return to this 
-result and discuss it in detail. The SLME is plotted as a function of the film 
-thickness in Fig.~\ref{slme:fig-SLME_CuAu_L}. It is clear that for most 
-compounds, the efficiency of the CA phase rises quickly for an increasing 
-thickness, which demonstrates the potential of the CA phase compounds as 
-absorber layers in thin-film solar cells. Finally, note that the influence on the efficiency of a 
+result and discuss it in detail. Finally, note that the influence on the efficiency of a 
 discrepancy between the calculated and experimental band gaps depends on the band 
 gap of the compound.
 Looking at Fig.~\ref{slme:fig-SLME}, one can expect the 
@@ -1003,6 +1008,15 @@ influence of the band gap to be small in the 1-1.5 \si{\electronvolt}
 interval. In case the calculated and experimental band gap are not in this 
 region, however, any discrepancy between the calculated and experimental band 
 gap is likely to significantly influence the SLME. 
+
+\begin{figure}[ht] 
+\centering 
+\captionsetup{width=0.9\textwidth}
+\includegraphics[width=0.6\textwidth]{\figurepath/slme/CuAu_thickness.png} 
+\caption{Calculated maximum efficiencies of the CuAu-like phase materials as 
+a function of film thickness.} 
+\label{slme:fig-SLME_CuAu_L} 
+\end{figure} 
 
 \begin{figure}[ht]
 \centering
@@ -1013,15 +1027,6 @@ efficiencies were calculated using thickness $L = 500$ \si{\nano\meter} and
 device temperature $T = 300$~\si{\kelvin}. The black line represents the 
 Shockley-Queisser limit.} 
 \label{slme:fig-SLME} 
-\end{figure} 
-
-\begin{figure}[ht] 
-\centering 
-\captionsetup{width=0.9\textwidth}
-\includegraphics[width=0.6\textwidth]{\figurepath/slme/CuAu_thickness.png} 
-\caption{Calculated maximum efficiencies of the CuAu-like phase materials as 
-a function of film thickness.} 
-\label{slme:fig-SLME_CuAu_L} 
 \end{figure} 
  
 \section{SLME Analysis} \label{slme:sec-analysis} 
