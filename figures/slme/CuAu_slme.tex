@@ -1,0 +1,125 @@
+% This file was created by tikzplotlib v0.9.1.
+\tikzstyle{compound}=[
+font=\tiny, inner sep=2,
+]
+\tikzstyle{datapoint}=[
+inner sep=2,
+]
+
+\begin{tikzpicture}[]
+
+\begin{groupplot}[
+group style={group size=2 by 1, horizontal sep=1em},
+]
+
+\nextgroupplot[
+width=0.49\textwidth, height=6cm,
+tick pos=left,
+xlabel={Thickness ($\mu$m)},
+xmin=0, xmax=3,
+xtick style={color=black},
+ylabel={SLME (\%)},
+ymin=5, ymax=35.5,
+ytick style={color=black},
+legend style={
+at={(1, 0)}, anchor=south east, draw=none, fill=none, 
+font=\fontsize{7.5}{7}\sffamily, legend columns=2, 
+/tikz/column 2/.style={
+column sep=5pt},
+},
+]
+\input{\figurepath/slme/CuAu_thickness_data.tex}
+\node[anchor=south west, font=\sffamily, inner sep=5] at (axis cs:0, 31) {\textbf{a}};
+
+\nextgroupplot[
+width=0.49\textwidth, height=6cm,
+yticklabel pos=right,
+x grid style={white!69.0196078431373!black},
+xlabel={\(\displaystyle E_g\) (eV)},
+xmin=0.3, xmax=3,
+xtick style={color=black},
+y grid style={white!69.0196078431373!black},
+ylabel={SLME (\%)},
+ymin=5, ymax=35.5,
+ytick style={color=black}
+]
+
+% Chalcopyrite
+\node [datapoint] (AgGaSe2-chalco) at (axis cs:1.80, 15.8) {};
+\node [datapoint] (AgGaTe2-chalco) at (axis cs:1.54, 21.8) {};
+\node [datapoint] (AgInS2-chalco) at (axis cs: 1.74, 19.7) {};
+\node [datapoint] (AgInTe2-chalco) at (axis cs: 1.23, 26.4) {};
+\node [datapoint] (CuGaS2-chalco) at (axis cs: 1.99, 16.5) {};
+\node [datapoint] (CuGaSe2-chalco) at (axis cs: 1.65, 26.6) {};
+\node [datapoint] (CuGaTe2-chalco) at (axis cs: 1.47, 24.8) {};
+\node [datapoint] (CuInS2-chalco) at (axis cs: 1.54, 23.1) {};
+\node [datapoint] (CuInSe2-chalco) at (axis cs: 1.33, 22.1) {};
+\node [datapoint] (CuInTe2-chalco) at (axis cs: 1.03, 28.0) {};
+
+% CuAu-like
+\node [datapoint] (AgGaSe2-cuau) at (axis cs:1.41, 27.0) {};
+\node [datapoint] (AgGaTe2-cuau) at (axis cs:0.95, 28.9) {};
+\node [datapoint] (AgInS2-cuau) at (axis cs:1.69, 23.1) {};
+\node [datapoint] (AgInTe2-cuau) at (axis cs:0.92, 28.2) {};
+\node [datapoint] (CuGaS2-cuau) at (axis cs:1.94, 16.4) {};
+\node [datapoint] (CuGaSe2-cuau) at (axis cs:1.19, 27.8) {};
+\node [datapoint] (CuGaTe2-cuau) at (axis cs:1.06, 28.9) {};
+\node [datapoint] (CuInS2-cuau) at (axis cs:1.13, 29.0) {};
+\node [datapoint] (CuInSe2-cuau) at (axis cs:0.58, 20.7) {};
+\node [datapoint] (CuInTe2-cuau) at (axis cs:0.94, 27.9) {};
+
+% Annotation
+\node (AgGaSe2-1) [compound] at (axis cs:1.7, 12) {\ce{AgGaSe2}};
+\draw [] (AgGaSe2-1) -- (AgGaSe2-chalco);
+\node (AgGaSe2-2) [compound] at (axis cs:2, 32) {\ce{AgGaSe2}};
+\draw [] (AgGaSe2-2) -- (AgGaSe2-cuau);
+
+\node (AgGaTe2-1) [compound] at (axis cs:1.3, 18) {\ce{AgGaTe2}};
+\draw [] (AgGaTe2-1) -- (AgGaTe2-chalco);
+\node (AgGaTe2-2) [compound] at (axis cs:0.6, 30) {\ce{AgGaTe2}};
+\draw [] (AgGaTe2-2) -- (AgGaTe2-cuau);
+
+\node (AgInS2-1) [compound] at (axis cs:1.5, 15) {\ce{AgInS2}};
+\draw [] (AgInS2-1) -- (AgInS2-chalco);
+% \node (AgInS2-2) [compound] at (axis cs:2.2, 22) {\ce{AgInS2}};
+\draw [] (AgInS2-1) -- (AgInS2-cuau);
+
+\node (AgInTe2-1) [compound] at (axis cs:1.05, 22) {\ce{AgInTe2}};
+\draw [] (AgInTe2-1) -- (AgInTe2-chalco);
+\node (AgInTe2-2) [compound] at (axis cs:0.55, 28) {\ce{AgInTe2}};
+\draw [] (AgInTe2-2) -- (AgInTe2-cuau);
+
+\node (CuGaS2-1) [compound] at (axis cs:2.1, 13) {\ce{CuGaS2}};
+\draw [] (CuGaS2-1) -- (CuGaS2-chalco);
+% \node (CuGaS2-2) [compound] at (axis cs:2.5, 28) {\ce{CuGaS2}};
+\draw [] (CuGaS2-1) -- (CuGaS2-cuau);
+ 
+% \node (CuGaSe2-1) [compound] at (axis cs:2.2, 29) {\ce{CuGaSe2}};
+\node (CuGaSe2-2) [compound] at (axis cs:1.35, 31) {\ce{CuGaSe2}};
+\draw [] (CuGaSe2-2) -- (CuGaSe2-chalco);
+\draw [] (CuGaSe2-2) -- (CuGaSe2-cuau);
+
+\node (CuGaTe2-1) [compound] at (axis cs:2.2, 29) {\ce{CuGaTe2}};
+\node (CuGaTe2-2) [compound] at (axis cs:0.65, 32) {\ce{CuGaTe2}};
+\draw [] (CuGaTe2-1) -- (CuGaTe2-chalco);
+\draw [] (CuGaTe2-2) -- (CuGaTe2-cuau);
+
+\node (CuInS2-1) [compound] at (axis cs:2.15, 27) {\ce{CuInS2}};
+\node (CuInS2-2) [compound] at (axis cs:0.7, 34) {\ce{CuInS2}};
+\draw [] (CuInS2-1) -- (CuInS2-chalco);
+\draw [] (CuInS2-2) -- (CuInS2-cuau);
+
+\node (CuInSe2) [compound] at (axis cs:0.9, 16) {\ce{CuInSe2}};
+\draw [] (CuInSe2) -- (CuInSe2-cuau);
+\draw [] (CuInSe2) -- (CuInSe2-chalco);
+
+\node (CuInTe2-1) [compound] at (axis cs:0.95, 25) {\ce{CuInTe2}};
+% \node (CuInTe2-2) [compound] at (axis cs:0.7, 34) {\ce{CuInTe2}};
+\draw [] (CuInTe2-1) -- (CuInTe2-chalco);
+\draw [] (CuInTe2-1) -- (CuInTe2-cuau);
+
+\input{\figurepath/slme/slme_data.tex}
+\node[anchor=south east, font=\sffamily, inner sep=5] at (axis cs:3, 31) {\textbf{b}};
+
+\end{groupplot}
+\end{tikzpicture}
