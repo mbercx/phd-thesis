@@ -73,6 +73,8 @@ firstinits=true,
 \usepackage{changepage} % Make local changes to page layout, e.g. wider margins
 \usepackage{afterpage} % Make empty pages
 \usepackage{pdfcomment}
+\usepackage{lipsum}
+\usepackage{qrcode} % Generate QR codes for jupyter links in print version.
 
 \usepackage{amsmath,amssymb}
 \usepackage{dcolumn}
@@ -84,11 +86,15 @@ firstinits=true,
 % Table options
 \usepackage{dcolumn}% Align table columns on decimal point
 \usepackage{booktabs}
-\usepackage[tableposition=top]{caption}
+\usepackage[font=sf]{floatrow}
+\floatsetup[table]{capposition=top}
+\usepackage[font=sf]{caption}
 \usepackage[bottom]{footmisc}
 \usepackage{multirow}
 
-\usepackage{float}
+% \usepackage{float}
+
+\usepackage{rotating}
 \usepackage{subcaption}
 \usepackage{wrapfig}
 \usepackage{mdframed}
@@ -105,6 +111,16 @@ firstinits=true,
 \fancyhead[RO]{\thepage}
 \fancyhead[LE]{\thepage}
 }
+
+% \pagestyle{fancy}
+% \fancyhf{}
+% \fancyhead[lo,le]{\nouppercase{\rightmark}}
+% \fancyfoot[LE,RO]{\thepage}
+
+% \fancypagestyle{plain}{% % <-- this is new
+%   \fancyhf{} 
+%   \fancyfoot[LE,RO]{\thepage} % same placement as with page style "fancy"
+%   \renewcommand{\headrulewidth}{0pt}}
 
 % Chapter header formatting
 \usepackage{titlesec}
@@ -173,7 +189,8 @@ fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\definecolor{link}{RGB}{137, 5, 47}
+% \definecolor{link}{RGB}{137, 5, 47}
+\definecolor{link}{RGB}{0, 0, 0}
 
 % Links
 \usepackage{hyperref}
@@ -182,7 +199,8 @@ fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small]
     citecolor=black,
     linkcolor=black,
     filecolor=magenta,      
-    urlcolor=blue,
+%     urlcolor=blue,
+    urlcolor=black,
 }
 
 %%%%% Commands %%%%%
@@ -208,16 +226,18 @@ fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small]
 % Commands for fancy section headers with symbols that links to Jupyter notebooks/the appendix with the corresponding computational details.
 \newcommand{\resultsection}[3] {
 \pagebreak[3]
-\begin{minipage}{0.92\textwidth}
+\begin{minipage}{0.87\textwidth}
 \section{#1}
 \end{minipage}
-\begin{minipage}{0.07\textwidth}
+\begin{minipage}{0.12\textwidth}
 \textcolor{white}{\rule{1em}{0.1em}}
-\href{#2}{\includegraphics[width=3em]{figures/jupyter.png}}
+% \href{#2}{\includegraphics[width=3em]{figures/jupyter.png}}
+\qrcode[height=\textwidth]{#2}
 \end{minipage}\vspace*{0.5em}
 \nopagebreak[4]
 }
  
+%% Digital version
 \newcommand{\resultsubsection}[3] {%
 \pagebreak[3]
 \begin{minipage}{0.855\textwidth}
@@ -253,6 +273,15 @@ fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small]
 }}
 \vspace*{-0.5em}
 \nopagebreak[4]
+}
+
+%% Print version -> Uncomment to override previous
+\renewcommand{\resultsubsection}[3] {
+\subsection{#1}
+\begin{wrapfigure}[4]{r}{0.10\textwidth}
+\vspace{-2.4em}
+\qrcode[height=\textwidth]{#2}
+\end{wrapfigure}
 }
 
 % DFT shortcuts for consistent references and links
