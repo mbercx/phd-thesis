@@ -504,7 +504,7 @@ one VASP calculation. As these \code{Firework}s are largely just a
 collection of \code{Firetask}s, I won't describe them separately. It should be 
 clear from the description of the workflow what each \code{Firework} does. 
  
-\resultsubsection{Optical properties \label{automation:sec-optics}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation\#optical-properties}{} 
+\resultsubsection{Optical properties \label{automation:sec-optics}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation/README.md\#optical-properties}{} 
  
 Section \ref{dft:sec-linear} describes the theoretical framework for 
 calculating the electromagnetic response of a material. Here I explain the 
@@ -551,7 +551,7 @@ Eq.~(\ref{slme:eq-absorption}). In effect, this reduces the band gap of the
 material, which has a large influence on the calculated efficiency described 
 in Section~\ref{slme:sec-efficiency}. 
  
-\resultsubsection{Configurations \label{automation:sec-configurations}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation\#configurations}{} 
+\resultsubsection{Configurations \label{automation:sec-configurations}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation/README.md\#configurations}{} 
  
 For various research questions, it is important to be able to investigate a 
 whole range of configurations for a specific property. For example, when 
@@ -575,8 +575,14 @@ subsequently determines the total energy based on a static calculation.
 configurations workflow.} 
 \end{figure} 
  
-\resultsubsection{Kinetic barriers - dimer workflow \label{automation:sec-dimer}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation\#kinetic-barriers---dimer-workflow}{}  
+\resultsubsection{Kinetic barriers - dimer workflow \label{automation:sec-dimer}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation/README.md\#kinetic-barriers---dimer-workflow}{}  
  
+\begin{figure}[ht!] 
+\centering 
+\input{\figurepath/automation/dimer_wf.tex} 
+\caption{\label{automation:fig-dimer} Flowchart for the dimer workflow.} 
+\end{figure} 
+
 As explained in Section~\ref{dft:sec-transition}, investigating a transition 
 from one state of a system to another requires the calculation of both 
 reaction energy and the kinetic barrier. After optimizing the geometry of two 
@@ -586,12 +592,6 @@ reaction is favorable, i.e. its reaction energy is found to be negative, we
 still have to make sure that the transition is kinetically feasible. One 
 method for doing this is calculating the kinetic barrier directly using the 
 \link{dft:sec-neb}{nudged elastic band method}. 
- 
-\begin{figure}[ht!] 
-\centering 
-\input{\figurepath/automation/dimer_wf.tex} 
-\caption{\label{automation:fig-dimer} Flowchart for the dimer workflow.} 
-\end{figure} 
  
 The investigation of the stability of the oxygen framework presented in 
 Section~\ref{batteries:sec-dimer} requires the thermodynamics and kinetics of 
@@ -608,7 +608,80 @@ initial, unperturbed structure in order to obtain the reaction energy. If this
 reaction energy is smaller than a certain tolerance\footnote{Note that the reaction energy is defined as the final energy minus the initial energy. Hence, a transition with a negative reaction energy is thermodynamically favorable, i.e. setting the \code{tolerance} to zero only calculates the kinetic barrier for thermodynamically favorable dimers.}, the kinetic barrier is 
 calculated using a \link{dft:sec-neb}{nudged elastic band calculation}. 
 
-\resultsubsection{Landscapes \label{automation:sec-landscape}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation\#landscapes}{} 
+\resultsubsection{Surface properties \label{automation:sec-surface}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation/README.md\#surface-properties}{}  
+ 
+The calculation of the secondary electron emission in the QUOTAS project 
+(Chapter \ref{chapter:quotas}) requires the DOS of the surface states, as well 
+as the surface work function. However, because of the three dimensional 
+periodic boundary conditions in VASP, simulating an isolated surface 
+is not possible. The usual approach for dealing with this issue is by setting 
+up a so-called \text{slab} geometry, where we introduce a layer of vacuum to 
+the unit cell. In effect, this means that we have \textit{two} opposite 
+surfaces in our unit cell, hence the term slab is used instead of surface. 
+Moreover, the use of periodic boundary conditions means that we have an 
+infinite amount of slabs, but in case the vacuum is chosen to be sufficiently 
+thick, the interaction between the surfaces of the slabs is negligible, and we 
+can reasonably simulate a surface for the calculation or surface energies, 
+work functions and other properties.  
+
+Let's describe the process of constructing such a slab unit cell in more 
+detail. Usually, the surface is defined based on its Miller indices in the 
+conventional unit cell of the bulk structure. However, for many structures, 
+there are several possible surfaces corresponding to a set of Miller indices, 
+depending on where we apply the cleavage plane in the structure. This leads to 
+several possible terminations for each set of Miller indices. It is good 
+practise to consider all terminations for each surface and calculate the 
+surface energy to determine the most stable surface, and continue further 
+calculations with this termination. Note that this approach does not consider 
+the possibility of surface reconstruction. This is a difficult problem to 
+solve, as probing all possible surface reconstructions is an insurmountable 
+task. Surface reconstruction is especially common for polar surfaces, where 
+the ionic nature of the bonds in the structure results in a dipole 
+moment across the surface. Tasker~\cite{Tasker1979} distinguished three types 
+of ionic surfaces: 
+\begin{itemize} 
+\item Type I: Individual layers are charge neutral, and hence there is no 
+surface dipole. 
+\item Type II: Individual layers are charged, but groups of layers can be 
+chosen that are charge neutral and non-polar. 
+\item Type III: Groups of layers have a net dipole. 
+\end{itemize} 
+For the work presented in this thesis, I have only performed calculations on 
+elemental surfaces, which are always of Tasker Type I and hence non-polar. 
+ 
+\begin{figure}[!ht] 
+\input{\figurepath/automation/quotas_wf.tex} 
+\caption{\label{automation:fig-quotas} Flowchart for the QUOTAS workflow.} 
+\end{figure} 
+
+Once the surface and its termination have been decided, there are still 
+several elements to consider before finalizing the unit cell for the 
+calculations. The first thing to specify is the thickness of the slab, i.e. 
+the amount of atomic layers, which should be large enough that the center of 
+the slab behaves like the bulk of the material under investigation. Second, 
+the thickness of the vacuum layer, i.e. the distance between two slabs in the 
+periodic boundary conditions, must be set by suitably adjusting the unit cell 
+and atom coordinates. In order to make sure both are sufficiently thick, 
+convergence of the property of interest versus both slab and vacuum thickness 
+should be checked. 
+ 
+The model for secondary electron emission described in 
+Section~\ref{quotas:sec-see} requires the density of states and the vacuum level. 
+Starting from the bulk structure, the desired surface Miller indices need to 
+be provided, as well as the \code{slab\_settings}, e.g. the number of 
+\code{free\_layers} on each side of the slab. Once the geometry of the bulk 
+structure has been fully optimized, the algorithm continues with calculating 
+the dielectric tensor using a \code{OpticsFW}. Simultaneously, all 
+terminations of the requested surfaces are generated, and a DOS workflow is 
+initialized for each resulting slab. Each of these workflows starts with an 
+optimization that \textit{relaxes} the surface atoms, depending on how many 
+free layers are specified. Finally, the workflow calculates the slab DOS in 
+two steps: one run with a sparse k-point mesh in order to obtain a reasonable 
+charge density, and one with a dense k-point mesh in order to obtain a precise 
+DOS and local potential. 
+ 
+
+\resultsubsection{Landscapes \label{automation:sec-landscape}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation/README.md\#landscapes}{} 
 
 The energy landscapes presented in Section~\ref{batteries:sec-landscape} require 
 knowledge about the energy of the anion-cation system for a range of cation 
@@ -637,78 +710,6 @@ each segment of the landscape is then mapped back onto the landscape using the
 \code{LandscapeAnalyzer} class, and subsequently tied together. Note that a single 
 landscape can consist of hundreds or even thousands of grid points, which makes 
 its calculation impractical without the use of a workflow.
-
-\resultsubsection{Surface properties \label{automation:sec-surface}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/automation\#surface-properties}{}  
- 
-The calculation of the secondary electron emission in the QUOTAS project 
-(Chapter \ref{chapter:quotas}) requires the DOS of the surface states, as well 
-as the surface work function. However, because of the three dimensional 
-periodic boundary conditions in VASP, simulating an isolated surface 
-is not possible. The usual approach for dealing with this issue is by setting 
-up a so-called \text{slab} geometry, where we introduce a layer of vacuum to 
-the unit cell. In effect, this means that we have \textit{two} opposite 
-surfaces in our unit cell, hence the term slab is used instead of surface. 
-Moreover, the use of periodic boundary conditions means that we have an 
-infinite amount of slabs, but in case the vacuum is chosen to be sufficiently 
-thick, the interaction between the surfaces of the slabs is negligible, and we 
-can reasonably simulate a surface for the calculation or surface energies, 
-work functions and other properties.  
- 
-Let's describe the process of constructing such a slab unit cell in more 
-detail. Usually, the surface is defined based on its Miller indices in the 
-conventional unit cell of the bulk structure. However, for many structures, 
-there are several possible surfaces corresponding to a set of Miller indices, 
-depending on where we apply the cleavage plane in the structure. This leads to 
-several possible terminations for each set of Miller indices. It is good 
-practise to consider all terminations for each surface and calculate the 
-surface energy to determine the most stable surface, and continue further 
-calculations with this termination. Note that this approach does not consider 
-the possibility of surface reconstruction. This is a difficult problem to 
-solve, as probing all possible surface reconstructions is an insurmountable 
-task. Surface reconstruction is especially common for polar surfaces, where 
-the ionic nature of the bonds in the structure results in a dipole 
-moment across the surface. Tasker~\cite{Tasker1979} distinguished three types 
-of ionic surfaces: 
-\begin{itemize} 
-\item Type I: Individual layers are charge neutral, and hence there is no 
-surface dipole. 
-\item Type II: Individual layers are charged, but groups of layers can be 
-chosen that are charge neutral and non-polar. 
-\item Type III: Groups of layers have a net dipole. 
-\end{itemize} 
-For the work presented in this thesis, I have only performed calculations on 
-elemental surfaces, which are always of Tasker Type I and hence non-polar. 
- 
-Once the surface and its termination have been decided, there are still 
-several elements to consider before finalizing the unit cell for the 
-calculations. The first thing to specify is the thickness of the slab, i.e. 
-the amount of atomic layers, which should be large enough that the center of 
-the slab behaves like the bulk of the material under investigation. Second, 
-the thickness of the vacuum layer, i.e. the distance between two slabs in the 
-periodic boundary conditions, must be set by suitably adjusting the unit cell 
-and atom coordinates. In order to make sure both are sufficiently thick, 
-convergence of the property of interest versus both slab and vacuum thickness 
-should be checked. 
- 
-The model for secondary electron emission described in 
-Section~\ref{quotas:sec-see} requires the density of states and the vacuum level. 
-Starting from the bulk structure, the desired surface Miller indices need to 
-be provided, as well as the \code{slab\_settings}, e.g. the number of 
-\code{free\_layers} on each side of the slab. Once the geometry of the bulk 
-structure has been fully optimized, the algorithm continues with calculating 
-the dielectric tensor using a \code{OpticsFW}. Simultaneously, all 
-terminations of the requested surfaces are generated, and a DOS workflow is 
-initialized for each resulting slab. Each of these workflows starts with an 
-optimization that \textit{relaxes} the surface atoms, depending on how many 
-free layers are specified. Finally, the workflow calculates the slab DOS in 
-two steps: one run with a sparse k-point mesh in order to obtain a reasonable 
-charge density, and one with a dense k-point mesh in order to obtain a precise 
-DOS and local potential. 
- 
-\begin{figure}[ht] 
-\input{\figurepath/automation/quotas_wf.tex} 
-\caption{\label{automation:fig-quotas} Flowchart for the QUOTAS workflow.} 
-\end{figure} 
  
 \section{Computational Details} \label{automation:sec-computational}
  
