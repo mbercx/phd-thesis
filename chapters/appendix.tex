@@ -5,30 +5,30 @@
 All calculations in this thesis were performed in the \dft{DFT}{} framework, 
 as implemented in the \dft{VASP}{}, save for the calculation of the energy 
 landscapes presented in Section~\ref{batteries:sec-landscape}. This appendix starts with 
-a brief description of the VASP software package, as well as its input and 
+a brief description of the \gls{VASP} software package, as well as its input and 
 output files (Sec.~\ref{appendix:sec-files}) and most important input 
 parameters (Sec.~\ref{appendix:sec-input}). Next, the chapter details the 
 settings used to obtain all of the results presented in this thesis, organised 
 per chapter and section in the order they are presented. Finally, there are 
 still two brief sections, one on parallelization tests 
 (Sec.~\ref{appendix:sec-parallel}) and one on an issue with the way 
-VASP calculates the real part of the dielectric tensor using 
+\gls{VASP} calculates the real part of the dielectric tensor using 
 the \dft{Kramers-Kronig}{} relation.
 
 \section{Vienna Ab initio Simulation Package} \label{appendix:sec-VASP} 
  
-In order to solve the many-body problem using DFT, we need a software package 
+In order to solve the many-body problem using \gls{DFT}, we need a software package 
 that is able to implement the theory numerically on a computer cluster. 
 Currently, there is a wide selection of such packages available to 
 computational scientists, each with their respective advantages and 
 disadvantages. 
  
-VASP is particularly suited for materials science, relying on an unbiased
+\gls{VASP} is particularly suited for materials science, relying on an unbiased
 \dft{plane wave basis}{} set and offering several \dft{PAW}{} datasets for 
 most atomic species of the periodic table. It can calculate an approximate 
-solution to the many-body Schr\"odinger equation within the DFT formalism or 
-the HF approximation, including the possibility of mixing to utilize hybrid 
-functionals. VASP also employs a set of efficient iterative procedures to find 
+solution to the many-body Schr\"odinger equation within the \gls{DFT} formalism or 
+the \gls{HF} approximation, including the possibility of mixing to utilize hybrid 
+functionals. \gls{VASP} also employs a set of efficient iterative procedures to find 
 the ground state of a system, and allows parallelization of the calculations 
 on multi-core machines. 
  
@@ -38,7 +38,7 @@ input parameters and their relation to the theory.
  
 \subsection{Files} \label{appendix:sec-files}
  
-VASP uses four basic input files for its calculations, which 
+\gls{VASP} uses four basic input files for its calculations, which 
 must always be in the directory where it is executed:
  
 \begin{itemize} 
@@ -73,22 +73,22 @@ pairwise via the coordinates of their end points.
 \phantomsection \label{appendix:sec-POTCAR} 
 \item \href{https://www.vasp.at/wiki/index.php/POTCAR}{\texttt{POTCAR}}: 
 Concatenation of the \dft{PAW}{} 
-datasets for the different elements present in the crystal structure. VASP 
+datasets for the different elements present in the crystal structure. \gls{VASP} 
 supplies a set of POTCAR files for each element and supported functional, 
 corresponding to different choices for the number of valence electrons and 
-radii of the PAW sphere. It is important to make sure the order of the atoms 
+radii of the \gls{PAW} sphere. It is important to make sure the order of the atoms 
 is the same for the POTCAR and POSCAR file. 
 
 \end{itemize}
 
 Besides these four essential files, a few other files can serve as input files 
-for the VASP calculation:
+for the \gls{VASP} calculation:
 
 \begin{itemize}
 
 \phantomsection \label{appendix:sec-STOPCAR} 
 \item \href{https://www.vasp.at/wiki/index.php/STOPCAR}{\texttt{STOPCAR}}:
-This file can be used to stop the calculation without killing the VASP 
+This file can be used to stop the calculation without killing the \gls{VASP} 
 process. By writing either \texttt{LABORT = True} or \texttt{LSTOP = True} to 
 the \texttt{STOPCAR} file, the user can stop the calculation after the next 
 electronic or ionic step, respectively.
@@ -109,16 +109,16 @@ has changed.
 
 \end{itemize} 
 
-During the calculation, VASP produces a set of output files from which the 
+During the calculation, \gls{VASP} produces a set of output files from which the 
 user can extract the data necessary for his or her research. Here I present a  
-(non-exhaustive) list of the most important VASP output files, besides the 
+(non-exhaustive) list of the most important \gls{VASP} output files, besides the 
 \vasp{CHGCAR} and \vasp{WAVECAR} already presented previously.
  
 \begin{itemize} 
  
 \phantomsection \label{appendix:sec-OUTCAR} 
 \item \href{https://www.vasp.at/wiki/index.php/OUTCAR}{\texttt{OUTCAR}}: 
-The general output file of VASP, a lot of information is printed in the this 
+The general output file of \gls{VASP}, a lot of information is printed in the this 
 file during the calculation. The verbosity of the output is determined by the 
 \href{https://www.vasp.at/wiki/index.php/NWRITE}{\texttt{NWRITE}} tag in the 
 \vasp{INCAR} file. 
@@ -143,8 +143,8 @@ most useful for post processing.
 
 \phantomsection \label{appendix:sec-DOSCAR} 
 \item \href{https://www.vasp.at/wiki/index.php/DOSCAR}{\texttt{DOSCAR}}:
-Contains the density of states (DOS) of the system, as well as the integrated DOS 
-and the projected DOS, in case \href{https://www.vasp.at/wiki/index.php/LORBIT}{\texttt{LORBIT}} is set correctly.
+Contains the density of states (DOS) of the system, as well as the integrated \gls{DOS} 
+and the projected \gls{DOS}, in case \href{https://www.vasp.at/wiki/index.php/LORBIT}{\texttt{LORBIT}} is set correctly.
 
 \phantomsection \label{appendix:sec-IBZKPT} 
 \item \href{https://www.vasp.at/wiki/index.php/IBZKPT}{\texttt{IBZKPT}}: 
@@ -159,7 +159,7 @@ for example be used to plot the band structure.
 \end{itemize} 
 
 Note that some output is present in several files, but unfortunately 
-VASP is not always entirely sensible in which output is printed where. 
+\gls{VASP} is not always entirely sensible in which output is printed where. 
 An example here is the fact that although the \texttt{vasprun.xml} file 
 contains \link{dft:sec-dielectric}{the dielectric tensor}, it does not 
 contain \link{dft:sec-drude}{the plasma frequencies}. 
@@ -171,7 +171,7 @@ the user to determine the specifics of the calculation. The list below is by
 no means exhaustive; we simply focus on a selection of tags that were 
 especially relevant for the results presented in this thesis. For the complete 
 list, we refer the reader to the 
-\href{https://www.vasp.at/wiki/index.php/The_VASP_Manual}{VASP manual}. 
+\href{https://www.vasp.at/wiki/index.php/The_VASP_Manual}{\gls{VASP} manual}. 
  
 \begin{itemize} 
  
@@ -260,7 +260,7 @@ Appendix~\ref{appendix:sec-cshift} for more details.
 
 \phantomsection \label{appendix:sec-NBANDS} 
 \item \href{https://cms.mpi.univie.ac.at/wiki/index.php/NBANDS}{\texttt{NBANDS}}: 
-Number of bands to include in the calculation. VASP includes a limited 
+Number of bands to include in the calculation. \gls{VASP} includes a limited 
 number of empty bands by default, but in order to calculate the optical properties 
 or density of states over a larger energy range, this number should be increased 
 to at least 2-3 times the default value.
@@ -338,8 +338,8 @@ Te & [Kr] 4d$^{10}$\underline{5s$^2$5p$^4$}\\
 \end{tabular} 
 \end{wraptable} 
 We make a selection of ten compounds for which we can compare the calculated 
-efficiency of the CuAu-like (CA) phase with the chalcopyrite (CH) results of 
-Yu and Zunger~\cite{Yu2012}. The CA and CH structure are studied using a 
+efficiency of the CuAu-like (\gls{CA}) phase with the chalcopyrite (\gls{CH}) results of 
+Yu and Zunger~\cite{Yu2012}. The \gls{CA} and \gls{CH} structure are studied using a 
 first-principles approach within the \dft{DFT}{} formalism, as implemented in 
 the \dft{VASP}{}. The \dft{PAW}{} method is applied, and the electrons that 
 are treated as valence electrons are underlined in 
@@ -360,7 +360,7 @@ efficiency, we perform single shot G$_0$W$_0$~\cite{Hedin1965}
 calculations on top of hybrid \dft{HSE06}{}. However, in order to  
 update the quasiparticle energies within the G$_0$W$_0$ approximation with 
 sufficient precision, it is necessary to consider the semi-core electrons 
-as valence electrons within the PAW framework~\cite{Fuchs2007}. Hence, 
+as valence electrons within the \dft{PAW}{} framework. Hence, 
 we treat the 3$s$, 3$p$ and 3$d$ (4$s$, 4$p$ and 4$d$) orbitals as 
 valence states for the Ga (In) atoms for the G$_0$W$_0$@HSE06 calculations 
 of the band gap, on top of those underlined in 
@@ -372,13 +372,13 @@ The optical properties are calculated within the Random Phase Approximation
 (RPA), using the long wavelength expression for the imaginary part of the 
 \dft{dielectric tensor}{}. The real part of the dielectric 
 tensor is determined using the \dft{Kramers-Kronig}{} relation\footnote{The 
-Kramers-Kronig relation is calculated by VASP using a complex shift 
-(``\vasp{CSHIFT}''). After calculating the real part, however, VASP also 
+Kramers-Kronig relation is calculated by \gls{VASP} using a complex shift 
+(``\vasp{CSHIFT}''). After calculating the real part, however, \gls{VASP} also 
 recalculates the corresponding imaginary part. Since the complex shift 
 introduces a broadening, this causes an earlier onset of the imaginary part, 
 and consequently in the absorption coefficient. In order to prevent this, we 
-commented out the line in the VASP code that recalculates the imaginary 
-part. Note that in a more recent version of VASP, this smearing of the 
+commented out the line in the \gls{VASP} code that recalculates the imaginary 
+part. Note that in a more recent version of \gls{VASP}, this smearing of the 
 imaginary part can also be avoided by choosing a smaller CSHIFT settings. 
 See Appendix~\ref{appendix:sec-cshift}.}. In order to get an accurate 
 description of the energy levels, the 
@@ -388,7 +388,7 @@ to those obtained from experiment for \ce{CuIn(S_xSe_{x-1})2}. We find that
 it is sufficient to sample the Brillouin zone using a 12$\times$12$\times$12 
 \dft{MP}{} mesh to obtain a reasonably converged dielectric tensor. The number 
 of unoccupied bands is increased to at least three times the number of 
-occupied bands. Because of the tetragonal symmetry of the CA structure, the 
+occupied bands. Because of the tetragonal symmetry of the \gls{CA} structure, the 
 resulting dielectric tensor is 
 diagonal and has two independent components $\varepsilon_{xx}$ 
 (=$\varepsilon_{yy}$) and $\varepsilon_{zz}$. Since we make no assumptions 
@@ -405,7 +405,7 @@ band gap, and recalculate the real part using the
 All calculations are performed based on the \dft{DFT}{} formalism, as 
 implemented in the \dft{VASP}{}. The \dft{PAW}{} is used to make a 
 distinction between the core and valence electrons, with the standard 
-\href{https://cms.mpi.univie.ac.at/vasp/vasp/Recommended_PAW_potentials_DFT_calculations_using_vasp_5_2.html}{VASP recommended choice} for the 
+\href{https://cms.mpi.univie.ac.at/vasp/vasp/Recommended_PAW_potentials_DFT_calculations_using_vasp_5_2.html}{\gls{VASP} recommended choice} for the 
 number of valence electrons. The wave functions of the valence electrons are 
 expanded in a \dft{plane wave basis}{} set, using a high energy cutoff equal to 
 500~\si{\electronvolt}, which is advisable for structures containing oxygen. 
@@ -459,12 +459,12 @@ We applied a U correction of 3.9~\si{\electronvolt} to the 3$d$ orbitals of
 \phantomsection \label{appendix:sec-sn_stability}
 \subsubsection{Thermodynamic Stability of Sn substitution}  
 
-The formation energies of Sn-substituted structures for a range of x-values have been calculated within the \dft{DFT}{} framework, as implemented in the \dft{VASP}{}. The \dft{PAW}{} method was used to make a distinction between the core and valence electrons, with the \href{https://cms.mpi.univie.ac.at/vasp/vasp/Recommended_PAW_potentials_DFT_calculations_using_vasp_5_2.html}{standard VASP recommended choice} for the number of valence electrons. The exchange-correlation energy was calculated using the SCAN+rVV10~\cite{Sun2015, Peng2016} functional to include the van der Waals interaction, which is especially important for a layered structure such as \ce{SnO}~\cite{Govaerts2013}. The wave functions of the valence electrons are expanded in a \dft{plane wave basis}{} set, using a high energy cutoff equal to 500~\si{\electronvolt}, which is advisable for structures containing oxygen. For all 2$\times$2$\times$2 supercell calculations, a 3$\times$3$\times$3 \dft{MP}{} mesh was used for sampling the Brillouin zone, whereas a 6$\times$6$\times$3 and 9$\times$9$\times$7 mesh were used for \ce{Li2SnO3} and \ce{SnO}, respectively. Geometry optimizations were performed with a Gaussian smearing of 0.05~\si{\electronvolt}, followed by a static calculation using the tetrahedron method~\cite{Blochl1994a}, for a precise calculation of the total energies. The convergence criterion on the electronic optimization is set at $10^{-4}$~\si{\electronvolt}, and $10^{-3}$~\si{\electronvolt} for the geometric optimization. 
+The formation energies of Sn-substituted structures for a range of x-values have been calculated within the \dft{DFT}{} framework, as implemented in the \dft{VASP}{}. The \dft{PAW}{} method was used to make a distinction between the core and valence electrons, with the \href{https://cms.mpi.univie.ac.at/vasp/vasp/Recommended_PAW_potentials_DFT_calculations_using_vasp_5_2.html}{standard \gls{VASP} recommended choice} for the number of valence electrons. The exchange-correlation energy was calculated using the \gls{SCAN}+rVV10~\cite{Sun2015, Peng2016} functional to include the van der Waals interaction, which is especially important for a layered structure such as \ce{SnO}~\cite{Govaerts2013}. The wave functions of the valence electrons are expanded in a \dft{plane wave basis}{} set, using a high energy cutoff equal to 500~\si{\electronvolt}, which is advisable for structures containing oxygen. For all 2$\times$2$\times$2 supercell calculations, a 3$\times$3$\times$3 \dft{MP}{} mesh was used for sampling the Brillouin zone, whereas a 6$\times$6$\times$3 and 9$\times$9$\times$7 mesh were used for \ce{Li2SnO3} and \ce{SnO}, respectively. Geometry optimizations were performed with a Gaussian smearing of 0.05~\si{\electronvolt}, followed by a static calculation using the tetrahedron method~\cite{Blochl1994a}, for a precise calculation of the total energies. The convergence criterion on the electronic optimization is set at $10^{-4}$~\si{\electronvolt}, and $10^{-3}$~\si{\electronvolt} for the geometric optimization. 
 
 \phantomsection \label{appendix:sec-substitutions} 
 \subsubsection{Influence of \ce{Mn^{4+}} substitution on oxygen stability} 
 
-For the calculation of the density of states and kinetic barrier of the dimer formation, both the \dft{PBEU}{} and SCAN~\cite{Sun2015} functionals have been used. Similar to our previous calculations, we have applied a U correction of 3.9~\si{\electronvolt} to the 3$d$ orbitals of \ce{Mn}. For \ce{V} and \ce{Mo}, we have applied a U correction of 3.1~\si{\electronvolt}~\cite{Richards2017} and 4.38~\si{\electronvolt}~\cite{MP_Li2MoO3}, respectively. A 3$\times$3$\times$3 \dft{MP}{} mesh was used for sampling the Brillouin zone for all geometry optimizations, including those of the \dft{NEB}{} calculations with the climbing image modification~\cite{Henkelman2000a} used to calculate the kinetic barrier. A more dense 7$\times$7$\times$9 mesh was used for the calculation of the density of states. For the calculation of the kinetic barrier, the FIRE~\cite{Bitzek2006} force-based optimizer was used, and the convergence condition on the forces was set at 10$^{-2}$~\si{\electronvolt\per\angstrom}.
+For the calculation of the density of states and kinetic barrier of the dimer formation, both the \dft{PBEU}{} and \gls{SCAN}~\cite{Sun2015} functionals have been used. Similar to our previous calculations, we have applied a U correction of 3.9~\si{\electronvolt} to the 3$d$ orbitals of \ce{Mn}. For \ce{V} and \ce{Mo}, we have applied a U correction of 3.1~\si{\electronvolt}~\cite{Richards2017} and 4.38~\si{\electronvolt}~\cite{MP_Li2MoO3}, respectively. A 3$\times$3$\times$3 \dft{MP}{} mesh was used for sampling the Brillouin zone for all geometry optimizations, including those of the \dft{NEB}{} calculations with the climbing image modification~\cite{Henkelman2000a} used to calculate the kinetic barrier. A more dense 7$\times$7$\times$9 mesh was used for the calculation of the density of states. For the calculation of the kinetic barrier, the FIRE~\cite{Bitzek2006} force-based optimizer was used, and the convergence condition on the forces was set at 10$^{-2}$~\si{\electronvolt\per\angstrom}.
 
 \phantomsection \label{appendix:sec-landscape}
 \subsubsection{Energy landscape of \ce{[CB11H12]^{-}}}
@@ -487,7 +487,7 @@ using the \dft{GGA}{} approximation of \dft{PBE}{}. A well converged
 18$\times$36$\times$1 \dft{MP}{} k-point mesh is used for sampling the 
 Brillouin zone.
   
-To simulate a surface within the periodic boundary framework of VASP, it is 
+To simulate a surface within the periodic boundary framework of \gls{VASP}, it is 
 conventional to take a slab approach, where a certain number of atomic layers 
 are separated by a suitably large vacuum layer 
 (See~\ref{automation:sec-surface}). For \ce{Si} and \ce{Ge}, it is 
@@ -516,7 +516,7 @@ set, and the exchange correlation energy is calculated using the \dft{GGA}{}
 of \dft{PBE}{}. For sampling the Brillouin zone, \dft{MP}{} k-point mesh is used 
 for which the spacing in each direction is smaller than 0.05~\si{\per\angstrom}.
 
-To simulate a surface within the periodic boundary framework of VASP, it is 
+To simulate a surface within the periodic boundary framework of \gls{VASP}, it is 
 conventional to take a slab approach, where a certain number of atomic layers 
 are separated by a suitably large vacuum layer (See~\ref{automation:sec-surface}).
 We take the structures of all surfaces from the 
@@ -541,7 +541,7 @@ dielectric tensor} a value of 50~\si{\milli\electronvolt} is used.
 \resultsection{Parallelization \label{appendix:sec-parallel}}{https://mybinder.org/v2/gh/mbercx/jupyter/master?filepath=parallel\%2Fparallel_analysis.ipynb} 
 
 In order to speed up the calculations of the workflows, it is important to set 
-reasonably good parallelization parameters for VASP 
+reasonably good parallelization parameters for \gls{VASP} 
 (\texttt{NPAR}/\texttt{NCORE}, \texttt{KPAR}). Knowing beforehand what settings 
 are optimal is tricky, as this depends on the system being studied, the 
 computational settings and the machine the calculations are being run on. To 
@@ -572,7 +572,7 @@ square represents the average electronic time step.}
 \pagebreak[4]
 \resultsection{\texttt{CSHIFT} \label{appendix:sec-cshift}}{https://github.com/mbercx/phd-thesis/blob/master/jupyter/appendix/onset_analysis.ipynb} 
 
-In order to calculate the real part of the dielectric tensor, VASP 
+In order to calculate the real part of the dielectric tensor, \gls{VASP} 
 uses the Kramers-Kronig transformation (Eq.~(\ref{dft:eq-kramers})):
 \begin{equation}
 \varepsilon_{\alpha \beta}^{(1)} (\omega) = 1 + \frac{2}{\pi} \mathcal{P} 
@@ -591,7 +591,7 @@ where $\eta$ is the complex shift, which can be set in the \vasp{INCAR}
 file using the  \vasp{CSHIFT} tag. Relying on a complex shift introduces 
 a slight broadening to the real part of the dielectric tensor. So far, 
 this does not affect the optical properties such as the absorption 
-coefficient significantly. However, VASP also calculates 
+coefficient significantly. However, \gls{VASP} also calculates 
 the corresponding broadened imaginary part. This leads to an earlier onset of 
 the imaginary part of the dielectric tensor, and subsequently an earlier onset 
 of the absorption coefficient and absorptivity. Effectively, the band gap of 
@@ -601,12 +601,12 @@ efficiency calculated in Chapter~\ref{chapter:slme}.
 One way of mitigate this issue is by removing all absorption below the 
 band gap, i.e. setting the absorptivity $\alpha(E)$ to zero for $E < E_g$. 
 This is definitely an improvement, but still can have quite a significant 
-influence on the efficiency. Fortunately, VASP overwrites the 
+influence on the efficiency. Fortunately, \gls{VASP} overwrites the 
 broadened imaginary part of the dielectric tensor by the original calculated 
 using Eq.~(\ref{dft:eq-imdiel}) under certain conditions (which are 
 unfortunately not usually obtained using the default settings).  More 
 specifically, in case the complex shift (\vasp{CSHIFT}) is smaller than 
-the distance between two points in the energy mesh, VASP will 
+the distance between two points in the energy mesh, \gls{VASP} will 
 output the original - unbroadened - imaginary part of the dielectric tensor.
 
 \pgfplotsset{every axis/.style={scale=0.95, font=\sffamily,

@@ -42,7 +42,7 @@ periodic table (Sec.~\ref{quotas:sec-high_throughput}).
  
 \section{Introduction} \label{quotas:sec-intro} 
 
-Secondary electron emission (SEE) is an important phenomenon where electrons 
+Secondary electron emission (\gls{SEE}) is an important phenomenon where electrons 
 of a target material are emitted through the impact of energetic primary 
 particles. Such processes lie at the foundation of several techniques for 
 characterizing surfaces and play an important role in applications such as 
@@ -62,15 +62,15 @@ the yield of secondary electrons emitted from the surface per incoming ion.
 His approach was relatively successful, but required the use of a substantial 
 amount of fitting parameters in order to make his simulations match 
 experiment. Since then, there have been numerous attempts at improving the 
-quantitative modeling of the SEE process. Propst~\cite{Propst1963} calculated 
+quantitative modeling of the \gls{SEE} process. Propst~\cite{Propst1963} calculated 
 the Auger matrix elements using a WKB approximation\footnote{Named after Wentzel, Kramers and Brillouin.} for the tunneling process, 
 and was one of the first to consider electron-electron interactions for the 
 secondary electrons. Several authors~\cite{Almulhem1989, Lorente1994, 
 Monreal1995} have used a jellium model to calculate the Auger neutralization 
 rate for aluminum and sodium, for which the electrons are well described by a 
 free electron gas. More recently, Cho et al.~\cite{Cho2007} have used 
-first-principles density functional theory (DFT) calculations in combination 
-with Hagstrum's model to determine the SEE coefficients for \ce{MgO}. However, 
+first-principles \gls{DFT} calculations in combination 
+with Hagstrum's model to determine the \gls{SEE} coefficients for \ce{MgO}. However, 
 they used parameters which were fitted for a specific ion-surface combination 
 (\ce{He^+} $\rightarrow$ \ce{Ge}) and applied them as if they were fixed 
 parameters of the model. A nice overview of the various theoretical models 
@@ -94,18 +94,18 @@ ion. Potential electron emission, on the other hand, transfers the potential
 energy of the incoming ion to an electron that can then be emitted.  For slow 
 moving ions, the potential emission mechanism is dominant~\cite{Aumayr2007}. 
 Following Hagstrum's description, it is performed using a two-electron Auger 
-process. Here, a distinction must be made between Auger neutralization (AN) 
-and resonance neutralization (RN) followed by Auger de-excitation (AD), see 
-Fig.~\ref{quotas:fig-auger}. For AN, an electron from the surface material 
+process. Here, a distinction must be made between Auger neutralization (\gls{AN}) 
+and resonance neutralization (\gls{RN}) followed by Auger de-excitation (\gls{AD}), see 
+Fig.~\ref{quotas:fig-auger}. For \gls{AN}, an electron from the surface material 
 tunnels directly into the lowest unoccupied state of the incoming ion. The 
 energy released in this transition is passed to another electron in the 
 material. This electron, in turn, has a probability of escape if it is excited 
-to a state with an energy above the vacuum level. In the case of RN, an 
+to a state with an energy above the vacuum level. In the case of \gls{RN}, an 
 electron from the surface tunnels into an excited state of the incoming ion, 
-after which the atom returns to the ground state by AD. For slow incident 
+after which the atom returns to the ground state by \gls{AD}. For slow incident 
 \ce{He^+} and \ce{Ne^+} ions on \ce{Ge(111)} and \ce{Si(111)}, the resonant 
 neutralization channel is unavailable~\cite{Hagstrum1961, Lorente1994}, so we 
-can safely disregard the RN and AD processes in our discussion for now. 
+can safely disregard the \gls{RN} and \gls{AD} processes in our discussion for now. 
 
 {
 \tikzset{every picture/.style={scale=0.95, font=\sffamily}}
@@ -137,7 +137,7 @@ represent one possible way via which the de-excitation can occur.}
 
 \subsection{Hagstrum's model} \label{quotas:sec-hagstrum} 
  
-I begin by presenting Hagstrum's quantitative description of ion-based SEE 
+I begin by presenting Hagstrum's quantitative description of ion-based \gls{SEE} 
 for semiconductor surfaces, before discussing our adjustments in the sections 
 that follow. During the Auger neutralization, an electron tunnels through the 
 surface barrier to the lowest unoccupied ionic state, transferring the excess 
@@ -173,7 +173,7 @@ $V(\mathbf{r}_1, \mathbf{r}_2)$ is the Coulomb potential.
 Instead of explicitly calculating the secondary emission yield from the 
 transition matrix elements, as in the earlier work of e.g. Cobas and 
 Lamb~\cite{Cobas1944}, Hagstrum introduced a model based on the density of 
-states (DOS) of the surface. In his approach, the matrix element for each 
+states (\gls{DOS}) of the surface. In his approach, the matrix element for each 
 transition is considered to be constant, which means that the probability that 
 an electron of energy $\varepsilon$ will participate in the Auger 
 neutralization is proportional to the density of states $N(\varepsilon)$. In 
@@ -245,13 +245,13 @@ pass in order to escape from the surface. Because this reference level affects
 the probability that an excited electron is emitted, it has a significant 
 influence on the calculated yield.\\ 
  
-Although Hagstrum's description of the SEE process was a major step forward, 
+Although Hagstrum's description of the \gls{SEE} process was a major step forward, 
 providing an insightful interpretation of his experimental results, he was 
 forced to rely on several fitting parameters in order to be able to reproduce 
 the experimental spectra. Hagstrum had to parameterize the density of states, 
 ionization energy, as well as fit $\alpha$ and $\beta$ in the escape function 
 (Eq.~(\ref{quotas:eq-escape})). In our approach, we calculate the density of 
-states from first principles within the DFT framework and remove the parameter 
+states from first principles within the \gls{DFT} framework and remove the parameter 
 dependency of the escape function as described in 
 Sec.~\ref{quotas:sec-escape}. For the ionization energy $E_I$, we shift the 
 ionization energy of the free atom with the image interaction (2 
@@ -261,7 +261,7 @@ calculated yield spectra (Sec.~\ref{quotas:sec-cascades}).\\
  
 By virtue of using Hagstrum's model, we are able to include the 
 first-principles calculated electronic structure of the surface, as directly 
-calculating the full matrix elements in Eq.~\ref{quotas:eq-fermi} from the DFT 
+calculating the full matrix elements in Eq.~\ref{quotas:eq-fermi} from the \gls{DFT} 
 wave functions would not be computationally feasible. Several such 
 calculations have been performed for jellium-model wave functions, but this 
 approach would in turn not provide a good description for a semiconductor, nor 
@@ -277,7 +277,7 @@ sensitive to the position of the incoming ion at short distances for \ce{Ge},
 which indicates that considering constant matrix elements is a reasonable 
 approximation for \ce{Ge}. However, they also found that for noble metals, the 
 presence of d electrons in the valence band that can neutralize the incoming 
-ion has a large effect on the AN rate. The efficient contribution of $d$ 
+ion has a large effect on the \gls{AN} rate. The efficient contribution of $d$ 
 electrons compared to $s$ or $p$ states will have to be considered in case the 
 model is extended to be applied to noble metals. 
  
@@ -396,7 +396,7 @@ escape:
 N_c^{(2)}(\varepsilon) = (1-P_e(\varepsilon))N_i(\varepsilon). 
 \end{equation} 
 In Hagstrum's model, these electrons simply do not contribute, and their 
-energy has no influence on the SEE yield. Here, we approximate the scattering 
+energy has no influence on the \gls{SEE} yield. Here, we approximate the scattering 
 process using similar assumptions as Hagstrum made for the Auger 
 neutralization, i.e. by considering the matrix elements of the transition to 
 be constant, which makes the probability of a specific scattering event 
@@ -479,7 +479,7 @@ calculation of He$^+$ ions on \ce{Ge(111)}, we obtain the results in
 Fig.~\ref{quotas:fig-iterations}, where we have plotted the number of emitted 
 electrons $N_0$ versus their kinetic energy $\varepsilon_k$ for several 
 iterations. We can see that as we iterate the electron cascade process, the 
-SEE spectrum quickly converges. The final distribution (iteration 3) has 
+\gls{SEE} spectrum quickly converges. The final distribution (iteration 3) has 
 significantly more electrons at lower energies, and is a substantial 
 improvement upon the initial yield distribution after Auger neutralization, 
 when compared with the experimental results from Hagstrum~\cite{Hagstrum1960}. 
@@ -509,7 +509,7 @@ Overall, the shape of the calculated yield spectra matches reasonably well
 with the experimental one\footnote{Note that we have applied a small gaussian 
 broadening to the final calculated yield spectra. This is largely for visual purposes, i.e. to facilitate 
 the comparison between different spectra.}. 
-The total SEE yield coefficients $\gamma$, obtained s
+The total \gls{SEE} yield coefficients $\gamma$, obtained s
 by integrating the yield spectra (Eq.~(\ref{quotas:eq-yield})), are given in 
 Table~\ref{quotas:tab-yield_semiconductors}. For both \ce{Si} and \ce{Ge}, the 
 yield coefficients are larger for \ce{He^+} than for \ce{Ne^+}, due to the 
@@ -591,7 +591,7 @@ improvement of the calculated yield spectra for the results presented here,
 the experimental results for the work function can vary significantly, 
 approximately with the same magnitude as the expected inaccuracy on \textit{ab 
 initio} calculated work functions~\cite{DeWaele2016}. Because the calculation 
-of the SEE yield is sensitive to the vacuum level, the difficulty in 
+of the \gls{SEE} yield is sensitive to the vacuum level, the difficulty in 
 accurately determining the work function adds another challenge to the 
 calculation the ion-induced emission coefficient $\gamma$. \\ 
  
@@ -626,7 +626,7 @@ substantially. Hence, by considering electron cascades, we can obtain the
 missing low energy electrons in Hagstrum's original approach, without 
 introducing a large anisotropy in the initial direction of the excited 
 electrons. If we look at the fraction $f_c$ of the contribution of the 
-electron cascades to the final SEE yield 
+electron cascades to the final \gls{SEE} yield 
 (Table~\ref{quotas:tab-yield_semiconductors}), we can see that on average 
 approximately 31\% of the total yield is a result of electron cascade process. 
 Moreover, the contribution is higher for \ce{Ge} than for \ce{Si}, most likely 
@@ -767,7 +767,7 @@ plasmon energy, the electron can excite a plasmon, losing energy in the process
         \caption{} 
     \end{subfigure} 
 \caption{Energy diagrams of resonant surface (a) and volume plasmon (b) 
-excitations. (a) also shows the DOS of \ce{Mg (110)}, with the energies 
+excitations. (a) also shows the \gls{DOS} of \ce{Mg (110)}, with the energies 
 aligned to the diagram.} 
 \label{quotas:fig-plasmons} 
 \end{figure} 
@@ -807,7 +807,7 @@ L(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} c_{vp} L(E) dE
 \end{eqnarray} 
 The product $\kappa_v = c_{vp} \cdot t_e$, the combination of the prefactor of the 
 rate $\lambda_{vp}$ and the average travel interval of the excited electrons, is a 
-measure of the likelihood of plasmon excitations during the SEE process. We 
+measure of the likelihood of plasmon excitations during the \gls{SEE} process. We 
 treat it as a parameter of the model. 
  
 For the surface plasmons, a plasmon excitation can occur instead of a 
@@ -972,7 +972,7 @@ In contrast with the results for \ce{Al} and \ce{Mg}, there is a much larger
 difference in the yield results for the surfaces of 
 \ce{Be}~(Fig.~\ref{quotas:fig-metals_results2}), which can be expected 
 considering the larger variation in the surface work function. Baragiola et 
-al.~\cite{Baragiola2001} did not specify the \ce{Be} surface for their SEE results, which 
+al.~\cite{Baragiola2001} did not specify the \ce{Be} surface for their \gls{SEE} results, which 
 complicates the quantitative comparison of our computational results with 
 experiment, and hence we did not include them in our fitting procedure for the 
 plasmon parameters. Qualitatively, however, the overall shape of the \ce{He+} 
@@ -985,7 +985,7 @@ treating them as model parameters.
 \begin{table}[ht] 
 \centering 
 \renewcommand{\arraystretch}{1.3} 
-\caption{Calculated work functions $\phi$ and SEE yields $\gamma$ for each of 
+\caption{Calculated work functions $\phi$ and \gls{SEE} yields $\gamma$ for each of 
 the surfaces, compared with the available experimental data. For the work 
 function of \ce{Mg} and \ce{Be} we do not have specific data for each surface. 
 Similarly, we only know the surface for the yield results of \ce{Cu} and 
@@ -1119,14 +1119,14 @@ the effective work function. Because of this discrepancy, we did not consider
 I end this section with a couple of notes. So far the discussion has been limited 
 to \ce{He+} and \ce{Ne+} ions. For \ce{Ar+}, the calculated yield spectra 
 are significantly lower than the experimental ones for most metals. This 
-can be related to the fact that we do not consider resonance neutralization (RN)
+can be related to the fact that we do not consider resonance neutralization (\gls{RN})
 (See Fig.~\ref{quotas:fig-auger}) in our calculations. Although Auger 
-neutralization (AN) is believed to be the dominant process, neglecting RN 
+neutralization (\gls{AN}) is believed to be the dominant process, neglecting \gls{RN} 
 can have a larger effect for ions with a lower ionization energy. 
 To understand this, consider what happens when an electron first neutralizes
 the incoming ion via a resonant tunneling process, and subsequently is excited
-to an energy above the vacuum level via Auger De-excitation (AD). Compared 
-to an electron that is excited inside the surface via AN, this electron is excited in 
+to an energy above the vacuum level via Auger De-excitation (\gls{AD}). Compared 
+to an electron that is excited inside the surface via \gls{AN}, this electron is excited in 
 the (approximately) spherical potential well of the ion. If the energy of the 
 electron is higher than the vacuum level, the escape probability of this 
 electron is much higher than that of an electron excited inside the surface. 
@@ -1137,10 +1137,10 @@ directed almost straight at the surface.
 
 For ions with a low ionization energy, a much larger fraction of the electrons 
 are excited to an energy close to the vacuum level. If the electrons are 
-excited via AN, their escape probability is low, especially when compared to 
+excited via \gls{AN}, their escape probability is low, especially when compared to 
 RN+AD. Hence, even though only a small fraction of ions are neutralized via 
 the latter process, the resulting electrons can make up a significant portion 
-of the final electron yield. Although we could introduce the RN+AD process via 
+of the final electron yield. Although we could introduce the \gls{RN}+\gls{AD} process via 
 another fitting parameter, it would be better to try and determine the 
 likelihood of either process by calculating their rates for a model system as 
 done by Goebl et al.~\cite{Goebl2011}. This is beyond the scope of this work.
@@ -1148,7 +1148,7 @@ done by Goebl et al.~\cite{Goebl2011}. This is beyond the scope of this work.
 \resultsubsection{High-throughput results\label{quotas:sec-high_throughput}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/quotas/README.md\#high-throughput-results}{metals} 
 
 Although it is gratifying to see that our model is able to reproduce both the 
-experimental SEE yield values and spectra of many elemental surfaces, the 
+experimental \gls{SEE} yield values and spectra of many elemental surfaces, the 
 purpose of developing the model is to apply it to predict the yield of 
 surfaces for which no experimental results are available. This section
 presents a high throughput screening of a list of elemental surfaces 
@@ -1205,7 +1205,7 @@ On the other side of the periodic table, elements with full $d$ orbitals and
 only a couple of electrons in the $s$ and/or $p$ orbitals (group 11-13, 
 excluding \ce{Al}) have a noticeably lower yield. This is connected to the 
 electronic structure of these elements near the Fermi level. Fig.~\ref{quotas:fig-pdos} 
-shows the projected DOS of \ce{Ni (100)}, \ce{Cu (100)} and \ce{Zn (100)}. 
+shows the projected \gls{DOS} of \ce{Ni (100)}, \ce{Cu (100)} and \ce{Zn (100)}. 
 For all of these surfaces, most of the occupied states near the Fermi level 
 correspond to $d$ states. However, for \ce{Zn (100)} these 
 lie significantly below the Fermi level, which means that the average energy of electrons that 
@@ -1307,7 +1307,7 @@ our calculated yields lie consistently below Baragiola's fit. This is also the c
 Starting from Hagstrum's model, I have presented a method for calculating the 
 SEE yield of incoming ions on semiconductor surfaces, and have applied it to 
 incident \ce{He+} and \ce{Ne+} ions on the (111) surface of \ce{Ge} and 
-\ce{Si}. Determining the required input using \textit{ab initio} DFT 
+\ce{Si}. Determining the required input using \textit{ab initio} \gls{DFT} 
 calculations, as well as using a different expression for the escape function, 
 removes the parameters Hagstrum used in his model. Furthermore, introducing 
 electron cascades recovers the low energy electrons missing in the initial spectra,
@@ -1340,7 +1340,7 @@ also true for the I-II group elements, but here the idealistic electron cascades
 implementation combined with the low work function of their surfaces 
 results in a far greater overestimation.
 
-Calculating accurate SEE yield coefficients from first principles is a 
+Calculating accurate \gls{SEE} yield coefficients from first principles is a 
 challenging undertaking, both due to the complexity of the processes involved, 
 as well as their sensitivity to the vacuum level. The model in its current state 
 offers a pragmatic and effective approach for calculating yield spectra, but 

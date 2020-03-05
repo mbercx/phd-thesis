@@ -13,7 +13,7 @@ electronics and electric vehicles. Despite their success, Li-ion batteries
 still can benefit significantly from improvements in order to expand their use in 
 automotive and grid storage applications. One of the main elements of the 
 Li-ion battery with room for improvement is the cathode, where research is primarily 
-focused on layered transition metal (TM) oxides and polyanionic materials.  
+focused on layered transition metal (\gls{TM}) oxides and polyanionic materials.  
  
 In this chapter I present an overview of my work on Li-ion batteries, which 
 has largely focused on a class of materials called Li-rich battery cathodes. 
@@ -118,7 +118,7 @@ degradation~\cite{Rozier2015}.
 \centering 
 \captionsetup{width=0.9\linewidth}
 \includegraphics[width=\textwidth]{figures/batteries/to_li_rich.png} 
-\caption{Transition from \ce{LiCoO2} to NMC to Li-rich layered oxides for 
+\caption{Transition from \ce{LiCoO2} to \gls{NMC} to Li-rich layered oxides for 
 battery cathodes. Adapted from~\cite{Rozier2015}.} 
 \label{batteries:fig-Lirich_transition} 
 \end{figure} 
@@ -185,7 +185,7 @@ is drawn in blue. The top figures are the structure shown in the [100]
 projection, whereas the lower figures represent a single octahedral layer of 
 the layered structure, viewed top down.  $d_{short}$ and $d_{long}$ both 
 represent O-O distances across the \ce{Li}/TM layer, corresponding to an 
-octahedral edge bordering two TM's and a TM and \ce{Li}/Vacancy, respectively.} 
+octahedral edge bordering two \gls{TM}'s and a \gls{TM} and \ce{Li}/Vacancy, respectively.} 
 \label{batteries:fig-structural_change} 
 \end{figure} 
 
@@ -273,7 +273,7 @@ al.\cite{McCalla2015}.}
 \begin{tabular}{c c c c c c c} 
  & & \multicolumn{2}{c}{\ce{Li2[Mn, Ir]O3}} & & 
 \multicolumn{2}{c}{\ce{Li_{0.5}[Mn, Ir]O3}}\\\cline{3-4}\cline{6-7} 
- & & DFT & Neutron & & DFT & Neutron \\\hline 
+ & & \gls{DFT} & Neutron & & \gls{DFT} & Neutron \\\hline 
 \multirow{2}{*}{Mn} & \multicolumn{1}{|c}{$d_{short}$} & 2.52 & - & & 2.31 & - 
 \\ 
  & \multicolumn{1}{|c}{$d_{long}$} & 2.75 & - & & 2.62 & - \\\hline 
@@ -354,9 +354,9 @@ when the battery is charged. Instead, its magnetic moment remains close to 3
 $\mu_B$, which corresponds to the initial oxidation state \ce{Mn^{4+}} in the 
 discharged cathode structure. For \ce{Li2IrO3}, removing lithium from the 
 discharged structure results in a significant change of the local magnetic 
-moment for both Ir and O, implying a more mixed redox process during the 
+moment for both \ce{Ir} and \ce{O}, implying a more mixed redox process during the 
 charging of the cathode. This mixed redox for \ce{Li2IrO3} is in agreement 
-with the XPS results of McCalla et al.~\cite{McCalla2015}, where they explain 
+with the X-ray photoelectron spectroscopy results of McCalla et al.~\cite{McCalla2015}, where they explain 
 that this is in part due to the covalent character of the Ir-O bond. This 
 covalency could also explain why oxygen is oxidized less when charging 
 \ce{Li2IrO3}, as valence electrons are removed from both Ir and O. 
@@ -383,10 +383,10 @@ This conclusion is supported by the projected density of states (PDOS),
 plotted in Figure~\ref{batteries:fig-charge_pdos_Mn_Ir}. For \ce{Li2MnO3}, the 
 electronic states close to the Fermi level correspond largely to the O-2$p$ 
 states, which indicates that as the battery is charged, electrons are removed 
-from oxygen rather than \ce{Mn}. In contrast, looking at the PDOS for 
+from oxygen rather than \ce{Mn}. In contrast, looking at the \gls{PDOS} for 
 \ce{Li2IrO3} reveals that the states near the Fermi level are more evenly 
 distributed between O-2$p$ and Ir-5$d$, which corresponds well to the picture 
-of a more mixed redox activity for this material. When comparing the PDOS of 
+of a more mixed redox activity for this material. When comparing the \gls{PDOS} of 
 the charged structures with the discharged ones, we note that in both cases 
 the number of O-2$p$ states near the Fermi level has decreased. The difference 
 is much more substantial for \ce{Li2MnO3} than for \ce{Li2IrO3}, once again 
@@ -452,7 +452,7 @@ each structure and each potential dimer, we reduce the distance between the
 oxygen atoms in the dimer pair to 1.4~\si{\angstrom} and once again optimize 
 all atomic positions as described in the methods section. To make sure the 
 interaction between the dimers in the periodic boundary conditions approach of 
-VASP is sufficiently small, we have also performed similar calculations in a 
+\gls{VASP} is sufficiently small, we have also performed similar calculations in a 
 3$\times$3$\times$3 supercell, and found the differences between the reaction energies to be 
 smaller than 50~\si{\milli\electronvolt} for all potential 
 dimers~\cite{Levi2020}. 
@@ -478,7 +478,7 @@ energies. The two dimers that have a reduced energy in the final state are
 formed by two oxygen atoms from different layers, with dimer \textbf{A} being 
 the most energetically favorable by far. The final structures of both 
 dimers are shown in Fig.~\ref{batteries:fig-Mn_dimers}, along with the kinetic barrier, 
-calculated using the NEB method. For the \textbf{A} dimer, the kinetic barrier 
+calculated using the \gls{NEB} method. For the \textbf{A} dimer, the kinetic barrier 
 is equal to 214~\si{\milli\electronvolt}, which is smaller than the typical 
 kinetic barrier for lithium migration in layered 
 structures~\cite{VanDerVen2013}. This implies that the formation of the 
@@ -522,11 +522,11 @@ to pass a tetrahedral site in case the stacking is changed from O3 to O1.}.
 For these reasons, \ce{Sn^{4+}} was chosen as the first element by our 
 experimental collaborators from Hasselt University\footnote{Andreas Paulus, 
 Marlies van Bael and An Hardy, \href{https://www.uhasselt.be/UH/IMO/Visit-the-groups/Inorganic-and-physical-chemistry-(IPC).html}{Inorganic and Physical Chemistry}, Hasselt University.} to substitute in 
-Li-rich NMC samples in an attempt to improve the cycling properties of the 
+Li-rich \gls{NMC} samples in an attempt to improve the cycling properties of the 
 cathode. 
 
-In this section, I start by briefly discussing their powder X-ray diffraction (PXRD) results, as well as 
-the energy-dispersive X-ray analysis (EDX) results of our collaborators within EMAT\footnote{Myl\`ene Hendrickx, Olesia 
+In this section, I start by briefly discussing their powder X-ray diffraction (\gls{PXRD}) results, as well as 
+the energy-dispersive X-ray analysis (\gls{EDX}) results of our collaborators within EMAT\footnote{Myl\`ene Hendrickx, Olesia 
 Karakulina, Artem Abakumov and Joke Hadermann, \href{https://www.uantwerpen.be/en/research-groups/emat/}{Electron Microscopy for Materials 
 Science}, Antwerp University.}, as a motivation for the 
 calculations we have performed on the solubility of \ce{Sn} in a 
@@ -541,16 +541,16 @@ stabilizing effect similar to that of \ce{Ir}.
  
 Although the increased ionic radius of \ce{Sn^{4+}} compared to \ce{Mn^{4+}} 
 is believed to inhibit its migration into the Li-layer, it can potentially 
-also lead to a reduced solubility of \ce{Sn} in the NMC structure. In order to 
-investigate the solubility of Sn in Li-rich NMC, several samples with 
-increased Sn-substitution were prepared for a Li-rich/Mn-rich NMC structure, 
+also lead to a reduced solubility of \ce{Sn} in the \gls{NMC} structure. In order to 
+investigate the solubility of Sn in Li-rich \gls{NMC}, several samples with 
+increased Sn-substitution were prepared for a Li-rich/Mn-rich \gls{NMC} structure, 
 leading to stoichiometries \ce{Li_{1.2}Ni_{0.13}Co_{0.13}Mn_{0.54-x}Sn_xO2} 
 for $x  \approx 0, 0.027, 0.054, 0.108 \textrm{ and } 0.54$. Looking at the 
-change in the powder XRD pattern of Sn-substituted NMC samples in 
+change in the \gls{PXRD} pattern of Sn-substituted \gls{NMC} samples in 
 Fig.~\ref{batteries:fig-Sn_experiment}~(a), a second phase appears as the 
 amount of Sn is increased, starting from $x = 0.054$. This phase becomes dominant for $x=0.54$ and was 
-identified as \ce{Li2SnO3} based on an indexation of the PXRD results. 
-The EDX results for a particle with $x=0.108$ 
+identified as \ce{Li2SnO3} based on an indexation of the \gls{PXRD} results. 
+The \gls{EDX} results for a particle with $x=0.108$ 
 (Fig.~\ref{batteries:fig-Sn_experiment}(b)) indicate that the exsolution of this 
 Sn-rich phase already occurs at lower levels of Sn-substitution. 
  
@@ -568,9 +568,9 @@ Sn-rich phase already occurs at lower levels of Sn-substitution.
         \includegraphics[width=0.9\textwidth]{./figures/batteries/edx_Sn_substitution.png} 
         \caption{} 
     \end{subfigure} 
-    \caption{(a) PXRD patterns of 
+    \caption{(a) \gls{PXRD} patterns of 
 \ce{Li_{1.2}Ni_{0.13}Co_{0.13}Mn_{0.54-x}Sn_xO2} for increasing values of 
-Sn-substitution $x$. (b) Mixed (Mn, Sn) elemental EDX map of representative 
+Sn-substitution $x$. (b) Mixed (Mn, Sn) elemental \gls{EDX} map of representative 
 LNMCS20 (x=0.108) particles, which demonstrates the presence of two different regions, a Mn-rich and Sn-rich one. Courtesy of Andreas Paulus (a) and Myl\`ene 
 Hendrickx (b).} 
     \label{batteries:fig-Sn_experiment} 
@@ -591,7 +591,7 @@ following exsolution reaction:
  \ce{Li_{1.2}Mn_{0.8-x}Sn_xO2} \rightarrow  \left( 1 - \frac{x}{0.8} \right) 
 \ce{Li_{1.2}Mn_{0.8}O2} +  \frac{x}{0.8} \ce{Li_{1.2}Sn_{0.8}O2}  
 \end{equation} 
-The PXRD results indicate, however, that the final Sn-rich phase most likely 
+The \gls{PXRD} results indicate, however, that the final Sn-rich phase most likely 
 corresponds to \ce{Li2SnO3} and, to a lesser extent, \ce{SnO}. This means that 
 the following exsolution reaction is more probable: 
 \begin{equation} \label{batteries:eq-exsolution} 
@@ -601,9 +601,9 @@ the following exsolution reaction is more probable:
 \end{equation} 
  
 Finally, there is another restriction to which our structures should adhere: 
-based on the HAADF-STEM results for several of the Sn-substituted samples, the 
+based on the \gls{HAADF}-STEM results for several of the Sn-substituted samples, the 
 honeycomb ordering of the \ce{Li}-TM/\ce{Sn} cations is largely 
-maintained\footnote{Note that as the ratio of \ce{Li} over TM/\ce{Sn} elements 
+maintained\footnote{Note that as the ratio of \ce{Li} over \gls{TM}/\ce{Sn} elements 
 is smaller than 2, it is no longer possible to have a complete honeycomb 
 ordering in the  \ce{Li}-TM/\ce{Sn} layer, as was the case for \ce{Li2MnO3}.}. 
 This leads to the following construction of the \ce{Li_{1.2}Mn_{0.8}O2} 
@@ -701,12 +701,12 @@ formation of a single phase is feasible at low Sn concentrations. However, as
 the Sn-concentration $x$ is increased, the \ce{Li_{1.2}Mn_{0.8-x}Sn_xO2} 
 configurations become more unstable, increasing the likelihood of a 
 decomposition in \ce{Li_{1.2}Mn_{0.8}O2}, \ce{Li2SnO3} and \ce{SnO} phases, as 
-observed in the PXRD results for the high Sn concentration samples. Note that 
+observed in the \gls{PXRD} results for the high Sn concentration samples. Note that 
 if the Sn substituted orderings are generated randomly, i.e. without 
 respecting the honeycomb pattern, the energies are significantly higher 
 compared to the honeycomb structures at each Sn concentration. This matches 
 the preservation of the honeycomb ordering for the Sn substituted structure 
-found for the HAADF-STEM results. 
+found for the \gls{HAADF}-STEM results. 
  
 \resultsubsection{Influence of \ce{Mn^{4+}} substitution on oxygen stability \label{batteries:sec-dimer_substitution}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/batteries/README.md\#influence-of-mn4-substitution-on-oxygen-stability}{substitutions} 
 
@@ -726,7 +726,7 @@ higher states of oxidation and have shown promise in \ce{Li}-rich
 materials~\cite{Ma2014, Xiao2012}. Moreover, in order to study the influence of 
 the exchange-correlation functional, we make a comparison between the \dft{PBEU}{} results and the 
 recently introduced \dft{SCAN}{}. 
-In contrast to PBE+U, SCAN does not rely on an element-dependent parameter, 
+In contrast to \gls{PBE}+U, \gls{SCAN} does not rely on an element-dependent parameter, 
 so it would be interesting to see if it produces a similar trend for the 
 barrier of the various substituted elements.
 This discussion, however, is left for the end of this section.
@@ -819,33 +819,33 @@ the fact that they are more likely to oxidize before the oxygen.
 \captionsetup{width=0.9\linewidth}
 \includegraphics[width=0.85\textwidth]{figures/batteries/substitution_dimers.png} 
 \caption{Kinetic barriers for the dimerization of oxygen neighbouring \ce{Sn}, 
-\ce{V} and \ce{Mo}, both for the PBE+U and SCAN functional.} 
+\ce{V} and \ce{Mo}, both for the \gls{PBE}+U and \gls{SCAN} functional.} 
 \label{batteries:fig-substitution_dimers} 
 \end{figure} 
  
 Finally, we have also performed all of the calculations in this section with 
 the recently published \dft{SCAN}{}, in order to compare the results with 
-those of \dft{PBEU}{}. As SCAN does not rely on specifying a parameter for each 
+those of \dft{PBEU}{}. As \gls{SCAN} does not rely on specifying a parameter for each 
 transition metal that can influence the oxidation state of the element, this 
 provides an unbiased set of data to compare with. Looking at the magnetic 
 moments in Table~\ref{batteries:tab-substitution_magmoms}, the discussion from 
 the previous paragraphs remains largely intact. However, the magnetic moments 
-on the oxygen atoms is decidedly lower compared to the PBE+U results. One 
+on the oxygen atoms is decidedly lower compared to the \gls{PBE}+U results. One 
 could argue that this indicates that our choice of Hubbard-U correction might 
 have excessively localized the electrons around the transition metals, but a 
 similar reduction in magnetic moments is found for the oxygen neighbouring 
 \ce{Sn}, for which we have applied no Hubbard-U correction. Moreover, our 
 chosen U value for \ce{Mn} has been carefully benchmarked versus our previous 
-results for HSE06, which has demonstrated a good ability\footnote{Note that by 
+results for \gls{HSE}06, which has demonstrated a good ability\footnote{Note that by 
 tuning the fraction of exact exchange, it is possible to improve the accuracy 
-of the HSE functional further, but \dft{HSE06}{} (a = 0.25) does a fairly good job of 
+of the \gls{HSE} functional further, but \dft{HSE06}{} (a = 0.25) does a fairly good job of 
 reproducing experimental results.} for correcting the self-interaction error for 
 battery cathodes~\cite{Seo2015}. Looking at the kinetic barriers in 
-Fig.~\ref{batteries:fig-substitution_dimers}, SCAN predicts a slightly 
+Fig.~\ref{batteries:fig-substitution_dimers}, \gls{SCAN} predicts a slightly 
 increased barrier for each of the substituted elements, which could be linked 
 to the reduced magnetic moment on \textit{all} oxygen atoms. Even this 
 increased barrier is still relatively low, however, and hence not much of our 
-analysis would if we would base it on the SCAN results. 
+analysis would if we would base it on the \gls{SCAN} results. 
 
 \section{Polyborane solid electrolytes} \label{batteries:sec-solid_electrolyte}
 
@@ -877,14 +877,14 @@ In order to understand the local interaction between the anion and cation, I hav
 \begin{figure}[ht]
 \centering
 \input{\figurepath/batteries/landscapes}
-\caption{(a) \ce{[CB11H12]^{-}} anion, with the symmetrically inequivalent facets colored red. Each of the facets corresponds to a binding site with direction $\Omega_i$ with respect to the center of the anion. (b) Angular distributions of the \ce{Li^+} (top) and \ce{Na^+} (bottom) cations derived from AIMD simulations (Taken from~\cite{Dimitrievska2018}), where the angle $\theta$ is defined versus the C$_5$ axis connecting the C atom with the opposite B atom. (c) Calculated energy landscapes for \ce{Li^+} (top) and \ce{Na^+} (bottom) along wedges connecting the binding sites $\Omega_i$, relative to the spherical average at $8~\si{\angstrom}$.}
+\caption{(a) \ce{[CB11H12]^{-}} anion, with the symmetrically inequivalent facets colored red. Each of the facets corresponds to a binding site with direction $\Omega_i$ with respect to the center of the anion. (b) Angular distributions of the \ce{Li^+} (top) and \ce{Na^+} (bottom) cations derived from \gls{AIMD} simulations (Taken from~\cite{Dimitrievska2018}), where the angle $\theta$ is defined versus the C$_5$ axis connecting the C atom with the opposite B atom. (c) Calculated energy landscapes for \ce{Li^+} (top) and \ce{Na^+} (bottom) along wedges connecting the binding sites $\Omega_i$, relative to the spherical average at $8~\si{\angstrom}$.}
 \end{figure}
 \label{batteries:fig-cb11h12}
 }
 
-The resulting energy landscapes are compared with the ab initio molecular dynamics (AIMD) results from Dimitrievska et al.~\cite{Dimitrievska2018} in Fig.~\ref{batteries:fig-cb11h12}. The landscapes of \ce{Li^+} and \ce{Na^+} are qualitatively similar, and show a preference for the cations to bind at all-boron facets, where the depth of the energy wells is progressively larger for sites further removed from the \ce{C} atom. This result is in good agreement with the angle distributions obtained from the AIMD, where we can see that the probability density is larger for angles corresponding to the all-boron docking sites ($\Omega_2$, $\Omega_3$ and $\Omega_4$), especially at smaller distances. At these distances, the likelihood of finding the cation near the $\Omega_4$ site is largest, which matches nicely with the increasing depth of the energy wells for sites further removed from \ce{C}. 
+The resulting energy landscapes are compared with the ab initio molecular dynamics (AIMD) results from Dimitrievska et al.~\cite{Dimitrievska2018} in Fig.~\ref{batteries:fig-cb11h12}. The landscapes of \ce{Li^+} and \ce{Na^+} are qualitatively similar, and show a preference for the cations to bind at all-boron facets, where the depth of the energy wells is progressively larger for sites further removed from the \ce{C} atom. This result is in good agreement with the angle distributions obtained from the \gls{AIMD}, where we can see that the probability density is larger for angles corresponding to the all-boron docking sites ($\Omega_2$, $\Omega_3$ and $\Omega_4$), especially at smaller distances. At these distances, the likelihood of finding the cation near the $\Omega_4$ site is largest, which matches nicely with the increasing depth of the energy wells for sites further removed from \ce{C}. 
 
-Moreover, the difference in the energy landscape between the \ce{C} facet ($\Omega_1$) and the lowest energy binding site ($\Omega_4$) is significant ($>0.6~\si{\electronvolt}$). As the anions undergo rapid reorientation in the superionic phase of both \ce{LiCB11H12} and \ce{NaCB11H12}~\cite{Dimitrievska2018}, this leads to a strongly fluctuating cation energy landscape close to the anions, which can push the cation back into interstitial sites. Hence, the substitution of \ce{B} by \ce{C} introduces a dipole in the anion, which in combination with its high rotational mobility can improve the ionic conductivitiy. This ``paddle wheel" effect was already described by Lunder et al. in the context of lithium sulphate materials~\cite{Lunden1995}, and is further supported by the by the AIMD and quasielastic neutron scattering results of my collaborators~\cite{Dimitrievska2018}. 
+Moreover, the difference in the energy landscape between the \ce{C} facet ($\Omega_1$) and the lowest energy binding site ($\Omega_4$) is significant ($>0.6~\si{\electronvolt}$). As the anions undergo rapid reorientation in the superionic phase of both \ce{LiCB11H12} and \ce{NaCB11H12}~\cite{Dimitrievska2018}, this leads to a strongly fluctuating cation energy landscape close to the anions, which can push the cation back into interstitial sites. Hence, the substitution of \ce{B} by \ce{C} introduces a dipole in the anion, which in combination with its high rotational mobility can improve the ionic conductivitiy. This ``paddle wheel" effect was already described by Lunder et al. in the context of lithium sulphate materials~\cite{Lunden1995}, and is further supported by the by the \gls{AIMD} and quasielastic neutron scattering results of my collaborators~\cite{Dimitrievska2018}. 
 
 Comparing the results for \ce{Li^+} and \ce{Na+}, it is clear that the cation is bound less strongly for \ce{Na^+}, as the wells corresponding to the binding sites are much higher in energy compared to the reference at 8~\si{\angstrom}. Moreover, the wells are also broader and located at a larger distance from the anion, which further indicates that cation can more easily be detached from the anion. This, in combination with the fact that the energy difference upon reorientation of the anion is similar to that for \ce{Li^+}, can explain the lower transition temperature to the superionic phase for \ce{NaCB11H12} (380~\si{\kelvin}) compared to \ce{LiCB11H12} (400~\si{\kelvin}).
 

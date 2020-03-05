@@ -14,12 +14,12 @@ Dirac}
 \vspace{2em} 
  
 \setlength{\epigraphwidth}{4in} 
-\epigraph{\textit{``When teaching chemistry students, I explain that DFT is 
+\epigraph{\textit{``When teaching chemistry students, I explain that \gls{DFT} is 
 some algorithm meaning unreliable, while ab initio is Latin for too 
 expensive."}}{Kieron Burke} 
 \vspace{3em} 
  
-\textit{Density Functional Theory} (DFT) is a popular quantum mechanical 
+Density functional theory (\gls{DFT}) is a popular quantum mechanical 
 method for calculating the electronic structure of a system, based on the idea 
 that all of the relevant information on the electrons is stored in the 
 electron density function. Within this theory, the properties of the system 
@@ -28,10 +28,10 @@ density. It is one of the most widely used \textit{ab initio} methods
 available, mainly because of its wide range of possible applications as well 
 as its relative computational simplicity.  
  
-In this chapter, I discuss the theoretical underpinnings of DFT. 
+In this chapter, I discuss the theoretical underpinnings of \gls{DFT}. 
 Section~\ref{dft:sec-theory} describes the many-body problem and explains the 
 theoretical framework that allows us to tackle electronic structure 
-calculations using DFT. Section~\ref{dft:sec-computational} continues by 
+calculations using \gls{DFT}. Section~\ref{dft:sec-computational} continues by 
 explaining the important concepts of practical computations, such as the basis
 set for the expansion of the one-electron orbitals and the pseudopotential method. 
 Section~\ref{dft:sec-linear} discusses 
@@ -210,7 +210,7 @@ a variational principle, the electron energy found by minimization is in
 principle an upper bound for the ground state electron energy. However, when 
 approximations are used for the functional $F_{HK}[\rho]$, the minimized 
 electron energy can no longer be considered an upper bound. This means that it 
-is possible that DFT calculations produce a ground state energy below $E_0$.} 
+is possible that \gls{DFT} calculations produce a ground state energy below $E_0$.} 
 for the ground state energy by inserting different functions for 
 $\rho(\mathbf{r})$ and looking for the minimal value of Eq. 
 (\ref{dft:eq-elenergy}). 
@@ -231,7 +231,7 @@ F_{HK}[\rho] = T[\rho] + \frac{1}{2} \iint
 where the first term denotes the kinetic energy, the second term is due to the 
 Coulomb interaction, and all other interaction energy is combined in the 
 \textit{exchange-correlation} energy $E_{xc}'[\rho]$. Finding a good 
-expression for $E_{xc}'[\rho]$ is of great importance for DFT calculations, 
+expression for $E_{xc}'[\rho]$ is of great importance for \gls{DFT} calculations, 
 and is discussed in more detail in Section~\ref{dft:sec-functionals}. 
  
 The Hohenberg-Kohn theorems, as presented in this section, apply to the ground 
@@ -262,7 +262,7 @@ information is lost when we consider the electron density as the main variable
 instead of the wave function. The second Hohenberg-Kohn theorem allows us to 
 use a variational principle to find the ground state electron density.  
  
-The next step in solving the many-body problem using DFT was introduced by 
+The next step in solving the many-body problem using \gls{DFT} was introduced by 
 Kohn and Sham in 1965~\cite{Kohn1965}. They considered a system of 
 non-interacting electrons that has exactly the same energy and electron 
 density as the original problem. This fictitious system is subject to a 
@@ -335,14 +335,14 @@ where $V_H(\mathbf{r})$ is the Hartree or Coulomb potential and
 $V_{xc}(\mathbf{r})$ is the exchange-correlation potential. 
  
 We call Eqs. (\ref{dft:eq-KS}), in combination with the expression for 
-$V_{eff}(\mathbf{r})$ from Eq. (\ref{dft:eq-Veff}), the \textit{Kohn-Sham} (KS) 
+$V_{eff}(\mathbf{r})$ from Eq. (\ref{dft:eq-Veff}), the \textit{Kohn-Sham} (\gls{KS}) 
 equations. At first glance, we seem to be faced with a problem: In order to 
 calculate the ground state electron density $\rho(\mathbf{r})$, we need to 
-solve the KS equations to find the one electron wave functions 
+solve the \gls{KS} equations to find the one electron wave functions 
 $\phi_i(\mathbf{r})$. However, these equations require the knowledge of the 
 effective potential $V_{eff}(\mathbf{r})$, whose calculation in turn requires 
 the ground state density $\rho(\mathbf{r})$. To solve this issue, we perform 
-what is called a \textit{Self Consistent Field} (SCF) procedure. Starting from 
+what is called a self-consistent field (\gls{SCF}) procedure. Starting from 
 an initial guess for the electron density, we calculate the effective 
 potential. Once we have the effective potential, we insert it into the 
 Kohn-Sham equations to calculate the one electron wave functions. We then use 
@@ -356,25 +356,25 @@ amount of iterations. This algorithm is shown schematically in Figure
 \centering 
 \input{\figurepath/dft/scf_cycle}
 \caption{\label{dft:fig-scf_cycle} Flowchart representing the self consistent field 
-calculation used to find the ground state density in DFT calculations.} 
+calculation used to find the ground state density in \gls{DFT} calculations.} 
 \end{figure} 
  
-The SCF procedure is converged when the electron density is 
+The \gls{SCF} procedure is converged when the electron density is 
 \textit{self-consistent}, i.e. solving the Kohn Sham equations using the 
 effective potential for the converged electron density results in the same 
-density. However, several implementations of the DFT formalism consider the 
-difference between the total electronic energy of two SCF iteration steps for 
+density. However, several implementations of the \gls{DFT} formalism consider the 
+difference between the total electronic energy of two \gls{SCF} iteration steps for 
 the convergence criterion. 
  
 \subsection{Exchange Correlation Functional} \label{dft:sec-functionals} 
  
 The Kohn-Sham method is in principle exact, up to a certain precision 
 determined by a parameter in the convergence procedure. However, we are still 
-faced with one of the fundamental challenges of DFT: the expression of the 
+faced with one of the fundamental challenges of \gls{DFT}: the expression of the 
 exchange-correlation functional $E_{xc}[\rho]$ is unknown. Since the calculation of the effective potential for each iteration step requires this functional, we 
 are forced to make use of approximations. One popular way of classifying the 
 various approximations for the exchange-correlation energy is as rungs on 
-Jacob's ladder for DFT~\cite{Perdew2001}, ultimately leading to chemical 
+Jacob's ladder for \gls{DFT}~\cite{Perdew2001}, ultimately leading to chemical 
 accuracy heaven (Fig.~\ref{dft:fig-jacob}). These rungs are also often referred to 
 as the \textit{level} of the theory. 
  
@@ -386,15 +386,15 @@ exchange-correlation energy. Taken from~\cite{Wang2014}.}
 \label{dft:fig-jacob} 
 \end{figure} 
  
-The first rung on Jacob's ladder is the \textit{Local Density Approximation} 
-(LDA), introduced in the original paper of Kohn and Sham~\cite{Kohn1965}: 
+The first rung on Jacob's ladder is the local density approximation 
+(\gls{LDA}), introduced in the original paper of Kohn and Sham~\cite{Kohn1965}: 
 \begin{equation} 
 E_{xc}^{LDA}[\rho] = \int \rho(\mathbf{r}) 
 \epsilon_{xc}(\rho(\mathbf{r}))d\mathbf{r}, 
 \end{equation} 
 where $\epsilon_{xc}(\rho(\mathbf{r}))$ is the exchange-correlation energy 
-function, which in the LDA is assumed to depend only on the electron density 
-$\rho(\mathbf{r})$. Most successful variants of the LDA calculate the 
+function, which in the \gls{LDA} is assumed to depend only on the electron density 
+$\rho(\mathbf{r})$. Most successful variants of the \gls{LDA} calculate the 
 exchange-correlation for the homogeneous electron gas, based on an exact 
 expression for the exchange part and quantum Monte Carlo simulations for the 
 correlation part. 
@@ -402,20 +402,20 @@ correlation part.
 \phantomsection \label{dft:sec-GGA}
 In the next level of theory, some non-locality is introduced through the 
 gradient of the electron density. In this way, we obtain the 
-\textit{Generalised Gradient Approximation} (GGA)~\cite{Perdew1992}: 
+generalised gradient approximation (\gls{GGA})~\cite{Perdew1992}: 
 \begin{equation} 
 E_{xc}^{GGA}[\rho] = \int \rho(\mathbf{r}) f(\rho(\mathbf{r}),\left| \nabla 
 \rho\right|)d\mathbf{r}, 
 \end{equation} 
 where $f(\rho(\mathbf{r}),\left| \nabla \rho\right|)$ is a function of the 
 electron density $\rho(\mathbf{r})$ and its gradient $\left| \nabla 
-\rho\right|$. GGA's generally produce better results than the LDA, but 
+\rho\right|$. \gls{GGA}'s generally produce better results than the \gls{LDA}, but 
 there is some freedom in determining how exactly the gradient is included in 
 the approximation through the definition of $f(\rho(\mathbf{r}),\left| \nabla 
-\rho\right|)$. Some variants of the GGA use empirical data to fit the 
+\rho\right|)$. Some variants of the \gls{GGA} use empirical data to fit the 
 functional parameters to a wide range of experimental results~\cite{Becke1988, Keal2004}. Alternatively, the functional form and parameters can be constructed based on theoretical constraints. An example of such a 
-non-empirical GGA functional that is very popular in solid state physics is the 
-\textit{Perdew-Burke-Ernzerhof} (PBE)~\cite{Perdew1996} functional: 
+non-empirical \gls{GGA} functional that is very popular in solid state physics is the 
+\textit{Perdew-Burke-Ernzerhof} (\gls{PBE})~\cite{Perdew1996} functional: 
 \begin{equation} 
 E_{xc}^{PBE}[\rho] = \int \rho(\mathbf{r}) \left[ 
 \epsilon_{xc}(\rho(\mathbf{r})) + H[\rho,t] \right] d\mathbf{r}, 
@@ -446,11 +446,11 @@ include a dependence on the local kinetic energy density:
 \end{equation} 
 A recent meta-GGA functional based on the local kinetic energy density that 
 has been shown to perform well with regard to the cohesive energies and 
-lattice parameters of solids is the Strongly Constrained and Appropriately 
-Normed (SCAN)~\cite{Sun2015} functional. 
+lattice parameters of solids is the strongly constrained and appropriately 
+normed (\gls{SCAN})~\cite{Sun2015} functional. 
  
 \phantomsection \label{dft:sec-hybrid} 
-Although many LDA, GGA and meta-GGA functionals are quite effective at 
+Although many \gls{LDA}, \gls{GGA} and meta-GGA functionals are quite effective at 
 calculating the lattice parameters, atomic positions and binding energies, a 
 common problem when using these functionals is that they tend to significantly 
 underestimate the band gap of semiconductor materials~\cite{Tran2007}. 
@@ -458,19 +458,19 @@ Moreover, as they are often based on the homogeneous electron gas, they
 provide a poor description of the electronic structure of \textit{d} and 
 \textit{f} valence orbitals, which are usually more localized~\cite{Bengone2000}. 
 In order to improve the value of the band gap and localization of 
-electrons, it is possible to mix the DFT functional with a fraction of exact 
-\textit{Hartree-Fock}~\cite{Slater1951} (HF) exchange energy. We call the 
+electrons, it is possible to mix the \gls{DFT} functional with a fraction of exact 
+\textit{Hartree-Fock}~\cite{Slater1951} (\gls{HF}) exchange energy. We call the 
 result of such a combination a \textit{hybrid functional}. A very popular 
-hybrid functional is the \textit{Heyd-Scuseria-Ernzerhof} (HSE) 
+hybrid functional is the \textit{Heyd-Scuseria-Ernzerhof} (\gls{HSE}) 
 functional~\cite{Heyd2003}, which makes a distinction between short and long 
 range interaction, based on a range separation parameter $\omega$: 
 \begin{equation} 
 E_{xc}^{HSE} = a E_{x}^{HF,SR}(\omega) + (1-a) E_{x}^{PBE,SR}(\omega) + 
 E_{x}^{PBE,LR}(\omega) + E_{c}^{PBE}, 
 \end{equation} 
-where $a$ is the fraction of HF energy included in the short range 
+where $a$ is the fraction of \gls{HF} energy included in the short range 
 interaction. Typical values for the parameters are $a = \frac{1}{4}$ and 
-$\omega = 0.2$ \AA, which is known as the HSE06 functional. It is important to 
+$\omega = 0.2$ \AA, which is known as the \gls{HSE}06 functional. It is important to 
 note here that the mixing parameter $a$ for hybrid functionals is often 
 obtained by comparing the band gap result of the calculation that uses hybrid 
 functionals to the band gap found from experiments. In this case, calculations 
@@ -479,8 +479,8 @@ initio}.
  
 \phantomsection \label{dft:sec-dudarev} 
 Because they require the calculation of the exact exchange energy through the 
-HF formalism, hybrid methods are significantly more computationally demanding 
-than strictly DFT-based functionals. Depending on the computational resources 
+\gls{HF} formalism, hybrid methods are significantly more computationally demanding 
+than strictly \gls{DFT}-based functionals. Depending on the computational resources 
 available, this can severely restrict the systems of interest that can be 
 feasibly investigated with hybrid functionals. For large systems with strongly 
 localized electrons, another method that can improve the description of the 
@@ -494,7 +494,7 @@ by Dudarev et al.~\cite{Dudarev1998}:
 E_{DFT+U} = E_{DFT} + \frac{U_{eff}}{2} \sum_\sigma \left[ \sum_m 
 \rho_{mm}^\sigma - \sum_{m, m'} \rho_{mm'}^\sigma\rho_{m'm}^\sigma\right], 
 \end{equation} 
-where $E_{DFT}$ is the energy obtained from the uncorrected DFT result, and $\rho^\sigma_{mm'}$ is the spin orbital density matrix of the orbitals to which we 
+where $E_{DFT}$ is the energy obtained from the uncorrected \gls{DFT} result, and $\rho^\sigma_{mm'}$ is the spin orbital density matrix of the orbitals to which we 
 want to apply the $U_{eff}$ correction:
 \begin{equation}
 \rho^\sigma_{mm'} = \sum_{i, \sigma} f_i^\sigma \bra{\phi_i^\sigma} \hat{P}_{mm'}^I \ket{\phi_i^\sigma},
@@ -707,7 +707,7 @@ pseudopotential. Adapted from~\cite{Singh2006}.}
 \end{figure} 
  
 We can achieve this goal by replacing the potential of the nuclei by a 
-\textit{pseudopotential} (PP)~\cite{Phillips1959}. Firstly, we make a 
+\textit{pseudopotential} (\gls{PP})~\cite{Phillips1959}. Firstly, we make a 
 distinction between two types of electrons in the atom: the \textit{core} 
 electrons are highly localized and are considered together with the nucleus, 
 whereas the \textit{valence electrons} are responsible for the bonding and are 
@@ -720,7 +720,7 @@ functions $\ket{\phi_c}$~\cite{Kohanoff2006}:
 \end{equation} 
 where $\alpha_{vc} = - \braket{\phi_c | \tilde{\phi}_v}$ in order to make the 
 wave function $\ket{\phi_v}$ orthogonal to the core wave functions. In the 
-case of DFT, we need to solve the Kohn-Sham equations (Eq.~(\ref{dft:eq-KS})): 
+case of \gls{DFT}, we need to solve the Kohn-Sham equations (Eq.~(\ref{dft:eq-KS})): 
 \begin{equation}\label{dft:eq-KS2} 
 \underbrace{\left[- \frac{1}{2} \Delta_{\mathbf{r}} + V_{eff}(\mathbf{r}) 
 \right]}_{\hat{H}_{KS} } \ket{\phi_v} = \epsilon_v \ket{\phi_v}. 
@@ -764,18 +764,18 @@ the reader to~\cite{Singh2006}.
 The main drawback of the pseudopotential method is that all the information on 
 the full electron wave function near the the nuclei is 
 lost. A more general approach is the projector augmented 
-wave (PAW) method, which was first introduced by Bl\"ochl in 
-1994~\cite{Blochl1994}. This method has similarities with the PP approach, in 
-the sense that it tries to replace the true all-electron (AE) wave function 
-with a smoother pseudo (PS) wave function, that agrees with the true wave 
+wave (\gls{PAW}) method, which was first introduced by Bl\"ochl in 
+1994~\cite{Blochl1994}. This method has similarities with the \gls{PP} approach, in 
+the sense that it tries to replace the true all-electron (\gls{AE}) wave function 
+with a smoother pseudo (\gls{PS}) wave function, that agrees with the true wave 
 function in the bonding region. Here I present a brief discussion of the concept,
 largely based on the excellent paper of Rostgaard~\cite{Rostgaard2009}.
  
 We consider each nucleus to be enclosed by a spherical volume of radius $R_a$, 
 called the \textit{augmentation} region $\Omega_{R_a}$, and define the 
 remaining part of space as the \textit{interstitial} region. We are looking 
-for a linear operator that transforms the computationally convenient PS one 
-electron wave functions $\ket{\tilde{\phi}}$ into the physically relevant AE 
+for a linear operator that transforms the computationally convenient \gls{PS} one 
+electron wave functions $\ket{\tilde{\phi}}$ into the physically relevant \gls{AE}
 one-electron wave functions $\ket{\phi}$: 
 \begin{equation}\label{dft:eq-PAW} 
 \ket{\phi} = \hat{\mathcal{T}} \ket{\tilde{\phi}}. 
@@ -789,15 +789,15 @@ where each operator $\hat{\mathcal{T}}_{R_a}$ is a null operator\footnote{A
 null operator is an operator $\hat{A}$ which reduces any state to 
 zero:\begin{equation*}\hat{A}\ket{\alpha}=0\hspace{0.3in}\text{for any } 
 \ket{\alpha}.\end{equation*}} outside the augmentation region of atom $a$. 
-Inside each augmentation region $\Omega_{R_a}$, we expand the AE wave function 
-in partial waves $\ket{\varphi_i^a}$ and the PS wave function in partial waves 
+Inside each augmentation region $\Omega_{R_a}$, we expand the \gls{AE} wave function 
+in partial waves $\ket{\varphi_i^a}$ and the \gls{PS} wave function in partial waves 
 $\ket{\tilde{\varphi}_i^a}$: 
 \begin{equation} 
 \ket{\phi^a} = \sum_i c_i^a \ket{\varphi_i^a} \hspace{0.4in} 
 \ket{\tilde{\phi}^a} = \sum_i \tilde{c}_i^a \ket{\tilde{\varphi}_i^a}, 
 \end{equation} 
 and require that the partial waves can be transformed using the same operator 
-as the AE and PS wave function: 
+as the \gls{AE} and \gls{PS} wave function: 
 \begin{equation}\label{dft:eq-transpartial} 
 \forall a,i:\hspace{0.3in}\ket{\varphi_i^a} = \left( 1 + 
 \hat{\mathcal{T}}_{R_a} \right) \ket{\tilde{\varphi}_i^a} \hspace{0.1in} 
@@ -818,12 +818,12 @@ Eq.~(\ref{dft:eq-transpartial}) that the partial waves are the same in the
 interstitial region ($\ket{\varphi_i^a} = \ket{\tilde{\varphi}_i^a}$). 
  
 Since we are looking for a linear transformation $\hat{\mathcal{T}}$, the 
-coefficients $c_i^a$ have to be linear functionals of the PS wave function: 
+coefficients $c_i^a$ have to be linear functionals of the \gls{PS} wave function: 
 \begin{equation} 
 c_i^a = \braket{\tilde{p}_i^a | \tilde{\phi}^a}. 
 \end{equation} 
 The $\bra{\tilde{p}_i^a}$ are called the \textit{projector functions}. Inside 
-each augmentation region, the one-center expansion of the PS wave function is 
+each augmentation region, the one-center expansion of the \gls{PS} wave function is 
 equal to itself: 
 \begin{equation} 
 \sum_i \ket{\tilde{\varphi}_i^a}\braket{\tilde{p}_i^a | \tilde{\phi}^a} = 
@@ -844,14 +844,14 @@ from which we can conclude that the total transformation operator is equal to:
 \ket{\tilde{\varphi}_i^a})\bra{\tilde{p}_i^a}. 
 \end{equation} 
  
-Using the PAW method changes the regular Kohn-Sham equations 
-(Eq.~(\ref{dft:eq-KS})) for an AE wave function $\ket{\phi}$ with energy 
-$\epsilon$ to an eigenvalue equation for the PS wave function: 
+Using the \gls{PAW} method changes the regular Kohn-Sham equations 
+(Eq.~(\ref{dft:eq-KS})) for an \gls{AE} wave function $\ket{\phi}$ with energy 
+$\epsilon$ to an eigenvalue equation for the \gls{PS} wave function: 
 \begin{equation}\label{dft:eq-KSPAW} 
 \hat{\mathcal{T}}^\dagger \hat{H}_{KS} \hat{\mathcal{T}} \ket{\tilde{\phi}} = 
 \epsilon \hat{\mathcal{T}}^\dagger \hat{\mathcal{T}} \ket{\tilde{\phi}}. 
 \end{equation} 
-After solving Eq.~(\ref{dft:eq-KSPAW}), we can construct the AE wave function by 
+After solving Eq.~(\ref{dft:eq-KSPAW}), we can construct the \gls{AE} wave function by 
 using Eq.~(\ref{dft:eq-PAW}) and Eq.~(\ref{dft:eq-transform}): 
 \begin{equation} 
 \ket{\phi} = \hat{\mathcal{T}} \ket{\tilde{\phi}} = \left(1 + \sum_a 
@@ -869,9 +869,9 @@ which in position space becomes
 \tilde{\varphi}_i^a (\mathbf{r}))\braket{\tilde{p}_i^a | \tilde{\phi}}. 
 \end{eqnarray} 
  
-The PAW method is implemented using large data sets for each element. Such a 
-data set governs exactly how the PAW transformation works for each atomic 
-site. One has a large degree of freedom when generating data sets for PAW 
+The \gls{PAW} method is implemented using large data sets for each element. Such a 
+data set governs exactly how the \gls{PAW} transformation works for each atomic 
+site. One has a large degree of freedom when generating data sets for \gls{PAW} 
 transformations, which are determined by the partial waves 
 $\varphi_i^a,\tilde{\varphi}_i^a$ and the projector augmented functions 
 $\tilde{p}_i^a(\mathbf{r}) = \braket{\mathbf{r} |\tilde{p}_i^a}$. For more 
@@ -881,7 +881,7 @@ information, we refer the reader to~\cite{Rostgaard2009}.
  
 For an infinite crystal lattice, $\mathbf{k}$ is a continuous variable, which 
 means that the calculation of many properties of the system requires an 
-integration over the first Brillouin Zone (BZ). When doing numerical 
+integration over the first Brillouin zone (\gls{BZ}). When doing numerical 
 calculations, however, this is not practically possible. Instead, we make a 
 selection of $\mathbf{k}$ points over which we sum the function in order to 
 approximate the integration: 
@@ -891,10 +891,10 @@ approximate the integration:
 \end{equation} 
 where $N_\mathbf{k}$ is the number of chosen $\mathbf{k}$-points. This set of 
 reciprocal points is commonly referred to as the~\textit{k-point mesh}. 
-Figure~\ref{dft:fig-k_mesh} presents an example of a $\mathbf{k}$-mesh for the BZ 
-of the two dimensional square lattice. It also shows the \textit{Irreducible 
-Brillouin Zone} (IBZ), which is the smallest possible subspace of the 
-Brillouin zone that can be used to construct the whole BZ by the symmetry 
+Figure~\ref{dft:fig-k_mesh} presents an example of a $\mathbf{k}$-mesh for the \gls{BZ} 
+of the two dimensional square lattice. It also shows the irreducible 
+Brillouin zone \gls{IBZ}, which is the smallest possible subspace of the 
+Brillouin zone that can be used to construct the whole \gls{BZ} by the symmetry 
 operations of the crystal's space group.  
  
 As a result of the crystal's symmetry, which is determined by the lattice and 
@@ -908,7 +908,7 @@ $\mathbf{k}$-mesh. This is the smallest set of inequivalent
 $\mathbf{k}$-points of the $\mathbf{k}$-mesh from which the whole 
 $\mathbf{k}$-mesh can be retrieved through a combination of symmetry 
 operations. In case the $\mathbf{k}$-mesh has the same symmetry as the space 
-group, the irreducible $\mathbf{k}$-points are found in the IBZ. 
+group, the irreducible $\mathbf{k}$-points are found in the \gls{IBZ}. 
  
 If $\{\mathbf{k}_i\}$ is the set of irreducible $\mathbf{k}$-points, the sum 
 in Eq.~(\ref{dft:eq-BZint}) can be expressed as: 
@@ -933,7 +933,7 @@ $\mathbf{k}$-points are: $w_{\mathbf{k}_1} = \frac{1}{4}$ , $w_{\mathbf{k}_2}
 \end{figure} 
 
 \phantomsection \label{dft:sec-monkhorst}
-A common collection of $\mathbf{k}$-points used in DFT calculations is the 
+A common collection of $\mathbf{k}$-points used in \gls{DFT} calculations is the 
 Monkhorst-Pack mesh~\cite{Monkhorst1976}, which is an equidistant grid defined 
 as: 
 \begin{equation} 
@@ -993,7 +993,7 @@ in frequency space as
 - \epsilon_i + \check{\omega}} \right), 
 \end{equation} 
 \\ 
-where $\phi_i(\mathbf{r})$ are the KS orbitals of the time-independent 
+where $\phi_i(\mathbf{r})$ are the \gls{KS} orbitals of the time-independent 
 problem~(Eqs.~(\ref{dft:eq-KS})), and $\check{\omega} = \omega + i \eta$ is a 
 complex deviation from the angular frequency $\omega$, introduced in the 
 perturbation calculation. The occupancies $f_i$ are included in Eq~(\ref{dft:eq-pines}) in 
@@ -1228,8 +1228,8 @@ B.}
  
 However, often we are also interested in the kinetics of the transition, i.e. the 
 rate at which a reaction will occur. One way of investigating this is by 
-performing Ab Initio Molecular Dynamics (AIMD) calculations. Unfortunately, 
-for many reactions performing AIMD simulations over a sufficiently long time 
+performing \textit{ab initio} molecular dynamics (AIMD) calculations. Unfortunately, 
+for many reactions performing \gls{AIMD} simulations over a sufficiently long time 
 scale to obtain relevant statistics is far too computationally demanding. A 
 popular alternative for studying the kinetics is by obtaining the kinetic barrier, 
 also known as the activation energy $E_a$, directly  
@@ -1237,10 +1237,10 @@ by determining the minimum energy path for the
 transition. Figure~\ref{dft:fig-transition} shows a schematic of the energy 
 barrier of a transition. 
  
-\subsection{Nudged Elastic band method} \label{dft:sec-neb} 
+\subsection{Nudged elastic band method} \label{dft:sec-neb} 
  
 A well established method for finding the minimum energy path between the 
-initial and final state of the system is the Nudged Elastic Band (NEB) 
+initial and final state of the system is the nudged elastic band (\gls{NEB}) 
 method~\cite{Jonsson1998, Henkelman2000}. In this technique, a path is 
 constructed by considering a number of images in between the initial and final 
 state, usually obtained by linearly interpolating the atomic positions of the initial and final 
@@ -1260,7 +1260,7 @@ for each atom of each image.
 Write the $N + 1$ images as $\left[ \mathbf{R}_0,  \mathbf{R}_1,  
 \mathbf{R}_2, ...,  \mathbf{R}_N  \right]$, where $ \mathbf{R}_0$ and $ 
 \mathbf{R}_N$ are the coordinates of the initial and final state, respectively. The basic idea of 
-the NEB method is that the total force acting on an image is the sum of the 
+the \gls{NEB} method is that the total force acting on an image is the sum of the 
 spring force along the local tangent and the perpendicular part of the true 
 force, i.e. the force on the image produced by the energy landscape: 
 \begin{equation}\label{dft:eq-neb_force} 
@@ -1280,14 +1280,14 @@ whereas the spring force depends on the spring constant $k$:
 \end{equation}
 The path is then optimized to the saddle point by a suitable minimization 
 algorithm using the force from Eq.~(\ref{dft:eq-neb_force}). Figure~\ref{dft:fig-neb} 
-shows an example of the initial and final path of the NEB method for a simple 
+shows an example of the initial and final path of the \gls{NEB} method for a simple 
 two dimensional energy landscape. Note that the simplest definition of the
 tangent
 \begin{equation}
 \boldsymbol{\hat{\tau}}_i = \frac{\mathbf{R}_{i+1} - \mathbf{R}_i}{|\mathbf{R}_{i+1} - \mathbf{R}_i |},
 \end{equation}
-has been shown to lead to kinks in the MEP, which interferes with the 
-convergence of the NEB. An improved tangent was developed by 
+has been shown to lead to kinks in the minimum energy path, which interferes with the 
+convergence of the \gls{NEB}. An improved tangent was developed by 
 Henkelman and Jonsson~\cite{Henkelman2000} by bisecting the two unit vectors 
 \begin{equation}
 \boldsymbol{\tau}_i = \frac{\mathbf{R}_i - \mathbf{R}_{i-1}}{|\mathbf{R}_i - \mathbf{R}_{i-1} |} + \frac{\mathbf{R}_{i+1} - \mathbf{R}_i}{|\mathbf{R}_{i+1} - \mathbf{R}_i |},
@@ -1296,12 +1296,12 @@ and subsequently normalizing the tangent vector $\boldsymbol{\hat{\tau}}_i = \bo
 
 \subsection{Climbing Image Modification}
 
-A common issue with the NEB method presented above is that the saddle point is 
+A common issue with the \gls{NEB} method presented above is that the saddle point is 
 in between two images along the path, which can lead to an underestimation of 
 the activation energy. Although a spline interpolation of the energy barrier 
 can improve the result, a better solution to this problem is the so-called 
 climbing image method~\cite{Henkelman2000a}, which introduces a small 
-modification to the NEB algorithm. After several iterations of a regular NEB 
+modification to the \gls{NEB} algorithm. After several iterations of a regular \gls{NEB} 
 calculation, the algorithm searches the image with the highest energy along 
 the path. For this image, the force defined in Eq.~\ref{dft:eq-neb_force} is 
 substituted by: 
@@ -1322,9 +1322,9 @@ significantly higher when the climbing image modification is applied.
 \begin{figure}[ht] 
 \centering 
 \includegraphics[width=0.5\textwidth]{./figures/DFT/ci-neb.png} 
-\caption{\label{dft:fig-neb_climbing} NEB calculation of the minimum energy path 
+\caption{\label{dft:fig-neb_climbing} \gls{NEB} calculation of the minimum energy path 
 for \ce{CH4} dissociative adsorption on a Ir(111) surface, using both the 
-regular NEB algorithm as well as the climbing image 
+regular \gls{NEB} algorithm as well as the climbing image 
 modification.~\cite{Henkelman2000a}} 
 \end{figure} 
  

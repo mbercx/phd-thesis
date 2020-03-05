@@ -104,23 +104,13 @@ firstinits=true,
 
 % Fancy headers for the pages
 \usepackage{fancyhdr}
-\fancypagestyle{style1}{
 \fancyhf{}
-\fancyhead[OL]{Conclusion and Outlook}
-\fancyhead[ER]{Conclusion and Outlook}
-\fancyhead[RO]{\thepage}
-\fancyhead[LE]{\thepage}
+
+\fancypagestyle{specialodd}{
+\fancyhf{}
+\fancyhead[OR]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
 }
-
-% \pagestyle{fancy}
-% \fancyhf{}
-% \fancyhead[lo,le]{\nouppercase{\rightmark}}
-% \fancyfoot[LE,RO]{\thepage}
-
-% \fancypagestyle{plain}{% % <-- this is new
-%   \fancyhf{} 
-%   \fancyfoot[LE,RO]{\thepage} % same placement as with page style "fancy"
-%   \renewcommand{\headrulewidth}{0pt}}
 
 % Chapter header formatting
 \usepackage{titlesec}
@@ -231,8 +221,8 @@ fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small]
 \end{minipage}
 \begin{minipage}{0.12\textwidth}
 \textcolor{white}{\rule{1em}{0.1em}}
-% \href{#2}{\includegraphics[width=3em]{figures/jupyter.png}}
-\qrcode[height=\textwidth]{#2}
+\href{#2}{\includegraphics[width=3em]{figures/jupyter.png}}
+% \qrcode[height=\textwidth]{#2}
 \end{minipage}\vspace*{0.5em}
 \nopagebreak[4]
 }
@@ -284,6 +274,129 @@ fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small]
 \end{wrapfigure}
 }
 
+
+%% Abbreviations
+
+\usepackage[toc, nopostdot, acronym, nogroupskip]{glossaries}
+\makeglossaries
+
+\newglossaryentry{DFT}{name=DFT,%
+  description={Density functional theory}}
+
+\newglossaryentry{SLME}{name=SLME,%
+  description={Spectroscopic limited maximum efficiency}}
+  
+\newglossaryentry{KS}{name=KS,%
+  description={Kohn-Sham}}
+  
+\newglossaryentry{SCF}{name=SCF,%
+  description={Self-consistent field}}
+  
+\newglossaryentry{LDA}{name=LDA,%
+  description={Local density approximation}}
+  
+\newglossaryentry{GGA}{name=GGA,%
+  description={Generalised gradient approximation}}
+  
+\newglossaryentry{PBE}{name=PBE,%
+  description={Perdew-Burke-Ernzerhof}}
+    
+\newglossaryentry{HSE}{name=HSE,%
+  description={Heyd-Scuseria-Ernzerhof}}
+  
+\newglossaryentry{HF}{name=HF,%
+  description={Hartree-Fock}}
+  
+\newglossaryentry{PP}{name=PP,%
+  description={Pseudopotential}}
+  
+\newglossaryentry{PS}{name=PS,%
+  description={Pseudo}}
+  
+\newglossaryentry{AE}{name=AE,%
+  description={All-electron}}
+  
+\newglossaryentry{PAW}{name=PAW,%
+  description={Projector augmented wave}}
+
+\newglossaryentry{BZ}{name=BZ,%
+  description={Brillouin zone}}
+  
+\newglossaryentry{IBZ}{name=BZ,%
+  description={Irreducible Brillouin zone}}
+  
+\newglossaryentry{AIMD}{name=AIMD,%
+  description={\textit{Ab initio} molecular dynamics}}
+  
+\newglossaryentry{NEB}{name=NEB,%
+  description={Nudged elastic band}}
+
+\newglossaryentry{SQ}{name=SQ,%
+  description={Shockley-Queisser}}
+  
+\newglossaryentry{PV}{name=PV,%
+  description={Photovoltaic}}
+  
+\newglossaryentry{AM}{name=AM,%
+  description={Air mass}}
+
+\newglossaryentry{CH}{name=CH,%
+  description={Chalcopyrite}}
+  
+\newglossaryentry{CA}{name=CA,%
+  description={CuAu-like}}
+  
+\newglossaryentry{SRH}{name=SRH,%
+  description={Shockley-Read-Hall}}
+  
+\newglossaryentry{SCAN}{name=SCAN,%
+  description={Strongly constrained and appropriately normed}}
+  
+\newglossaryentry{HAADF}{name=HAADF,%
+  description={High-angle annular dark-field}}
+  
+\newglossaryentry{PXRD}{name=PXRD,%
+  description={Powder X-ray diffraction}}
+  
+\newglossaryentry{EDX}{name=EDX,%
+  description={Energy-dispersive X-ray}}
+  
+\newglossaryentry{NMC}{name=NMC,%
+  description={Nickel-Manganese-Cobalt}}
+  
+\newglossaryentry{PDOS}{name=PDOS,%
+  description={Projected density of states}}
+  
+\newglossaryentry{DOS}{name=DOS,%
+  description={Density of states}}
+
+\newglossaryentry{TM}{name=TM,%
+  description={transition metal}}
+
+\newglossaryentry{SEE}{name=SEE,%
+  description={Secondary electron emission}}
+
+\newglossaryentry{AN}{name=AN,%
+  description={Auger neutralization}}
+
+\newglossaryentry{AD}{name=AD,%
+  description={Auger De-excitation}}
+
+\newglossaryentry{RN}{name=RN,%
+  description={Resonance Neutralization}}
+
+\newglossaryentry{VASP}{name=VASP,%
+  description={Vienna ab initio simulation package}}
+
+\newglossaryentry{QUOTAS}{name=QUOTAS,%
+  description={quantification of target surfaces}}
+
+% \newglossaryentry{BZ}{name=,%
+%   description={}}
+
+% \newglossaryentry{BZ}{name=,%
+%   description={}}
+
 % DFT shortcuts for consistent references and links
 \newcommand{\dft}[1]{%
 \IfEqCase{#1}{%
@@ -301,4 +414,3 @@ fill=helpcolor, fill opacity=0.5, text opacity=1, font=\small]
 {dielectric tensor}{\link{dft:sec-dielectric}{dielectric tensor}~\cite{Gajdos2006, Harl2007}}
 {Kramers-Kronig}{\link{dft:eq-kramers}{Kramers-Kronig}}
 }}
-

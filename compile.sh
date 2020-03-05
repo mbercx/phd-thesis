@@ -3,6 +3,7 @@
 pdflatex -output-dir=output '\PassOptionsToPackage{draft}{graphicx}\input{main}'
 rsync -av bibliography/ output/bibliography
 cd output
+makeglossaries main
 bibtex main1-blx
 bibtex main2-blx
 bibtex main3-blx
