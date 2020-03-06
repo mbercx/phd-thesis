@@ -1,7 +1,8 @@
 \begin{refsection} 
 
 \chapter{Computational Details} \label{appendix:sec-computational} 
- 
+\pagestyle{chapter}
+
 All calculations in this thesis were performed in the \dft{DFT}{} framework, 
 as implemented in the \dft{VASP}{}, save for the calculation of the energy 
 landscapes presented in Section~\ref{batteries:sec-landscape}. This appendix starts with 
@@ -854,7 +855,10 @@ And use this Auger transform instead of the original one in the nominator of
 Eq.~(\ref{quotas:eq-excite}). Note that the normalization in the denominator 
 of Eq.~(\ref{quotas:eq-excite}) should still use the original Auger transform,
 else the number of excited electrons due to the neutralization are 
-still normalized to one per incoming ion. 
+still normalized to one per incoming ion.
 
-\printbibliography 
+\clearpage
+\pagestyle{biblio}
+\printbibliography
+
 \end{refsection} 
