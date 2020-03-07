@@ -1,6 +1,6 @@
 % This file was created by tikzplotlib v0.9.1.
-\definecolor{color0}{rgb}{0.72156862745098,0.12156862745098,0.12156862745098}
-\definecolor{color1}{rgb}{0.137254901960784,0.407843137254902,0.635294117647059}
+\definecolor{color0}{rgb}{0.137254901960784,0.407843137254902,0.635294117647059}
+\definecolor{color1}{rgb}{0.72156862745098,0.12156862745098,0.12156862745098}
 
 \addplot [semithick, black]
 table {%
@@ -105,20 +105,8 @@ table {%
 2.97272727272727 4.95464941576384
 3 4.62132753524128
 };
-\addplot [semithick, color0, mark=triangle*, mark size=1.5, mark options={solid,rotate=180}, only marks]
-table {%
-1.8 15.8
-1.54 21.8
-1.74 19.7
-1.23 26.4
-1.99 16.5
-1.65 26.6
-1.47 24.8
-1.54 23.1
-1.33 22.1
-1.03 28
-};
-\addplot [semithick, color1, mark=triangle*, mark size=1.5, mark options={solid}, only marks]
+\addlegendentry{SQ limit}
+\addplot [semithick, color0, mark=triangle*, mark size=1.5, mark options={solid}, only marks]
 table {%
 1.41 27
 0.95 28.9
@@ -131,3 +119,18 @@ table {%
 0.58 20.7
 0.94 27.9
 };
+\addlegendentry{CuAu-like}
+\addplot [semithick, color1, mark=diamond*, mark size=1.5, mark options={solid}, only marks]
+table {%
+1.8 15.8
+1.54 21.8
+1.74 19.7
+1.23 26.4
+1.99 16.5
+1.65 26.6
+1.47 24.8
+1.54 23.1
+1.33 22.1
+1.03 28
+};
+\addlegendentry{Chalcopyrite}

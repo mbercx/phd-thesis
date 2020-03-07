@@ -1,0 +1,48 @@
+\begin{tikzpicture}[]
+
+\begin{groupplot}[
+group style={group size=2 by 1, horizontal sep=4em},
+]
+    
+\nextgroupplot[
+width=0.49\textwidth, height=6cm,
+tick pos=left,
+xlabel={Energy (\si{\electronvolt})},
+xmin=0, xmax=4.5,
+xtick style={color=black},
+xtick={0, 0.5, 1.12, 1.5, 2, 2.5, 3, 3.4, 4, 4.5},
+xticklabels={0, 0.5, $E_g$, 1.5, 2, 2.5, 3, $E_g^{da}$, 4, 4.5},
+ylabel style={yshift=-5pt},
+ylabel={$\alpha$ (\si{\per\meter})},
+ymin=1, ymax=1e9,
+ytick style={color=black},
+ymode=log,
+legend style={
+at={(1, 0)}, anchor=south east, draw=none, fill=none, 
+font=\fontsize{7.5}{7}\sffamily, legend columns=2, 
+/tikz/column 2/.style={
+column sep=5pt},
+},
+]
+\input{\figurepath/slme/si_abs_data.tex}
+
+\node[anchor=north west, font=\sffamily, inner sep=5] at (axis cs:0, 1e9) {\textbf{a}};
+
+\nextgroupplot[
+width=0.49\textwidth, height=6cm,
+x grid style={white!69.0196078431373!black},
+xlabel={Thickness $L$ (nm)},
+xlabel style={yshift=-5pt},
+xmin=100, xmax=1e7,
+xmode=log,
+ylabel style={yshift=-5pt},
+y grid style={white!69.0196078431373!black},
+ylabel={SLME (\%)},
+ymin=0, ymax=30,
+ytick style={color=black}
+]
+\input{\figurepath/slme/si_slme_data.tex}
+\node[anchor=north west, font=\sffamily, inner sep=5] at (axis cs:100, 30) {\textbf{b}};
+
+\end{groupplot}
+\end{tikzpicture}

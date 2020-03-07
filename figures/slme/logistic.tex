@@ -1,0 +1,84 @@
+\tikzstyle{compound}=[
+font=\tiny, inner sep=1, rounded corners,
+]
+\tikzstyle{datapoint}=[
+inner sep=2,
+]
+
+\begin{tikzpicture}
+
+\begin{axis}[
+width=0.7\textwidth, height=7cm,
+tick align=outside,
+tick pos=left,
+x grid style={white!69.0196078431373!black},
+xlabel={Band Gap (\si{\electronvolt})},
+xmin=0.3, xmax=2.5,
+xtick style={color=black},
+y grid style={white!69.0196078431373!black},
+ylabel={SQ limit (\%)},
+ymin=5, ymax=35,
+ytick style={color=black},
+legend style={
+at={(0.99, 0.99)}, anchor=north east, draw=none, font=\sffamily
+},
+]
+\input{\figurepath/slme/logistic_data.tex}
+
+
+\node [datapoint] (CuInSe2-115) at (axis cs:0.58, 20.7) {};
+\node [datapoint] (Cu2ZnGeTe4-121) at (axis cs:0.49, 17.06) {};
+\node [datapoint] (Cu2ZnSnTe4-121) at (axis cs:0.58, 21.16) {};
+\node [datapoint] (Cu2CdSnSe4-121) at (axis cs:0.7, 24.47) {};
+\node [datapoint] (Cu2HgGeSe4-121) at (axis cs:0.54, 18.51) {};
+\node [datapoint] (Cu2HgGeTe4-121) at (axis cs:0.38, 12.72) {};
+\node [datapoint] (Cu2HgSnSe4-121) at (axis cs:0.36, 11.64) {};
+\node [datapoint] (Cu2HgSnTe4-121) at (axis cs:0.39, 12.4) {};
+\node [datapoint] (CuInSe2-122) at (axis cs:1.33, 22.1) {};
+\node [datapoint] (CuInS2-122) at (axis cs:1.54, 23.1) {};
+\node [datapoint] (CuInTe2-122) at (axis cs:1.03, 28.0) {};
+\node [datapoint] (CuGaTe2-122) at (axis cs:1.47, 24.8) {};
+\node [datapoint] (AgGaSe2-216) at (axis cs:1.3, 24.7) {};
+\node [datapoint] (AgInTe2-216) at (axis cs:1.17, 27.6) {};
+\node [datapoint] (Cu7TlS4-87) at (axis cs:0.97, 22.8) {};
+\node [datapoint] (AgInS2-122) at (axis cs:1.74, 19.7) {};
+\node [datapoint] (CuInS2-115) at (axis cs:1.13, 29.0) {};
+
+\node [compound] (CuInSe2-115_label) at (axis cs:0.8, 19) {\ce{CuInSe_2^{\#115}}};
+\draw [] (CuInSe2-115) -- (CuInSe2-115_label.west);
+\node [compound] (Cu2ZnGeTe4-121_label) at (axis cs:0.75, 15) {\ce{Cu_2ZnGeTe_4^{\#121}}};
+\draw [] (Cu2ZnGeTe4-121) -- (Cu2ZnGeTe4-121_label.west);
+\node [compound] (Cu2ZnSnTe4-121_label) at (axis cs:0.51, 27) {\ce{Cu_2ZnSnTe_4^{\#121}}};
+\draw [] (Cu2ZnSnTe4-121) -- (Cu2ZnSnTe4-121_label);
+\node [compound] (Cu2CdSnSe4-121_label) at (axis cs:0.75, 31.5) {\ce{Cu_2CdSnSe_4^{\#121}}};
+\draw [] (Cu2CdSnSe4-121) -- (Cu2CdSnSe4-121_label.south);
+\node [compound] (Cu2HgGeSe4-121_label) at (axis cs:0.8, 17) {\ce{Cu_2HgGeSe_4^{\#121}}};
+\draw [] (Cu2HgGeSe4-121) -- (Cu2HgGeSe4-121_label.west);
+\node [compound] (Cu2HgGeTe4-121_label) at (axis cs:0.7, 13) {\ce{Cu_2HgGeTe_4^{\#121}}};
+\draw [] (Cu2HgGeTe4-121) -- (Cu2HgGeTe4-121_label.west);
+\node [compound] (Cu2HgSnSe4-121_label) at (axis cs:0.6, 9) {\ce{Cu_2HgSnSe_4^{\#121}}};
+\draw [] (Cu2HgSnSe4-121) -- (Cu2HgSnSe4-121_label.west);
+\node [compound] (Cu2HgSnTe4-121_label) at (axis cs:0.65, 11) {\ce{Cu_2HgSnTe_4^{\#121}}};
+\draw [] (Cu2HgSnTe4-121) -- (Cu2HgSnTe4-121_label.west);
+\node [compound] (CuInSe2-122_label) at (axis cs:1.33, 21.1) {\ce{CuInSe_2^{\#122}}};
+% \draw [] (CuInSe2-122) -- (CuInSe2-122_label);
+\node [compound] (CuInS2-122_label) at (axis cs:1.7, 23.5) {\ce{CuInS_2^{\#122}}};
+% \draw [] (CuInS2-122) -- (CuInS2-122_label);
+\node [compound] (CuInTe2-122_label) at (axis cs:1, 26.5) {\ce{CuInTe_2^{\#122}}};
+% \draw [] (CuInTe2-122) -- (CuInTe2-122_label);
+\node [compound] (CuGaTe2-122_label) at (axis cs:1.62, 26) {\ce{CuGaTe_2^{\#122}}};
+% \draw [] (CuGaTe2-122) -- (CuGaTe2-122_label);
+\node [compound] (AgGaSe2-216_label) at (axis cs:1.3, 23.7) {\ce{AgGaSe_2^{\#216}}};
+% \draw [] (AgGaSe2-216) -- (AgGaSe2-216_label);
+\node [compound] (AgInTe2-216_label) at (axis cs:1.35, 28.1) {\ce{AgInTe_2^{\#216}}};
+% \draw [] (AgInTe2-216) -- (AgInTe2-216_label);
+\node [compound] (Cu7TlS4-87_label) at (axis cs:0.97, 21.8) {\ce{Cu_7TlS_4^{\#87}}};
+% \draw [] (Cu7TlS4-87) -- (Cu7TlS4-87_label);
+\node [compound] (AgInS2-122_label) at (axis cs:1.8, 18.7) {\ce{AgInS_2^{\#122}}};
+% \draw [] (AgInS2-122) -- (AgInS2-122_label);
+\node [compound] (CuInS2-115_label) at (axis cs:1.13, 30.5) {\ce{CuInS_2^{\#115}}};
+% \draw [] (CuInS2-115) -- (CuInS2-115_label);
+
+\end{axis}
+
+\end{tikzpicture}

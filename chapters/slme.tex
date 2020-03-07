@@ -74,6 +74,7 @@ devices~\cite{Chowdhury2020}.
  
 \begin{figure}[hb]  
 \centering 
+\captionsetup{width=0.9\textwidth}
 \includegraphics[width=0.9\textwidth]{\figurepath/slme/pv-evo.png} 
 \caption{Renewable electricity as a percentage of the total installed global 
 electricity capacity. Note that the \gls{PV} numbers here are for grid-connected production only, represented by the index~1. CSP stands for concentrated solar power. Taken from~\cite{NREL2017}.}
@@ -384,7 +385,7 @@ through the absorber layer.
  
 \begin{figure}[ht]  
 \centering 
-\captionsetup{width=0.8\textwidth}
+\captionsetup{width=0.9\textwidth}
 \includegraphics[width=0.8\textwidth]{\figurepath/slme/structure.png} 
 \caption{\label{slme:fig-solarcell} Cross section of a typical solar cell. 
 Taken from~\cite{Fonash2010}.} 
@@ -425,7 +426,8 @@ photon.
  
 \begin{figure}[ht]  
 \centering 
-\includegraphics[width=0.9\textwidth]{\figurepath/slme/Working.png} 
+\captionsetup{width=0.9\textwidth}
+\includegraphics[width=0.8\textwidth]{\figurepath/slme/Working.png} 
 \caption{\label{slme:fig-working} Step by step visualisation of the different 
 processes in a solar cell. Adapted from \cite{Smestad2002}.} 
 \end{figure} 
@@ -864,6 +866,7 @@ CuInTe$_2$ & 2.9 & - \\\hline
 \end{tabular} 
 \end{table} 
 
+\pagebreak
 \resultsubsection{Absorber layer efficiency \label{slme:sec-CuAu_efficiency}}{https://github.com/mbercx/phd-thesis/blob/master/jupyter/slme/README.md\#absorber-layer-efficiency}{solar_efficiency} 
  
 For all of the investigated compounds, we find a direct band gap at the 
@@ -1141,7 +1144,7 @@ necessarily represent an upper limit for the efficiency.
 \begin{figure}[ht] 
 \captionsetup{width=0.9\textwidth}
 \centering 
-\includegraphics[width=0.9\textwidth]{Figures/slme/sq_Fig1.png} 
+\input{\figurepath/slme/logistic}
 \caption{Collection of calculated \gls{SLME} values from Yu and 
 Zunger~\cite{Yu2012}, as well as our results for CuAu-like~\cite{Bercx2016} 
 and Stannite~\cite{Sarmadian2016} structures. The space group number of 
@@ -1242,7 +1245,7 @@ So far, I have only discussed materials which have a direct band gap. In
 order to test the application of the \gls{SLME} to indirect band gap absorbers, we 
 decided to calculate the \gls{SLME} of silicon, which is still one of the most 
 popular materials for the production of solar cells. 
-Fig.~\ref{slme:fig-Si_expAbs} shows the experimental\footnote{We choose to 
+Fig.~\ref{slme:fig-Si_slme}(a) shows the experimental\footnote{We choose to 
 use an experimental spectrum in order to include the phonon-mediated 
 contributions to the absorption coefficient.} absorption coefficient of 
 crystalline silicon~\cite{green2008}. Notice the onset of the indirect and 
@@ -1252,10 +1255,10 @@ direct absorption at \mbox{$E_g = 1.17~\si{\electronvolt}$} and
 \begin{figure}[ht] 
 \centering 
 \captionsetup{width=0.9\textwidth}
-\includegraphics[width=0.7\textwidth]{\figurepath/slme/absorption_Si.png} 
-\caption{Experimental absorption coefficient at $T = 300~\si{\kelvin}$ of 
-crystalline silicon with data taken from~\cite{green2008}.} 
-\label{slme:fig-Si_expAbs} 
+\input{\figurepath/slme/si_slme.tex}
+\caption{(\textbf{a}) Experimental absorption coefficient at $T = 300~\si{\kelvin}$ of 
+crystalline silicon based on data taken from~\cite{green2008}. (\textbf{b}) Thickness dependence of the \gls{SLME} of silicon, based on the experimental spectrum in (\textbf{a}) and fraction of recombination $f_r 10^{-3}$.} 
+\label{slme:fig-Si_slme} 
 \end{figure} 
 
 Calculating the \gls{SLME} using this optical spectrum produces an efficiency of 
@@ -1270,14 +1273,7 @@ unreasonably large. As discussed in Section~\ref{slme:sec-CuInSe2}, $J_0$ has a
 significant influence on the open circuit voltage $V_{oc}$. In this case, the 
 high value of $J_0$ leads to a $V_{oc}$ that is too small to produce any 
 significant power density. However, in case the fraction of radiative recombination is set \mbox{$f_r = 10^{-3}$} -- a 
-more reasonable value for silicon~\cite{Shockley1952,Trupke2003,Richter2012} -- the results shown in Fig.~\ref{slme:fig-SLME_Si} are obtained. 
- 
-\begin{figure}[ht] 
-	\centering 
-		\includegraphics[width=0.7\textwidth]{\figurepath/slme/slme_Si.png} 
-	\caption{Thickness dependence of the \gls{SLME} of silicon.} 
-	\label{slme:fig-SLME_Si} 
-\end{figure} 
+more reasonable value for silicon~\cite{Shockley1952,Trupke2003,Richter2012} -- the results shown in Fig.~\ref{slme:fig-Si_slme}(b) are obtained. 
  
 One could argue that silicon is a special case, and that generally efficient 
 indirect absorbers do not have such a large band gap difference \mbox{$\Delta 
@@ -1302,7 +1298,8 @@ detrimental for the calculated efficiency. Hence, it is entirely possible that
 the recombination model of the \gls{SLME} metric does not judge indirect band gap 
 absorbers fairly, potentially eliminating good materials during the selection 
 procedure.\\ 
- 
+
+\pagebreak
 \section{Conclusions and Outlook} 
  
 We have compared the structural and thermodynamic properties of the \gls{CA} and \gls{CH} 

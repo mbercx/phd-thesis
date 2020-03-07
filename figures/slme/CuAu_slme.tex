@@ -1,4 +1,3 @@
-% This file was created by tikzplotlib v0.9.1.
 \tikzstyle{compound}=[
 font=\tiny, inner sep=2,
 ]
@@ -11,7 +10,7 @@ inner sep=2,
 \begin{groupplot}[
 group style={group size=2 by 1, horizontal sep=1em},
 ]
-
+    
 \nextgroupplot[
 width=0.49\textwidth, height=6cm,
 tick pos=left,
@@ -36,12 +35,17 @@ width=0.49\textwidth, height=6cm,
 yticklabel pos=right,
 x grid style={white!69.0196078431373!black},
 xlabel={\(\displaystyle E_g\) (eV)},
-xmin=0.3, xmax=3,
+xmin=0.3, xmax=2.5,
 xtick style={color=black},
 y grid style={white!69.0196078431373!black},
 ylabel={SLME (\%)},
 ymin=5, ymax=35.5,
-ytick style={color=black}
+ytick style={color=black},
+legend style={
+at={(0.05, 0.05)}, anchor=south west, draw=none, fill=blue!5!white, rounded corners=2,
+font=\fontsize{6}{7}\sffamily},
+/tikz/column 2/.style={
+row sep=-1pt},
 ]
 
 % Chalcopyrite
@@ -119,7 +123,7 @@ ytick style={color=black}
 \draw [] (CuInTe2-1) -- (CuInTe2-cuau);
 
 \input{\figurepath/slme/slme_data.tex}
-\node[anchor=south east, font=\sffamily, inner sep=5] at (axis cs:3, 31) {\textbf{b}};
+\node[anchor=south west, font=\sffamily, inner sep=5] at (axis cs:0.3, 31) {\textbf{b}};
 
 \end{groupplot}
 \end{tikzpicture}
