@@ -118,9 +118,9 @@ degradation~\cite{Rozier2015}.
 \begin{figure}[ht] 
 \centering 
 \captionsetup{width=0.9\linewidth}
-\includegraphics[width=\textwidth]{figures/batteries/to_li_rich.png} 
+\input{\figurepath/batteries/diagram_to_li_rich}
 \caption{Transition from \ce{LiCoO2} to \gls{NMC} to Li-rich layered oxides for 
-battery cathodes. Adapted from~\cite{Rozier2015}.} 
+battery cathodes.} 
 \label{batteries:fig-Lirich_transition} 
 \end{figure} 
  
@@ -179,7 +179,7 @@ rendering an investigation of the fully charged state less relevant.
 \begin{figure}[ht] 
 \centering 
 \captionsetup{width=0.9\linewidth}
-\includegraphics[width=0.9\textwidth]{figures/batteries/structural_change.png} 
+\includegraphics[width=0.85\textwidth]{figures/batteries/structural_change.png} 
 \caption{Transformation from the O3 to O1 stacking for both \ce{Li2MnO3} and 
 \ce{Li2IrO3} as the cathode is charged. The primitive unit cell 
 is drawn in blue. The top figures are the structure shown in the [100] 
@@ -236,7 +236,7 @@ favorable.
 \begin{figure}[ht] 
 \centering
 \captionsetup{width=0.9\linewidth}
-\includegraphics[width=0.6\textwidth]{figures/batteries/o1_vs_o3.png} 
+\input{\figurepath/batteries/o1_vs_o3}
 \caption{Formation energies of all configurations in both the O3 and O1 
 stacking of \ce{Li_xMnO3}. Each mark represents the formation energy of one non-equivalent Li configuration. The full lines correspond to the convex hull of the 
 corresponding stacking.} 
@@ -301,10 +301,7 @@ our attention on the formation of a peroxo species with a bond length closer
 to that of the oxygen molecule, as this formation has been derived 
 theoretically for \ce{Li2MnO3}, and believed to be related to the migration of Mn 
 and the resulting voltage fade~\cite{Chen2016}. 
- 
-% Atomic orbital diagrams are also drawn in order to elucidate the connection 
-% between the magnetic moment and the oxidation state for Mn and O.  
- 
+
 \resultsubsection{Oxidation \label{batteries:sec-oxidation}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/batteries/README.md\#oxidation}{oxidation} 
  
 Sathiya et al.~\cite{Sathiya2013} have discussed that removing lithium from 
@@ -392,7 +389,8 @@ the charged structures with the discharged ones, we note that in both cases
 the number of O-2$p$ states near the Fermi level has decreased. The difference 
 is much more substantial for \ce{Li2MnO3} than for \ce{Li2IrO3}, once again 
 implying a larger oxidation of oxygen for \ce{Li2MnO3}. 
- 
+
+\pagebreak
 \resultsubsection{Dimer Analysis \label{batteries:sec-dimer}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/batteries/README.md\#dimer-analysis}{dimer} 
  
 Once the oxygen atoms develop holes on their $p$-orbitals, they can be 
@@ -461,7 +459,8 @@ dimers~\cite{Levi2020}.
 \begin{figure}[ht] 
 \centering
 \captionsetup{width=0.9\linewidth}
-\includegraphics[width=\textwidth]{Figures/batteries/dimer_energetics.png} 
+% \includegraphics[width=\textwidth]{Figures/batteries/dimer_energetics.png} 
+\input{\figurepath/batteries/Li2MnO3_dimers}
 \caption{Reaction energies $\Delta E$, final O-O bond length $d_{O-O}$ and 
 kinetic barriers for the dimers in O1-\ce{Li_{0.5}MnO3}. The final geometry 
 and kinetic barrier is only shown for dimer \textbf{A} and \textbf{E}, which 
@@ -558,17 +557,7 @@ Sn-rich phase already occurs at lower levels of Sn-substitution.
 \begin{figure}[ht] 
     \centering
     \captionsetup{width=0.92\linewidth}
-    \begin{subfigure}[t]{0.65\textwidth} 
-        \centering 
-        \includegraphics[width=\textwidth]{./figures/batteries/xrd_Sn_substitution.png} 
-        \caption{} 
-    \end{subfigure}% 
-    ~  
-    \begin{subfigure}[t]{0.34\textwidth} 
-        \centering 
-        \includegraphics[width=0.9\textwidth]{./figures/batteries/edx_Sn_substitution.png} 
-        \caption{} 
-    \end{subfigure} 
+    \input{\figurepath/batteries/xrd}
     \caption{(a) \gls{PXRD} patterns of 
 \ce{Li_{1.2}Ni_{0.13}Co_{0.13}Mn_{0.54-x}Sn_xO2} for increasing values of 
 Sn-substitution $x$. (b) Mixed (Mn, Sn) elemental \gls{EDX} map of representative 
@@ -684,7 +673,7 @@ E(\ce{Li2SnO3}) + 0.1875 \cdot E(\ce{SnO}) \right],
 \begin{figure}[ht] 
 \centering 
 \captionsetup{width=0.9\linewidth}
-\includegraphics[width=0.6\textwidth]{figures/batteries/Sn_mixing_energy.png} 
+\input{\figurepath/batteries/Sn_mixing_energy}
 \caption{Calculated formation energies using 
 Eq.~(\ref{batteries:eq-exsolution_final_formation}) for all configurations 
 with $x = \{i/24|i=1,2,3,4,5\}$.} 
@@ -878,9 +867,9 @@ In order to understand the local interaction between the anion and cation, I hav
 \begin{figure}[ht]
 \centering
 \input{\figurepath/batteries/landscapes}
-\caption{(a) \ce{[CB11H12]^{-}} anion, with the symmetrically inequivalent facets colored red. Each of the facets corresponds to a binding site with direction $\Omega_i$ with respect to the center of the anion. (b) Angular distributions of the \ce{Li^+} (top) and \ce{Na^+} (bottom) cations derived from \gls{AIMD} simulations (Taken from~\cite{Dimitrievska2018}), where the angle $\theta$ is defined versus the C$_5$ axis connecting the C atom with the opposite B atom. (c) Calculated energy landscapes for \ce{Li^+} (top) and \ce{Na^+} (bottom) along wedges connecting the binding sites $\Omega_i$, relative to the spherical average at $8~\si{\angstrom}$.}
-\end{figure}
+\caption{(\textbf{a}) \ce{[CB11H12]^{-}} anion, with the symmetrically inequivalent facets colored red. Each of the facets corresponds to a binding site with direction $\Omega_i$ with respect to the center of the anion. (\textbf{b}) Angular distributions of the \ce{Li^+} cations derived from \gls{AIMD} simulations (Taken from~\cite{Dimitrievska2018}), where the angle $\theta$ is defined versus the C$_5$ axis connecting the C atom with the opposite B atom. (\textbf{c}) Calculated energy landscapes for \ce{Li^+} (top) and \ce{Na^+} (bottom) along wedges connecting the binding sites $\Omega_i$, relative to the spherical average at $8~\si{\angstrom}$.}
 \label{batteries:fig-cb11h12}
+\end{figure}
 }
 
 The resulting energy landscapes are compared with the ab initio molecular dynamics (AIMD) results from Dimitrievska et al.~\cite{Dimitrievska2018} in Fig.~\ref{batteries:fig-cb11h12}. The landscapes of \ce{Li^+} and \ce{Na^+} are qualitatively similar, and show a preference for the cations to bind at all-boron facets, where the depth of the energy wells is progressively larger for sites further removed from the \ce{C} atom. This result is in good agreement with the angle distributions obtained from the \gls{AIMD}, where we can see that the probability density is larger for angles corresponding to the all-boron docking sites ($\Omega_2$, $\Omega_3$ and $\Omega_4$), especially at smaller distances. At these distances, the likelihood of finding the cation near the $\Omega_4$ site is largest, which matches nicely with the increasing depth of the energy wells for sites further removed from \ce{C}. 
@@ -954,5 +943,6 @@ the properties of these materials for solid-state battery applications.
 \clearpage
 \pagestyle{biblio}
 \printbibliography 
+\clearpage
 
 \end{refsection} 

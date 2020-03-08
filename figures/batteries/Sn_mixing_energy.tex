@@ -1,0 +1,26 @@
+\begin{tikzpicture}
+
+\begin{axis}[
+width=0.6\textwidth, height=6cm,
+tick align=outside,
+tick pos=left,
+xmin=-0.02, xmax=0.25,
+xtick={0, 0.05, 0.1, 0.15, 0.2, 0.25},
+xticklabels={0, 0.05, 0.1, 0.15, 0.2, 0.25},
+x grid style={white!69.0196078431373!black},
+xlabel={$x$ in Li$_{1.2}$Mn$_{0.8-x}$Sn$_x$O$_3$},
+xtick style={color=black},
+ymin=0, ymax=40,
+ytick={0, 10, 20, 30, 40},
+yticklabels={0, 10, 20, 30, 40},
+y grid style={white!69.0196078431373!black},
+ylabel={$E_f$ (meV/atom)},
+ytick style={color=black}, mark options={line width=1pt},
+legend style={
+at={(1, 1)}, anchor=north east, draw=none, fill=none, 
+},
+]
+\input{\figurepath/batteries/Sn_mixing_energy-data.tex}
+\end{axis}
+
+\end{tikzpicture}

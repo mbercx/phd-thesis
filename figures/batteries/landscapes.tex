@@ -1,18 +1,23 @@
 \begin{tikzpicture}
 
-\node at (0.02\textwidth, 3) {\textsf{\textbf{a}}};
+\node at (0.065\textwidth,-0.5) {\textsf{\textbf{a}}};
 
-\node [anchor=west] at (0, 0) {\includegraphics[width=0.26\textwidth]{\figurepath/batteries/anion_cb11h12.png}};
+\node [anchor=north west] at (0.06\textwidth, 0) {\includegraphics[width=0.31\textwidth]{\figurepath/batteries/anion_cb11h12.png}};
 
-\node at (0.05\textwidth, -0.135\textwidth) {\footnotesize \textsf{\textbf{Li/Na}}};
+\node at (0.13\textwidth, -5.3) {\footnotesize \textsf{\textbf{Li/Na}}};
 
-\node at (0.3\textwidth, 3) {\textsf{\textbf{b}}};
+\node at (0.46\textwidth, -0.5) {\textsf{\textbf{b}}};
 
-\node [anchor=west] at (0.28\textwidth, 0) {\includegraphics[width=0.33\textwidth]{\figurepath/batteries/aimd_cb11h12.png}};
+\node [anchor=north west] at (0.0\textwidth, -5.75) {\includegraphics[width=0.44\textwidth]{\figurepath/batteries/aimd_cb11h12_Li.png}};
 
-\node at (0.63\textwidth, 3) {\textsf{\textbf{c}}};
+\node at (0.065\textwidth, -5.9) {\textsf{\textbf{c}}};
 
-\node (landscapes) [anchor=west] at (0.62\textwidth, 0) {\includegraphics[width=0.37\textwidth]{\figurepath/batteries/ls_cb11h12.png}};
+\node (landscapes) [anchor=north east] at (1.0\textwidth, -0.05) {\includegraphics[width=0.54\textwidth]{\figurepath/batteries/ls_cb11h12.png}};
+
+\node [fill=white, rounded corners, anchor=north west, font=\small\bfseries, text width=width("Na"), align=center] at (0.53\textwidth, -0.38) {\ce{Li}};
+
+\node [fill=white, rounded corners, anchor=north west, font=\small\bfseries, text width=width("Na")] at (0.53\textwidth, -5.15) {\ce{Na}};
+
 
 \end{tikzpicture}
 

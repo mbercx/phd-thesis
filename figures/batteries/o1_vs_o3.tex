@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+
+\begin{axis}[
+width=0.6\textwidth, height=6cm,
+tick align=outside,
+tick pos=left,
+xtick={0, 0.5, 1.0, 1.5, 2.0},
+xticklabels={0, 0.5, 1.0, 1.5, 2.0},
+x grid style={white!69.0196078431373!black},
+xlabel={$x$ in Li$_{2-x}$\ce{MnO3}},
+xmin=0.0, xmax=2.0,
+xtick style={color=black},
+y grid style={white!69.0196078431373!black},
+ylabel={$E_f$ (meV/f.u.)},
+ymin=-500, ymax=450,
+ytick style={color=black}, mark options={line width=1pt},
+legend style={
+at={(1, 1)}, anchor=north east, draw=none, fill=none, 
+},
+]
+\input{\figurepath/batteries/o1_vs_o3-data.tex}
+\end{axis}
+
+\end{tikzpicture}

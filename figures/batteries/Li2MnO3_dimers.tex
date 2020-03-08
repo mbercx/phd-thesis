@@ -1,0 +1,68 @@
+\begin{tikzpicture}[]
+
+\node [anchor=south west] at (0, 0) {\includegraphics[height=0.3\textwidth]{\figurepath/batteries/Li2MnO3-d49_80.png}};
+
+\coordinate (O1) at (4.01, 2.2);
+\coordinate (O2) at (3.6, 2.85);
+\node (distance1) [font=\small] at (6, 4.8) {1.43 \si{\angstrom}};
+\draw [<->, >=|, very thick] (O1) -- (O2);
+\draw [-, thick] ($(O1)!0.5!(O2)$) -- (distance1);
+
+\begin{axis}[
+height=5cm, 
+width=0.4\textwidth, 
+at={(0.45\textwidth, 3.3em)},
+x dir=reverse,
+xlabel={O-O Distance (\si{\angstrom})},
+ylabel={Energy (meV)},
+xticklabel={$\mathsf{\pgfmathprintnumber{\tick}}$},
+yticklabel={$\mathsf{\pgfmathprintnumber{\tick}}$},
+]
+
+\input{\figurepath/batteries/neb_Li2MnO3-49_80-data}
+
+\end{axis}
+
+\node [font=\bfseries, anchor=north west] at (7.2, 4.6) {A};
+
+\node (fig2) [anchor=south east] at (0.95\textwidth, -13em) {\includegraphics[height=0.3\textwidth]{\figurepath/batteries/Li2MnO3-d48_92.png}};
+
+\coordinate (O1) at ($(fig2) + (0.705, -0.75)$);
+\coordinate (O2) at ($(fig2) + (0.44, -1.39)$);
+\node (distance) [
+font=\small, fill=white, fill opacity=0.6, text opacity=1, rounded corners
+] at (14, -3.5) {1.46 \si{\angstrom}};
+\draw [<->, >=|, very thick] (O1) -- (O2);
+\draw [-, thick] ($(O1)!0.5!(O2)$) -- (distance);
+
+\begin{axis}[
+height=5cm, 
+width=0.4\textwidth, 
+at={(0.1\textwidth, -9.7em)},
+x dir=reverse,
+xlabel={O-O Distance (\si{\angstrom})},
+ylabel={Energy (meV)},
+xticklabel={$\mathsf{\pgfmathprintnumber{\tick}}$},
+yticklabel={$\mathsf{\pgfmathprintnumber{\tick}}$},
+]
+
+\input{\figurepath/batteries/neb_Li2MnO3-48_92-data}
+
+\end{axis}
+\node [font=\bfseries, anchor=north west] at (1.65, -0.4) {E};
+
+
+\node [anchor=south east] at (0.95\textwidth, 3em) {%
+\begin{tabular}{lr}
+\multicolumn{2}{c}{$\Delta E$ (meV)} \\\hline
+\textbf{A} & -553 \\
+\textbf{B} & +67 \\
+\textbf{C} & $\rightarrow$ \textbf{A} \\
+\textbf{D} & +338 \\
+\textbf{E} & -83 \\
+\textbf{F} & +320 \\
+\hline
+\end{tabular}
+};
+
+\end{tikzpicture}
