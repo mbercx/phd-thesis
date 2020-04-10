@@ -43,7 +43,7 @@ the thesis to help the reader navigate the document.
 \newpage
 \section{In Silico} \label{intro:sec-in_silico}
 
-Although the theoretical modeling of materials has a long history, the practise 
+Although the theoretical modeling of materials has a long history, the practice 
 of describing physical relations using equations largely started during the 
 scientific revolution in the 16\textsuperscript{th} and 17\textsuperscript{th} 
 century. With the advent of modern computers, theoretical modeling was taken 
@@ -72,7 +72,7 @@ chance or trial and error, largely driven by intuition. Such a trial and error
 approach can either be performed one material at a time, or in a so-called 
 high-throughput fashion. A popular experimental example of the latter is how 
 Edison tested over 6000 materials to serve as a filament for the incandescent 
-lightbulb~\cite{E.1918}. Once a material is found that has the right properties, 
+light bulb~\cite{E.1918}. Once a material is found that has the right properties, 
 it is investigated in order to understand its structure and its relation to the 
 origin of these properties. This approach, often referred to as direct design, 
 has been the predominant source of new materials over the past centuries.
@@ -88,23 +88,27 @@ structures~\cite{Oganov2018} or to use machine learning and data mining to disco
 trends and patterns~\cite{Draxl2019}. The combination of these ideas with the 
 development of ever more accurate computational techniques has put us on the brink of a revolution in material science, where large scale automated calculations can guide us to the next generation of materials for commercial applications.
 
-When using \gls{DFT} as our method of choice for calculating the properties of the materials under investigation, the relation between the fundamental quantities we can obtain from \gls{DFT} and the property of interest is often complex. As phrased by Gerbrand Ceder, ``there is no quantum operator for a better car"~\cite{Ceder2010}. In order to obtain insight from the \gls{DFT} results, we need domain-specific expertise to develop descriptors or metrics for the application of interest. During my PhD I have worked on a diverse set of topics, but the main goal has always been to use results from \textit{ab initio} calculations to study materials with a certain application in mind. Moreover, I have developed workflows -- discussed in Chapter~\ref{chapter:automation} -- for automating the \gls{DFT} calculations and open-source Python packages for performing the subsequent analysis, i.e. transfering the \gls{DFT} results to the task of materials design. 
+When using \gls{DFT} as our method of choice for calculating the properties of the materials under investigation, the relation between the fundamental quantities we can obtain from \gls{DFT} and the property of interest is often complex. As phrased by Gerbrand Ceder, ``there is no quantum operator for a better car"~\cite{Ceder2010}. In order to obtain insight from the \gls{DFT} results, we need domain-specific expertise to develop descriptors or metrics for the application of interest. During my PhD I have worked on a diverse set of topics, but the main goal has always been to use results from \textit{ab initio} calculations to study materials with a certain application in mind. Moreover, I have developed workflows -- discussed in Chapter~\ref{chapter:automation} -- for automating the \gls{DFT} calculations and open-source Python packages for performing the subsequent analysis, i.e. transferring the \gls{DFT} results to the task of materials design. 
 
 Here is a brief overview of how the various topics I have worked on can be framed in the context of \textit{in silico} materials design:
 
 \begin{itemize}[]
 
-\item \textbf{Chapter~\ref{chapter:slme}} concerns an application analysis of the spectroscopic limited maximum efficiency (\gls{SLME}), a metric developed to judge the potential of materials for solar cells. Here, the combination of the workflow described in Section~\ref{automation:sec-optics} with the post-processing tools for calculating the \gls{SLME} allows for an automated high-throughput screening of materials for photovoltaic applications.
+\item \textbf{Chapter~\ref{chapter:slme}} concerns the application and analysis of the spectroscopic limited maximum efficiency (\gls{SLME}), a metric developed to judge the potential of materials for solar cells. Here, the combination of the workflow described in Section~\ref{automation:sec-optics} with the post-processing tools for calculating the \gls{SLME} allows for an automated high-throughput screening of materials for photovoltaic applications.
 
-\item \textbf{Chapter~\ref{chapter:batteries}} concerns an investigation of Li-rich layered oxides, a class of cathode materials that have demonstrated large energy densities, as well as the energy landscapes of \ce{LiCB11H12} and \ce{NaCB11H12} polyborane salts in the context of solid electrolytes. The computation of the properties of interest here is more involved, and hence the workflows described in Sections~\ref{automation:sec-configurations}, \ref{automation:sec-dimer} and \ref{automation:sec-landscape} are necessary to make this process feasible for even a limited number of materials\footnote{One of the Master's students I helped to supervise calculated that it would have taken him 1200 hours to manually perform and process the calculations for his thesis, which largely focused on a single material.}.
+\item \textbf{Chapter~\ref{chapter:batteries}} discusses an investigation of the Li-rich layered oxides, a class of cathode materials that have demonstrated large energy densities, as well as the energy landscapes of \ce{LiCB11H12} and \ce{NaCB11H12} polyborane salts in the context of solid electrolytes. The computation of the properties of interest here is more involved, and hence the workflows described in Sections~\ref{automation:sec-configurations}, \ref{automation:sec-dimer} and \ref{automation:sec-landscape} are necessary to make this process feasible for even a limited number of materials\footnote{One of the Master's students I helped to supervise calculated that it would have taken him 1200 hours to manually perform and process the calculations for his thesis, which largely focused on a single material.}.
 
-\item \textbf{Chapter~\ref{chapter:quotas}} concerns the calculation of the secondary electron emission from slow ions neutralized at a surface. Here we have both developed a model for calculating this descriptor from the \gls{DFT} results, as well as a workflow (Sec.~\ref{automation:sec-surface}) for automating its calculation.
+\item \textbf{Chapter~\ref{chapter:quotas}} details the calculation of the secondary electron emission from slow ions neutralized at a surface. Here we have both developed a model for calculating this descriptor from the \gls{DFT} results, as well as a workflow (Sec.~\ref{automation:sec-surface}) for automating its calculation.
 
 \end{itemize}
 
 \section{Guide to this thesis} \label{intro:sec-guide}
 
-One of the main objectives of this thesis is to provide the reader with the necessary information and tools to be able to reproduce my work, as well as extend their application to other materials. To achieve this, the workflows I designed are documented in Chapter~\ref{chapter:automation}, along with a description of the parts that they consist of. All of the underlying code is also freely available on github, and the necessary steps to set up the calculations and process the data are detailed in Jupyter notebooks. I have also added a more conventional description of the computational settings to Appendix~\ref{appendix:sec-results}, in order to gather all of these details in one place and not unnecessarily interupt the discussion of the results on the various topics.
+One of the main objectives of this thesis is to provide the reader with the necessary information and tools to be able to reproduce my work, as well as extend their application to other materials. To achieve this, the workflows I designed are documented in Chapter~\ref{chapter:automation}, along with a description of the parts that they consist of. All of the underlying code is also freely available on github, and the necessary steps to set up the calculations and process the data are detailed in Jupyter notebooks. I have also added a more conventional description of the computational settings to Appendix~\ref{appendix:sec-results}, in order to gather all of these details in one place and not unnecessarily interrupt the discussion of the results on the various topics.
+
+%%%%%%%%%%%%%%%%%%%
+% DIGITAL VERSION %
+%%%%%%%%%%%%%%%%%%%
 
 To make this document easier to navigate, I have added a large amount of links to the text. These are consistently colored as follows: \link{}{dark red text links to other parts of the thesis}, whereas \href{https://github.com/mbercx/phd-thesis}{blue text links to a web page}, which will be automatically opened in a tab of your default browser. Besides these links, each section that contains results also has two symbols next to its header:
 
@@ -118,14 +122,30 @@ Links to the corresponding Jupyter notebooks that have been used to set up the c
 
 \vspace{1em}
 \begin{minipage}{0.09\textwidth}
-\includegraphics[width=2.5em]{figures/silicon3.png}
+\includegraphics[width=2.5em]{figures/silicon.png}
 \end{minipage}
 \begin{minipage}{0.9\textwidth}
 Links to a section in Appendix~\ref{appendix:sec-results} which contains a more conventional description of the computational parameters used for the calculation of the properties presented in the section.
 \end{minipage}
 
 \vspace{1em}
-I highly recommend the reader to look up the key of their PDF reader of choice for returning to the previous page, i.e. before clicking on one of the links that navigates to a different section of the text. For Apple's preview, this is \code{Cmd+[}. For Acrobat reader, this should be \code{Alt+Leftarrow}. Although the content of the Jupyter notebooks might not be entirely clear to someone who is not familiar with \textit{ab initio} calculations, I still invite everyone to at least browse some of the notebooks corresponding to the chapter he or she is most interested in. Moreover, there are several interactive notebooks for exploring the results, which can be run online and require very little experience from the user. In the end though, this information is most valuable for other researchers who are studying similar topics as the ones presented in my thesis, and can hopefully learn from the resources I provide.
+I highly recommend the reader to look up the key of their PDF reader of choice for returning to the previous page, i.e. before clicking on one of the links that navigates to a different section of the text. For Apple's preview, this is \code{Cmd+[}. For Acrobat reader, this should be \code{Alt+Leftarrow}. 
+
+%%%%%%%%%%%%%%%%%
+% PRINT VERSION %
+%%%%%%%%%%%%%%%%%
+
+% \begin{wrapfigure}[5]{r}{0.14\textwidth}
+% \vspace{-2.4em}
+% \qrcode[]{https://github.com/mbercx/phd-thesis}
+% \end{wrapfigure}
+% To make the Jupyter notebooks for each section easy to find when reading the printed version\footnote{Note that the digital version of this work contains many useful links throughout the text, and is hence easier to navigate.} of the thesis, I have added QR codes to the start of each section that contains results. These link to the corresponding Jupyter notebooks that have been used to set up the calculations and process the data for the results presented in the section. Several results can also be explored interactively, depending on the topic. For most sections, the figures also have been set up in a Jupyter notebook.
+
+% Although the content of the Jupyter notebooks might not be entirely clear to someone who is not familiar with \textit{ab initio} calculations, I still invite everyone to at least browse some of the notebooks corresponding to the chapter he or she is most interested in. Moreover, there are several interactive notebooks for exploring the results, which can be run online and require very little experience from the user. In the end though, this information is most valuable for other researchers who are studying similar topics as the ones presented in my thesis, and can hopefully learn from the resources I provide.
+
+%%%%%%%
+% END %
+%%%%%%%
 
 \clearpage
 \pagestyle{biblio}

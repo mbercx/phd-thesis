@@ -1,22 +1,30 @@
-\documentclass[11pt, a4paper]{book}
+\documentclass[
+11pt, 
+a4paper,
+oneside % Comment for print
+]{book}
 
 \newcommand*{\figurepath}{figures}
 \input{header.tex}
 
-\includeonly{title,acknowledgements,dedication,chapters/quotas}
+% \includeonly{}
 
 \begin{document}
 
 \frontmatter
+\pagestyle{plain}
 
 \include{title} 
-
 \include{abstract}
 \include{abstract_nederlands}
+% \afterpage{\null\newpage} % Uncomment for print
 \include{dedication}
 \include{acknowledgements} 
 
+\pagestyle{biblio}
 \tableofcontents
+\pagestyle{plain}
+\printglossary[title={List of Acronyms}, nonumberlist, style=tree]
 
 \mainmatter
 
