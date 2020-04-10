@@ -4,7 +4,7 @@
 draw, color=grey900, thick,
 rounded corners, 
 inner sep=5,
-font=\sffamily
+font=\sffamily\sansmath
 ]
 \tikzstyle{calcarrow} = [
 color=grey900, thick,
@@ -60,6 +60,6 @@ $\displaystyle \eta = \frac{P_m}{P_{in}}$
 \draw [calcarrow] (fr) -- (fr |- J0) -- (J0.east);
 
 \coordinate (coord9) at ($(J.south) - (2em, 0)$);
-\draw [calcarrow] (coord9) -- (coord9 |- efficiency.west) -- node[above, midway] {$\displaystyle P_m = \max_V (J\cdot V)$} (efficiency.west);
+\draw [calcarrow] (coord9) -- (coord9 |- efficiency.west) -- node[above, midway, font=\sansmath] {$\displaystyle P_m = \max_V (J\cdot V)$} (efficiency.west);
 
 \end{tikzpicture}

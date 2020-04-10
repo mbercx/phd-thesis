@@ -4,9 +4,9 @@
 
 \coordinate (O1) at (4.01, 2.2);
 \coordinate (O2) at (3.6, 2.85);
-\node (distance1) [font=\small] at (6, 4.8) {1.43 \si{\angstrom}};
+\node (distance) [fill=white, fill opacity=0.6, text opacity=1, rounded corners, font=\small] at (1.6, 2.5) {1.43 \si{\angstrom}};
 \draw [<->, >=|, very thick] (O1) -- (O2);
-\draw [-, thick] ($(O1)!0.5!(O2)$) -- (distance1);
+\draw [-, thick] ($(O1)!0.5!(O2)$) -- (distance.east);
 
 \begin{axis}[
 height=5cm, 
@@ -57,7 +57,7 @@ yticklabel={$\mathsf{\pgfmathprintnumber{\tick}}$},
 \multicolumn{2}{c}{$\Delta E$ (meV)} \\\hline
 \textbf{A} & -553 \\
 \textbf{B} & +67 \\
-\textbf{C} & $\rightarrow$ \textbf{A} \\
+\textbf{C} & $\rightarrow$ \textbf{E} \\
 \textbf{D} & +338 \\
 \textbf{E} & -83 \\
 \textbf{F} & +320 \\

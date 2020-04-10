@@ -95,7 +95,7 @@
 % % Help boxes
 
 \node (help1)[wf-helpbox, text width=22em, above left=10 em and -8em of frame_dimer] {
-\texttt{get\_wfs\_noneq\_dimers(structure, distance, ...):} \\ 
+\texttt{\textbf{get\_wfs\_noneq\_dimers}(structure, distance, ...):} \\ 
 \textit{\begin{tabular}{l l}
 & Set up a transition workflow for each of the \\
 & non-equivalent dimers of \texttt{structure}. The dimer \\
@@ -107,7 +107,7 @@
 \draw [wf-helpline] (dimer_1.east) -- (help1_line) -- (help1_line |- help1.south);
 
 \node (help2)[wf-helpbox, text width=19em, below left=2 em and -14em of frame_postprocess] {
-\texttt{post\_process\_dimer\_neb(directory, ...):} \\ 
+\texttt{\textbf{post\_process\_dimer\_neb}(directory, ...):} \\ 
 \textit{\begin{tabular}{l l}
 & Check the output in \texttt{directory} and either \\
 & simply extract the energies and structures \\
