@@ -1,0 +1,52 @@
+\begin{tikzpicture}[
+]
+
+\begin{groupplot}[
+width=0.48\textwidth, height=6cm,
+group style={group size= 2 by 2, vertical sep=1em, horizontal sep=1em},
+xmin=0, 
+ymin=0,
+]
+
+\nextgroupplot[
+legend style={%
+at={(1.05, 1.1)}, anchor=south,
+draw=none, 
+font=\small,
+legend columns=4,
+/tikz/every even column/.append style={column sep=0.5cm},
+},
+xmax=16, ymax=25,
+xticklabels={},
+ylabel={\(\displaystyle 10^3 N_0\)($\epsilon_k$) (eV\textsuperscript{-1})},
+]
+
+\input{\figurepath/quotas/He_Ge-data.tex}
+
+\nextgroupplot[
+xmax=12, ymax=25,
+xticklabels={},
+yticklabels={},
+]
+
+\input{\figurepath/quotas/Ne_Ge-data.tex}
+
+\nextgroupplot[
+xmax=16, ymax=25,
+xlabel={\(\displaystyle \epsilon_k\) (eV)},
+ylabel={\(\displaystyle 10^3 N_0\)($\epsilon_k$) (eV\textsuperscript{-1})},
+]
+
+\input{\figurepath/quotas/He_Si-data.tex}
+
+\nextgroupplot[
+xmax=12, ymax=25,
+xlabel={\(\displaystyle \epsilon_k\) (eV)},
+yticklabels={},
+]
+
+\input{\figurepath/quotas/Ne_Si-data.tex}
+
+\end{groupplot}
+
+\end{tikzpicture}

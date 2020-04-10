@@ -1,4 +1,4 @@
-% This file was created by tikzplotlib v0.8.5.
+% This file was created by tikzplotlib v0.9.1.
 \begin{tikzpicture}
 
 \definecolor{color0}{rgb}{0.894117647058824,0.101960784313725,0.109803921568627}
@@ -7,16 +7,16 @@
 
 \begin{axis}[
 legend cell align={left},
-legend style={draw=white!80.0!black},
+legend style={fill opacity=0.8, draw opacity=1, text opacity=1, draw=white!80!black},
 tick align=outside,
 tick pos=left,
-x grid style={white!69.01960784313725!black},
+x grid style={white!69.0196078431373!black},
 xlabel={Energies (eV)},
 xmin=-20, xmax=20,
 xtick style={color=black},
 xtick={-20,-15,-10,-5,0,5,10,15,20},
 xticklabels={\(\displaystyle -20\),\(\displaystyle -15\),\(\displaystyle -10\),\(\displaystyle -5\),\(\displaystyle 0\),\(\displaystyle 5\),\(\displaystyle 10\),\(\displaystyle 15\),\(\displaystyle 20\)},
-y grid style={white!69.01960784313725!black},
+y grid style={white!69.0196078431373!black},
 ylabel={Density of states},
 ymin=0, ymax=120,
 ytick style={color=black},
@@ -6039,6 +6039,11 @@ table {%
 table {%
 0 0
 0 120
+};
+\addplot [thick, black, dashed, forget plot]
+table {%
+-20 -3.5527136788005e-15
+20 -3.5527136788005e-15
 };
 \end{axis}
 
