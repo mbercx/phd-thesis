@@ -9,7 +9,7 @@ landscapes presented in Section~\ref{batteries:sec-landscape}. This appendix sta
 a brief description of the \gls{VASP} software package, as well as its input and 
 output files (Sec.~\ref{appendix:sec-files}) and most important input 
 parameters (Sec.~\ref{appendix:sec-input}). Next, the chapter details the 
-settings used to obtain all of the results presented in this thesis, organised 
+settings used to obtain all of the results presented in this thesis, organized 
 per chapter and section in the order they are presented. Finally, there are 
 still two brief sections, one on parallelization tests 
 (Sec.~\ref{appendix:sec-parallel}) and one on an issue with the way 
@@ -25,7 +25,7 @@ computational scientists, each with their respective advantages and
 disadvantages. 
  
 \gls{VASP} is particularly suited for materials science, relying on an unbiased
-\dft{plane wave basis}{} set and offering several \dft{PAW}{} datasets for 
+\dft{plane wave basis}{} set and offering several \dft{PAW}{} data sets for 
 most atomic species of the periodic table. It can calculate an approximate 
 solution to the many-body Schr\"odinger equation within the \gls{DFT} formalism or 
 the \gls{HF} approximation, including the possibility of mixing to utilize hybrid 
@@ -56,7 +56,7 @@ calculation. Because of this, it is also more prone to be the cause of errors.
 \phantomsection \label{appendix:sec-POSCAR} 
 \item \href{https://www.vasp.at/wiki/index.php/POSCAR}{\texttt{POSCAR}}: 
 Contains the lattice vectors of the unit cell, as well as the atomic positions 
-of the structure. The user is free to specify the atomic positions in cartesian 
+of the structure. The user is free to specify the atomic positions in Cartesian 
 or direct coordinates. In case selective dynamics is used to fix certain atom 
 coordinates in the unit cell, this is also indicated in this file. In order to 
 make sure there are no mistakes in the POSCAR file, it is important to first 
@@ -74,7 +74,7 @@ pairwise via the coordinates of their end points.
 \phantomsection \label{appendix:sec-POTCAR} 
 \item \href{https://www.vasp.at/wiki/index.php/POTCAR}{\texttt{POTCAR}}: 
 Concatenation of the \dft{PAW}{} 
-datasets for the different elements present in the crystal structure. \gls{VASP} 
+data sets for the different elements present in the crystal structure. \gls{VASP} 
 supplies a set of POTCAR files for each element and supported functional, 
 corresponding to different choices for the number of valence electrons and 
 radii of the \gls{PAW} sphere. It is important to make sure the order of the atoms 
@@ -132,7 +132,7 @@ calculation, for each ionic step in the case a geometry optimization is performe
 
 \phantomsection \label{appendix:sec-CONTCAR} 
 \item \href{https://www.vasp.at/wiki/index.php/CONTCAR}{\texttt{CONTCAR}}: 
-The final lattice vectors and atom positions of the unit cells are witten to 
+The final lattice vectors and atom positions of the unit cells are written to 
 this file. Obviously this is mostly important when performing a geometric 
 optimization.
 
@@ -282,7 +282,7 @@ starts a spin-polarized calculation, i.e. for a system with collinear spins.
 Allows the user to set the magnetic moments of all the atoms in the unit cell, 
 when performing a spin-polarized calculation with collinear spins (\texttt{ISPIN} = 1).
 For non-collinear calculations, the magnetization density is a vectorial quantity, 
-and the components of the magnetiziation density should be provided for each atom, 
+and the components of the magnetization density should be provided for each atom, 
 with respect to the spin quantization axis (see 
 \href{https://cms.mpi.univie.ac.at/wiki/index.php/SAXIS}{SAXIS}).
 
@@ -477,7 +477,7 @@ All calculations for the landscapes were performed within the \dft{DFT}{} framew
 \subsubsection{Semiconductors} \label{appendix:sec-semiconductors} 
 
 Hagstrum's model requires the density of states of the valence 
-$D_v(\varepsilon)$ and conduction $D_c(\varepsilon)$ band as input, as well as 
+$D_v(\epsilon)$ and conduction $D_c(\epsilon)$ band as input, as well as 
 the vacuum level. We calculate the density of states and vacuum level of 
 \ce{Ge(111)} and \ce{Si(111)} using a \dft{DFT}{} approach, as implemented in 
 the \dft{VASP}{}. Within the \dft{PAW}{} formalism, the recommended number of 
@@ -502,12 +502,12 @@ averaging the one-electron electrostatic potential over planes parallel to the
 surface and determining the potential in the vacuum, which should be constant 
 in case the vacuum layer is sufficiently thick. The work function $\phi$ of 
 the surface is then calculated by comparing the vacuum level with the top of 
-the valence band $\phi = \varepsilon_0 - \varepsilon_v$.
+the valence band $\phi = \epsilon_0 - \epsilon_v$.
 
 \subsubsection{Metals} \phantomsection \label{appendix:sec-metals} 
 
 Hagstrum's model requires the density of states of the occupied and unoccupied 
-($D_v(\varepsilon)$ and $D_c(\varepsilon)$) states as input, as well as 
+($D_v(\epsilon)$ and $D_c(\epsilon)$) states as input, as well as 
 the vacuum level. We calculate the density of states and vacuum level of 
 all metal surfaces using a \dft{DFT}{} approach, as implemented in the 
 \dft{VASP}{}. Within the \dft{PAW}{} formalism, the recommended number of valence 
@@ -529,7 +529,7 @@ averaging the one-electron electrostatic potential over planes parallel to the
 surface and determining the potential in the vacuum, which should be constant 
 in case the vacuum layer is sufficiently thick. The work function $\phi$ of 
 the surface is then calculated by comparing the vacuum level with the top of 
-the valence band $\phi = \varepsilon_0 - \varepsilon_v$. 
+the Fermi level $\phi = \epsilon_0 - \epsilon_v$. 
 
 The optical properties of the bulk are calculated within the Random Phase 
 Approximation (RPA), using the long wavelength expression for the imaginary 
@@ -557,7 +557,7 @@ The algorithm doesn't always find the optimal setting, but does a fairly good
 job of finding one that does not waste significant amount of resources compared 
 to the optimal choice. Clearly, it does a much better job compared to the default
 (\texttt{KPAR} = \texttt{NPAR} = 1). All other parallelization tests can be 
-explored interactively via \href{https://mybinder.org/v2/gh/mbercx/jupyter/master?filepath=parallel\%2Fparallel_analysis.ipynb}{the jupyter notebook corresponding 
+explored interactively via \href{https://mybinder.org/v2/gh/mbercx/jupyter/master?filepath=parallel\%2Fparallel_analysis.ipynb}{the Jupyter notebook corresponding 
 to this section.}
 
 \begin{figure}[ht]
@@ -641,7 +641,7 @@ efficiency is about 2~\%.
 A Poisson process is defined as (taken from~\cite{MITopencourseware}):
 
 \begin{adjustwidth}{1em}{0em} 
-\textit{A Poisson process is a renewal process in which the interarrival 
+\textit{A Poisson process is a renewal process in which the inter arrival 
 intervals $T_p$ follow an exponential distribution function; i.e., for some 
 real $\lambda_p > 0$, $T_p$ has the probability density function}
 \begin{equation}
@@ -714,87 +714,87 @@ $i = 1, ..., N$, becomes:
 \begin{equation}
 \text{Pr}\{T_n < \text{min}(T_1, T_2, ..., T_{n-1}, T_{n+1}, ..., T_N)\} = \frac{\lambda_n}{\lambda_1  + ... + \lambda_N}.
 \end{equation}
-Within our model, an electron with energy $\varepsilon$ can excite plasmons up to 
-energy $\varepsilon - \varepsilon_F$, and the rate of exciting a volume plasmon with 
+Within our model, an electron with energy $\epsilon$ can excite plasmons up to 
+energy $\epsilon - \epsilon_F$, and the rate of exciting a volume plasmon with 
 energy $E_{vp}$ is proportional to the energy loss function $L(E)$:
 \begin{equation} 
 \lambda_{vp}(E_{vp}) = 
 \begin{cases} 
-c_{vp} \cdot L(E_{vp}) &\text{  for } 0 < E_{vp} \leq \varepsilon - \varepsilon_F \\
-0 &\text{  for } E_{vp} \leq 0 \text{ or } E_{vp} > \varepsilon - \varepsilon_F.
+c_{vp} \cdot L(E_{vp}) &\text{  for } 0 < E_{vp} \leq \epsilon - \epsilon_F \\
+0 &\text{  for } E_{vp} \leq 0 \text{ or } E_{vp} > \epsilon - \epsilon_F.
 \end{cases}
 \end{equation} 
 In this case, we have a continuous set of independent Poisson processes, each with 
 rate equal to $\lambda_{vp}(E_{vp})$, so the probability distribution of first
 exciting a volume plasmon with energy $E_{vp}$ becomes:
 \begin{equation}
-P_{vp}(\varepsilon, E_{vp}) = \text{Pr}\{T_{vp}(E_{vp}) = \text{min}(T_{vp}(E)\} = \frac{\lambda_{vp}(E_{vp})}{\int_0^{\varepsilon - \varepsilon_F} \lambda_{vp}(E) dE}.
+P_{vp}(\epsilon, E_{vp}) = \text{Pr}\{T_{vp}(E_{vp}) = \text{min}(T_{vp}(E)\} = \frac{\lambda_{vp}(E_{vp})}{\int_0^{\epsilon - \epsilon_F} \lambda_{vp}(E) dE}.
 \end{equation}
 Note that this distribution is properly normalized to 1:
 \begin{eqnarray*}
-\int_0^\infty P_{vp}(\varepsilon, E_{vp}) dE_{vp} &=& \int_0^\infty P_{vp}(\varepsilon, E_{vp}) dE_{vp}  \\
-&=& \frac{\int_0^\infty \lambda_{vp}(E_{vp}) dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} \lambda_{vp}(E) dE} \\
-&=& \frac{c_{vp} \int_0^{\varepsilon - \varepsilon_F} L(E_{vp}) dE_{vp}}{c_{vp} \int_0^{\varepsilon - \varepsilon_F} L(E) dE} = 1 \\
+\int_0^\infty P_{vp}(\epsilon, E_{vp}) dE_{vp} &=& \int_0^\infty P_{vp}(\epsilon, E_{vp}) dE_{vp}  \\
+&=& \frac{\int_0^\infty \lambda_{vp}(E_{vp}) dE_{vp}}{\int_0^{\epsilon - \epsilon_F} \lambda_{vp}(E) dE} \\
+&=& \frac{c_{vp} \int_0^{\epsilon - \epsilon_F} L(E_{vp}) dE_{vp}}{c_{vp} \int_0^{\epsilon - \epsilon_F} L(E) dE} = 1 \\
 \end{eqnarray*}
 However, we also have to consider the average travel interval of the electrons 
 $t_e$. As the total rate of the volume plasmon excitation process is 
-$\int_0^{\varepsilon - \varepsilon_F} \lambda_{vp}(E) dE$, the probability of 
+$\int_0^{\epsilon - \epsilon_F} \lambda_{vp}(E) dE$, the probability of 
 any volume plasmon being excited in the interval $t_e$ is:
 \begin{equation}
-\text{Pr}\{\text{min}(T_{vp}(E)) < t_e \} = 1 - e^{-(\int_0^{\varepsilon - \varepsilon_F} \lambda_{vp}(E) dE) t_e}.
+\text{Pr}\{\text{min}(T_{vp}(E)) < t_e \} = 1 - e^{-(\int_0^{\epsilon - \epsilon_F} \lambda_{vp}(E) dE) t_e}.
 \end{equation}
 Combining both leads to the probability distribution of a volume plasmon 
 excitation for an electron with average travel interval $t_e$:
 \begin{eqnarray}
-P_{vp}(\varepsilon, E_{vp}) dE_{vp} &=& \frac{\lambda_{vp}(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} \lambda_{vp}(E) dE }\left[1-e^{-\left(\int_0^{\varepsilon - \varepsilon_F} \lambda_{vp}(E_{vp}) dE\right) t_e }\right] \nonumber \\
-&=& \frac{c_{vp} L(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} c_{vp} L(E) dE }\left[1-e^{-\left(\int_0^{\varepsilon - \varepsilon_F} c_{vp} L(E) dE\right) t_e }\right] \nonumber \\
-&=& \frac{L(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} L(E) dE 
-}\left[1-e^{-\left(\int_0^{\varepsilon - \varepsilon_F} L(E) dE\right) c_{vp} t_e 
+P_{vp}(\epsilon, E_{vp}) dE_{vp} &=& \frac{\lambda_{vp}(E_{vp})dE_{vp}}{\int_0^{\epsilon - \epsilon_F} \lambda_{vp}(E) dE }\left[1-e^{-\left(\int_0^{\epsilon - \epsilon_F} \lambda_{vp}(E_{vp}) dE\right) t_e }\right] \nonumber \\
+&=& \frac{c_{vp} L(E_{vp})dE_{vp}}{\int_0^{\epsilon - \epsilon_F} c_{vp} L(E) dE }\left[1-e^{-\left(\int_0^{\epsilon - \epsilon_F} c_{vp} L(E) dE\right) t_e }\right] \nonumber \\
+&=& \frac{L(E_{vp})dE_{vp}}{\int_0^{\epsilon - \epsilon_F} L(E) dE 
+}\left[1-e^{-\left(\int_0^{\epsilon - \epsilon_F} L(E) dE\right) c_{vp} t_e 
 }\right] \label{appendix:eq-vp_prob}
 \end{eqnarray}
  
 \section{Volume Plasmons} 
  
-Consider the distribution of excited electrons $N_i(\varepsilon)$. The 
-probability that an excited electron at energy $\varepsilon$ induces a volume 
-plasmon of energy $E_{vp} < \varepsilon - \varepsilon_F$ is given by Eq.~(\ref{appendix:eq-vp_prob}). The fraction of electrons which excite a volume plasmon is then equal to: 
+Consider the distribution of excited electrons $N_i(\epsilon)$. The 
+probability that an excited electron at energy $\epsilon$ induces a volume 
+plasmon of energy $E_{vp} < \epsilon - \epsilon_F$ is given by Eq.~(\ref{appendix:eq-vp_prob}). The fraction of electrons which excite a volume plasmon is then equal to: 
 \begin{equation} 
-    N_{vp}^{-}(\varepsilon) = \int_0^\infty N_i(\varepsilon) 
-P_{vp}(\varepsilon, E_{vp}) dE_{vp}. 
+    N_{vp}^{-}(\epsilon) = \int_0^\infty N_i(\epsilon) 
+P_{vp}(\epsilon, E_{vp}) dE_{vp}. 
 \end{equation} 
-These are substracted from the excited electron density. However, these 
+These are subtracted from the excited electron density. However, these 
 electrons are not lost, they have simply lost an energy equal to the volume 
 plasmon energy $E_{vp}$. Hence, we have to add the following density to the 
 excited density again: 
 \begin{equation} 
-    N_{vp}^{+}(\varepsilon) = \int_0^\infty N_i(\varepsilon + E_{vp}) 
-P_{vp}(\varepsilon, E_{vp}) dE_{vp}. 
+    N_{vp}^{+}(\epsilon) = \int_0^\infty N_i(\epsilon + E_{vp}) 
+P_{vp}(\epsilon, E_{vp}) dE_{vp}. 
 \end{equation} 
 The story doesn't end there, however. Volume plasmons do not couple with 
 transversal waves~\cite{Maier2007}, and hence cannot decay radiatively. Most likely, the 
 plasmon will decay as a single electron excitation. In order to model this, we 
 first calculate the distribution of plasmons with an energy $E_{vp}$: 
 \begin{equation} 
-    D_{vp} (E_{vp})= \int_0^\infty N_i(\varepsilon) P_{vp}(\varepsilon, 
-E_{vp}) d\varepsilon 
+    D_{vp} (E_{vp})= \int_0^\infty N_i(\epsilon) P_{vp}(\epsilon, 
+E_{vp}) d\epsilon 
 \end{equation} 
-When these plasmons decay, they release an energy equal to $E_vp$. In other 
+When these plasmons decay, they release an energy equal to $E_{vp}$. In other 
 words, this distribution should be convoluted with the density of the occupied 
-states $D_v(\varepsilon)$ in order to obtain the density of excited electrons 
+states $D_v(\epsilon)$ in order to obtain the density of excited electrons 
 due to volume plasmon decay: 
 \begin{eqnarray} 
-    N_{vp}^{d}(\varepsilon) &=& \frac{1}{n_{vp}}(D_v * D_{vp}) (\varepsilon) 
+    N_{vp}^{d}(\epsilon) &=& \frac{1}{n_{vp}}(D_v * D_{vp}) (\epsilon) 
 \\ 
-    &=& \frac{1}{n_{vp}} \int_{\Delta\varepsilon_v} D_v(\varepsilon_1) 
-D_{vp}(\varepsilon - \varepsilon_1) d\varepsilon_1 \\ 
-    &=& \frac{1}{n_{vp}} \int_{\Delta\varepsilon_v} D_v(\varepsilon_1)  
-    \int_0^\infty N_i(\varepsilon_2) P_{vp}(\varepsilon_2, \varepsilon - 
-\varepsilon_1) d\varepsilon_2 d\varepsilon_1  
+    &=& \frac{1}{n_{vp}} \int_{\Delta\epsilon_v} D_v(\epsilon_1) 
+D_{vp}(\epsilon - \epsilon_1) d\epsilon_1 \\ 
+    &=& \frac{1}{n_{vp}} \int_{\Delta\epsilon_v} D_v(\epsilon_1)  
+    \int_0^\infty N_i(\epsilon_2) P_{vp}(\epsilon_2, \epsilon - 
+\epsilon_1) d\epsilon_2 d\epsilon_1  
 \end{eqnarray} 
 where $n_{vp}$ is a normalization factor. Of course, this distribution should 
 be normalized to the number of excited plasmons, i.e.: 
 \begin{equation} 
-    n_{vp} = \int_0^\infty N_{vp}^{-}(\varepsilon) d\varepsilon 
+    n_{vp} = \int_0^\infty N_{vp}^{-}(\epsilon) d\epsilon 
 \end{equation} 
 
 \section{Surface Plasmons} 
@@ -802,53 +802,53 @@ be normalized to the number of excited plasmons, i.e.:
 Hagstrum's Auger transform can be written as a convolution: 
 \begin{equation} 
 \begin{aligned} 
-T\left[\frac{\varepsilon + \varepsilon_0 - E_i}{2}\right] &= 
-\int_{\Delta\varepsilon_v}\int_{\Delta\varepsilon_v} D_v (\varepsilon_1) D_v 
-(\varepsilon_2) \delta(\varepsilon - \varepsilon_1 - \varepsilon_2 + 
-\varepsilon_0 - E_i) d\varepsilon_1 d\varepsilon_2. \\ 
-&= \int_{\Delta\varepsilon_v} D_v (\varepsilon_1) D_v (\varepsilon + 
-\varepsilon_0 - E_i - \varepsilon_1) d\varepsilon_1 \\  
-&= (D_v * D_v) (\varepsilon + \varepsilon_0 - E_i) 
+T\left[\frac{\epsilon + \epsilon_0 - E_I}{2}\right] &= 
+\int_{\Delta\epsilon_v}\int_{\Delta\epsilon_v} D_v (\epsilon_1) D_v 
+(\epsilon_2) \delta(\epsilon - \epsilon_1 - \epsilon_2 + 
+\epsilon_0 - E_I) d\epsilon_1 d\epsilon_2. \\ 
+&= \int_{\Delta\epsilon_v} D_v (\epsilon_1) D_v (\epsilon + 
+\epsilon_0 - E_I - \epsilon_1) d\epsilon_1 \\  
+&= (D_v * D_v) (\epsilon + \epsilon_0 - E_I) 
 \end{aligned} 
 \end{equation} 
 which can also be written as: 
 \begin{equation} 
-T\left[\frac{\varepsilon + \varepsilon_0 - E_i}{2}\right] = D_v(\varepsilon) * 
-D_v(\varepsilon + \varepsilon_0 - E_i) 
+T\left[\frac{\epsilon + \epsilon_0 - E_I}{2}\right] = D_v(\epsilon) * 
+D_v(\epsilon + \epsilon_0 - E_I) 
 \end{equation} 
  
-Here, $D_E(\varepsilon) = D_v(\varepsilon + \varepsilon_0 - E_i)$ 
+Here, $D_E(\epsilon) = D_v(\epsilon + \epsilon_0 - E_I)$ 
 corresponds to the distribution of energies released by the neutralization of 
 the incoming ion\footnote{This should be more clear when we substitute e.g. 
-$\varepsilon = 0$ in $D_E(\varepsilon)$. We then obtain $D_v(\varepsilon_0 - 
-E_i)$, i.e. the number of electrons in the valence band that are at an equal 
+$\epsilon = 0$ in $D_E(\epsilon)$. We then obtain $D_v(\epsilon_0 - 
+E_I)$, i.e. the number of electrons in the valence band that are at an equal 
 depth (in relation to the vacuum level) as the lowest unoccupied state of the 
 incoming ion. Clearly, electrons at this level do not pass energy through any 
 Auger process, as this is a resonant neutralization. Another way of 
-understanding this is that an electron at energy level $\varepsilon_0 - E_i + 
-\varepsilon$ releases an energy of $\varepsilon$ when it neutralizes the 
+understanding this is that an electron at energy level $\epsilon_0 - E_I + 
+\epsilon$ releases an energy of $\epsilon$ when it neutralizes the 
 incoming ion.}.  In order to include surface plasmon excitations, we consider 
 the probability that a plasmon with energy $E_{sp}$ is excited instead of an 
 Auger process: 
 \begin{equation}
 P_{sp}(E_{sp}) = \frac{ \frac{c_{sp}}{\lambda_{aug}} 
-\text{Im}\left[-\frac{1}{\epsilon(E_{sp}) + 1}\right]}{\frac{c_{sp}}{\lambda_{aug}} 
-\text{Im}\left[-\frac{1}{\epsilon(E_{sp}) + 1}\right] + 1} 
+\text{Im}\left[-\frac{1}{\varepsilon(E_{sp}) + 1}\right]}{\frac{c_{sp}}{\lambda_{aug}} 
+\text{Im}\left[-\frac{1}{\varepsilon(E_{sp}) + 1}\right] + 1} 
 \end{equation} 
 As the surface plasmon excitation process is considered to be resonant, 
 $E_{sp}$ must correspond to the energy released in the neutralization of the 
-incoming ion, i.e. $\varepsilon$ in $D_E(\varepsilon)$. The leftover 
+incoming ion, i.e. $\epsilon$ in $D_E(\epsilon)$. The leftover 
 distribution of energies passed to other valence electrons through an Auger 
 process is: 
 \begin{equation} 
-    D_{aug}(\varepsilon) = D_E(\varepsilon) (1 - P_{sp}(\varepsilon)) 
+    D_{aug}(\epsilon) = D_E(\epsilon) (1 - P_{sp}(\epsilon)) 
 \end{equation} 
 We substitute this distribution in the expression for the Auger transform: 
 \begin{equation} 
 \begin{aligned} 
-T'\left[\frac{\varepsilon + \varepsilon_0 - E_i}{2}\right] &= D_v(\varepsilon) 
-* D_{aug}(\varepsilon) \\ &= D_v(\varepsilon) * (D_v(\varepsilon + 
-\varepsilon_0 - E_i) (1 - P_{sp}(\varepsilon))) 
+T'\left[\frac{\epsilon + \epsilon_0 - E_I}{2}\right] &= D_v(\epsilon) 
+* D_{aug}(\epsilon) \\ &= D_v(\epsilon) * (D_v(\epsilon + 
+\epsilon_0 - E_I) (1 - P_{sp}(\epsilon))) 
 \end{aligned} 
 \end{equation} 
 And use this Auger transform instead of the original one in the nominator of 

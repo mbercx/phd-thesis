@@ -139,7 +139,7 @@ incoming sunlight.
 \captionsetup{width=0.9\textwidth}
 \centering 
 \includegraphics[width=0.75\textwidth]{\figurepath/slme/SolarSpectrum.png} 
-\caption{\label{slme:fig-solar} Solar Spectra for the extraterrestial \gls{AM} 0 
+\caption{\label{slme:fig-solar} Solar Spectra for the extraterrestrial \gls{AM} 0 
 (orange) and \gls{AM} 1.5 (blue) measurements. A black-body spectrum is added as a 
 reference point. Data taken from~\cite{International2012}.} 
 \end{figure} 
@@ -161,7 +161,7 @@ free charge carriers that can move through the semiconductor.
  
 \begin{wrapfigure}{l}{0.4\textwidth}
 \centering 
-\captionsetup{width=0.9\textwidth} 
+\captionsetup{width=0.7\textwidth} 
 \includegraphics[width=\textwidth]{\figurepath/slme/Intensity.png} 
 \caption{\label{slme:fig-intensity} Attenuation of the incoming light.} 
 \end{wrapfigure} 
@@ -210,7 +210,7 @@ and momentum, the latter of which is very small. However, for indirect band
 gap semiconductors, the minimum energy of the conduction band occurs at a very 
 different value of the crystal momentum than the maximum energy of the valence 
 band. In this case, absorption of photons with energies close to the band gap 
-involves the participation of phonons -- quasiparticles describing the 
+involves the participation of phonons -- quasi particles describing the 
 mechanical vibrations in the crystal -- in order to provide the necessary change 
 in momentum. For these materials, it is useful to make a distinction between 
 the \textit{fundamental} band gap $E_g$ and the \textit{direct allowed} band 
@@ -220,7 +220,7 @@ energy of the valence and conduction band at the same crystal momentum.
 \subsection{Recombination}\label{slme:sec-recombination} 
  
 The electrons that are excited to the conduction band in a semiconductor are 
-in a metastable state and eventually return back to the valence band, 
+in a meta stable state and eventually return back to the valence band, 
 effectively also removing the holes they left after their transition to the 
 conduction band. This process is called \textit{recombination}. The lifetime 
 of an electron-hole pair depends on the rate of the different recombination 
@@ -283,7 +283,7 @@ middle of the band gap are the most effective for the \gls{SRH} recombination,
 providing larger recombination rates~\cite{Green1981}. 
 \begin{figure}[ht]  
 \centering 
-\includegraphics[width=0.6\textwidth]{\figurepath/slme/SRHrec.png} 
+\includegraphics[width=0.6\textwidth]{\figurepath/slme/SRHRec.png} 
 \caption{\label{slme:fig-SRHrec}Shockley-Read-Hall Recombination.} 
 \end{figure} 
 
@@ -405,7 +405,7 @@ hole.
 \pagebreak[4]
 The process of generating a current from a solar cell can be summarized in 
 five steps, which are visualized by drawing an energy band diagram for the 
-absorption process in Figure~\ref{slme:fig-working}: 
+absorption process in Fig.~\ref{slme:fig-working}: 
  
 \vspace{0.25in} 
 \begin{enumerate}[I.]  
@@ -428,7 +428,7 @@ photon.
 \centering 
 \captionsetup{width=0.9\textwidth}
 \includegraphics[width=0.8\textwidth]{\figurepath/slme/Working.png} 
-\caption{\label{slme:fig-working} Step by step visualisation of the different 
+\caption{\label{slme:fig-working} Step by step visualization of the different 
 processes in a solar cell. Adapted from \cite{Smestad2002}.} 
 \end{figure} 
  
@@ -447,9 +447,9 @@ densities\footnote{Note that these current densities are not defined in the
 conventional way. Rather, they are considered as currents per surface area of 
 the solar cell. This allows us to ignore the surface area of the solar cell in 
 our discussion.} ($J,J_0,J_{sc}$), and I follow the same convention 
-throughout this text. Figure~\ref{slme:fig-IV_char}(a) shows the I-V 
+throughout this text. Figure~\ref{slme:fig-IV_char}a shows the I-V 
 characteristic of a solar cell under illuminated and dark conditions, whereas 
-Figure~\ref{slme:fig-IV_char}(b) demonstrates the definition of the 
+Fig.~\ref{slme:fig-IV_char}b demonstrates the definition of the 
 \textit{Fill Factor}~(FF)~\cite{Fonash2010}: 
 \begin{equation} 
 FF = \frac{P_{m}}{V_{oc} J_{sc}}, 
@@ -525,7 +525,7 @@ combination of P-N junctions with a different band gap for each semiconductor
 compound~\cite{Dimroth2007}. The materials are chosen with decreasing band 
 gaps, so that the higher energy photons are absorbed first. In this way, the 
 multi-junction solar cell absorbs photons over a large range of frequencies, 
-and loses less energy to thermic relaxation of electrons in the conduction 
+and loses less energy to thermal relaxation of electrons in the conduction 
 band. Other promising results are shown for the \textit{thin film} 
 technologies~\cite{Shah2004}, which focus on reducing the material consumption 
 in an attempt to make \gls{PV} energy generation more financially competitive. 
@@ -568,7 +568,7 @@ characteristic of an illuminated solar cell (Eq.~(\ref{slme:eq-JV})):
 \begin{equation}\label{slme:eq-JV} 
 J = J_{sc} - J_0 \left(e^{\frac{eV}{k_B T}} - 1\right). 
 \end{equation} 
-The short-circuit current density $J_{sc}$, also known as the photogenerated 
+The short-circuit current density $J_{sc}$, also known as the photo-generated 
 current or the illuminated current, is calculated from the number of photons 
 of the solar spectrum that are absorbed by the solar cell: 
 \begin{align} 
@@ -577,9 +577,9 @@ J_{sc} = e &\int_0^{\infty} a(E) \Phi_s (E) dE \\
 \label{slme:eq-Ish} 
 \end{align} 
 where $\Phi_s(E)$ is the photon flux density of the solar spectrum. In their 
-original paper, Shockley and Queisser used a blackbody spectrum of $T_s = 
+original paper, Shockley and Queisser used a black-body spectrum of $T_s = 
 6000~\si{\kelvin}$, but the current convention is to use the \gls{AM}1.5G solar 
-spectrum~\cite{International2012}.  The reverse saturation current density 
+spectrum~\cite{International2012}. The reverse saturation current density 
 $J_0$ is calculated by considering the principle of detailed balance, i.e. in 
 equilibrium conditions the rate of photon emission from radiative 
 recombination must be equal to the photon absorption from the surrounding 
@@ -625,7 +625,7 @@ to get a better picture of which semiconductors have the greatest potential as
 absorber materials. The \gls{SLME} also includes the thickness of the absorber layer 
 in the calculation of the maximum efficiency, and is therefore particularly 
 suited to study the thin-film technologies presented in 
-Figure~\ref{slme:fig-effchart}. Since its conception, the \gls{SLME} has been 
+Fig.~\ref{slme:fig-effchart}. Since its conception, the \gls{SLME} has been 
 successfully applied to perovskites~\cite{Yin2014, Yin2015, Yin2015b, 
 Meng2016}, chalcogenides~\cite{Hong2016, Sarmadian2016}, direct band gap 
 silicon crystals~\cite{Lee2014, Oh2015} and other materials~\cite{Yu2012b, 
@@ -678,7 +678,7 @@ direct and indirect band gap semiconductors.
 \vspace{0.1in} 
  
 The process for determining the \gls{SLME} is schematically presented in 
-Figure~\ref{slme:fig-SLMEcalc}. First, the absorptivity is computed from the 
+Fig.~\ref{slme:fig-SLMEcalc}. First, the absorptivity is computed from the 
 absorption coefficient, derived from \textit{ab initio} calculations. 
 The absorptivity is then used to determine the short 
 circuit and radiative recombination current densities: 
@@ -704,7 +704,7 @@ incident power density $P_{in}$ = 1 kW/m$^2$.
 \begin{figure}[ht]  
 \centering 
 \input{\figurepath/slme/slme_calc}
-\caption{Schematical representation of the calculation of the \gls{SLME} metric.} 
+\caption{Schematic representation of the calculation of the \gls{SLME} metric.} 
 \label{slme:fig-SLMEcalc} 
 \end{figure} 
  
@@ -734,7 +734,7 @@ the structure of the \gls{CH} and \gls{CA} phases, as well as an analysis of the
 stability of \gls{CH} versus \gls{CA}, in order to determine the likelihood of the presence of \gls{CA} domains 
 within a \gls{CH}-based solar cell. Section~\ref{slme:sec-CuAu_efficiency} continues by presenting the optoelectronic 
 properties of the \gls{CA} phase materials. Finally, these results are used to calculate 
-the \gls{SLME} and the section consludes with a discussion the obtained efficiencies of specific compounds.  
+the \gls{SLME} and the section concludes with a discussion the obtained efficiencies of specific compounds.  
  
 \resultsubsection{Structure and formation energy \label{slme:sec-structure}}{https://github.com/mbercx/phd-thesis/blob/master/jupyter/slme/README.md\#structure-and-formation-energy}{solar_structure} 
  
@@ -780,11 +780,11 @@ structure of ternary \mbox{I-III-VI$_2$} compounds.}
 \begin{table}[ht] 
 \centering 
 \renewcommand{\arraystretch}{1.2} 
-\caption{Calculated lattice parameters of the \mbox{CuAu-like} (CA) and chalcopyrite (\gls{CH}) 
+\caption{Calculated lattice parameters of the \mbox{CuAu-like} (\gls{CA}) and chalcopyrite (\gls{CH}) 
 phase of the considered compounds, compared with the experimental results from Hahn et al.~\cite{Hahn1953}.} 
 \label{slme:tab-lattice} 
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccccccc}\hline 
-\multirow{2}{*}{Material}    & & \gls{CA} & & & \gls{CH} & & & \gls{CH} (Ref~\cite{Hahn1953}) & 
+\multirow{2}{*}{Material}    & \multicolumn{3}{c}{\gls{CA}}  & \multicolumn{3}{c}{\gls{CH}} & \multicolumn{3}{c}{\gls{CH} (Ref~\cite{Hahn1953})} 
 \\ \cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10} 
  			&  $a$ (\si{\angstrom}) & $c$ (\si{\angstrom}) & $c/a$ & $a$ 
 (\si{\angstrom}) & $c$ (\si{\angstrom}) & $c/a$ & $a$ (\si{\angstrom}) & $c$ 
@@ -900,27 +900,28 @@ HSE06 calculated dielectric function of \mbox{CA-CuInSe$_2$}.}
 \begin{table}[ht] 
 \renewcommand{\arraystretch}{1.3} 
 \centering 
+\captionsetup{width=0.9\textwidth}
 \caption{Experimental and calculated band gaps of the \mbox{CuAu-like}(CA) and 
 chalcopyrite (\gls{CH}) phase of the considered compounds.} 
 \label{slme:tab-Eg} 
-\begin{tabular}{l@{\extracolsep{2em}}cccD{.}{.}{-1}c} 
+\begin{tabular}{l@{\extracolsep{2em}}ccD{.}{.}{-1}c} 
 \hline 
-\multirow{2}{*}{Material} & \multicolumn{2}{c}{CA} & \multicolumn{3}{c}{CH}	 
-\\ \cmidrule(lr){2-3} \cmidrule(lr){4-6} 
+\multirow{2}{*}{Material} & \multicolumn{2}{c}{CA} & \multicolumn{2}{c}{CH}	 
+\\ \cmidrule(lr){2-3} \cmidrule(lr){4-5} 
          & $E_g^{HSE}$(\si{\electronvolt}) & 
-$E_g^{G_0W_0}$(\si{\electronvolt}) & $E_g^{HSE}$(\si{\electronvolt}) & 
+$E_g^{G_0W_0}$(\si{\electronvolt}) & 
 \multicolumn{1}{c}{$E_g^{G_0W_0}$(\si{\electronvolt})} & 
 \multicolumn{1}{c}{$E_g^{exp}$(\si{\electronvolt})}\\ \hline 
-AgGaSe$_2$ & 0.84 & 1.41 & - & 1.80^a & 1.83$^b$\\ 
-AgGaTe$_2$ & 0.46 & 0.95 & 1.14 & 1.71 & 1.1-1.3$^b$\\ 
-AgInS$_2$  & 1.20 & 1.69 & - & 1.74^a & 1.87$^b$\\ 
-AgInTe$_2$ & 0.53 & 0.92 & - & 1.23^a & 0.96-1.04$^b$\\ 
-CuGaS$_2$  & 1.77 & 1.94 & - & 1.99^a & 2.41$^c$\\ 
-CuGaSe$_2$ & 0.96 & 1.19 & 1.29 & 1.46 & 1.64$^c$\\ 
-CuGaTe$_2$ & 0.77 & 1.06 & - & 1.47^a & 1.23$^b$\\ 
-CuInS$_2$  & 1.14 & 1.13 & 1.14 & 1.05 & 1.53$^c$\\ 
-CuInSe$_2$ & 0.59 & 0.58 & 0.67 & 0.66 & 1.04$^c$\\ 
-CuInTe$_2$ & 0.76 & 0.94 & - & 1.03^a & 0.96$^b$\\ \hline 
+AgGaSe$_2$ & 0.84 & 1.41 & 1.80^a & 1.83$^b$\\ 
+AgGaTe$_2$ & 0.46 & 0.95 & 1.54^a & 1.1-1.3$^b$\\ 
+AgInS$_2$  & 1.20 & 1.69 & 1.74^a & 1.87$^b$\\ 
+AgInTe$_2$ & 0.53 & 0.92 & 1.23^a & 0.96-1.04$^b$\\ 
+CuGaS$_2$  & 1.77 & 1.94 & 1.99^a & 2.41$^c$\\ 
+CuGaSe$_2$ & 0.96 & 1.19 & 1.65^a & 1.64$^c$\\ 
+CuGaTe$_2$ & 0.77 & 1.06 & 1.47^a & 1.23$^b$\\ 
+CuInS$_2$  & 1.14 & 1.13 & 1.54^a & 1.53$^c$\\ 
+CuInSe$_2$ & 0.59 & 0.58 & 1.33^a & 1.04$^c$\\ 
+CuInTe$_2$ & 0.76 & 0.94 & 1.03^a & 0.96$^b$\\ \hline 
 \multicolumn{5}{l}{$^a$ Ref.~\cite{Yu2012}, $^b$ Ref.~\cite{Jaffe1984}, $^c$ 
 Ref.~\cite{Alonso2001}} 
 \end{tabular} 
@@ -975,17 +976,17 @@ CuInS$_2$. We suggest that the efficiency of these devices may have benefited
 from the presence of the \gls{CA} phase directly through the optical properties of 
 the material. 
 
-Figure~\ref{slme:fig-SLME_CuAu}(a) shows the \gls{SLME} as a function of the film thickness for the \gls{CA} phase of the I-III-VI$_2$ compounds. It is clear that for most 
+Figure~\ref{slme:fig-SLME_CuAu}a shows the \gls{SLME} as a function of the film thickness for the \gls{CA} phase of the I-III-VI$_2$ compounds. It is clear that for most 
 compounds, the efficiency of the \gls{CA} phase rises quickly for an increasing 
 thickness. In fact, for $L=500~\si{\nano\meter}$, the \gls{SLME} is already within 5-6\% for all compounds save \ce{CuGaS_2}, which demonstrates the potential of the \gls{CA} phase materials as 
-absorber layers in thin-film solar cells. Fig.~\ref{slme:fig-SLME_CuAu}(b) plots the \gls{SLME} for $L=500~\si{\nano\meter}$ of the \gls{CA} phase of the various 
+absorber layers in thin-film solar cells. Fig.~\ref{slme:fig-SLME_CuAu}b plots the \gls{SLME} for $L=500~\si{\nano\meter}$ of the \gls{CA} phase of the various 
 compounds versus their band gap, as well as the \gls{SQ} limit. Observe 
 that the \gls{SLME} value for \mbox{CA-CuInSe$_2$} is higher than the 
 corresponding \gls{SQ} limit. In Section~\ref{slme:sec-analysis} I return to this 
 result and discuss it in detail. Finally, note that the influence on the efficiency of a 
 discrepancy between the calculated and experimental band gaps depends on the band 
 gap of the compound.
-Looking at Fig.~\ref{slme:fig-SLME_CuAu}(b), one can expect the 
+Looking at Fig.~\ref{slme:fig-SLME_CuAu}b, one can expect the 
 influence of the band gap to be small in the 1-1.5 \si{\electronvolt} 
 interval. In case the calculated and experimental band gap are not in this 
 region, however, any discrepancy between the calculated and experimental band 
@@ -1026,7 +1027,7 @@ an infinite absorber layer, i.e. by replacing the Heaviside step function for
 the absorptivity by a calculated spectrum, it is possible to obtain efficiencies above the 
 Shockley-Queisser limit. Next, Section~\ref{slme:sec-logistic} discusses this 
 phenomenon in more detail by 
-replacing the absorptivity by a parametrized sigmoid function, and analyzes for 
+replacing the absorptivity by a parameterized sigmoid function, and analyzes for 
 which band gap range a material's efficiency is more likely to exceed the 
 Shockley-Queisser limit. Finally, Section~\ref{slme:sec-indirect} broadens our analysis to indirect band gap 
 materials by studying the absorption and efficiency of silicon. From these results, it is clear that 
@@ -1128,7 +1129,7 @@ assumptions made in the Shockley-Queisser approach and introducing an absorption
 spectrum of an absorption layer with a finite thickness, it is possible to 
 obtain efficiencies above the \gls{SQ} limit. 
  
-\resultsubsection{Logistic function model \label{slme:sec-logistic}}{https://github.com/mbercx/phd-thesis/blob/master/jupyter/slme/README.md\#the-curious-case-of-ca-cuinse_2}{} 
+\resultsubsection{Logistic function model \label{slme:sec-logistic}}{https://github.com/mbercx/phd-thesis/blob/master/jupyter/slme/README.md\#logistic-function-model}{} 
  
 The efficiency for \gls{CA}-\ce{CuInSe2} is not the only one to exceed the \gls{SQ} limit at 500~\si{\nano\meter}. 
 Figure~\ref{slme:fig-logistic} shows a selection of calculated \gls{SLME} values of 
@@ -1245,7 +1246,7 @@ So far, I have only discussed materials which have a direct band gap. In
 order to test the application of the \gls{SLME} to indirect band gap absorbers, we 
 decided to calculate the \gls{SLME} of silicon, which is still one of the most 
 popular materials for the production of solar cells. 
-Fig.~\ref{slme:fig-Si_slme}(a) shows the experimental\footnote{We choose to 
+Fig.~\ref{slme:fig-Si_slme}a shows the experimental\footnote{We choose to 
 use an experimental spectrum in order to include the phonon-mediated 
 contributions to the absorption coefficient.} absorption coefficient of 
 crystalline silicon~\cite{green2008}. Notice the onset of the indirect and 
@@ -1273,7 +1274,7 @@ unreasonably large. As discussed in Section~\ref{slme:sec-CuInSe2}, $J_0$ has a
 significant influence on the open circuit voltage $V_{oc}$. In this case, the 
 high value of $J_0$ leads to a $V_{oc}$ that is too small to produce any 
 significant power density. However, in case the fraction of radiative recombination is set \mbox{$f_r = 10^{-3}$} -- a 
-more reasonable value for silicon~\cite{Shockley1952,Trupke2003,Richter2012} -- the results shown in Fig.~\ref{slme:fig-Si_slme}(b) are obtained. 
+more reasonable value for silicon~\cite{Shockley1952,Trupke2003,Richter2012} -- the results shown in Fig.~\ref{slme:fig-Si_slme}b are obtained. 
  
 One could argue that silicon is a special case, and that generally efficient 
 indirect absorbers do not have such a large band gap difference \mbox{$\Delta 

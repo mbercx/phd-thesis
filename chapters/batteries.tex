@@ -47,11 +47,11 @@ as many renewable sources of energy are intermittent, requiring the storage of
 excess energy to stabilize the grid. Ranging from something as simple as 
 pumping water to a higher elevation\footnote{Although simple, this is arguably 
 still one of the best ways to store energy for grid applications. A good 
-example is our very own hydrostorage facility at Coo, which professes to have 
+example is our very own hydro storage facility at Coo, which professes to have 
 an energy conversion efficiency of 75\%~\cite{Engie-Electrabel2015}.} to 
 storing superconducting magnetic energy storage, there are many methods for 
 storing energy. Which storage solution is optimal depends largely on the 
-application. In portable electronics and the electrical vehicle (EV) market, 
+application. In portable electronics and the electric vehicle (EV) market, 
 Li-ion batteries have been used extensively as the energy storage medium of 
 choice. 
  
@@ -98,7 +98,8 @@ capacity due to their high weight. The electrolyte separating the electrodes
 can be either a liquid or a solid, 
 with the liquid being the conventional choice owing to its high ionic 
 conductivity. However, there are certain safety hazards associated with the 
-use of liquid electrolytes. 
+use of liquid electrolytes, which has prompted an increased research effort 
+for developing functional solid electrolytes (See Section~\ref{batteries:sec-solid_electrolyte}).
 
 \section{Li-Rich Battery Cathodes} \label{batteries:sec-lirich} 
  
@@ -108,7 +109,7 @@ still be made by improving the cathode capacity. Layered \ce{LiMO2} compounds,
 where \ce{M} is a transition metal, allow for fast two dimensional lithium 
 diffusion through a divacancy mechanism~\cite{VanderVen2001}, and high 
 voltages versus the battery anode. Among this group, \ce{LiCoO2} has long been 
-the favoured cathode in commercial applications. Cobalt is expensive and 
+the favored cathode in commercial applications. Cobalt is expensive and 
 toxic, however, and \ce{LiCoO2} suffers from safety problems due to its low thermal 
 stability~\cite{Larcher2015}. Moreover, the capacity of \ce{LiCoO2} is limited 
 to 130~\si{\milli\ampere\hour/\gram}, because only about half of the lithium 
@@ -177,12 +178,12 @@ cathode is unlikely to ever be fully delithiated in a practical battery,
 rendering an investigation of the fully charged state less relevant. 
 
 \begin{figure}[ht] 
-\centering 
+\centering
 \captionsetup{width=0.9\linewidth}
-\includegraphics[width=0.85\textwidth]{figures/batteries/structural_change.png} 
+\includegraphics[width=0.80\textwidth]{figures/batteries/structural_change.png} 
 \caption{Transformation from the O3 to O1 stacking for both \ce{Li2MnO3} and 
 \ce{Li2IrO3} as the cathode is charged. The primitive unit cell 
-is drawn in blue. The top figures are the structure shown in the [100] 
+is drawn in blue. The top figures represent the structure shown in the [100] 
 projection, whereas the lower figures represent a single octahedral layer of 
 the layered structure, viewed top down.  $d_{short}$ and $d_{long}$ both 
 represent O-O distances across the \ce{Li}/TM layer, corresponding to an 
@@ -198,7 +199,7 @@ configurations to consider. We investigate the lithium configuration for
 configurations in the conventional unit cell. This is done based on the 
 workflow described in Section~\ref{automation:sec-configurations}, resulting 
 in 94 non-equivalent configurations. Similar to previous 
-work~\cite{Koyama2009}, we find that for the several lithium configurations, 
+work~\cite{Koyama2009}, we find that for several lithium configurations, 
 the \ce{Li2MnO3} structure spontaneously shifts from an O3 stacking to the O1 
 stacking\footnote{The various stackings of layered oxides were first classified 
 by Delmas et al.~\cite{Delmas1980}. O refers to the octahedral coordination 
@@ -266,10 +267,10 @@ calculated O-O distances with experiment.
 \centering 
 \captionsetup{width=0.9\linewidth}
 \renewcommand{\arraystretch}{1.3} 
-\caption{O-O distances for the dicharged and charged \ce{Li2[Mn, Ir]O3} 
+\caption{O-O distances for the discharged and charged \ce{Li2[Mn, Ir]O3} 
 structures, all expressed in \AA. The distances for \ce{Li2IrO3} are compared 
 with the neutron powder diffraction results of McCalla et 
-al.\cite{McCalla2015}.} 
+al.~\cite{McCalla2015}.} 
 \label{batteries:tab-OO_distance} 
 \begin{tabular}{c c c c c c c} 
  & & \multicolumn{2}{c}{\ce{Li2[Mn, Ir]O3}} & & 
@@ -279,24 +280,24 @@ al.\cite{McCalla2015}.}
 \\ 
  & \multicolumn{1}{|c}{$d_{long}$} & 2.75 & - & & 2.62 & - \\\hline 
 \multirow{2}{*}{Ir} & \multicolumn{1}{|c}{$d_{short}$} & 2.75 & 2.77 & & 2.51 
-& 2.54 \\ 
- & \multicolumn{1}{|c}{$d_{long}$} & 2.87 & 2.84 & & 2.74 & 2.77 \\\hline 
+& 2.45 \\ 
+ & \multicolumn{1}{|c}{$d_{long}$} & 2.87 & 2.84 & & 2.74 & 2.73 \\\hline 
 \end{tabular} 
 \end{table} 
  
 As was noted previously by McCalla et al.~\cite{McCalla2015}, the oxygen 
 framework is distorted as lithium is removed from the structure. In order to 
-quantify this, we determine the distances between the various oxygen pairs, 
+quantify this, we calculate the distances between the various oxygen pairs, 
 connected in the tetrahedral environment of \ce{Mn} or \ce{Ir}. The distances 
 between oxygen pairs which are part of the same oxygen layer change little. 
 However, for the interlayer oxygen pairs, denoted as $d_{short}$ and 
-$d_{long}$ in Figure~\ref{batteries:fig-structural_change}, the change in bond 
+$d_{long}$ in Fig.~\ref{batteries:fig-structural_change}, the change in bond 
 length is more pronounced (Table~\ref{batteries:tab-OO_distance}). Moreover, 
 the shorter bonds for an oxygen pair sharing two [Mn, Ir] neighbors, shrink 
 more than the long bonds, which share a transition metal and Li or vacancy. 
 This leads to a distortion of the octahedral environment around the transition 
 metals, resulting in short O-O bonds which McCalla et al. refer to as dimers. 
-In Section~\ref{batteries:sec-dimer}, we will return to this topic, focussing 
+In Section~\ref{batteries:sec-dimer}, we will return to this topic, focusing 
 our attention on the formation of a peroxo species with a bond length closer 
 to that of the oxygen molecule, as this formation has been derived 
 theoretically for \ce{Li2MnO3}, and believed to be related to the migration of Mn 
@@ -377,8 +378,8 @@ plotted the number of states per electronvolt per formula unit.}
 \label{batteries:fig-charge_pdos_Mn_Ir} 
 \end{figure} 
  
-This conclusion is supported by the projected density of states (PDOS), 
-plotted in Figure~\ref{batteries:fig-charge_pdos_Mn_Ir}. For \ce{Li2MnO3}, the 
+This conclusion is supported by the projected density of states (\gls{PDOS}), 
+plotted in Fig.~\ref{batteries:fig-charge_pdos_Mn_Ir}. For \ce{Li2MnO3}, the 
 electronic states close to the Fermi level correspond largely to the O-2$p$ 
 states, which indicates that as the battery is charged, electrons are removed 
 from oxygen rather than \ce{Mn}. In contrast, looking at the \gls{PDOS} for 
@@ -394,7 +395,7 @@ implying a larger oxidation of oxygen for \ce{Li2MnO3}.
 \resultsubsection{Dimer Analysis \label{batteries:sec-dimer}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/batteries/README.md\#dimer-analysis}{dimer} 
  
 Once the oxygen atoms develop holes on their $p$-orbitals, they can be 
-subsequently stabilized by a reorganisation of the oxygen framework, forming a 
+subsequently stabilized by a reorganization of the oxygen framework, forming a 
 peroxo-like species of oxygen pairs with shortened O-O bonds. McCalla et 
 al.~\cite{McCalla2015} were able to demonstrate the shortening of such bonds 
 for \ce{Li2IrO3}, which they referred to as an O-O peroxo-like dimer. More 
@@ -402,7 +403,7 @@ recently, other authors~\cite{Saubanere2016, Chen2016} have asserted that the
 presence of unstable holes on the oxygen can also lead to the formation of a 
 true oxygen dimer, finding O-O bonds with distances closer to that of 
 molecular oxygen (~1.3-1.5~\si{\angstrom}). Such short O-O distances have also 
-been reported recently by Li et al.~\cite{Li2018}, who found peaks in their 
+been reported recently by Li et al.~\cite{Li2018}, who found shifts in their 
 Raman spectra that correspond to similar bond lengths. Both Saubani\`ere et 
 al.~\cite{Saubanere2016} and Chen and Islam~\cite{Chen2016} discuss that the 
 dimerization of oxygen can trigger the migration of Mn in fully charged 
@@ -415,7 +416,7 @@ observed for several Li-rich materials \cite{Armstrong2006, Luo2016}.
  
 So far the study of dimer formation in \ce{Li2MnO3} has been limited to the O3 
 stacking and the fully charged structure. However, as we have seen in 
-Section~\ref{batteries:sec-structure}, both \ce{Li2MnO3} \ce{Li2IrO3} are 
+Section~\ref{batteries:sec-structure}, both \ce{Li2MnO3} and \ce{Li2IrO3} are 
 believed to transform into an O1 stacking, which changes the possible 
 migration pathways for the transition metal. Here, we compare the stability of 
 the oxygen framework of Li-rich \ce{Li2MnO3} and \ce{Li2IrO3} by calculating 
@@ -436,7 +437,7 @@ charged structures, we apply our methodology to 75\% delithiated
 To calculate the chemical reaction energy of the dimer formation, we construct 
 a 2$\times$2$\times$2 supercell of the primitive unit cell, for the O1 stacking of 75\% 
 charged \ce{Li_{0.5}MnO3} and \ce{Li_{0.5}IrO3} 
-(Fig.~\ref{batteries:fig-oxygen_dimers}). In order to consistently study the 
+(Fig.~\ref{batteries:fig-oxygen_dimers}). In order to rigorously study the 
 dimer formation, we need to consider all non-equivalent oxygen pairs that have 
 the potential to form a dimer for each material. We use the workflow described 
 in Section~\ref{automation:sec-dimer} to calculate the reaction energy of all
@@ -445,8 +446,8 @@ in the structure are found using a voronoi decomposition to find the neighbors
 of the various atoms in the unit cell. Once all oxygen dimers have been found, 
 we set up a list of all non-equivalent potential dimers based on the
 symmetry operations of the structure. In the charged 
-\ce{O1-Li_{0.5}MnO3} and O1-\ce{Li_{0.5}IrO3} structures, we find a total of 6 
-non-equivalent dimers, shown in Figure~\ref{batteries:fig-oxygen_dimers}. For 
+O1-\ce{Li_{0.5}MnO3} and O1-\ce{Li_{0.5}IrO3} structures, we find a total of 6 
+non-equivalent dimers, shown in Fig.~\ref{batteries:fig-oxygen_dimers}. For 
 each structure and each potential dimer, we reduce the distance between the 
 oxygen atoms in the dimer pair to 1.4~\si{\angstrom} and once again optimize 
 all atomic positions as described in the methods section. To make sure the 
@@ -471,7 +472,7 @@ have a negative reaction energy.}
 Figure~\ref{batteries:fig-Mn_dimers} shows the results for the reaction energy 
 and final bond length. Even though all perturbed structures 
 produce a stable oxygen dimer after optimization, only two dimers have a 
-negative reaction energy, which are labelled as \textbf{A} and \textbf{E} 
+negative reaction energy, which are labeled as \textbf{A} and \textbf{E} 
 in Fig.~\ref{batteries:fig-oxygen_dimers}. One dimer (\textbf{C}) results in a 
 geometry similar to the formation of the \textbf{E} dimer, with comparable 
 energies. The two dimers that have a reduced energy in the final state are 
@@ -479,12 +480,12 @@ formed by two oxygen atoms from different layers, with dimer \textbf{A} being
 the most energetically favorable by far. The final structures of both 
 dimers are shown in Fig.~\ref{batteries:fig-Mn_dimers}, along with the kinetic barrier, 
 calculated using the \gls{NEB} method. For the \textbf{A} dimer, the kinetic barrier 
-is equal to 214~\si{\milli\electronvolt}, which is smaller than the typical 
+is equal to 314~\si{\milli\electronvolt}, which is smaller than the typical 
 kinetic barrier for lithium migration in layered 
 structures~\cite{VanDerVen2013}. This implies that the formation of the 
 \textbf{A} dimer is very likely to occur during the charging process. The 
 kinetic barrier for the \textbf{E} dimer is significantly higher at 
-584~\si{\milli\electronvolt}, but is by no means insurmountable. Hence, we 
+586~\si{\milli\electronvolt}, but is by no means insurmountable. Hence, we 
 would expect to find both dimers to play a significant role in the structural 
 changes that occur for \ce{Li2MnO3} as it is cycled. 
  
@@ -511,7 +512,7 @@ hence better cycling properties. However, designing a \ce{Ir}-based cathode
 material is not a practical approach due to the weight and price of \ce{Ir}. 
  
 Another element that has been suggested in order to improve the cycling 
-behaviour of Li-rich materials is \ce{Sn^{4+}}, for several reasons. First, 
+behavior of Li-rich materials is \ce{Sn^{4+}}, for several reasons. First, 
 the bonding energy of \ce{Sn-O} is higher than that of \ce{Mn-O}, which can 
 enhance the structural stability~\cite{Qiao2015}. Second, \ce{Sn^{4+}} does 
 not tend to adopt a tetrahedral coordination~\cite{Sathiya2013} and has a much 
@@ -547,22 +548,22 @@ increased Sn-substitution were prepared for a Li-rich/Mn-rich \gls{NMC} structur
 leading to stoichiometries \ce{Li_{1.2}Ni_{0.13}Co_{0.13}Mn_{0.54-x}Sn_xO2} 
 for $x  \approx 0, 0.027, 0.054, 0.108 \textrm{ and } 0.54$. Looking at the 
 change in the \gls{PXRD} pattern of Sn-substituted \gls{NMC} samples in 
-Fig.~\ref{batteries:fig-Sn_experiment}~(a), a second phase appears as the 
+Fig.~\ref{batteries:fig-Sn_experiment}a, a second phase appears as the 
 amount of Sn is increased, starting from $x = 0.054$. This phase becomes dominant for $x=0.54$ and was 
 identified as \ce{Li2SnO3} based on an indexation of the \gls{PXRD} results. 
 The \gls{EDX} results for a particle with $x=0.108$ 
-(Fig.~\ref{batteries:fig-Sn_experiment}(b)) indicate that the exsolution of this 
+(Fig.~\ref{batteries:fig-Sn_experiment}b) indicate that the exsolution of this 
 Sn-rich phase already occurs at lower levels of Sn-substitution. 
  
 \begin{figure}[ht] 
     \centering
     \captionsetup{width=0.92\linewidth}
     \input{\figurepath/batteries/xrd}
-    \caption{(a) \gls{PXRD} patterns of 
+    \caption{(\textbf{a}) \gls{PXRD} patterns of 
 \ce{Li_{1.2}Ni_{0.13}Co_{0.13}Mn_{0.54-x}Sn_xO2} for increasing values of 
-Sn-substitution $x$. (b) Mixed (Mn, Sn) elemental \gls{EDX} map of representative 
-LNMCS20 (x=0.108) particles, which demonstrates the presence of two different regions, a Mn-rich and Sn-rich one. Courtesy of Andreas Paulus (a) and Myl\`ene 
-Hendrickx (b).} 
+Sn-substitution $x$. (\textbf{b}) Mixed (Mn, Sn) elemental \gls{EDX} map of representative 
+LNMCS20 (x=0.108) particles, which demonstrates the presence of two different regions, a Mn-rich and Sn-rich one. Courtesy of Andreas Paulus (\textbf{a}) and Myl\`ene 
+Hendrickx (\textbf{b}).} 
     \label{batteries:fig-Sn_experiment} 
 \end{figure} 
  
@@ -627,7 +628,7 @@ to 361/1867/7202 configurations for $x = 0.083/0.125/0.167$ respectively.
 Optimizing the geometry of all these configurations is clearly not possible, 
 so we have to limit the number of configurations to a more manageable number.  
  
-Before analysing the reaction in Eq.~\ref{batteries:eq-exsolution}, it is 
+Before analyzing the reaction in Eq.~\ref{batteries:eq-exsolution}, it is 
 important to confirm that the \ce{Sn}-rich phase is more likely to be a 
 combination of \ce{Li2SnO3} and \ce{SnO} than \ce{Li_{1.2}Sn_{0.8}O2}. For 
 this purpose, we first generate all \ce{Li}-\ce{Sn} configurations of 
@@ -728,7 +729,7 @@ This discussion, however, is left for the end of this section.
 \caption{Calculated absolute values of the magnetic moments for the discharged 
 and charged for the \ce{Sn}/\ce{V}/\ce{Mo}-substituted structures, all 
 expressed in Bohr magnetons $\mu_B$. For the oxygen, we make a distinction between the 
-neighbours of the substituted element \ce{O_n} and other oxygen elements in 
+neighbors of the substituted element \ce{O_n} and other oxygen elements in 
 the unit cell \ce{O_o}.} 
 \label{batteries:tab-substitution_magmoms} 
 \begin{tabular}{c c c c c c c} 
@@ -757,7 +758,7 @@ the unit cell \ce{O_o}.}
 \end{table} 
  
 Table~\ref{batteries:tab-substitution_magmoms} contains the magnetic moments 
-and Figure~\ref{batteries:fig-substitution_pdos_pbeu} shows the projected 
+and Fig.~\ref{batteries:fig-substitution_pdos_pbeu} shows the projected 
 density of states near the Fermi level for the 
 \ce{Sn}/\ce{V}/\ce{Mo}-substituted structures, both in the discharged and 
 charged state. For \ce{Sn}, there are practically no states in near the Fermi 
@@ -767,13 +768,13 @@ This is also clear from the magnetic moments, which are close to zero for
 \ce{Sn} in both states of charge. Because of this inability of \ce{Sn} to 
 oxidize further, the oxygen redox is similar to that of undoped \ce{Li2MnO3}. 
 In light of this, it is unsurprising that the kinetic barrier for the A dimer 
-in the 75\% charged Sn-doped structure is similar, even when one of the oxygen atoms neighbours the substituted 
+in the 75\% charged Sn-doped structure is similar, even when one of the oxygen atoms neighbors the substituted 
 \ce{Sn} (Fig.~\ref{batteries:fig-substitution_dimers}). 
 
 \pagebreak[5] For \ce{V} and \ce{Mo}, the magnetic moments and projected density of states 
 are also in the line of expectations. Both substituted elements show a clear 
 change in their magnetic moment, indicating that they have oxidized further 
-as the battery is charged. The neighbouring oxygens \ce{O_n} also have a 
+as the battery is charged. The neighboring oxygens \ce{O_n} also have a 
 significantly lower magnetic moments compared to other oxygen atoms \ce{O_o} 
 for the charged structure, confirming the decreased oxidation of the oxygen 
 framework around the substituted element. Looking at the projected density of 
@@ -808,7 +809,7 @@ the fact that they are more likely to oxidize before the oxygen.
 \centering 
 \captionsetup{width=0.9\linewidth}
 \includegraphics[width=0.85\textwidth]{figures/batteries/substitution_dimers.png} 
-\caption{Kinetic barriers for the dimerization of oxygen neighbouring \ce{Sn}, 
+\caption{Kinetic barriers for the dimerization of oxygen neighboring \ce{Sn}, 
 \ce{V} and \ce{Mo}, both for the \gls{PBE}+U and \gls{SCAN} functional.} 
 \label{batteries:fig-substitution_dimers} 
 \end{figure} 
@@ -823,7 +824,7 @@ the previous paragraphs remains largely intact. However, the magnetic moments
 on the oxygen atoms is decidedly lower compared to the \gls{PBE}+U results. One 
 could argue that this indicates that our choice of Hubbard-U correction might 
 have excessively localized the electrons around the transition metals, but a 
-similar reduction in magnetic moments is found for the oxygen neighbouring 
+similar reduction in magnetic moments is found for the oxygen neighboring 
 \ce{Sn}, for which we have applied no Hubbard-U correction. Moreover, our 
 chosen U value for \ce{Mn} has been carefully benchmarked versus our previous 
 results for \gls{HSE}06, which has demonstrated a good ability\footnote{Note that by 
@@ -841,7 +842,7 @@ analysis would if we would base it on the \gls{SCAN} results.
 
 Many of the current safety issues that plague Li-ion batteries, such as thermal runaway~\cite{Wang2012} and electrolyte decomposition~\cite{Lisbona2011}, are related to the use of a flammable liquid electrolyte~\cite{Liu2018, Ouyang2019}. To prevent hazardous incidents, complex packaging design is required at the cell, module and pack level~\cite{Dougthy2012} which increases the dead weight of the battery, reducing the energy density. A promising strategy for dealing with these issues is replacing the liquid electrolyte by a solid state ionic conductor. Besides improving the safety, solid state electrolytes also offer improved stability, which significantly increases the lifetime of the battery~\cite{Mauger2019}. Moreover, the electrochemical window of the solid electrolyte is typically larger, which allows for larger operating voltages~\cite{Li2014} and hence significant increases in the energy density. Finally, a solid electrolyte could also enable the development of Li-metal and Li-air batteries, as well as the miniaturization~\cite{Bates2000, Um2017} and three dimensional battery architectures~\cite{Long2004, Pearse2018}. 
 
-A good solid electrolyte must demonstrate a high ionic conductivity and negligible electronic conductivitity at the range of lithium activity and operating temperature of the battery~\cite{Knauth2009}. Other important properties include the chemical stability versus reactions at the electrode interfaces, and good mechanical properties in order to accomodate for the change in volume of the electrodes during the cycling of the battery~\cite{Koerver2018}. Different classes being considered as solid electrolytes include perovskite (e.g. LLTO~\cite{Inaguma1993}), NASICON (e.g. \ce{Na_{1+x}Zr_2Si_xP_{3-x}O_{12}} ($0 \leq x \leq 3$)~\cite{Hagman1968}) and garnet types (e.g. \ce{Li7La3Zr2O12} \cite{Murugan2007}). For a recent overview, we refer the reader to the review paper of Zheng et al.~\cite{Zheng2018}.
+A good solid electrolyte must demonstrate a high ionic conductivity and negligible electronic conductivity at the range of lithium activity and operating temperature of the battery~\cite{Knauth2009}. Other important properties include the chemical stability versus reactions at the electrode interfaces, and good mechanical properties in order to accommodate for the change in volume of the electrodes during the cycling of the battery~\cite{Koerver2018}. Different classes being considered as solid electrolytes include perovskite (e.g. LLTO~\cite{Inaguma1993}), NASICON (e.g. \ce{Na_{1+x}Zr_2Si_xP_{3-x}O_{12}} ($0 \leq x \leq 3$)~\cite{Hagman1968}) and garnet types (e.g. \ce{Li7La3Zr2O12} \cite{Murugan2007}). For a recent overview, we refer the reader to the review paper of Zheng et al.~\cite{Zheng2018}.
 
 Here I present my contribution to the investigation of the theoretical principles behind the superionic conductivity of polyborane salts, a class of materials that has recently demonstrated significant potential as a solid electrolyte. This work was performed during a three month research stay at Lawrence Livermore National Laboratory, under the supervision of Dr. Brandon Wood and his group at the Materials Science Division. My work focused on setting up a toolbox for calculating such landscapes quickly, as described in the sections that follow and Section~\ref{automation:sec-landscape}. As such, the analysis presented in the following sections has been heavily inspired by the work of my collaborators, and largely corresponds to that of Dimitrievska et al.~\cite{Dimitrievska2018}. 
 
@@ -861,7 +862,7 @@ The high ionic conductivity of polyborane salts is believed to be connected to r
 
 \resultsubsection{Energy landscape of \ce{[CB11H12]^{-}} \label{batteries:sec-landscape}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/batteries/README.md\#energy-landscape-of-cb11h12-}{landscape}
 
-In order to understand the local interaction between the anion and cation, I have calculated the energy landscape of the cation along a chain of ``wedges", i.e. curved 2D landscapes that connect the inequivalent facets of the anion (see Fig.~\ref{batteries:fig-cb11h12}(a), as well as Fig.~\ref{automation:fig-landscape}). This involves calculating the energy of the anion-cation system with a static calculation for many different cation positions around the anion. Moreover, in order to be able to reasonably compare the energy landscapes of \ce{Li^+} versus \ce{Na^+}, I have calculated a reference energy based on the average of a spherical landscape with a radius of 8~\si{\angstrom}. Besides giving a better idea of the binding energy of the cation-anion pair, this also provides a measure for how easily the cation is able to hop back to an interstitial site, as the \textit{fcc} lattices of \ce{LiCB11H12} and \ce{NaCB11H12} have similar lattice constants (9.936~\si{\angstrom} and 10.066~\si{\angstrom}, respectively~\cite{Tang2015}). All of the landscapes presented in this section are compared with respect to this reference energy. The workflow used to calculate the landscapes is described in Section~\ref{automation:sec-landscape}, the computational details can be found in \link{appendix:sec-landscape}{corresponding section} in Appendix~\ref{appendix:sec-results}.
+In order to understand the local interaction between the anion and cation, I have calculated the energy landscape of the cation along a chain of ``wedges", i.e. curved 2D landscapes that connect the inequivalent facets of the anion (see Fig.~\ref{batteries:fig-cb11h12}a, as well as Fig.~\ref{automation:fig-landscape}). This involves calculating the energy of the anion-cation system with a static calculation for many different cation positions around the anion. Moreover, in order to be able to reasonably compare the energy landscapes of \ce{Li^+} versus \ce{Na^+}, I have calculated a reference energy based on the average of a spherical landscape with a radius of 8~\si{\angstrom}. Besides giving a better idea of the binding energy of the cation-anion pair, this also provides a measure for how easily the cation is able to hop back to an interstitial site, as the \textit{fcc} lattices of \ce{LiCB11H12} and \ce{NaCB11H12} have similar lattice constants (9.936~\si{\angstrom} and 10.066~\si{\angstrom}, respectively~\cite{Tang2015}). All of the landscapes presented in this section are compared with respect to this reference energy. The workflow used to calculate the landscapes is described in Section~\ref{automation:sec-landscape}, the computational details can be found in \link{appendix:sec-landscape}{corresponding section} in Appendix~\ref{appendix:sec-results}.
 
 {
 \begin{figure}[ht]
@@ -874,7 +875,7 @@ In order to understand the local interaction between the anion and cation, I hav
 
 The resulting energy landscapes are compared with the ab initio molecular dynamics (AIMD) results from Dimitrievska et al.~\cite{Dimitrievska2018} in Fig.~\ref{batteries:fig-cb11h12}. The landscapes of \ce{Li^+} and \ce{Na^+} are qualitatively similar, and show a preference for the cations to bind at all-boron facets, where the depth of the energy wells is progressively larger for sites further removed from the \ce{C} atom. This result is in good agreement with the angle distributions obtained from the \gls{AIMD}, where we can see that the probability density is larger for angles corresponding to the all-boron docking sites ($\Omega_2$, $\Omega_3$ and $\Omega_4$), especially at smaller distances. At these distances, the likelihood of finding the cation near the $\Omega_4$ site is largest, which matches nicely with the increasing depth of the energy wells for sites further removed from \ce{C}. 
 
-Moreover, the difference in the energy landscape between the \ce{C} facet ($\Omega_1$) and the lowest energy binding site ($\Omega_4$) is significant ($>0.6~\si{\electronvolt}$). As the anions undergo rapid reorientation in the superionic phase of both \ce{LiCB11H12} and \ce{NaCB11H12}~\cite{Dimitrievska2018}, this leads to a strongly fluctuating cation energy landscape close to the anions, which can push the cation back into interstitial sites. Hence, the substitution of \ce{B} by \ce{C} introduces a dipole in the anion, which in combination with its high rotational mobility can improve the ionic conductivitiy. This ``paddle wheel" effect was already described by Lunder et al. in the context of lithium sulphate materials~\cite{Lunden1995}, and is further supported by the by the \gls{AIMD} and quasielastic neutron scattering results of my collaborators~\cite{Dimitrievska2018}. 
+Moreover, the difference in the energy landscape between the \ce{C} facet ($\Omega_1$) and the lowest energy binding site ($\Omega_4$) is significant ($>0.6~\si{\electronvolt}$). As the anions undergo rapid reorientation in the superionic phase of both \ce{LiCB11H12} and \ce{NaCB11H12}~\cite{Dimitrievska2018}, this leads to a strongly fluctuating cation energy landscape close to the anions, which can push the cation back into interstitial sites. Hence, the substitution of \ce{B} by \ce{C} introduces a dipole in the anion, which in combination with its high rotational mobility can improve the ionic conductivity. This ``paddle wheel" effect was already described by Lunder et al. in the context of lithium sulphate materials~\cite{Lunden1995}, and is further supported by the by the \gls{AIMD} and quasielastic neutron scattering results of my collaborators~\cite{Dimitrievska2018}. 
 
 Comparing the results for \ce{Li^+} and \ce{Na+}, it is clear that the cation is bound less strongly for \ce{Na^+}, as the wells corresponding to the binding sites are much higher in energy compared to the reference at 8~\si{\angstrom}. Moreover, the wells are also broader and located at a larger distance from the anion, which further indicates that cation can more easily be detached from the anion. This, in combination with the fact that the energy difference upon reorientation of the anion is similar to that for \ce{Li^+}, can explain the lower transition temperature to the superionic phase for \ce{NaCB11H12} (380~\si{\kelvin}) compared to \ce{LiCB11H12} (400~\si{\kelvin}).
 
@@ -909,7 +910,7 @@ or \ce{Mo} on the oxygen oxidation and stability of its framework. Our results
 indicate that substituting \ce{Mn} by \ce{Sn} does little to change the 
 properties of the oxygen framework, most likely due to their similar 
 chemical inactivity during the charging process. For \ce{V} and \ce{Mo}, the 
-substitution does reduce the oxidation of the neighbouring oxygen atoms, 
+substitution does reduce the oxidation of the neighboring oxygen atoms, 
 but does not result in an improved stability. Instead, the kinetic barrier 
 for dimerization is decreased further, indicating that the substitution 
 destabilizes the structure instead. 
@@ -919,7 +920,7 @@ O1-\ce{Li_{0.5}MnO3} is likely to occur, we have yet to study its connection
 with the migration of Mn into the lithium layer. Other further investigations 
 that could be interesting are the formation of oxygen dimers at the cathode 
 surface, and subsequent evolution of \ce{O2} from the cathode into the 
-electrolyte. So far, no substitution seems to be succesful at stabilizing 
+electrolyte. So far, no substitution seems to be successful at stabilizing 
 the structure. However, other approaches have been suggested for 
 increasing the cycling properties of Li-rich materials, such as \ce{Ni} 
 substitution in the \ce{Li} layer~\cite{Yang2017}, or the substitution of 

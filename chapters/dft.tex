@@ -350,8 +350,7 @@ Kohn-Sham equations to calculate the one electron wave functions. We then use
 these wave functions to calculate the new ground state density, from which we 
 can once again derive a new effective potential. This provides us with an 
 algorithm which converges to the ground state density after a sufficient 
-amount of iterations. This algorithm is shown schematically in Figure 
-\ref{dft:fig-scf_cycle}.  
+amount of iterations. This algorithm is shown schematically in Fig.~\ref{dft:fig-scf_cycle}.  
 
 \begin{figure}[ht]  
 \centering 
@@ -403,7 +402,7 @@ correlation part.
 \phantomsection \label{dft:sec-GGA}
 In the next level of theory, some non-locality is introduced through the 
 gradient of the electron density. In this way, we obtain the 
-generalised gradient approximation (\gls{GGA})~\cite{Perdew1992}: 
+generalized gradient approximation (\gls{GGA})~\cite{Perdew1992}: 
 \begin{equation} 
 E_{xc}^{GGA}[\rho] = \int \rho(\mathbf{r}) f(\rho(\mathbf{r}),\left| \nabla 
 \rho\right|)d\mathbf{r}, 
@@ -488,7 +487,7 @@ localized electrons, another method that can improve the description of the
 electronic structure is the Hubbard $U$ correction. The basic idea of this 
 modification is to introduce an additional energy term that increases the 
 repulsion between the electrons occupying \textit{d} or \textit{f} orbitals of 
-the same atom. Several flavours of $U$ corrections exist in the literature, 
+the same atom. Several flavors of $U$ corrections exist in the literature, 
 but for the work in this thesis we have exclusively relied on the one proposed 
 by Dudarev et al.~\cite{Dudarev1998}: 
 \begin{equation}\label{dft:eq-dudarev} 
@@ -947,7 +946,7 @@ shifted in order to make it centered around the $\Gamma$-point. This way we
 can increase the symmetry of the $\mathbf{k}$-mesh, which lowers the amount of 
 irreducible $\mathbf{k}$-points, making our calculations less cumbersome. This 
 is illustrated for the two dimensional square lattice in 
-Figure~\ref{dft:fig-k_mesh}. 
+Fig.~\ref{dft:fig-k_mesh}. 
  
 \section{Linear Response Theory} \label{dft:sec-linear} 
 
@@ -975,7 +974,7 @@ external potential undergoes a small change $\delta v_{exp}$ at
 \chi(\mathbf{r},\mathbf{r}', t - t') \delta v_{exp} (\mathbf{r}',t'). 
 \end{equation} 
 Within the time-dependent Kohn-Sham formalism, the response function 
-$\chi^{KS}(\mathbf{r},\mathbf{r}, t - t')$ describes the change in density in 
+$\chi^{KS}(\mathbf{r},\mathbf{r}', t - t')$ describes the change in density in 
 response to a small change in the effective potential $\delta 
 V_{eff}(\mathbf{r},t)$: 
 \begin{equation}\label{dft:eq-KSresponse} 

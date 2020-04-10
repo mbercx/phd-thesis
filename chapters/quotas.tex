@@ -19,7 +19,7 @@ secondary electrons. The microscopic description of this process, as well as
 the calculation of the secondary electron yield, is a challenging problem due 
 to its complexity as well as its sensitivity to surface properties. One of the 
 first quantitative descriptions was articulated in the 1950s by Hagstrum, who 
-based his calculation on a parametrization of the density of states of the 
+based his calculation on a parameterization of the density of states of the 
 material.  
  
 In this chapter, I present a new model for calculating the secondary electron 
@@ -143,21 +143,21 @@ for semiconductor surfaces, before discussing our adjustments in the sections
 that follow. During the Auger neutralization, an electron tunnels through the 
 surface barrier to the lowest unoccupied ionic state, transferring the excess 
 energy to a secondary electron of the surface material 
-(Fig.~\ref{quotas:fig-auger} (a)): 
+(Fig.~\ref{quotas:fig-auger}a): 
 \begin{equation} \label{quotas:eq-energyconv} 
-\varepsilon_1 + \varepsilon_2 \rightarrow \varepsilon + \varepsilon_0 - E_I. 
+\epsilon_1 + \epsilon_2 \rightarrow \epsilon + \epsilon_0 - E_I. 
 \end{equation} 
-Here, $\varepsilon_1$ and $\varepsilon_2$ are the initial energies of the 
-electrons of the surface, $\varepsilon$ is the energy of the excited Auger 
-electron, $\varepsilon_0$ is the vacuum level, and $E_I$ the ionization energy 
+Here, $\epsilon_1$ and $\epsilon_2$ are the initial energies of the 
+electrons of the surface, $\epsilon$ is the energy of the excited Auger 
+electron, $\epsilon_0$ is the vacuum level, and $E_I$ the ionization energy 
 of the incoming ion. Determining the transition rates of the various possible 
 transitions of the Auger neutralization process involves the calculation of the 
 matrix elements in Fermi's golden rule: 
 \begin{equation} \label{quotas:eq-fermi} 
     \Gamma_{i\rightarrow f} = \frac{2\pi}{\hbar} \left| H_{i\rightarrow 
-f}\right|^2 N(\varepsilon) , 
+f}\right|^2 N(\epsilon) , 
 \end{equation} 
-where $N(\varepsilon)$ is the density of states at the final electron energy, 
+where $N(\epsilon)$ is the density of states at the final electron energy, 
 $\hbar$ is the reduced Planck constant and $H_{i\rightarrow f}$ is the 
 transition matrix element: 
 \begin{equation} 
@@ -176,55 +176,55 @@ transition matrix elements, as in the earlier work of e.g. Cobas and
 Lamb~\cite{Cobas1944}, Hagstrum introduced a model based on the density of 
 states (\gls{DOS}) of the surface. In his approach, the matrix element for each 
 transition is considered to be constant, which means that the probability that 
-an electron of energy $\varepsilon$ will participate in the Auger 
-neutralization is proportional to the density of states $N(\varepsilon)$. In 
+an electron of energy $\epsilon$ will participate in the Auger 
+neutralization is proportional to the density of states $N(\epsilon)$. In 
 this way, we can simply use the density of states of the surface to calculate 
-the probability that a secondary electron with kinetic energy $\varepsilon_k = 
-\varepsilon - \varepsilon_0$ is emitted from the impact of an incoming ion. 
-First, the internal distribution of excited electrons $N_i(\varepsilon)$ is 
+the probability that a secondary electron with kinetic energy $\epsilon_k = 
+\epsilon - \epsilon_0$ is emitted from the impact of an incoming ion. 
+First, the internal distribution of excited electrons $N_i(\epsilon)$ is 
 calculated by 
 \begin{equation} \label{quotas:eq-excite} 
-N_i(\varepsilon) = \ddfrac{D_c(\varepsilon)T\left[\frac{\varepsilon + 
-\varepsilon_0 - E_I}{2}\right]}{\int_{\varepsilon_c}^\infty D_c 
-(\varepsilon)T\left[\frac{\varepsilon + \varepsilon_0 - 
-E_I}{2}\right]d\varepsilon}, 
+N_i(\epsilon) = \ddfrac{D_c(\epsilon)T\left[\frac{\epsilon + 
+\epsilon_0 - E_I}{2}\right]}{\int_{\epsilon_c}^\infty D_c 
+(\epsilon)T\left[\frac{\epsilon + \epsilon_0 - 
+E_I}{2}\right]d\epsilon}, 
 \end{equation} 
 where $D_c$ is the density of the unoccupied states of the surface, 
-$\varepsilon_c$ the bottom of the conduction band, and $T$ is the Auger 
+$\epsilon_c$ the bottom of the conduction band, and $T$ is the Auger 
 transform: 
 \begin{equation} 
 \begin{aligned} 
-T\left[\frac{\varepsilon + \varepsilon_0 - E_I}{2}\right] = 
-\int_{\Delta\varepsilon_v}\int_{\Delta\varepsilon_v} D_v (\varepsilon_1) D_v 
-(\varepsilon_2) \hspace{3em} \\ \delta(\varepsilon - \varepsilon_1 - 
-\varepsilon_2 + \varepsilon_0 - E_I) d\varepsilon_1 d\varepsilon_2. 
+T\left[\frac{\epsilon + \epsilon_0 - E_I}{2}\right] = 
+\int_{\Delta\epsilon_v}\int_{\Delta\epsilon_v} D_v (\epsilon_1) D_v 
+(\epsilon_2) \hspace{3em} \\ \delta(\epsilon - \epsilon_1 - 
+\epsilon_2 + \epsilon_0 - E_I) d\epsilon_1 d\epsilon_2. 
 \end{aligned} 
 \end{equation} 
-Here, $D_v(\varepsilon)$ is the density of the valence states, 
-$\Delta\varepsilon_v$ is the valence band width, and $\delta$ is the Dirac 
-delta function. Note that $N_i(\varepsilon)$ is normalized to unity because of 
+Here, $D_v(\epsilon)$ is the density of the valence states, 
+$\Delta\epsilon_v$ is the valence band width, and $\delta$ is the Dirac 
+delta function. Note that $N_i(\epsilon)$ is normalized to unity because of 
 the assumption that every incoming ion is neutralized, producing one excited 
 electron inside the surface. The delta function is used to assert energy 
 conservation of the Auger neutralization process 
 (Eq.~\ref{quotas:eq-energyconv}). \\ 
  
 Next, the distribution of the electrons that can escape from the surface 
-$N_0(\varepsilon)$ is calculated by multiplying $N_i(\varepsilon)$ with the 
-aptly named escape probability $P_e(\varepsilon)$: 
+$N_0(\epsilon)$ is calculated by multiplying $N_i(\epsilon)$ with the 
+aptly named escape probability $P_e(\epsilon)$: 
 \begin{equation} 
-N_0(\varepsilon) = P_e (\varepsilon) N_i (\varepsilon). 
+N_0(\epsilon) = P_e (\epsilon) N_i (\epsilon). 
 \end{equation} 
-Hagstrum modeled the escape probability $P_e(\varepsilon)$ using a 
+Hagstrum modeled the escape probability $P_e(\epsilon)$ using a 
 semiclassical approach, where an electron is considered to be able to escape 
 when the projection of its wave vector on the axis perpendicular to the 
 surface is large enough, i.e. when its corresponding energy is larger than the 
 vacuum level. The resulting escape probability is: 
 \begin{equation} \label{quotas:eq-escape} 
 \begin{aligned} 
-P_e(\varepsilon) &= \frac{1}{2}\left[1 - 
-\left(\frac{\varepsilon_0}{\varepsilon}\right)^\beta\right]^\alpha & 
-\text{for} \hspace{1em}\varepsilon \geq \varepsilon_0, \\ 
-&= 0 &\text{for} \hspace{1em}\varepsilon < \varepsilon_0 
+P_e(\epsilon) &= \frac{1}{2}\left[1 - 
+\left(\frac{\epsilon_0}{\epsilon}\right)^\beta\right]^\alpha & 
+\text{for} \hspace{1em}\epsilon \geq \epsilon_0, \\ 
+&= 0 &\text{for} \hspace{1em}\epsilon < \epsilon_0 
 \end{aligned} 
 \end{equation} 
 where $\alpha$ and $\beta$ represent an anisotropy of the distribution of the 
@@ -234,14 +234,14 @@ ion-surface combination.  Finally, the secondary electron yield $\gamma$, i.e.
 the amount of electrons emitted per incoming ion, is calculated by integrating 
 the distribution of escaped electrons: 
 \begin{equation} \label{quotas:eq-yield} 
-\gamma = \int_{\varepsilon_0}^\infty N_0(\varepsilon) d\varepsilon. 
+\gamma = \int_{\epsilon_0}^\infty N_0(\epsilon) d\epsilon. 
 \end{equation} 
 Using his model, Hagstrum was able to fairly accurately reproduce the yield 
 spectra for \ce{He^+} and \ce{Ne^+} incident on \ce{Ge(111)} and \ce{Si(111)}. 
 Note that all energies in Eq.~\ref{quotas:eq-escape} are defined with respect 
 to the valence band minimum, which was taken as the zero-energy level by 
 Hagstrum. This corresponds to implicitly deciding on a reference level that 
-determines the effective barrier $\varepsilon_0$ that the electrons have to 
+determines the effective barrier $\epsilon_0$ that the electrons have to 
 pass in order to escape from the surface. Because this reference level affects 
 the probability that an excited electron is emitted, it has a significant 
 influence on the calculated yield.\\ 
@@ -282,11 +282,11 @@ ion has a large effect on the \gls{AN} rate. The efficient contribution of $d$
 electrons compared to $s$ or $p$ states will have to be considered in case the 
 model is extended to be applied to noble metals. 
  
-\subsection{The Escape Function} \label{quotas:sec-escape} 
+\subsection{Escape Function} \label{quotas:sec-escape} 
  
 An integral part of Hagstrum's model is the escape probability function 
-$P_e(\varepsilon$), which represents the probability that an electron at 
-energy $\varepsilon$ can escape from the surface after excitation. Initially 
+$P_e(\epsilon$), which represents the probability that an electron at 
+energy $\epsilon$ can escape from the surface after excitation. Initially 
 Hagstrum had derived a parameterless expression for $P_e$, based on an 
 isotropic angular distribution of the wave vector of the excited electrons. 
 However, the resulting distributions of escaped electrons, or yield spectra, 
@@ -313,7 +313,7 @@ al~\cite{Lorente1994}. In this framework, the surface is described as a step
 function barrier, and the angle-dependent escape probability is derived from 
 the transmission coefficient: 
 \begin{equation} 
-P_e(\varepsilon, \theta) = T(k_\perp,p_\perp), 
+P_e(\epsilon, \theta) = T(k_\perp,p_\perp), 
 \end{equation} 
 where $\theta$ is the angle between the initial wave vector and the surface 
 normal, and $k_\perp$ and $p_\perp$ are the projections of the wave vector on 
@@ -321,12 +321,12 @@ the surface normal inside and outside of the material, i.e. $k_\perp = k
 \cos(\theta)$. For semiconductors, the barrier is set equal to the electron 
 affinity $\chi$~\cite{Baragiola1993, Aboelfotoh1977, Yoon2001}, which 
 corresponds to setting the reference energy level at the bottom of the 
-conduction band $\varepsilon_c$. Using this convention, the wave vector is 
+conduction band $\epsilon_c$. Using this convention, the wave vector is 
 calculated from 
 \begin{equation}\label{quotas:eq-wavevector} 
-k=\sqrt{2 m_e (\varepsilon - \varepsilon_c)/\hbar^2}, 
+k=\sqrt{2 m_e (\epsilon - \epsilon_c)/\hbar^2}, 
 \end{equation} 
-where $\varepsilon_c$ is the bottom of the conduction band, $\hbar$ is the 
+where $\epsilon_c$ is the bottom of the conduction band, $\hbar$ is the 
 reduced Planck constant and $m_e$ is the electron mass. $p_\perp$ is 
 determined using the refraction condition at the surface: 
 \begin{equation}\label{quotas:eq-refraction} 
@@ -338,30 +338,31 @@ by~\cite{Lorente1994}:
 T(k_\perp,p_\perp) = \frac{4k_\perp p_\perp}{(k_\perp + p_\perp)^2}. 
 \end{equation} 
 Next, in order to determine the escape probability for an excited electron 
-with energy $\varepsilon$, we use the following 
+with energy $\epsilon$, we use the following 
 expression~\cite{Hagstrum1954}: 
 \begin{equation} 
-P_e(\varepsilon) = \int P_e(\varepsilon,\theta) P_{\Omega}(\varepsilon) 
+P_e(\epsilon) = \int P_e(\epsilon,\theta) P_{\Omega}(\epsilon) 
 d\Omega, 
 \end{equation} 
-where $P_{\Omega}(\varepsilon)d\Omega$ is the probability that an electron 
-with energy $\varepsilon$ has a wave vector \textbf{k} with a direction that 
+where $P_{\Omega}(\epsilon)d\Omega$ is the probability that an electron 
+with energy $\epsilon$ has a wave vector \textbf{k} with a direction that 
 is part of the solid angle $d\Omega = \sin{\theta} d\theta d\varphi$. If, 
 similar to Hagstrum's initial approach, we assume this distribution to be 
-isotropic, i.e. $P_{\Omega}(\varepsilon) = 1/4\pi$, and only consider the half 
+isotropic, i.e. $P_{\Omega}(\epsilon) = 1/4\pi$, and only consider the half 
 sphere in the direction of the vacuum, we obtain: 
 \begin{equation} 
-P_e(\varepsilon) = \frac{1}{4\pi} \int_{0}^{2\pi} d\varphi 
+P_e(\epsilon) = \frac{1}{4\pi} \int_{0}^{2\pi} d\varphi 
 \int_0^{\frac{\pi}{2}} \sin{\theta} d\theta\frac{4k_\perp (\theta) p_\perp 
 (\theta)}{(k_\perp (\theta) + p_\perp(\theta))^2}. 
 \end{equation} 
 This expression for the escape function has the advantage that it does not 
 depend on the position of the zero point on the energy axis, since it is 
-calculated using a difference of energy values, i.e. $\varepsilon - 
-\varepsilon_c$ in Eq.~(\ref{quotas:eq-wavevector}). Moreover, by adopting an 
+calculated using a difference of energy values, i.e. $\epsilon - 
+\epsilon_c$ in Eq.~(\ref{quotas:eq-wavevector}). Moreover, by adopting an 
 isotropic angular distribution for the wave vector of the excited electrons, 
 we avoid the use of the parameters $\alpha$ and $\beta$. 
- 
+
+\pagebreak
 \resultsubsection{Electron Cascades \label{quotas:sec-cascades}}{https://github.com/mbercx/phd-thesis/tree/master/jupyter/quotas/README.md\#electron-cascades}{semiconductors} 
 
 Using the escape function described in the previous section, we face a similar 
@@ -394,7 +395,7 @@ electron cascades on the energy distributions of the interacting electrons. We
 begin by considering the energy distribution of the electrons that cannot 
 escape: 
 \begin{equation} 
-N_c^{(2)}(\varepsilon) = (1-P_e(\varepsilon))N_i(\varepsilon). 
+N_c^{(2)}(\epsilon) = (1-P_e(\epsilon))N_i(\epsilon). 
 \end{equation} 
 In Hagstrum's model, these electrons simply do not contribute, and their 
 energy has no influence on the \gls{SEE} yield. Here, we approximate the scattering 
@@ -404,11 +405,11 @@ be constant, which makes the probability of a specific scattering event
 proportional to the density of states at the energy levels involved. The 
 scattering process can be written as: 
 \begin{equation}\label{quotas:eq-scattering} 
-\varepsilon_1 + \varepsilon_2 \rightarrow \varepsilon + \varepsilon'. 
+\epsilon_1 + \epsilon_2 \rightarrow \epsilon + \epsilon'. 
 \end{equation} 
-where $\varepsilon_1$ is the energy of the excited electron before scattering, 
-$\varepsilon_2$ is the energy of an electron in the valence band and 
-$\varepsilon$, $\varepsilon'$ are the energies of the two electrons after the 
+where $\epsilon_1$ is the energy of the excited electron before scattering, 
+$\epsilon_2$ is the energy of an electron in the valence band and 
+$\epsilon$, $\epsilon'$ are the energies of the two electrons after the 
 scattering process (See Fig.~\ref{quotas:fig-cascades}). The distribution of 
 excited electrons after scattering can then be calculated using: 
 
@@ -417,56 +418,56 @@ excited electrons after scattering can then be calculated using:
 \captionsetup{width=0.9\textwidth}
 \input{figures/quotas/electron_scattering} 
 \caption{\label{quotas:fig-cascades}Energy diagram of a single step in the 
-electron cascade process. The electron at energy $\varepsilon_1$ scatters on 
-an electron in the valence band at energy $\varepsilon_2$, transferring 
+electron cascade process. The electron at energy $\epsilon_1$ scatters on 
+an electron in the valence band at energy $\epsilon_2$, transferring 
 sufficient energy for the second electron to excite into an unoccupied state 
-of the conduction band at energy $\varepsilon'$.} 
+of the conduction band at energy $\epsilon'$.} 
 \end{figure} 
 
 \begin{equation} 
 \begin{aligned} 
-N_i^{(2)}(\varepsilon) &\sim \int_{\varepsilon_c}^{\infty} d\varepsilon' 
-\int_{\varepsilon_0}^{\infty} d\varepsilon_1 \int_{\Delta_{\varepsilon_v}} 
-d\varepsilon_2  D_c(\varepsilon) D_c(\varepsilon') N_c^{(2)}(\varepsilon_1) 
-D_v(\varepsilon_2)  \delta(\varepsilon + \varepsilon' -\varepsilon_1 - 
-\varepsilon_2) \\ 
-&= D_c(\varepsilon) \int_{\varepsilon_c}^{\infty} d\varepsilon' 
-D_c(\varepsilon') \int_{\varepsilon_0}^{\infty} d\varepsilon_1 
-\int_{-\infty}^{\infty} d\varepsilon_2 N_c^{(2)}(\varepsilon_1) 
-D_v(\varepsilon_2)  \delta(\varepsilon + \varepsilon' -\varepsilon_1 - 
-\varepsilon_2) \\ 
-&= D_c(\varepsilon) \int_{\varepsilon_c}^{\infty} d\varepsilon' 
-D_c(\varepsilon') \int_{\varepsilon_0}^{\infty} d\varepsilon_1 
-N_c^{(2)}(\varepsilon_1) D_v(\varepsilon + \varepsilon' - \varepsilon_1) \\ 
-&= D_c(\varepsilon) \int_{\varepsilon_c}^{\infty} d\varepsilon' 
-D_c(\varepsilon') T_{ee}(\varepsilon, \varepsilon'). 
+N_i^{(2)}(\epsilon) &\sim \int_{\epsilon_c}^{\infty} d\epsilon' 
+\int_{\epsilon_0}^{\infty} d\epsilon_1 \int_{\Delta_{\epsilon_v}} 
+d\epsilon_2  D_c(\epsilon) D_c(\epsilon') N_c^{(2)}(\epsilon_1) 
+D_v(\epsilon_2)  \delta(\epsilon + \epsilon' -\epsilon_1 - 
+\epsilon_2) \\ 
+&= D_c(\epsilon) \int_{\epsilon_c}^{\infty} d\epsilon' 
+D_c(\epsilon') \int_{\epsilon_0}^{\infty} d\epsilon_1 
+\int_{-\infty}^{\infty} d\epsilon_2 N_c^{(2)}(\epsilon_1) 
+D_v(\epsilon_2)  \delta(\epsilon + \epsilon' -\epsilon_1 - 
+\epsilon_2) \\ 
+&= D_c(\epsilon) \int_{\epsilon_c}^{\infty} d\epsilon' 
+D_c(\epsilon') \int_{\epsilon_0}^{\infty} d\epsilon_1 
+N_c^{(2)}(\epsilon_1) D_v(\epsilon + \epsilon' - \epsilon_1) \\ 
+&= D_c(\epsilon) \int_{\epsilon_c}^{\infty} d\epsilon' 
+D_c(\epsilon') T_{ee}(\epsilon, \epsilon'). 
 \end{aligned} 
 \end{equation} 
-Where we have defined the scattering transform $T_{ee}(\varepsilon, 
-\varepsilon')$ as 
+Where we have defined the scattering transform $T_{ee}(\epsilon, 
+\epsilon')$ as 
 \begin{equation} 
 \begin{aligned} 
-T_{ee}(\varepsilon, \varepsilon') = \int_{\varepsilon_0}^{\infty} 
-d\varepsilon_1 N_c^{(2)}(\varepsilon_1) D_v(\varepsilon + \varepsilon' - 
-\varepsilon_1), 
+T_{ee}(\epsilon, \epsilon') = \int_{\epsilon_0}^{\infty} 
+d\epsilon_1 N_c^{(2)}(\epsilon_1) D_v(\epsilon + \epsilon' - 
+\epsilon_1), 
 \end{aligned} 
 \end{equation} 
-Note that we only consider the excited electrons of $N_c^{(2)}(\varepsilon)$ 
+Note that we only consider the excited electrons of $N_c^{(2)}(\epsilon)$ 
 above the vacuum energy, as electrons with less energy can no longer produce 
 electrons that can contribute to the secondary electron yield. Finally, 
 because every scattering event results in two excited electrons, we normalize 
 the new distribution of excited electrons to two times the number of electrons 
 above the vacuum energy, prior to the scattering event: 
 \begin{equation} 
-N_i^{(2)}(\varepsilon) = 2 n_i \ddfrac{D_c(\varepsilon) 
-\int_{\varepsilon_c}^{\infty} d\varepsilon' D_c(\varepsilon') 
-T_{ee}(\varepsilon, \varepsilon')}{\int_{\varepsilon_c}^{\infty} d\varepsilon 
-D_c(\varepsilon) \int_{\varepsilon_c}^{\infty} d\varepsilon' D_c(\varepsilon') 
-T_{ee}(\varepsilon, \varepsilon')}, 
+N_i^{(2)}(\epsilon) = 2 n_i \ddfrac{D_c(\epsilon) 
+\int_{\epsilon_c}^{\infty} d\epsilon' D_c(\epsilon') 
+T_{ee}(\epsilon, \epsilon')}{\int_{\epsilon_c}^{\infty} d\epsilon 
+D_c(\epsilon) \int_{\epsilon_c}^{\infty} d\epsilon' D_c(\epsilon') 
+T_{ee}(\epsilon, \epsilon')}, 
 \end{equation} 
 where 
 \begin{equation} 
-n_i = \int_{\varepsilon_0}^{\infty} N_c^{(2)} (\varepsilon') d\varepsilon'. 
+n_i = \int_{\epsilon_0}^{\infty} N_c^{(2)} (\epsilon') d\epsilon'. 
 \end{equation} 
  
 In order to simulate the cascade process, these steps are iterated by once 
@@ -478,7 +479,7 @@ distributions of the yield that are obtained for each iteration to the
 original yield from Hagstrum's model. If we apply this approach to the yield 
 calculation of He$^+$ ions on \ce{Ge(111)}, we obtain the results in 
 Fig.~\ref{quotas:fig-iterations}, where we have plotted the number of emitted 
-electrons $N_0$ versus their kinetic energy $\varepsilon_k$ for several 
+electrons $N_0$ versus their kinetic energy $\epsilon_k$ for several 
 iterations. We can see that as we iterate the electron cascade process, the 
 \gls{SEE} spectrum quickly converges. The final distribution (iteration 3) has 
 significantly more electrons at lower energies, and is a substantial 
@@ -488,9 +489,9 @@ when compared with the experimental results from Hagstrum~\cite{Hagstrum1960}.
 \begin{figure}[ht] 
 \centering 
 \captionsetup{width=0.9\textwidth}
-\includegraphics[width=0.5\linewidth]{Figures/quotas/Fig3.eps} 
+\input{Figures/quotas/iterations} 
 \caption{\label{quotas:fig-iterations} Calculated distribution of the kinetic 
-energy $\varepsilon_k$ of secondary electrons emitted for incident \ce{He^+} 
+energy $\epsilon_k$ of secondary electrons emitted for incident \ce{He^+} 
 ions on \ce{Ge(111)} at various iterations of the electron cascade process.} 
 \end{figure} 
 
@@ -507,7 +508,7 @@ compare our calculated spectra with the results for low energy
 (10~\si{\electronvolt}) ions, for which the contribution of kinetic electron 
 emission is negligible, as it is not considered in our model. 
 Overall, the shape of the calculated yield spectra matches reasonably well 
-with the experimental one\footnote{Note that we have applied a small gaussian 
+with the experimental one\footnote{Note that we have applied a small Gaussian 
 broadening to the final calculated yield spectra. This is largely for visual purposes, i.e. to facilitate 
 the comparison between different spectra.}. 
 The total \gls{SEE} yield coefficients $\gamma$, obtained s
@@ -523,24 +524,7 @@ all other ion/surface pairs.
 \begin{figure*}[ht] 
     \centering 
     \captionsetup{width=0.9\textwidth}
-    \begin{subfigure}[t]{0.49\textwidth} 
-        \centering 
-        \includegraphics[width=\textwidth]{Figures/quotas/Fig4a.eps} 
-    \end{subfigure}% 
-    ~  
-    \begin{subfigure}[t]{0.49\textwidth} 
-        \centering 
-        \includegraphics[width=\textwidth]{Figures/quotas/Fig4b.eps} 
-    \end{subfigure} 
-    \begin{subfigure}[t]{0.49\textwidth} 
-        \centering 
-        \includegraphics[width=\textwidth]{Figures/quotas/Fig4c.eps} 
-    \end{subfigure}% 
-    ~  
-    \begin{subfigure}[t]{0.49\textwidth} 
-        \centering 
-        \includegraphics[width=\textwidth]{Figures/quotas/Fig4d.eps} 
-    \end{subfigure} 
+    \input{\figurepath/quotas/semiconductors} 
     \caption{\label{quotas:fig-results_semiconductors} Experimental and 
 calculated yield spectra for incoming \ce{He^+} and \ce{Ne^+} ions on 
 \ce{Ge(111)} and \ce{Si(111)} surfaces. Also shown are the initial yield 
@@ -636,11 +620,11 @@ energy loss for the scattered electrons. The higher value of $f_c$ for
 \ce{He^+} impact compared to \ce{Ne^+} is because the larger ionization energy 
 of \ce{He^+} allows for more iterations in the electron cascade process. 
  
-However, when the high energy tail of the the yield spectrum is reproduced 
+However, when the high energy tail of the yield spectrum is reproduced 
 accurately, the model still underestimates the yield spectra. This can in part 
 be explained by the anisotropy of the system caused by the incoming ion, which 
 means that the distribution of the direction of the wave vectors 
-$P_\Omega(\varepsilon)$ is most likely not fully isotropic. This was 
+$P_\Omega(\epsilon)$ is most likely not fully isotropic. This was 
 Hagstrum's motivation for introducing the $\alpha$ and $\beta$ parameters, in 
 order to skew the direction of the excited electrons towards the surface. Our 
 results indicate that Hagstrum most likely overestimated the anisotropy when 
@@ -657,16 +641,17 @@ overall yield. The fact that our results match fairly well with experiment,
 however, is an indication that such effect would likely be small, and that 
 considering the matrix elements to be constant is a reasonable approximation 
 for \ce{Ge} and \ce{Si}. 
- 
+
+\pagebreak
 \section{Metals} \label{quotas:sec-metals} 
  
 So far, I have only considered semiconductors in the discussion of Hagstrum's 
 model, as well as our adjustments. However, it is possible to extend the model 
 to metals without having to significantly change the expressions of 
 Sec.~\ref{quotas:sec-see} by simply redefining the valence states density 
-$D_v(\varepsilon)$ as the density of the occupied states of the metal and 
-$D_c(\varepsilon)$ as the density of the unoccupied states. For metals then, 
-$\varepsilon_c = \varepsilon_v = \varepsilon_F$, with $\varepsilon_F$ the 
+$D_v(\epsilon)$ as the density of the occupied states of the metal and 
+$D_c(\epsilon)$ as the density of the unoccupied states. For metals then, 
+$\epsilon_c = \epsilon_v = \epsilon_F$, with $\epsilon_F$ the 
 Fermi level and $\chi$ in Eq.~\ref{quotas:eq-refraction} becomes the work 
 function $\phi$. 
  
@@ -679,7 +664,7 @@ for \ce{He+} and \ce{Ne+} incident on \ce{Mg(100)} with the experimental
 result of Baragiola and Dukes~\cite{Baragiola1996} in 
 Fig.~\ref{quotas:fig-he_mg_noplasmon}. The experimental yield spectrum is 
 severely overestimated, especially at higher energies. Both experimental 
-spectra also present a rather distinct feature: above $\varepsilon_k \approx 
+spectra also present a rather distinct feature: above $\epsilon_k \approx 
 7-8$~\si{\electronvolt} there is a plateau in the yield spectrum for both 
 \ce{He+} and \ce{Ne+}, which is not reproduced by our model. 
 
@@ -725,7 +710,7 @@ excitation mechanism by Apell~\cite{Apell1988}. Other theoretical
 work also confirms the importance of plasmon mechanisms for the ion 
 neutralization process~\cite{Almulhem1989, Monreal1995, VicenteAlvarez1998}.  
 
-However, considering the electronic structure of \ce{Mg} in Fig.~\ref{quotas:fig-plasmons}~(a), a resonant 
+However, considering the electronic structure of \ce{Mg} in Fig.~\ref{quotas:fig-plasmons}a, a resonant 
 excitation mechanism alone is not sufficient to explain the experimental 
 electron energy distribution of $\ce{He^+}$ on \ce{Mg} in 
 Fig.~\ref{quotas:fig-he_mg_noplasmon}. The highest energy electrons in the 
@@ -735,8 +720,8 @@ $\phi = 3.64~\si{\electronvolt}$. For a singly charged $\ce{He^+}$
 ion, the ionization energy is $E_I = 22.58~\si{\electronvolt}$. If the electrons close 
 to the Fermi level in Mg are the ones to neutralize the incoming ion, an 
 energy of up to 18.94 eV is released. Since the width of the density of 
-occupied states is $\Delta \varepsilon_{v} = 6.96~\si{\electronvolt}$, the 
-lowest energy released by the ion neutralization is $E_I - \Delta\varepsilon_{v} - \phi = 11.98~\si{\electronvolt}$. 
+occupied states is $\Delta \epsilon_{v} = 6.96~\si{\electronvolt}$, the 
+lowest energy released by the ion neutralization is $E_I - \Delta\epsilon_{v} - \phi = 11.98~\si{\electronvolt}$. 
 If the plasmon activity is only described by a resonant 
 process, we expect very few plasmon excitations, even if the plasmon 
 resonance peak is significantly broadened by the short plasmon lifetime.
@@ -782,28 +767,28 @@ f_{T_p} (t) = \lambda_p e^{-\lambda_p t},
 for a process $p$, i.e. volume plasmon excitation ($vp$), surface plasmon 
 excitation ($sp$) or Auger neutralization ($aug$). The 
 excitation rate of volume plasmons with energy $E_{vp}$ can be related to the 
-dielectric function $\epsilon (\omega)$ through the volume loss function 
+dielectric function $\varepsilon (\omega)$ through the volume loss function 
 $L$~\cite{Raether1980}: 
 \begin{eqnarray} 
 \lambda_{vp}(E_{vp}) &\sim& L(E_{vp}) =
-\text{Im}\left[-\frac{1}{\epsilon(E_{vp})}\right] \\
-\lambda_{vp}(E_{vp}) &=& c_{vp} \cdot \text{Im}\left[-\frac{1}{\epsilon(E_{vp})}\right],
+\text{Im}\left[-\frac{1}{\varepsilon(E_{vp})}\right] \\
+\lambda_{vp}(E_{vp}) &=& c_{vp} \cdot \text{Im}\left[-\frac{1}{\varepsilon(E_{vp})}\right],
 \end{eqnarray} 
 where $c_{vp}$ is a proportionality constant.
 Each of the possible energy losses $E_{vp}$ are considered as competing Poisson 
 point processes. However, as the excited electron cannot wind up in an 
 occupied state, it cannot lose more energy than its energy relative to the 
-Fermi level $\varepsilon - \varepsilon_F$. Writing the average travel 
+Fermi level $\epsilon - \epsilon_F$. Writing the average travel 
 interval of the excited electrons as $t_e$, the probability for an electron at 
-energy $\varepsilon$ of exciting a plasmon with energy $E_{vp} < \varepsilon - 
-\varepsilon_F$ is (see Appendix~\ref{sec:appendix-poisson}): 
+energy $\epsilon$ of exciting a plasmon with energy $E_{vp} < \epsilon - 
+\epsilon_F$ is (see Appendix~\ref{sec:appendix-poisson}): 
 \begin{eqnarray} \label{quotas:eq-vp_prob}
-P_{vp}(\varepsilon, E_{vp}) dE_{vp} &=& \frac{c_{vp} 
-L(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} c_{vp} L(E) dE
-}\left[1-e^{-\left(\int_0^{\varepsilon - \varepsilon_F} c_{vp} L(E) dE\right) t_e 
+P_{vp}(\epsilon, E_{vp}) dE_{vp} &=& \frac{c_{vp} 
+L(E_{vp})dE_{vp}}{\int_0^{\epsilon - \epsilon_F} c_{vp} L(E) dE
+}\left[1-e^{-\left(\int_0^{\epsilon - \epsilon_F} c_{vp} L(E) dE\right) t_e 
 }\right] \\ 
-&=& \frac{L(E_{vp})dE_{vp}}{\int_0^{\varepsilon - \varepsilon_F} L(E) dE
-}\left[1-e^{-\left(\int_0^{\varepsilon - \varepsilon_F} L(E) dE\right) c_{vp} t_e 
+&=& \frac{L(E_{vp})dE_{vp}}{\int_0^{\epsilon - \epsilon_F} L(E) dE
+}\left[1-e^{-\left(\int_0^{\epsilon - \epsilon_F} L(E) dE\right) c_{vp} t_e 
 }\right] 
 \end{eqnarray} 
 The product $\kappa_v = c_{vp} \cdot t_e$, the combination of the prefactor of the 
@@ -815,7 +800,7 @@ For the surface plasmons, a plasmon excitation can occur instead of a
 single-electron excitation when the energy released in the neutralization of 
 the incoming ion is close to that of the surface plasmon. In order to determine the 
 possibility of a surface plasmon excitation, both processes are once again 
-modelled as Poisson point processes, i.e. by considering the exponential 
+modeled as Poisson point processes, i.e. by considering the exponential 
 distributions
 \begin{eqnarray} 
 f_{T_{sp}}(E_{sp}, t) = \lambda_{sp} (E_{sp}) e^{-\lambda_{sp}(E_{sp}) t}\\ 
@@ -830,18 +815,18 @@ P_{sp}(E_{sp}) = \text{Pr}\{T_{sp} < T_{aug}\} =
 The surface plasmon excitation rate is calculated from the dielectric response of 
 the surface using the surface energy loss function~\cite{Raether1980}: 
 \begin{equation} 
-\lambda_{sp}(E_{sp}) = c_{sp} \cdot \text{Im}\left[-\frac{1}{\epsilon(E_{sp}) 
+\lambda_{sp}(E_{sp}) = c_{sp} \cdot \text{Im}\left[-\frac{1}{\varepsilon(E_{sp}) 
 + 1}\right],
 \end{equation} 
 where $c_{sp}$ is once again a proportionality constant.
 The expression for the probability of a plasmon 
-excitation when an energy $E_{sp}$ is transfered to the incoming ion becomes: 
+excitation when an energy $E_{sp}$ is transferred to the incoming ion becomes: 
 \begin{equation} \label{quotas:eq-sp_prob}
-P_{sp}(E_{sp}) = \frac{c_{sp} \cdot \text{Im}\left[-\frac{1}{\epsilon(E_{sp}) + 
-1}\right]}{c_{sp}  \cdot \text{Im}\left[-\frac{1}{\epsilon(E_{sp}) + 1}\right] + 
+P_{sp}(E_{sp}) = \frac{c_{sp} \cdot \text{Im}\left[-\frac{1}{\varepsilon(E_{sp}) + 
+1}\right]}{c_{sp}  \cdot \text{Im}\left[-\frac{1}{\varepsilon(E_{sp}) + 1}\right] + 
 \lambda_{aug}} = \frac{ \frac{c_{sp}}{\lambda_{aug}} 
-\text{Im}\left[-\frac{1}{\epsilon(E_{sp}) + 1}\right]}{\frac{c_{sp}}{\lambda_{aug}} 
-\text{Im}\left[-\frac{1}{\epsilon(E_{sp}) + 1}\right] + 1} 
+\text{Im}\left[-\frac{1}{\varepsilon(E_{sp}) + 1}\right]}{\frac{c_{sp}}{\lambda_{aug}} 
+\text{Im}\left[-\frac{1}{\varepsilon(E_{sp}) + 1}\right] + 1} 
 \end{equation} 
 where the ratio $\kappa_s = c_{sp}/\lambda_{aug}$ is treated as a second parameter 
 of the plasmon model\footnote{We take this ratio to be the parameter - instead 
@@ -859,7 +844,7 @@ excitation in the model. In short, the surface plasmon excitation probability
 (Eq.~(\ref{quotas:eq-sp_prob})) is used to remove a fraction of the energy 
 distribution passed to the valence electrons in the Auger neutralization. The 
 implementation of the volume plasmon is more complicated, as an electron 
-travelling to the surface can excite volume plasmons with a range of energies 
+traveling to the surface can excite volume plasmons with a range of energies 
 $E_{vp}$. Moreover, volume plasmons decay into single particle 
 excitations~\cite{Maier2007}, and hence the spectrum of excited 
 plasmons has to be considered for calculating a new distribution of excited 
@@ -926,7 +911,7 @@ discuss the reason for their exclusion in the next section.} for \ce{He+} and
 Takeishi and Hagstrums results for \ce{Ni(111)}~\cite{Takeishi1965} and 
 \ce{Cu(110)}~\cite{Hagstrum1966}. Unfortunately, as Baragiola et al. did not 
 specify the surface orientation of each metal, we chose to compare the experimental result 
-to an average of our calculated results. Based on an interactive jupyter 
+to an average of our calculated results. Based on an interactive Jupyter 
 notebook, we first explored the influence of the parameters on the calculated 
 parameters for each surface in order to ascertain a reasonable range for the 
 fitting procedure. Next, we take the difference of the experimental and 
@@ -966,7 +951,7 @@ al.~\cite{Baragiola1996}, who also demonstrated an overall gain in electron
 yield when the kinetic energy is increased. Hagstrum introduced a broadening 
 in the Auger transform to simulate the kinetic effects, however, as the 
 difference is rather minor, we simply stick to a general 
-0.2~\si{\electronvolt} gaussian broadening of the yield spectra for visual 
+0.2~\si{\electronvolt} Gaussian broadening of the yield spectra for visual 
 purposes, similar to the spectra presented for \ce{Ge} and \ce{Si}.
 
 In contrast with the results for \ce{Al} and \ce{Mg}, there is a much larger 
@@ -1126,7 +1111,7 @@ neutralization (\gls{AN}) is believed to be the dominant process, neglecting \gl
 can have a larger effect for ions with a lower ionization energy. 
 To understand this, consider what happens when an electron first neutralizes
 the incoming ion via a resonant tunneling process, and subsequently is excited
-to an energy above the vacuum level via Auger De-excitation (\gls{AD}). Compared 
+to an energy above the vacuum level via Auger de-excitation (\gls{AD}). Compared 
 to an electron that is excited inside the surface via \gls{AN}, this electron is excited in 
 the (approximately) spherical potential well of the ion. If the energy of the 
 electron is higher than the vacuum level, the escape probability of this 
@@ -1172,7 +1157,7 @@ averaged total yield for \ce{He+} on the periodic table.
 The average yield of the group IA elements is excessively high. This is a 
 result of the combination of the low work functions of the surfaces of these 
 elements as well as their small width of the density of occupied states 
-$D_v(\varepsilon)$. The latter increases the yield because the average energy 
+$D_v(\epsilon)$. The latter increases the yield because the average energy 
 of an electron is higher in case the electrons are all close to the Fermi 
 level. Hence, due to these two properties, the electrons only have 
 to overcome a relatively small barrier when trying to escape, and there are 
@@ -1205,7 +1190,7 @@ studied elements.}
 On the other side of the periodic table, elements with full $d$ orbitals and 
 only a couple of electrons in the $s$ and/or $p$ orbitals (group 11-13, 
 excluding \ce{Al}) have a noticeably lower yield. This is connected to the 
-electronic structure of these elements near the Fermi level. Fig.~\ref{quotas:fig-pdos} 
+electronic structure of these elements near the Fermi level. Figure~\ref{quotas:fig-pdos} 
 shows the projected \gls{DOS} of \ce{Ni (100)}, \ce{Cu (100)} and \ce{Zn (100)}. 
 For all of these surfaces, most of the occupied states near the Fermi level 
 correspond to $d$ states. However, for \ce{Zn (100)} these 
@@ -1215,8 +1200,7 @@ relatively low. This reduces the average energy of the excited electron,
 which results in a lower chance of escape and hence a lower yield. The electronic  structures of 
 other elements with full $d$ orbitals is similar, resulting in a lower yield 
 for groups 11-13. \ce{Cu}, and by extension \ce{Ag} and \ce{Au}, suffer from a
-similar effect, but to a lesser extent because the 
-the $d$ states are closer to the Fermi level. Finally, this also explains the relatively low results for \ce{He+} ions on \ce{K}, \ce{Sr} and \ce{Ba}. 
+similar effect, but to a lesser extent because the $d$ states are closer to the Fermi level. Finally, this also explains the relatively low results for \ce{He+} ions on \ce{K}, \ce{Sr} and \ce{Ba}. 
 
 {
 \pgfplotsset{every axis/.style={font=\sffamily, width=6cm, height=7cm,
@@ -1279,12 +1263,12 @@ elements, so we can weigh the contribution of each orbital accordingly.
 \caption{(\textbf{a}) Calculated yields of all surfaces versus their work function. The 
 regular data, including our model for the plasmonic excitations, is shown in 
 red. For comparison, we have also added the results without plasmonic effects 
-($\kappa_v = \kappa_s = 0$) in blue. Calculated (\textbf{b}) and experimental (\textbf{c}) secondary electron yields compared to the fit of Baragiola et al.~\cite{Baragiola1979}. The experimental values are tabulated in Table~\ref{quotas:tab-metal_results}. For materials where we do not know the surface of the corresponding yield result, we have plotted one datapoint for each experimental work function value.} 
+($\kappa_v = \kappa_s = 0$) in blue. Calculated (\textbf{b}) and experimental (\textbf{c}) secondary electron yields compared to the fit of Baragiola et al.~\cite{Baragiola1979}. The experimental values are tabulated in Table~\ref{quotas:tab-metal_results}. For materials where we do not know the surface of the corresponding yield result, we have plotted one data point for each experimental work function value.} 
 \label{quotas:fig-versus_workfun} 
 \end{figure}
 }
  
-Figure~\ref{quotas:fig-versus_workfun}(a) plots the calculated yield for 
+Figure~\ref{quotas:fig-versus_workfun}a plots the calculated yield for 
 each surface versus its work function, for both the model with and without 
 plasmons. It is clear that the plasmons have a significant influence on the 
 yield for most materials. The work function also has an important influence on 
@@ -1295,12 +1279,12 @@ this is not simply a consequence of the electronic response of the material,
 but most likely due to differences in the density of states of the various 
 surfaces. 
 
-Finally, we compare both our calculated yield spectra and workfunctions, as 
+Finally, we compare both our calculated yield spectra and work functions, as 
 well as the experimental results tabulated in 
 Table~\ref{quotas:tab-metal_results}, with an empirical fit from Baragiola 
-et al.~\cite{Baragiola1979} in Fig.~\ref{quotas:fig-versus_workfun}(b) and (c). It 
+et al.~\cite{Baragiola1979} in Fig.~\ref{quotas:fig-versus_workfun}b-c. It 
 is clear that for surfaces with higher work functions (left side of the figure), 
-our calculated yields lie consistently below Baragiola's fit. This is also the case for most experimental data, however, with the sole exception of tungsten, for which we observed a significant discrepancy between our calculated spectra and the experimental ones in Section~\ref{quotas:sec-results_metals}. For surfaces with lower work functions (right side of Figs.~\ref{quotas:fig-versus_workfun}(b-c)), the calculated yield can be significantly higher than the value corresponding to Baragiola's fit. This is another indication that our model overestimates the yield of these surfaces. Besides the results of Hagstrum, Baragiola et al. relied on the results of Oechsner~\cite{Oechsner1978} and Arifov~\cite{Arifov1969}. The former, however, used \ce{Ar^+} ions with a kinetic energy of 1~\si{\kilo\electronvolt}, which can significantly increase the electron yield compared to relatively slow ions (4-100~\si{\electronvolt}). As our model does not consider kinetic mechanisms in the calculation of the yield, this could be one explanation as to why our results lie below Baragiola's fit. Moreover, considering the importance of plasmon excitations, and the highly material dependent energy loss spectra in Fig.~\ref{quotas:fig-energy_loss}, it seems unlikely that an accurate electron yield can be obtained from a linear fit relying solely on the ionization energy $E_I$ and work function $\phi$.
+our calculated yields lie consistently below Baragiola's fit. This is also the case for most experimental data, however, with the sole exception of tungsten, for which we observed a significant discrepancy between our calculated spectra and the experimental ones in Section~\ref{quotas:sec-results_metals}. For surfaces with lower work functions (right side of Figs.~\ref{quotas:fig-versus_workfun}b-c), the calculated yield can be significantly higher than the value corresponding to Baragiola's fit. This is another indication that our model overestimates the yield of these surfaces. Besides the results of Hagstrum, Baragiola et al. relied on the results of Oechsner~\cite{Oechsner1978} and Arifov~\cite{Arifov1969}. The former, however, used \ce{Ar^+} ions with a kinetic energy of 1~\si{\kilo\electronvolt}, which can significantly increase the electron yield compared to relatively slow ions (4-100~\si{\electronvolt}). As our model does not consider kinetic mechanisms in the calculation of the yield, this could be one explanation as to why our results lie below Baragiola's fit. Moreover, considering the importance of plasmon excitations, and the highly material dependent energy loss spectra in Fig.~\ref{quotas:fig-energy_loss}, it seems unlikely that an accurate electron yield can be obtained from a linear fit relying solely on the ionization energy $E_I$ and work function $\phi$.
  
 \clearpage
 \section{Conclusions and outlook} 
