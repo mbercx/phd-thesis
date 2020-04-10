@@ -1,5 +1,23 @@
 #!/bin/bash
 
+if [[ ! -d output ]]; then
+  mkdir output
+  mkdir output/chapters
+fi
+
+if [[ -z `command -v pdflatex` ]]; then
+  echo "Error: pdflatex command not found. Is LaTeX installed on your system?"
+  exit 1
+fi
+if [[ -z `command -v makeglossaries` ]]; then
+  echo "Error: makeglossaries command not found. Is LaTeX installed on your system?"
+  exit 1
+fi
+if [[ -z `command -v bibtex` ]]; then
+  echo "Error: bibtex command not found. Is LaTeX installed on your system?"
+  exit 1
+fi
+
 pdflatex -output-dir=output '\PassOptionsToPackage{draft}{graphicx}\input{main}'
 rsync -av bibliography/ output/bibliography
 cd output
