@@ -18,17 +18,16 @@ if [[ -z `command -v bibtex` ]]; then
   exit 1
 fi
 
+num_chapters=`ls -l chapters/ | grep .tex | wc -l`
+
 pdflatex -output-dir=output '\PassOptionsToPackage{draft}{graphicx}\input{main}'
 rsync -av bibliography/ output/bibliography
 cd output
 makeglossaries main
-bibtex main1-blx
-bibtex main2-blx
-bibtex main3-blx
-bibtex main4-blx
-bibtex main5-blx
-bibtex main6-blx
-bibtex main7-blx
+while [[ $i -le $num_chapters ]]; do 
+  bibtex "main$i-blx"
+  i=$(($i+1))
+done
 cd ..
 pdflatex -output-dir=output '\PassOptionsToPackage{draft}{graphicx}\input{main}'
 pdflatex -output-dir=output '\PassOptionsToPackage{draft}{graphicx}\input{main}'
